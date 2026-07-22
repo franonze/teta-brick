@@ -10,91 +10,132 @@
 </head>
 <body>
     <div class="app-container">
-        <!-- Top Section (Nursing) -->
-        <section class="glass-card nursing-section">
-            <div class="grid-container">
-                <!-- Left Column -->
-                <div class="column left-col">
-                    <h2 class="col-title">Izq</h2>
-                    <button class="play-btn" id="btn-left" aria-label="Iniciar pecho izquierdo">
-                        <svg viewBox="0 0 24 24" class="icon-play"><path d="M8 5v14l11-7z"/></svg>
-                    </button>
-                    <div class="stats">
-                        <div class="stat-row">
-                            <span class="label tag">Tiempo</span>
-                            <span class="value" id="time-left">00:00</span>
+        
+        <!-- MAIN VIEW: REGISTRO -->
+        <main id="view-registro" class="view active">
+            <!-- Top Section (Nursing) -->
+            <section class="glass-card nursing-section">
+                <div class="grid-container">
+                    <!-- Left Column -->
+                    <div class="column left-col">
+                        <h2 class="col-title">Izq</h2>
+                        <button class="play-btn" id="btn-left" aria-label="Iniciar pecho izquierdo">
+                            <svg viewBox="0 0 24 24" class="icon-play"><path d="M8 5v14l11-7z"/></svg>
+                        </button>
+                        <div class="stats">
+                            <div class="stat-row">
+                                <span class="label tag">Tiempo</span>
+                                <span class="value" id="time-left">00:00</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="label tag">Hora</span>
+                                <span class="value" id="hour-left">--:--</span>
+                            </div>
                         </div>
-                        <div class="stat-row">
-                            <span class="label tag">Hora</span>
-                            <span class="value" id="hour-left">--:--</span>
+                    </div>
+                    
+                    <div class="divider"></div>
+                    
+                    <!-- Right Column -->
+                    <div class="column right-col">
+                        <h2 class="col-title">Dcha</h2>
+                        <button class="play-btn" id="btn-right" aria-label="Iniciar pecho derecho">
+                            <svg viewBox="0 0 24 24" class="icon-play"><path d="M8 5v14l11-7z"/></svg>
+                        </button>
+                        <div class="stats">
+                            <div class="stat-row">
+                                <span class="label tag">Tiempo</span>
+                                <span class="value" id="time-right">00:00</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="label tag">Hora</span>
+                                <span class="value" id="hour-right">--:--</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-                
-                <div class="divider"></div>
-                
-                <!-- Right Column -->
-                <div class="column right-col">
-                    <h2 class="col-title">Dcha</h2>
-                    <button class="play-btn" id="btn-right" aria-label="Iniciar pecho derecho">
-                        <svg viewBox="0 0 24 24" class="icon-play"><path d="M8 5v14l11-7z"/></svg>
+            </section>
+
+            <!-- Middle Section (Next Feeding) -->
+            <section class="glass-card next-feeding-section">
+                <div class="input-group">
+                    <label for="next-feeding-input">
+                        Próxima toma:
+                        <span class="sub-label">(Cada X h)</span>
+                    </label>
+                    <input type="number" id="next-feeding-input" min="1" step="0.5" placeholder="Ej: 3">
+                </div>
+                <div class="next-time-display">
+                    <span class="value highlight" id="next-feeding-time">--:--</span>
+                </div>
+            </section>
+
+            <!-- Bottom Section (Diapers) -->
+            <section class="glass-card diaper-section">
+                <div class="diaper-row">
+                    <button class="diaper-btn poop-btn" id="btn-poop">
+                        <span class="emoji">💩</span>
+                        <span class="btn-text">Cambiar caca</span>
                     </button>
-                    <div class="stats">
-                        <div class="stat-row">
-                            <span class="label tag">Tiempo</span>
-                            <span class="value" id="time-right">00:00</span>
-                        </div>
-                        <div class="stat-row">
-                            <span class="label tag">Hora</span>
-                            <span class="value" id="hour-right">--:--</span>
-                        </div>
+                    <div class="time-label">
+                        <span class="label tag">Hora</span>
+                        <span class="value" id="time-poop">--:--</span>
                     </div>
                 </div>
-            </div>
-        </section>
+                <div class="diaper-row">
+                    <button class="diaper-btn pee-btn" id="btn-pee">
+                        <span class="emoji">💧</span>
+                        <span class="btn-text">Cambiar pis</span>
+                    </button>
+                    <div class="time-label">
+                        <span class="label tag">Hora</span>
+                        <span class="value" id="time-pee">--:--</span>
+                    </div>
+                </div>
+            </section>
 
-        <!-- Middle Section (Next Feeding) -->
-        <section class="glass-card next-feeding-section">
-            <div class="input-group">
-                <label for="next-feeding-input">
-                    Próxima toma:
-                    <span class="sub-label">(Cada X h)</span>
-                </label>
-                <input type="number" id="next-feeding-input" min="1" step="0.5" placeholder="Ej: 3">
-            </div>
-            <div class="next-time-display">
-                <span class="value highlight" id="next-feeding-time">--:--</span>
-            </div>
-        </section>
+            <!-- Action Section -->
+            <button class="main-action-btn" id="btn-registrar">
+                REGISTRAR
+            </button>
+        </main>
 
-        <!-- Bottom Section (Diapers) -->
-        <section class="glass-card diaper-section">
-            <div class="diaper-row">
-                <button class="diaper-btn poop-btn" id="btn-poop">
+        <!-- MAIN VIEW: HISTORIAL -->
+        <main id="view-historial" class="view">
+            <h2 class="view-title">Historial de Hoy</h2>
+            
+            <!-- Daily Summary -->
+            <section class="glass-card summary-section">
+                <div class="summary-item">
                     <span class="emoji">💩</span>
-                    <span class="btn-text">Cambiar caca</span>
-                </button>
-                <div class="time-label">
-                    <span class="label tag">Hora</span>
-                    <span class="value" id="time-poop">--:--</span>
+                    <span class="summary-count" id="count-poop">0</span>
+                    <span class="summary-label">Cacas</span>
                 </div>
-            </div>
-            <div class="diaper-row">
-                <button class="diaper-btn pee-btn" id="btn-pee">
+                <div class="summary-divider"></div>
+                <div class="summary-item">
                     <span class="emoji">💧</span>
-                    <span class="btn-text">Cambiar pis</span>
-                </button>
-                <div class="time-label">
-                    <span class="label tag">Hora</span>
-                    <span class="value" id="time-pee">--:--</span>
+                    <span class="summary-count" id="count-pee">0</span>
+                    <span class="summary-label">Pises</span>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Action Section -->
-        <button class="main-action-btn" id="btn-registrar">
-            REGISTRAR
-        </button>
+            <!-- History List -->
+            <section class="history-list" id="history-container">
+                <!-- Timeline items injected via JS -->
+            </section>
+        </main>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav glass-nav">
+            <button class="nav-item active" data-target="view-registro">
+                <svg viewBox="0 0 24 24" class="nav-icon"><path d="M12 3L4 9v12h16V9l-8-6zm6 16h-3v-6H9v6H6v-9l6-4.5 6 4.5v9z"/></svg>
+                <span>Registro</span>
+            </button>
+            <button class="nav-item" data-target="view-historial">
+                <svg viewBox="0 0 24 24" class="nav-icon"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                <span>Historial</span>
+            </button>
+        </nav>
     </div>
     <script src="script.js"></script>
 </body>
