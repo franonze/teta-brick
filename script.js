@@ -56,6 +56,59 @@ const svgPause = '<svg viewBox="0 0 24 24" class="icon-play"><path d="M6 19h4V5H
 
 let countdownInterval = null;
 let nextFeedingDate = null;
+let alarmInterval = null;
+let alarmTriggered = false;
+let audioCtx = null;
+
+function playAlarmBeep() {
+    if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    // Si el contexto está suspendido (por políticas del navegador), intentamos reanudarlo
+    if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+    }
+    
+    const playBeep = (timeOffset) => {
+        const osc = audioCtx.createOscillator();
+        const gainNode = audioCtx.createGain();
+        
+        osc.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+        
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(800, audioCtx.currentTime + timeOffset);
+        
+        gainNode.gain.setValueAtTime(0, audioCtx.currentTime + timeOffset);
+        gainNode.gain.linearRampToValueAtTime(1, audioCtx.currentTime + timeOffset + 0.05);
+        gainNode.gain.setValueAtTime(1, audioCtx.currentTime + timeOffset + 0.15);
+        gainNode.gain.linearRampToValueAtTime(0, audioCtx.currentTime + timeOffset + 0.2);
+        
+        osc.start(audioCtx.currentTime + timeOffset);
+        osc.stop(audioCtx.currentTime + timeOffset + 0.25);
+    };
+
+    playBeep(0);
+    playBeep(0.3);
+    playBeep(0.6);
+}
+
+function startAlarmLoop() {
+    if (alarmInterval) return;
+    playAlarmBeep(); 
+    alarmInterval = setInterval(playAlarmBeep, 2000); 
+}
+
+function stopAlarm() {
+    if (alarmInterval) {
+        clearInterval(alarmInterval);
+        alarmInterval = null;
+    }
+    nextFeedingTime.classList.remove('alarm-ringing');
+}
+
+// Detener la alarma tocando el temporizador
+nextFeedingTime.addEventListener('click', stopAlarm);
 
 function updateNextFeedingTime() {
     const hoursStr = nextFeedingInput.value;
@@ -82,7 +135,14 @@ function renderCountdown() {
     const diff = nextFeedingDate.getTime() - now.getTime();
     if (diff <= 0) {
         nextFeedingTime.textContent = '00:00:00';
+        if (!alarmTriggered) {
+            alarmTriggered = true;
+            nextFeedingTime.classList.add('alarm-ringing');
+            startAlarmLoop();
+        }
     } else {
+        alarmTriggered = false;
+        stopAlarm();
         const totalSeconds = Math.floor(diff / 1000);
         const h = Math.floor(totalSeconds / 3600).toString().padStart(2, '0');
         const m = Math.floor((totalSeconds % 3600) / 60).toString().padStart(2, '0');
@@ -326,6 +386,8 @@ const btnResetNext = document.getElementById('btn-reset-next');
 btnResetNext.addEventListener('click', () => {
     countdownBaseTime = null;
     nextFeedingDate = null;
+    alarmTriggered = false;
+    stopAlarm();
     if (countdownInterval) {
         clearInterval(countdownInterval);
         countdownInterval = null;

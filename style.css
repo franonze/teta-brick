@@ -383,6 +383,19 @@ input[type="number"]:focus {
     font-size: 1.5rem;
 }
 
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+.alarm-ringing {
+    animation: shake 0.5s ease-in-out infinite, pulseHighlight 1s infinite !important;
+    color: #ff4757 !important;
+    cursor: pointer;
+    display: inline-block;
+}
+
 /* Diaper Section (Bottom) */
 .diaper-section {
     display: flex;
