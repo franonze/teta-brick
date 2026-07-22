@@ -121,6 +121,8 @@ btnRight.addEventListener('click', () => {
 // Next feeding input logic
 nextFeedingInput.addEventListener('input', updateNextFeedingTime);
 
+const btnRegistrar = document.getElementById('btn-registrar');
+
 // Diaper buttons logic
 btnPoop.addEventListener('click', () => {
     timePoop.textContent = getCurrentTime();
@@ -128,4 +130,63 @@ btnPoop.addEventListener('click', () => {
 
 btnPee.addEventListener('click', () => {
     timePee.textContent = getCurrentTime();
+});
+
+// Registrar Session
+btnRegistrar.addEventListener('click', () => {
+    // 1. Gather current state
+    const sessionData = {
+        date: new Date().toISOString(),
+        left: {
+            durationSeconds: leftSeconds,
+            startTime: hourLeft.textContent !== '--:--' ? hourLeft.textContent : null
+        },
+        right: {
+            durationSeconds: rightSeconds,
+            startTime: hourRight.textContent !== '--:--' ? hourRight.textContent : null
+        },
+        diapers: {
+            poop: timePoop.textContent !== '--:--' ? timePoop.textContent : null,
+            pee: timePee.textContent !== '--:--' ? timePee.textContent : null
+        }
+    };
+
+    // Check if there is anything to save
+    if (leftSeconds === 0 && rightSeconds === 0 && !sessionData.diapers.poop && !sessionData.diapers.pee) {
+        alert('No hay datos activos para registrar.');
+        return;
+    }
+
+    // 2. Save to local storage
+    const history = JSON.parse(localStorage.getItem('babyLogHistory')) || [];
+    history.push(sessionData);
+    localStorage.setItem('babyLogHistory', JSON.stringify(history));
+
+    // 3. Clear the screen (Reset state and UI)
+    pauseLeftTimer();
+    pauseRightTimer();
+    leftSeconds = 0;
+    rightSeconds = 0;
+    lastFeedingStartTime = null;
+
+    timeLeft.textContent = '00:00';
+    timeRight.textContent = '00:00';
+    hourLeft.textContent = '--:--';
+    hourRight.textContent = '--:--';
+    
+    timePoop.textContent = '--:--';
+    timePee.textContent = '--:--';
+    
+    nextFeedingInput.value = '';
+    nextFeedingTime.textContent = '--:--';
+
+    // Optional: Visual feedback
+    const originalText = btnRegistrar.textContent;
+    btnRegistrar.textContent = '¡REGISTRADO!';
+    btnRegistrar.style.backgroundColor = 'var(--accent-primary)';
+    
+    setTimeout(() => {
+        btnRegistrar.textContent = originalText;
+        btnRegistrar.style.backgroundColor = '';
+    }, 2000);
 });
