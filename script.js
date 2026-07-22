@@ -190,3 +190,127 @@ btnRegistrar.addEventListener('click', () => {
         btnRegistrar.style.backgroundColor = '';
     }, 2000);
 });
+
+// --- Navigation Logic ---
+const navItems = document.querySelectorAll('.nav-item');
+const views = document.querySelectorAll('.view');
+
+navItems.forEach(item => {
+    item.addEventListener('click', () => {
+        // Update active class on nav items
+        navItems.forEach(nav => nav.classList.remove('active'));
+        item.classList.add('active');
+
+        // Show target view
+        const targetId = item.getAttribute('data-target');
+        views.forEach(view => {
+            view.classList.remove('active');
+            if (view.id === targetId) {
+                view.classList.add('active');
+            }
+        });
+
+        // If history view is opened, render history
+        if (targetId === 'view-historial') {
+            renderHistory();
+        }
+    });
+});
+
+// --- History Rendering Logic ---
+const countPoop = document.getElementById('count-poop');
+const countPee = document.getElementById('count-pee');
+const historyContainer = document.getElementById('history-container');
+
+function isToday(dateString) {
+    const date = new Date(dateString);
+    const today = new Date();
+    return date.getDate() === today.getDate() &&
+           date.getMonth() === today.getMonth() &&
+           date.getFullYear() === today.getFullYear();
+}
+
+function renderHistory() {
+    const history = JSON.parse(localStorage.getItem('babyLogHistory')) || [];
+    
+    // Filter to today only
+    const todaySessions = history.filter(session => isToday(session.date));
+    
+    // Calculate totals for poop and pee
+    let totalPoops = 0;
+    let totalPees = 0;
+    
+    // Extract single events for the timeline
+    let events = [];
+
+    todaySessions.forEach(session => {
+        // Left feeding
+        if (session.left.startTime) {
+            events.push({
+                timeStr: session.left.startTime,
+                type: 'izq',
+                desc: `${Math.round(session.left.durationSeconds / 60)}min`,
+                icon: '🍼'
+            });
+        }
+        // Right feeding
+        if (session.right.startTime) {
+            events.push({
+                timeStr: session.right.startTime,
+                type: 'dcha',
+                desc: `${Math.round(session.right.durationSeconds / 60)}min`,
+                icon: '🍼'
+            });
+        }
+        // Poop
+        if (session.diapers.poop) {
+            totalPoops++;
+            events.push({
+                timeStr: session.diapers.poop,
+                type: 'caca',
+                desc: '',
+                icon: '💩'
+            });
+        }
+        // Pee
+        if (session.diapers.pee) {
+            totalPees++;
+            events.push({
+                timeStr: session.diapers.pee,
+                type: 'pis',
+                desc: '',
+                icon: '💧'
+            });
+        }
+    });
+
+    // Update summary counts
+    countPoop.textContent = totalPoops;
+    countPee.textContent = totalPees;
+
+    // Sort events by time (descending - newest first)
+    events.sort((a, b) => b.timeStr.localeCompare(a.timeStr));
+
+    // Render HTML
+    historyContainer.innerHTML = '';
+    
+    if (events.length === 0) {
+        historyContainer.innerHTML = '<div class="empty-state">No hay registros para hoy.</div>';
+        return;
+    }
+
+    events.forEach(ev => {
+        const itemHtml = `
+            <div class="history-item">
+                <div class="history-time">${ev.timeStr}</div>
+                <div class="history-content">
+                    <div class="history-title">
+                        <span>${ev.icon}</span> ${ev.type.charAt(0).toUpperCase() + ev.type.slice(1)}
+                    </div>
+                    ${ev.desc ? `<div class="history-desc">${ev.desc}</div>` : ''}
+                </div>
+            </div>
+        `;
+        historyContainer.insertAdjacentHTML('beforeend', itemHtml);
+    });
+}
