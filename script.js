@@ -432,32 +432,42 @@ function renderHistory() {
     
     let totalFeedings = 0;
     let totalDiapers = 0;
-    let events = [];
+
+    // We'll prepare a structured array of sessions to render, sorted newest first
+    todaySessions.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    historyContainer.innerHTML = '';
+    
+    if (todaySessions.length === 0) {
+        historyContainer.innerHTML = '<div class="empty-state">No hay registros para hoy.</div>';
+        return;
+    }
 
     todaySessions.forEach(session => {
         let isFeeding = false;
         const sid = session.date;
+        const sessionEvents = [];
         
         // Left feeding
-        if (session.left.startTime) {
+        if (session.left && session.left.startTime) {
             isFeeding = true;
-            events.push({
+            sessionEvents.push({
                 id: sid,
                 key: 'left',
                 timeStr: session.left.startTime,
-                type: 'izq',
+                type: 'Toma Izquierda',
                 desc: `${Math.round(session.left.durationSeconds / 60)}min`,
                 icon: '🍼'
             });
         }
         // Right feeding
-        if (session.right.startTime) {
+        if (session.right && session.right.startTime) {
             isFeeding = true;
-            events.push({
+            sessionEvents.push({
                 id: sid,
                 key: 'right',
                 timeStr: session.right.startTime,
-                type: 'dcha',
+                type: 'Toma Derecha',
                 desc: `${Math.round(session.right.durationSeconds / 60)}min`,
                 icon: '🍼'
             });
@@ -478,55 +488,60 @@ function renderHistory() {
             
             if (diaperTime) {
                 totalDiapers++;
-                events.push({
+                sessionEvents.push({
                     id: sid,
                     key: 'diaper',
                     timeStr: diaperTime,
-                    type: 'pañal',
+                    type: 'Cambio de pañal',
                     desc: '',
                     icon: '💩'
                 });
             }
         }
-    });
+        
+        // If there are no events in this session (e.g. everything was deleted), skip it
+        if (sessionEvents.length === 0) return;
 
+        // Sort events inside the session by time descending just in case
+        sessionEvents.sort((a, b) => {
+            const timeA = typeof a.timeStr === 'string' ? a.timeStr : '';
+            const timeB = typeof b.timeStr === 'string' ? b.timeStr : '';
+            return timeB.localeCompare(timeA);
+        });
+
+        // Build HTML for the entire session group
+        let sessionHtml = `<div class="history-item" style="flex-direction: column; align-items: stretch; gap: 0;">`;
+        
+        sessionEvents.forEach((ev, idx) => {
+            const borderTop = idx > 0 ? `border-top: 1px solid rgba(255,255,255,0.05); margin-top: 12px; padding-top: 12px;` : '';
+            sessionHtml += `
+                <div style="display: flex; align-items: center; gap: 16px; ${borderTop}">
+                    <div class="history-time">${ev.timeStr}</div>
+                    <div class="history-content">
+                        <div class="history-title">
+                            <span>${ev.icon}</span> ${ev.type}
+                        </div>
+                        ${ev.desc ? `<div class="history-desc">${ev.desc}</div>` : ''}
+                    </div>
+                    <div class="history-actions">
+                        <button class="action-btn edit-btn" onclick="editEvent('${ev.id}', '${ev.key}')" title="Editar">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+                        </button>
+                        <button class="action-btn delete-btn" onclick="deleteEvent('${ev.id}', '${ev.key}')" title="Borrar">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            `;
+        });
+
+        sessionHtml += `</div>`;
+        historyContainer.insertAdjacentHTML('beforeend', sessionHtml);
+    });
+    
     // Update summary counts
     countFeedings.textContent = totalFeedings;
     countDiaper.textContent = totalDiapers;
-
-    // Sort events by time (descending - newest first)
-    events.sort((a, b) => b.timeStr.localeCompare(a.timeStr));
-
-    // Render HTML
-    historyContainer.innerHTML = '';
-    
-    if (events.length === 0) {
-        historyContainer.innerHTML = '<div class="empty-state">No hay registros para hoy.</div>';
-        return;
-    }
-
-    events.forEach(ev => {
-        const itemHtml = `
-            <div class="history-item">
-                <div class="history-time">${ev.timeStr}</div>
-                <div class="history-content">
-                    <div class="history-title">
-                        <span>${ev.icon}</span> ${ev.type.charAt(0).toUpperCase() + ev.type.slice(1)}
-                    </div>
-                    ${ev.desc ? `<div class="history-desc">${ev.desc}</div>` : ''}
-                </div>
-                <div class="history-actions">
-                    <button class="action-btn edit-btn" onclick="editEvent('${ev.id}', '${ev.key}')" title="Editar">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
-                    </button>
-                    <button class="action-btn delete-btn" onclick="deleteEvent('${ev.id}', '${ev.key}')" title="Borrar">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
-                    </button>
-                </div>
-            </div>
-        `;
-        historyContainer.insertAdjacentHTML('beforeend', itemHtml);
-    });
 }
 
 // Logic for Editing and Deleting History Events
