@@ -58,7 +58,7 @@ let nextFeedingDate = null;
 
 function updateNextFeedingTime() {
     const hoursStr = nextFeedingInput.value;
-    const hours = hoursStr !== '' ? parseFloat(hoursStr) : 3;
+    const hours = hoursStr !== '' ? parseFloat(hoursStr) : 4;
     if (lastFeedingStartTime && !isNaN(hours)) {
         nextFeedingDate = new Date(lastFeedingStartTime.getTime() + hours * 60 * 60 * 1000);
         if (!countdownInterval) {
@@ -246,7 +246,7 @@ btnRegistrar.addEventListener('click', () => {
     timePoop.textContent = '--:--';
     timePee.textContent = '--:--';
     
-    nextFeedingInput.value = '';
+    nextFeedingInput.value = '4';
     nextFeedingTime.textContent = '--:--';
 
     // Optional: Visual feedback

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,9 +9,10 @@
     <!-- Google Fonts for modern typography -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <div class="app-container">
-        
+
         <!-- MAIN VIEW: REGISTRO -->
         <main id="view-registro" class="view active">
             <!-- Top Section (Nursing) -->
@@ -20,7 +22,9 @@
                     <div class="column left-col">
                         <h2 class="col-title">Izq</h2>
                         <button class="play-btn" id="btn-left" aria-label="Iniciar pecho izquierdo">
-                            <svg viewBox="0 0 24 24" class="icon-play"><path d="M8 5v14l11-7z"/></svg>
+                            <svg viewBox="0 0 24 24" class="icon-play">
+                                <path d="M8 5v14l11-7z" />
+                            </svg>
                         </button>
                         <div class="stats">
                             <div class="stat-row">
@@ -33,14 +37,16 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="divider"></div>
-                    
+
                     <!-- Right Column -->
                     <div class="column right-col">
                         <h2 class="col-title">Dcha</h2>
                         <button class="play-btn" id="btn-right" aria-label="Iniciar pecho derecho">
-                            <svg viewBox="0 0 24 24" class="icon-play"><path d="M8 5v14l11-7z"/></svg>
+                            <svg viewBox="0 0 24 24" class="icon-play">
+                                <path d="M8 5v14l11-7z" />
+                            </svg>
                         </button>
                         <div class="stats">
                             <div class="stat-row">
@@ -58,12 +64,9 @@
 
             <!-- Middle Section (Next Feeding) -->
             <section class="glass-card next-feeding-section">
-                <div class="input-group">
-                    <label for="next-feeding-input">
-                        Próxima toma:
-                        <span class="sub-label">(Cada X h)</span>
-                    </label>
-                    <input type="number" id="next-feeding-input" min="1" step="0.5" placeholder="Ej: 3">
+                <div class="input-group-row">
+                    <label for="next-feeding-input">Próxima toma (horas):</label>
+                    <input type="number" id="next-feeding-input" min="1" step="0.5" value="4">
                 </div>
                 <div class="next-time-display">
                     <span class="value highlight" id="next-feeding-time">--:--</span>
@@ -103,7 +106,7 @@
         <!-- MAIN VIEW: HISTORIAL -->
         <main id="view-historial" class="view">
             <h2 class="view-title">Historial de Hoy</h2>
-            
+
             <!-- Daily Summary -->
             <section class="glass-card summary-section">
                 <div class="summary-item">
@@ -128,11 +131,16 @@
         <!-- Bottom Navigation -->
         <nav class="bottom-nav glass-nav">
             <button class="nav-item active" data-target="view-registro">
-                <svg viewBox="0 0 24 24" class="nav-icon"><path d="M12 3L4 9v12h16V9l-8-6zm6 16h-3v-6H9v6H6v-9l6-4.5 6 4.5v9z"/></svg>
+                <svg viewBox="0 0 24 24" class="nav-icon">
+                    <path d="M12 3L4 9v12h16V9l-8-6zm6 16h-3v-6H9v6H6v-9l6-4.5 6 4.5v9z" />
+                </svg>
                 <span>Registro</span>
             </button>
             <button class="nav-item" data-target="view-historial">
-                <svg viewBox="0 0 24 24" class="nav-icon"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                <svg viewBox="0 0 24 24" class="nav-icon">
+                    <path
+                        d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" />
+                </svg>
                 <span>Historial</span>
             </button>
         </nav>
@@ -149,11 +157,13 @@
             </div>
             <div class="modal-actions">
                 <button id="modal-cancel" class="btn-secondary">Cancelar</button>
-                <button id="modal-save" class="main-action-btn" style="padding: 12px; width: auto; flex: 1; border-radius: 12px; font-size: 1rem;">Guardar</button>
+                <button id="modal-save" class="main-action-btn"
+                    style="padding: 12px; width: auto; flex: 1; border-radius: 12px; font-size: 1rem;">Guardar</button>
             </div>
         </div>
     </div>
 
     <script src="script.js"></script>
 </body>
+
 </html>

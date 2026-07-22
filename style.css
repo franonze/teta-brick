@@ -295,21 +295,20 @@ h2 {
 /* Next Feeding Section (Middle) */
 .next-feeding-section {
     display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.input-group-row {
+    display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 1rem;
+    width: 100%;
 }
 
-.input-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    flex: 1;
-}
-
-.input-group label {
+.input-group-row label {
     font-weight: 600;
-    font-size: 1.1rem;
+    font-size: 1.25rem;
 }
 
 .sub-label {
@@ -325,9 +324,11 @@ input[type="number"] {
     color: var(--text-primary);
     padding: 10px 16px;
     border-radius: 12px;
-    font-size: 1rem;
+    font-size: 1.1rem;
+    font-weight: 600;
     font-family: inherit;
-    width: 100%;
+    width: 80px;
+    text-align: center;
     outline: none;
     transition: border-color 0.2s;
 }
@@ -341,6 +342,8 @@ input[type="number"]:focus {
     padding: 16px 20px;
     border-radius: 16px;
     border: 1px solid rgba(16, 185, 129, 0.3);
+    text-align: center;
+    width: 100%;
 }
 
 .highlight {
