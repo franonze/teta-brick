@@ -5,9 +5,9 @@ function formatTime(seconds) {
     return `${m}:${s}`;
 }
 
-// Utility to format Date as HH:MMh
+// Utility to format Date as HH:MM
 function formatHHMM(date) {
-    return `${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}h`;
+    return `${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
 }
 
 // Utility to get current time as HH:MMh
@@ -179,11 +179,11 @@ const btnRegistrar = document.getElementById('btn-registrar');
 
 // Diaper buttons logic
 btnPoop.addEventListener('click', () => {
-    timePoop.textContent = getCurrentTime();
+    if (timePoop.textContent === '--:--') timePoop.textContent = getCurrentTime();
 });
 
 btnPee.addEventListener('click', () => {
-    timePee.textContent = getCurrentTime();
+    if (timePee.textContent === '--:--') timePee.textContent = getCurrentTime();
 });
 
 // Registrar Session
@@ -383,3 +383,72 @@ function renderHistory() {
         historyContainer.insertAdjacentHTML('beforeend', itemHtml);
     });
 }
+
+// --- Time Modal Logic ---
+const timeModal = document.getElementById('time-modal');
+const modalHour = document.getElementById('modal-hour');
+const modalMinute = document.getElementById('modal-minute');
+const modalSave = document.getElementById('modal-save');
+const modalCancel = document.getElementById('modal-cancel');
+let currentTargetId = null;
+
+// Open modal
+document.querySelectorAll('.time-clickable').forEach(el => {
+    el.addEventListener('click', () => {
+        currentTargetId = el.getAttribute('data-target');
+        const currentVal = document.getElementById(currentTargetId).textContent;
+        
+        if (currentVal !== '--:--') {
+            const [h, m] = currentVal.split(':');
+            modalHour.value = h;
+            modalMinute.value = m;
+        } else {
+            const now = new Date();
+            modalHour.value = now.getHours().toString().padStart(2, '0');
+            modalMinute.value = now.getMinutes().toString().padStart(2, '0');
+        }
+        
+        timeModal.classList.add('active');
+    });
+});
+
+// Close modal
+function closeModal() {
+    timeModal.classList.remove('active');
+    currentTargetId = null;
+}
+modalCancel.addEventListener('click', closeModal);
+timeModal.addEventListener('click', (e) => {
+    if (e.target === timeModal) closeModal();
+});
+
+// Save modal
+modalSave.addEventListener('click', () => {
+    if (currentTargetId) {
+        let h = parseInt(modalHour.value) || 0;
+        let m = parseInt(modalMinute.value) || 0;
+        
+        // Boundaries
+        h = Math.max(0, Math.min(23, h));
+        m = Math.max(0, Math.min(59, m));
+        
+        const formattedH = h.toString().padStart(2, '0');
+        const formattedM = m.toString().padStart(2, '0');
+        
+        const targetEl = document.getElementById(currentTargetId);
+        targetEl.textContent = `${formattedH}:${formattedM}`;
+        
+        // If left/right changed and lastFeedingStartTime is null, we can optionally set it.
+        // But for simplicity, we just update the text content. 
+        if (currentTargetId === 'hour-left' || currentTargetId === 'hour-right') {
+            // Update the next feeding time calculation if this is the first breast time set
+            if (!lastFeedingStartTime) {
+                const now = new Date();
+                now.setHours(h, m, 0, 0);
+                lastFeedingStartTime = now;
+                updateNextFeedingTime();
+            }
+        }
+    }
+    closeModal();
+});

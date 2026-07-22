@@ -27,9 +27,9 @@
                                 <span class="label tag">Tiempo</span>
                                 <span class="value" id="time-left">00:00</span>
                             </div>
-                            <div class="stat-row">
+                            <div class="stat-row time-clickable" data-target="hour-left">
                                 <span class="label tag">Hora</span>
-                                <span class="value" id="hour-left">--:--</span>
+                                <span class="value time-display" id="hour-left">--:--</span>
                             </div>
                         </div>
                     </div>
@@ -47,9 +47,9 @@
                                 <span class="label tag">Tiempo</span>
                                 <span class="value" id="time-right">00:00</span>
                             </div>
-                            <div class="stat-row">
+                            <div class="stat-row time-clickable" data-target="hour-right">
                                 <span class="label tag">Hora</span>
-                                <span class="value" id="hour-right">--:--</span>
+                                <span class="value time-display" id="hour-right">--:--</span>
                             </div>
                         </div>
                     </div>
@@ -77,9 +77,9 @@
                         <span class="emoji">💩</span>
                         <span class="btn-text">Cambiar caca</span>
                     </button>
-                    <div class="time-label">
+                    <div class="time-label time-clickable" data-target="time-poop">
                         <span class="label tag">Hora</span>
-                        <span class="value" id="time-poop">--:--</span>
+                        <span class="value time-display" id="time-poop">--:--</span>
                     </div>
                 </div>
                 <div class="diaper-row">
@@ -87,9 +87,9 @@
                         <span class="emoji">💧</span>
                         <span class="btn-text">Cambiar pis</span>
                     </button>
-                    <div class="time-label">
+                    <div class="time-label time-clickable" data-target="time-pee">
                         <span class="label tag">Hora</span>
-                        <span class="value" id="time-pee">--:--</span>
+                        <span class="value time-display" id="time-pee">--:--</span>
                     </div>
                 </div>
             </section>
@@ -137,6 +137,23 @@
             </button>
         </nav>
     </div>
+
+    <!-- Time Selection Modal -->
+    <div id="time-modal" class="modal">
+        <div class="modal-content glass-card">
+            <h3 style="text-align: center; margin-bottom: 10px;">Introduce la hora</h3>
+            <div class="time-inputs">
+                <input type="number" id="modal-hour" min="0" max="23" placeholder="HH">
+                <span>:</span>
+                <input type="number" id="modal-minute" min="0" max="59" placeholder="MM">
+            </div>
+            <div class="modal-actions">
+                <button id="modal-cancel" class="btn-secondary">Cancelar</button>
+                <button id="modal-save" class="main-action-btn" style="padding: 12px; width: auto; flex: 1; border-radius: 12px; font-size: 1rem;">Guardar</button>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
