@@ -414,6 +414,13 @@ input[type="number"]:focus {
 .diaper-btn {
     display: flex;
     align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    border-radius: 16px;
+    border: 1px solid var(--card-border);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+    font-family: inherit;
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
