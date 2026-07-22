@@ -292,6 +292,38 @@ h2 {
     gap: 0.25rem;
 }
 
+
+
+.control-btn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 8px 12px;
+    border-radius: 12px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.control-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+}
+
+.swap-btn {
+    color: var(--accent-primary);
+    padding: 8px;
+    border-radius: 50%;
+}
+.swap-btn:hover {
+    background: rgba(16, 185, 129, 0.1);
+}
+
 /* Next Feeding Section (Middle) */
 .next-feeding-section {
     display: flex;

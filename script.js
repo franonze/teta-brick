@@ -90,13 +90,13 @@ function renderCountdown() {
     }
 }
 
-function pauseLeftTimer() {
+function pauseLeftTimer(isSwap = false) {
     if (leftTimerInterval) {
         clearInterval(leftTimerInterval);
         leftTimerInterval = null;
         btnLeft.innerHTML = svgPlay;
         
-        if (leftSeconds < MIN_SECONDS_TO_KEEP) {
+        if (!isSwap && leftSeconds < MIN_SECONDS_TO_KEEP) {
             leftSeconds = 0;
             timeLeft.textContent = '00:00';
             hourLeft.textContent = '--:--';
@@ -104,13 +104,13 @@ function pauseLeftTimer() {
     }
 }
 
-function pauseRightTimer() {
+function pauseRightTimer(isSwap = false) {
     if (rightTimerInterval) {
         clearInterval(rightTimerInterval);
         rightTimerInterval = null;
         btnRight.innerHTML = svgPlay;
         
-        if (rightSeconds < MIN_SECONDS_TO_KEEP) {
+        if (!isSwap && rightSeconds < MIN_SECONDS_TO_KEEP) {
             rightSeconds = 0;
             timeRight.textContent = '00:00';
             hourRight.textContent = '--:--';
@@ -169,6 +169,73 @@ btnRight.addEventListener('click', () => {
             rightSeconds++;
             timeRight.textContent = formatTime(rightSeconds);
         }, 1000);
+    }
+});
+
+// Reset logic
+const btnResetLeft = document.getElementById('btn-reset-left');
+btnResetLeft.addEventListener('click', () => {
+    pauseLeftTimer();
+    leftSeconds = 0;
+    timeLeft.textContent = '00:00';
+    hourLeft.textContent = '--:--';
+});
+
+const btnResetRight = document.getElementById('btn-reset-right');
+btnResetRight.addEventListener('click', () => {
+    pauseRightTimer();
+    rightSeconds = 0;
+    timeRight.textContent = '00:00';
+    hourRight.textContent = '--:--';
+});
+
+// Swap logic
+const btnSwap = document.getElementById('btn-swap');
+btnSwap.addEventListener('click', () => {
+    const leftWasPlaying = !!leftTimerInterval;
+    const rightWasPlaying = !!rightTimerInterval;
+    
+    pauseLeftTimer(true);
+    pauseRightTimer(true);
+    
+    // Swap seconds
+    const tempSeconds = leftSeconds;
+    leftSeconds = rightSeconds;
+    rightSeconds = tempSeconds;
+    
+    timeLeft.textContent = formatTime(leftSeconds);
+    timeRight.textContent = formatTime(rightSeconds);
+    
+    // Swap hours
+    const tempHour = hourLeft.textContent;
+    hourLeft.textContent = hourRight.textContent;
+    hourRight.textContent = tempHour;
+    
+    // Resume appropriately
+    if (leftWasPlaying) {
+        btnRight.innerHTML = svgPause;
+        rightTimerInterval = setInterval(() => {
+            rightSeconds++;
+            timeRight.textContent = formatTime(rightSeconds);
+        }, 1000);
+    } else if (rightWasPlaying) {
+        btnLeft.innerHTML = svgPause;
+        leftTimerInterval = setInterval(() => {
+            leftSeconds++;
+            timeLeft.textContent = formatTime(leftSeconds);
+        }, 1000);
+    }
+    
+    // Swap highlights if applicable
+    const leftHasHighlight = btnLeft.classList.contains('highlight-next');
+    const rightHasHighlight = btnRight.classList.contains('highlight-next');
+    
+    if (leftHasHighlight) {
+        btnLeft.classList.remove('highlight-next');
+        btnRight.classList.add('highlight-next');
+    } else if (rightHasHighlight) {
+        btnRight.classList.remove('highlight-next');
+        btnLeft.classList.add('highlight-next');
     }
 });
 
