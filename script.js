@@ -5,19 +5,22 @@ function formatTime(seconds) {
     return `${m}:${s}`;
 }
 
-// Utility to get current time as HH:MM
-function getCurrentTime() {
-    const now = new Date();
-    return `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}h`;
+// Utility to format Date as HH:MMh
+function formatHHMM(date) {
+    return `${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}h`;
 }
 
-// Add hours to current time and format as HH:MM
-function addHoursToCurrentTime(hoursToAdd) {
-    if (!hoursToAdd || isNaN(hoursToAdd)) return '--:--';
+// Utility to get current time as HH:MMh
+function getCurrentTime() {
+    return formatHHMM(new Date());
+}
+
+// Add hours to a specific date and format as HH:MMh
+function addHoursToTime(baseDate, hoursToAdd) {
+    if (!hoursToAdd || isNaN(hoursToAdd) || !baseDate) return '--:--';
     
-    const now = new Date();
-    const futureTime = new Date(now.getTime() + hoursToAdd * 60 * 60 * 1000);
-    return `${futureTime.getHours().toString().padStart(2, '0')}:${futureTime.getMinutes().toString().padStart(2, '0')}h`;
+    const futureTime = new Date(baseDate.getTime() + hoursToAdd * 60 * 60 * 1000);
+    return formatHHMM(futureTime);
 }
 
 // State
@@ -25,6 +28,7 @@ let leftTimerInterval = null;
 let leftSeconds = 0;
 let rightTimerInterval = null;
 let rightSeconds = 0;
+let lastFeedingStartTime = null; // Stores the Date of the last play press
 
 // DOM Elements
 const btnLeft = document.getElementById('btn-left');
@@ -47,18 +51,44 @@ const timePee = document.getElementById('time-pee');
 const svgPlay = '<svg viewBox="0 0 24 24" class="icon-play"><path d="M8 5v14l11-7z"/></svg>';
 const svgPause = '<svg viewBox="0 0 24 24" class="icon-play"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
 
-// Left Button Logic
-btnLeft.addEventListener('click', () => {
+function updateNextFeedingTime() {
+    const hours = parseFloat(nextFeedingInput.value);
+    if (lastFeedingStartTime && !isNaN(hours)) {
+        nextFeedingTime.textContent = addHoursToTime(lastFeedingStartTime, hours);
+    } else {
+        nextFeedingTime.textContent = '--:--';
+    }
+}
+
+function pauseLeftTimer() {
     if (leftTimerInterval) {
-        // Pause
         clearInterval(leftTimerInterval);
         leftTimerInterval = null;
         btnLeft.innerHTML = svgPlay;
+    }
+}
+
+function pauseRightTimer() {
+    if (rightTimerInterval) {
+        clearInterval(rightTimerInterval);
+        rightTimerInterval = null;
+        btnRight.innerHTML = svgPlay;
+    }
+}
+
+// Left Button Logic
+btnLeft.addEventListener('click', () => {
+    if (leftTimerInterval) {
+        // Is playing, so pause it
+        pauseLeftTimer();
     } else {
-        // Play
-        if (leftSeconds === 0) {
-            hourLeft.textContent = getCurrentTime();
-        }
+        // Start playing left, so pause right first
+        pauseRightTimer();
+        
+        lastFeedingStartTime = new Date();
+        hourLeft.textContent = formatHHMM(lastFeedingStartTime);
+        updateNextFeedingTime(); // Update calculation based on new start time
+
         btnLeft.innerHTML = svgPause;
         leftTimerInterval = setInterval(() => {
             leftSeconds++;
@@ -70,15 +100,16 @@ btnLeft.addEventListener('click', () => {
 // Right Button Logic
 btnRight.addEventListener('click', () => {
     if (rightTimerInterval) {
-        // Pause
-        clearInterval(rightTimerInterval);
-        rightTimerInterval = null;
-        btnRight.innerHTML = svgPlay;
+        // Is playing, so pause it
+        pauseRightTimer();
     } else {
-        // Play
-        if (rightSeconds === 0) {
-            hourRight.textContent = getCurrentTime();
-        }
+        // Start playing right, so pause left first
+        pauseLeftTimer();
+        
+        lastFeedingStartTime = new Date();
+        hourRight.textContent = formatHHMM(lastFeedingStartTime);
+        updateNextFeedingTime(); // Update calculation based on new start time
+
         btnRight.innerHTML = svgPause;
         rightTimerInterval = setInterval(() => {
             rightSeconds++;
@@ -88,10 +119,7 @@ btnRight.addEventListener('click', () => {
 });
 
 // Next feeding input logic
-nextFeedingInput.addEventListener('input', (e) => {
-    const hours = parseFloat(e.target.value);
-    nextFeedingTime.textContent = addHoursToCurrentTime(hours);
-});
+nextFeedingInput.addEventListener('input', updateNextFeedingTime);
 
 // Diaper buttons logic
 btnPoop.addEventListener('click', () => {
