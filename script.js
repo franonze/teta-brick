@@ -45,11 +45,8 @@ const hourRight = document.getElementById('hour-right');
 const nextFeedingInput = document.getElementById('next-feeding-input');
 const nextFeedingTime = document.getElementById('next-feeding-time');
 
-const btnPoop = document.getElementById('btn-poop');
-const timePoop = document.getElementById('time-poop');
-
-const btnPee = document.getElementById('btn-pee');
-const timePee = document.getElementById('time-pee');
+const btnDiaper = document.getElementById('btn-diaper');
+const timeDiaper = document.getElementById('time-diaper');
 
 const svgPlay = '<svg viewBox="0 0 24 24" class="icon-play"><path d="M8 5v14l11-7z"/></svg>';
 const svgPause = '<svg viewBox="0 0 24 24" class="icon-play"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
@@ -307,13 +304,10 @@ nextFeedingInput.addEventListener('input', updateNextFeedingTime);
 
 const btnRegistrar = document.getElementById('btn-registrar');
 
-// Diaper buttons logic
-btnPoop.addEventListener('click', () => {
-    if (timePoop.textContent === '--:--') timePoop.textContent = getCurrentTime();
-});
-
-btnPee.addEventListener('click', () => {
-    if (timePee.textContent === '--:--') timePee.textContent = getCurrentTime();
+// Diaper Action
+btnDiaper.addEventListener('click', () => {
+    const now = new Date();
+    timeDiaper.textContent = formatHHMM(now);
 });
 
 // Registrar Session
@@ -329,14 +323,11 @@ btnRegistrar.addEventListener('click', () => {
             durationSeconds: rightSeconds,
             startTime: hourRight.textContent !== '--:--' ? hourRight.textContent : null
         },
-        diapers: {
-            poop: timePoop.textContent !== '--:--' ? timePoop.textContent : null,
-            pee: timePee.textContent !== '--:--' ? timePee.textContent : null
-        }
+        diapers: timeDiaper.textContent !== '--:--' ? timeDiaper.textContent : null
     };
 
     // Check if there is anything to save
-    if (leftSeconds === 0 && rightSeconds === 0 && !sessionData.diapers.poop && !sessionData.diapers.pee) {
+    if (leftSeconds === 0 && rightSeconds === 0 && !sessionData.diapers) {
         alert('No hay datos activos para registrar.');
         return;
     }
@@ -368,8 +359,7 @@ btnRegistrar.addEventListener('click', () => {
     hourLeft.textContent = '--:--';
     hourRight.textContent = '--:--';
     
-    timePoop.textContent = '--:--';
-    timePee.textContent = '--:--';
+    timeDiaper.textContent = '--:--';
 
     const originalText = btnRegistrar.textContent;
     btnRegistrar.textContent = '¡REGISTRADO!';
@@ -422,8 +412,8 @@ navItems.forEach(item => {
 });
 
 // --- History Rendering Logic ---
-const countPoop = document.getElementById('count-poop');
-const countPee = document.getElementById('count-pee');
+const countFeedings = document.getElementById('count-feedings');
+const countDiaper = document.getElementById('count-diaper');
 const historyContainer = document.getElementById('history-container');
 
 function isToday(dateString) {
@@ -440,16 +430,16 @@ function renderHistory() {
     // Filter to today only
     const todaySessions = history.filter(session => isToday(session.date));
     
-    // Calculate totals for poop and pee
-    let totalPoops = 0;
-    let totalPees = 0;
-    
-    // Extract single events for the timeline
+    let totalFeedings = 0;
+    let totalDiapers = 0;
     let events = [];
 
     todaySessions.forEach(session => {
+        let isFeeding = false;
+        
         // Left feeding
         if (session.left.startTime) {
+            isFeeding = true;
             events.push({
                 timeStr: session.left.startTime,
                 type: 'izq',
@@ -459,6 +449,7 @@ function renderHistory() {
         }
         // Right feeding
         if (session.right.startTime) {
+            isFeeding = true;
             events.push({
                 timeStr: session.right.startTime,
                 type: 'dcha',
@@ -466,31 +457,26 @@ function renderHistory() {
                 icon: '🍼'
             });
         }
-        // Poop
-        if (session.diapers.poop) {
-            totalPoops++;
+        
+        if (isFeeding) {
+            totalFeedings++;
+        }
+
+        // Diaper
+        if (session.diapers) {
+            totalDiapers++;
             events.push({
-                timeStr: session.diapers.poop,
-                type: 'caca',
+                timeStr: session.diapers,
+                type: 'pañal',
                 desc: '',
                 icon: '💩'
-            });
-        }
-        // Pee
-        if (session.diapers.pee) {
-            totalPees++;
-            events.push({
-                timeStr: session.diapers.pee,
-                type: 'pis',
-                desc: '',
-                icon: '💧'
             });
         }
     });
 
     // Update summary counts
-    countPoop.textContent = totalPoops;
-    countPee.textContent = totalPees;
+    countFeedings.textContent = totalFeedings;
+    countDiaper.textContent = totalDiapers;
 
     // Sort events by time (descending - newest first)
     events.sort((a, b) => b.timeStr.localeCompare(a.timeStr));
@@ -575,7 +561,7 @@ modalSave.addEventListener('click', () => {
         
         // If left/right changed and lastFeedingStartTime is null, we can optionally set it.
         // But for simplicity, we just update the text content. 
-        if (currentTargetId === 'hour-left' || currentTargetId === 'hour-right') {
+        if (currentTargetId === 'hour-left' || currentTargetId === 'hour-right' || currentTargetId === 'time-diaper') {
             // Update the next feeding time calculation if this is the first breast time set
             if (!lastFeedingStartTime) {
                 const now = new Date();
