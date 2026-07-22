@@ -29,6 +29,7 @@ let leftSeconds = 0;
 let rightTimerInterval = null;
 let rightSeconds = 0;
 let lastFeedingStartTime = null; // Stores the Date of the last play press
+let countdownBaseTime = null; // Used for next feeding timer so it persists across sessions
 
 const MIN_SECONDS_TO_KEEP = 10;
 
@@ -59,8 +60,8 @@ let nextFeedingDate = null;
 function updateNextFeedingTime() {
     const hoursStr = nextFeedingInput.value;
     const hours = hoursStr !== '' ? parseFloat(hoursStr) : 4;
-    if (lastFeedingStartTime && !isNaN(hours)) {
-        nextFeedingDate = new Date(lastFeedingStartTime.getTime() + hours * 60 * 60 * 1000);
+    if (countdownBaseTime && !isNaN(hours)) {
+        nextFeedingDate = new Date(countdownBaseTime.getTime() + hours * 60 * 60 * 1000);
         if (!countdownInterval) {
             countdownInterval = setInterval(renderCountdown, 1000);
         }
@@ -131,6 +132,7 @@ btnLeft.addEventListener('click', () => {
         const now = new Date();
         if (!lastFeedingStartTime) {
             lastFeedingStartTime = now;
+            countdownBaseTime = now;
         }
         if (hourLeft.textContent === '--:--') {
             hourLeft.textContent = formatHHMM(now);
@@ -158,6 +160,7 @@ btnRight.addEventListener('click', () => {
         const now = new Date();
         if (!lastFeedingStartTime) {
             lastFeedingStartTime = now;
+            countdownBaseTime = now;
         }
         if (hourRight.textContent === '--:--') {
             hourRight.textContent = formatHHMM(now);
@@ -299,12 +302,7 @@ btnRegistrar.addEventListener('click', () => {
     rightSeconds = 0;
     lastFeedingStartTime = null;
     
-    if (countdownInterval) {
-        clearInterval(countdownInterval);
-        countdownInterval = null;
-    }
-    nextFeedingDate = null;
-
+    // Optional: Visual feedback
     timeLeft.textContent = '00:00';
     timeRight.textContent = '00:00';
     hourLeft.textContent = '--:--';
@@ -312,11 +310,7 @@ btnRegistrar.addEventListener('click', () => {
     
     timePoop.textContent = '--:--';
     timePee.textContent = '--:--';
-    
-    nextFeedingInput.value = '4';
-    nextFeedingTime.textContent = '--:--';
 
-    // Optional: Visual feedback
     const originalText = btnRegistrar.textContent;
     btnRegistrar.textContent = '¡REGISTRADO!';
     btnRegistrar.style.backgroundColor = 'var(--accent-primary)';
@@ -325,6 +319,18 @@ btnRegistrar.addEventListener('click', () => {
         btnRegistrar.textContent = originalText;
         btnRegistrar.style.backgroundColor = '';
     }, 2000);
+});
+
+// Reset next feed logic
+const btnResetNext = document.getElementById('btn-reset-next');
+btnResetNext.addEventListener('click', () => {
+    countdownBaseTime = null;
+    nextFeedingDate = null;
+    if (countdownInterval) {
+        clearInterval(countdownInterval);
+        countdownInterval = null;
+    }
+    nextFeedingTime.textContent = '--:--';
 });
 
 // --- Navigation Logic ---
@@ -513,6 +519,7 @@ modalSave.addEventListener('click', () => {
                 const now = new Date();
                 now.setHours(h, m, 0, 0);
                 lastFeedingStartTime = now;
+                countdownBaseTime = now;
                 updateNextFeedingTime();
             }
         }
