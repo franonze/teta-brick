@@ -30,6 +30,8 @@ let rightTimerInterval = null;
 let rightSeconds = 0;
 let lastFeedingStartTime = null; // Stores the Date of the last play press
 
+const MIN_SECONDS_TO_KEEP = 10;
+
 // DOM Elements
 const btnLeft = document.getElementById('btn-left');
 const timeLeft = document.getElementById('time-left');
@@ -51,12 +53,40 @@ const timePee = document.getElementById('time-pee');
 const svgPlay = '<svg viewBox="0 0 24 24" class="icon-play"><path d="M8 5v14l11-7z"/></svg>';
 const svgPause = '<svg viewBox="0 0 24 24" class="icon-play"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
 
+let countdownInterval = null;
+let nextFeedingDate = null;
+
 function updateNextFeedingTime() {
-    const hours = parseFloat(nextFeedingInput.value);
+    const hoursStr = nextFeedingInput.value;
+    const hours = hoursStr !== '' ? parseFloat(hoursStr) : 3;
     if (lastFeedingStartTime && !isNaN(hours)) {
-        nextFeedingTime.textContent = addHoursToTime(lastFeedingStartTime, hours);
+        nextFeedingDate = new Date(lastFeedingStartTime.getTime() + hours * 60 * 60 * 1000);
+        if (!countdownInterval) {
+            countdownInterval = setInterval(renderCountdown, 1000);
+        }
+        renderCountdown();
     } else {
+        nextFeedingDate = null;
+        if (countdownInterval) {
+            clearInterval(countdownInterval);
+            countdownInterval = null;
+        }
         nextFeedingTime.textContent = '--:--';
+    }
+}
+
+function renderCountdown() {
+    if (!nextFeedingDate) return;
+    const now = new Date();
+    const diff = nextFeedingDate.getTime() - now.getTime();
+    if (diff <= 0) {
+        nextFeedingTime.textContent = '00:00:00';
+    } else {
+        const totalSeconds = Math.floor(diff / 1000);
+        const h = Math.floor(totalSeconds / 3600).toString().padStart(2, '0');
+        const m = Math.floor((totalSeconds % 3600) / 60).toString().padStart(2, '0');
+        const s = (totalSeconds % 60).toString().padStart(2, '0');
+        nextFeedingTime.textContent = `${h}:${m}:${s}`;
     }
 }
 
@@ -65,6 +95,12 @@ function pauseLeftTimer() {
         clearInterval(leftTimerInterval);
         leftTimerInterval = null;
         btnLeft.innerHTML = svgPlay;
+        
+        if (leftSeconds < MIN_SECONDS_TO_KEEP) {
+            leftSeconds = 0;
+            timeLeft.textContent = '00:00';
+            hourLeft.textContent = '--:--';
+        }
     }
 }
 
@@ -73,11 +109,18 @@ function pauseRightTimer() {
         clearInterval(rightTimerInterval);
         rightTimerInterval = null;
         btnRight.innerHTML = svgPlay;
+        
+        if (rightSeconds < MIN_SECONDS_TO_KEEP) {
+            rightSeconds = 0;
+            timeRight.textContent = '00:00';
+            hourRight.textContent = '--:--';
+        }
     }
 }
 
 // Left Button Logic
 btnLeft.addEventListener('click', () => {
+    btnLeft.classList.remove('highlight-next');
     if (leftTimerInterval) {
         // Is playing, so pause it
         pauseLeftTimer();
@@ -85,8 +128,13 @@ btnLeft.addEventListener('click', () => {
         // Start playing left, so pause right first
         pauseRightTimer();
         
-        lastFeedingStartTime = new Date();
-        hourLeft.textContent = formatHHMM(lastFeedingStartTime);
+        const now = new Date();
+        if (!lastFeedingStartTime) {
+            lastFeedingStartTime = now;
+        }
+        if (hourLeft.textContent === '--:--') {
+            hourLeft.textContent = formatHHMM(now);
+        }
         updateNextFeedingTime(); // Update calculation based on new start time
 
         btnLeft.innerHTML = svgPause;
@@ -99,6 +147,7 @@ btnLeft.addEventListener('click', () => {
 
 // Right Button Logic
 btnRight.addEventListener('click', () => {
+    btnRight.classList.remove('highlight-next');
     if (rightTimerInterval) {
         // Is playing, so pause it
         pauseRightTimer();
@@ -106,8 +155,13 @@ btnRight.addEventListener('click', () => {
         // Start playing right, so pause left first
         pauseLeftTimer();
         
-        lastFeedingStartTime = new Date();
-        hourRight.textContent = formatHHMM(lastFeedingStartTime);
+        const now = new Date();
+        if (!lastFeedingStartTime) {
+            lastFeedingStartTime = now;
+        }
+        if (hourRight.textContent === '--:--') {
+            hourRight.textContent = formatHHMM(now);
+        }
         updateNextFeedingTime(); // Update calculation based on new start time
 
         btnRight.innerHTML = svgPause;
@@ -162,12 +216,27 @@ btnRegistrar.addEventListener('click', () => {
     history.push(sessionData);
     localStorage.setItem('babyLogHistory', JSON.stringify(history));
 
+    // Highlight logic
+    btnLeft.classList.remove('highlight-next');
+    btnRight.classList.remove('highlight-next');
+    if (leftSeconds > 0 && rightSeconds === 0) {
+        btnRight.classList.add('highlight-next');
+    } else if (rightSeconds > 0 && leftSeconds === 0) {
+        btnLeft.classList.add('highlight-next');
+    }
+
     // 3. Clear the screen (Reset state and UI)
     pauseLeftTimer();
     pauseRightTimer();
     leftSeconds = 0;
     rightSeconds = 0;
     lastFeedingStartTime = null;
+    
+    if (countdownInterval) {
+        clearInterval(countdownInterval);
+        countdownInterval = null;
+    }
+    nextFeedingDate = null;
 
     timeLeft.textContent = '00:00';
     timeRight.textContent = '00:00';
