@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diario de Bebé</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts for modern typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Top Section (Nursing) -->
+        <section class="glass-card nursing-section">
+            <div class="grid-container">
+                <!-- Left Column -->
+                <div class="column left-col">
+                    <h2 class="col-title">Izq</h2>
+                    <button class="play-btn" id="btn-left" aria-label="Iniciar pecho izquierdo">
+                        <svg viewBox="0 0 24 24" class="icon-play"><path d="M8 5v14l11-7z"/></svg>
+                    </button>
+                    <div class="stats">
+                        <div class="stat-row">
+                            <span class="label tag">Tiempo</span>
+                            <span class="value" id="time-left">00:00</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="label tag">Hora</span>
+                            <span class="value" id="hour-left">--:--</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="divider"></div>
+                
+                <!-- Right Column -->
+                <div class="column right-col">
+                    <h2 class="col-title">Dcha</h2>
+                    <button class="play-btn" id="btn-right" aria-label="Iniciar pecho derecho">
+                        <svg viewBox="0 0 24 24" class="icon-play"><path d="M8 5v14l11-7z"/></svg>
+                    </button>
+                    <div class="stats">
+                        <div class="stat-row">
+                            <span class="label tag">Tiempo</span>
+                            <span class="value" id="time-right">00:00</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="label tag">Hora</span>
+                            <span class="value" id="hour-right">--:--</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Middle Section (Next Feeding) -->
+        <section class="glass-card next-feeding-section">
+            <div class="input-group">
+                <label for="next-feeding-input">
+                    Próxima toma:
+                    <span class="sub-label">(Cada X h)</span>
+                </label>
+                <input type="number" id="next-feeding-input" min="1" step="0.5" placeholder="Ej: 3">
+            </div>
+            <div class="next-time-display">
+                <span class="value highlight" id="next-feeding-time">--:--</span>
+            </div>
+        </section>
+
+        <!-- Bottom Section (Diapers) -->
+        <section class="glass-card diaper-section">
+            <div class="diaper-row">
+                <button class="diaper-btn poop-btn" id="btn-poop">
+                    <span class="emoji">💩</span>
+                    <span class="btn-text">Cambiar caca</span>
+                </button>
+                <div class="time-label">
+                    <span class="label tag">Hora</span>
+                    <span class="value" id="time-poop">--:--</span>
+                </div>
+            </div>
+            <div class="diaper-row">
+                <button class="diaper-btn pee-btn" id="btn-pee">
+                    <span class="emoji">💧</span>
+                    <span class="btn-text">Cambiar pis</span>
+                </button>
+                <div class="time-label">
+                    <span class="label tag">Hora</span>
+                    <span class="value" id="time-pee">--:--</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Action Section -->
+        <button class="main-action-btn">
+            REGISTRAR
+        </button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

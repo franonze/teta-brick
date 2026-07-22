@@ -1,0 +1,273 @@
+:root {
+    --bg-color: #121214;
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --card-border: rgba(255, 255, 255, 0.1);
+    --text-primary: #ffffff;
+    --text-secondary: #a0a0ab;
+    --accent-left: #ff7e67;
+    --accent-right: #67a3ff;
+    --accent-primary: #10b981;
+    --accent-primary-hover: #059669;
+    --poop-color: #8b5a2b;
+    --pee-color: #fbbf24;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--bg-color);
+    background-image: 
+        radial-gradient(circle at 15% 50%, rgba(255, 126, 103, 0.15), transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(103, 163, 255, 0.15), transparent 25%);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.app-container {
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Glassmorphism Cards */
+.glass-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 24px;
+    padding: 24px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* Typography */
+h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.value {
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.tag {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--text-secondary);
+}
+
+/* Nursing Section (Top) */
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 1rem;
+}
+
+.divider {
+    width: 2px;
+    background: var(--card-border);
+    border-radius: 2px;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.play-btn {
+    width: 72px;
+    height: 72px;
+    border-radius: 24px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.left-col .play-btn {
+    background: rgba(255, 126, 103, 0.2);
+    color: var(--accent-left);
+    box-shadow: 0 4px 16px rgba(255, 126, 103, 0.2);
+}
+
+.right-col .play-btn {
+    background: rgba(103, 163, 255, 0.2);
+    color: var(--accent-right);
+    box-shadow: 0 4px 16px rgba(103, 163, 255, 0.2);
+}
+
+.play-btn:active {
+    transform: scale(0.95);
+}
+
+.play-btn .icon-play {
+    width: 32px;
+    height: 32px;
+    fill: currentColor;
+}
+
+.stats {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.stat-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+/* Next Feeding Section (Middle) */
+.next-feeding-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;
+}
+
+.input-group label {
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.sub-label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--text-secondary);
+}
+
+input[type="number"] {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--card-border);
+    color: var(--text-primary);
+    padding: 10px 16px;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-family: inherit;
+    width: 100%;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+input[type="number"]:focus {
+    border-color: var(--accent-primary);
+}
+
+.next-time-display {
+    background: rgba(16, 185, 129, 0.15);
+    padding: 16px 20px;
+    border-radius: 16px;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.highlight {
+    color: var(--accent-primary);
+    font-size: 1.5rem;
+}
+
+/* Diaper Section (Bottom) */
+.diaper-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.diaper-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.diaper-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 20px;
+    border-radius: 16px;
+    border: 1px solid var(--card-border);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.diaper-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.diaper-btn:active {
+    transform: scale(0.97);
+}
+
+.emoji {
+    font-size: 1.5rem;
+}
+
+.time-label {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.25rem;
+}
+
+/* Action Button */
+.main-action-btn {
+    width: 100%;
+    padding: 20px;
+    border-radius: 24px;
+    border: none;
+    background: var(--text-primary);
+    color: var(--bg-color);
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-family: inherit;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 8px 24px rgba(255, 255, 255, 0.15);
+}
+
+.main-action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(255, 255, 255, 0.2);
+}
+
+.main-action-btn:active {
+    transform: translateY(2px);
+}
