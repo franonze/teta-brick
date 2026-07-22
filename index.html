@@ -186,6 +186,48 @@
         </div>
     </div>
 
+    <!-- Confirm Delete Popup -->
+    <div id="delete-modal" class="time-popup-overlay">
+        <div class="time-popup-box glass-card">
+            <h3 style="text-align: center; margin-bottom: 10px;">¿Borrar registro?</h3>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 10px;">Esta acción no se puede deshacer.</p>
+            <div class="popup-actions">
+                <button id="delete-cancel" class="btn-secondary" style="flex: 1;">Cancelar</button>
+                <button id="delete-confirm" class="main-action-btn"
+                    style="padding: 12px; width: auto; flex: 1; border-radius: 12px; font-size: 1rem; background: #ef4444;">Borrar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Event Popup -->
+    <div id="edit-modal" class="time-popup-overlay">
+        <div class="time-popup-box glass-card">
+            <h3 style="text-align: center; margin-bottom: 10px;">Editar registro</h3>
+            
+            <div style="display: flex; flex-direction: column; gap: 15px;">
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+                    <label class="sub-label" style="text-align: center;">Hora</label>
+                    <div class="time-inputs">
+                        <input type="number" id="edit-hour" min="0" max="23" placeholder="HH">
+                        <span>:</span>
+                        <input type="number" id="edit-minute" min="0" max="59" placeholder="MM">
+                    </div>
+                </div>
+                
+                <div id="edit-duration-container" style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+                    <label class="sub-label" style="text-align: center;">Duración (minutos)</label>
+                    <input type="number" id="edit-duration" min="0" placeholder="Min" style="width: 100px; padding: 10px; border-radius: 12px; background: rgba(0,0,0,0.2); border: 1px solid var(--card-border); color: white; text-align: center; font-size: 1.2rem; font-family: inherit; outline: none;">
+                </div>
+            </div>
+
+            <div class="popup-actions" style="margin-top: 10px;">
+                <button id="edit-cancel" class="btn-secondary" style="flex: 1;">Cancelar</button>
+                <button id="edit-save" class="main-action-btn"
+                    style="padding: 12px; width: auto; flex: 1; border-radius: 12px; font-size: 1rem;">Guardar</button>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 

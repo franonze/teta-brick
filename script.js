@@ -436,11 +436,14 @@ function renderHistory() {
 
     todaySessions.forEach(session => {
         let isFeeding = false;
+        const sid = session.date;
         
         // Left feeding
         if (session.left.startTime) {
             isFeeding = true;
             events.push({
+                id: sid,
+                key: 'left',
                 timeStr: session.left.startTime,
                 type: 'izq',
                 desc: `${Math.round(session.left.durationSeconds / 60)}min`,
@@ -451,6 +454,8 @@ function renderHistory() {
         if (session.right.startTime) {
             isFeeding = true;
             events.push({
+                id: sid,
+                key: 'right',
                 timeStr: session.right.startTime,
                 type: 'dcha',
                 desc: `${Math.round(session.right.durationSeconds / 60)}min`,
@@ -464,13 +469,24 @@ function renderHistory() {
 
         // Diaper
         if (session.diapers) {
-            totalDiapers++;
-            events.push({
-                timeStr: session.diapers,
-                type: 'pañal',
-                desc: '',
-                icon: '💩'
-            });
+            let diaperTime = null;
+            if (typeof session.diapers === 'string') {
+                diaperTime = session.diapers;
+            } else if (typeof session.diapers === 'object') {
+                diaperTime = session.diapers.poop || session.diapers.pee;
+            }
+            
+            if (diaperTime) {
+                totalDiapers++;
+                events.push({
+                    id: sid,
+                    key: 'diaper',
+                    timeStr: diaperTime,
+                    type: 'pañal',
+                    desc: '',
+                    icon: '💩'
+                });
+            }
         }
     });
 
@@ -499,11 +515,167 @@ function renderHistory() {
                     </div>
                     ${ev.desc ? `<div class="history-desc">${ev.desc}</div>` : ''}
                 </div>
+                <div class="history-actions">
+                    <button class="action-btn edit-btn" onclick="editEvent('${ev.id}', '${ev.key}')" title="Editar">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+                    </button>
+                    <button class="action-btn delete-btn" onclick="deleteEvent('${ev.id}', '${ev.key}')" title="Borrar">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                    </button>
+                </div>
             </div>
         `;
         historyContainer.insertAdjacentHTML('beforeend', itemHtml);
     });
 }
+
+// Logic for Editing and Deleting History Events
+let currentDeleteId = null;
+let currentDeleteKey = null;
+
+let currentEditId = null;
+let currentEditKey = null;
+
+// Delete Modal Logic
+const deleteModal = document.getElementById('delete-modal');
+const btnDeleteConfirm = document.getElementById('delete-confirm');
+const btnDeleteCancel = document.getElementById('delete-cancel');
+
+window.deleteEvent = function(id, key) {
+    currentDeleteId = id;
+    currentDeleteKey = key;
+    deleteModal.classList.add('active');
+};
+
+function closeDeleteModal() {
+    deleteModal.classList.remove('active');
+    currentDeleteId = null;
+    currentDeleteKey = null;
+}
+btnDeleteCancel.addEventListener('click', closeDeleteModal);
+deleteModal.addEventListener('click', (e) => {
+    if (e.target === deleteModal) closeDeleteModal();
+});
+
+btnDeleteConfirm.addEventListener('click', () => {
+    if (!currentDeleteId || !currentDeleteKey) return;
+    
+    let history = JSON.parse(localStorage.getItem('babyLogHistory')) || [];
+    const index = history.findIndex(s => s.date === currentDeleteId);
+    if (index !== -1) {
+        if (currentDeleteKey === 'left') {
+            history[index].left.startTime = null;
+            history[index].left.durationSeconds = 0;
+        } else if (currentDeleteKey === 'right') {
+            history[index].right.startTime = null;
+            history[index].right.durationSeconds = 0;
+        } else if (currentDeleteKey === 'diaper') {
+            history[index].diapers = null;
+        }
+        
+        // If session is completely empty, remove it entirely
+        if (!history[index].left.startTime && !history[index].right.startTime && !history[index].diapers) {
+            history.splice(index, 1);
+        }
+        
+        localStorage.setItem('babyLogHistory', JSON.stringify(history));
+        renderHistory();
+    }
+    closeDeleteModal();
+});
+
+// Edit Modal Logic
+const editModal = document.getElementById('edit-modal');
+const editHour = document.getElementById('edit-hour');
+const editMinute = document.getElementById('edit-minute');
+const editDurationContainer = document.getElementById('edit-duration-container');
+const editDuration = document.getElementById('edit-duration');
+const btnEditSave = document.getElementById('edit-save');
+const btnEditCancel = document.getElementById('edit-cancel');
+
+window.editEvent = function(id, key) {
+    let history = JSON.parse(localStorage.getItem('babyLogHistory')) || [];
+    const index = history.findIndex(s => s.date === id);
+    if (index === -1) return;
+    
+    currentEditId = id;
+    currentEditKey = key;
+    let session = history[index];
+    let currentTimeStr = '';
+    
+    if (key === 'left') {
+        currentTimeStr = session.left.startTime;
+        editDuration.value = Math.round(session.left.durationSeconds / 60);
+        editDurationContainer.style.display = 'flex';
+    } else if (key === 'right') {
+        currentTimeStr = session.right.startTime;
+        editDuration.value = Math.round(session.right.durationSeconds / 60);
+        editDurationContainer.style.display = 'flex';
+    } else if (key === 'diaper') {
+        let diaperTime = null;
+        if (typeof session.diapers === 'string') {
+            diaperTime = session.diapers;
+        } else if (typeof session.diapers === 'object') {
+            diaperTime = session.diapers.poop || session.diapers.pee;
+        }
+        currentTimeStr = diaperTime;
+        editDurationContainer.style.display = 'none';
+    }
+    
+    if (currentTimeStr && currentTimeStr.includes(':')) {
+        const [h, m] = currentTimeStr.split(':');
+        editHour.value = h;
+        editMinute.value = m;
+    }
+    
+    editModal.classList.add('active');
+};
+
+function closeEditModal() {
+    editModal.classList.remove('active');
+    currentEditId = null;
+    currentEditKey = null;
+}
+btnEditCancel.addEventListener('click', closeEditModal);
+editModal.addEventListener('click', (e) => {
+    if (e.target === editModal) closeEditModal();
+});
+
+btnEditSave.addEventListener('click', () => {
+    if (!currentEditId || !currentEditKey) return;
+    
+    let history = JSON.parse(localStorage.getItem('babyLogHistory')) || [];
+    const index = history.findIndex(s => s.date === currentEditId);
+    if (index === -1) {
+        closeEditModal();
+        return;
+    }
+    
+    let h = parseInt(editHour.value) || 0;
+    let m = parseInt(editMinute.value) || 0;
+    h = Math.max(0, Math.min(23, h));
+    m = Math.max(0, Math.min(59, m));
+    const newTime = `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}`;
+    
+    let session = history[index];
+    
+    if (currentEditKey === 'left') {
+        session.left.startTime = newTime;
+        let mins = parseInt(editDuration.value) || 0;
+        session.left.durationSeconds = Math.max(0, mins) * 60;
+    } else if (currentEditKey === 'right') {
+        session.right.startTime = newTime;
+        let mins = parseInt(editDuration.value) || 0;
+        session.right.durationSeconds = Math.max(0, mins) * 60;
+    } else if (currentEditKey === 'diaper') {
+        session.diapers = newTime;
+    }
+    
+    history[index] = session;
+    localStorage.setItem('babyLogHistory', JSON.stringify(history));
+    renderHistory();
+    closeEditModal();
+});
 
 // --- Time Modal Logic ---
 const timeModal = document.getElementById('time-modal');
