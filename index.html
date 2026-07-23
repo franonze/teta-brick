@@ -88,9 +88,14 @@
 
             <!-- Middle Section (Next Feeding) -->
             <section class="glass-card next-feeding-section">
-                <div class="input-group-row">
-                    <label for="next-feeding-input">Próxima toma (horas):</label>
-                    <input type="number" id="next-feeding-input" min="1" step="0.5" value="4">
+                <div class="input-group-row" style="flex-direction: column; align-items: stretch; gap: 10px;">
+                    <label style="text-align: center;">Próxima toma:</label>
+                    <div style="display: flex; gap: 10px; justify-content: center; align-items: center;">
+                        <input type="number" id="next-feeding-hours" min="0" value="4" style="width: 70px;">
+                        <span style="font-weight: 600; color: var(--text-secondary);">h</span>
+                        <input type="number" id="next-feeding-minutes" min="0" max="59" value="0" style="width: 70px;">
+                        <span style="font-weight: 600; color: var(--text-secondary);">min</span>
+                    </div>
                 </div>
                 <div class="next-time-display"
                     style="display: flex; align-items: center; justify-content: center; gap: 15px; position: relative;">

@@ -42,7 +42,8 @@ const btnRight = document.getElementById('btn-right');
 const timeRight = document.getElementById('time-right');
 const hourRight = document.getElementById('hour-right');
 
-const nextFeedingInput = document.getElementById('next-feeding-input');
+const nextFeedingHours = document.getElementById('next-feeding-hours');
+const nextFeedingMinutes = document.getElementById('next-feeding-minutes');
 const nextFeedingTime = document.getElementById('next-feeding-time');
 
 const btnDiaper = document.getElementById('btn-diaper');
@@ -108,10 +109,14 @@ function stopAlarm() {
 nextFeedingTime.addEventListener('click', stopAlarm);
 
 function updateNextFeedingTime() {
-    const hoursStr = nextFeedingInput.value;
-    const hours = hoursStr !== '' ? parseFloat(hoursStr) : 4;
-    if (countdownBaseTime && !isNaN(hours)) {
-        nextFeedingDate = new Date(countdownBaseTime.getTime() + hours * 60 * 60 * 1000);
+    const hStr = nextFeedingHours.value;
+    const mStr = nextFeedingMinutes.value;
+    const h = hStr !== '' ? parseFloat(hStr) : 4;
+    const m = mStr !== '' ? parseFloat(mStr) : 0;
+    const totalHours = h + (m / 60);
+
+    if (countdownBaseTime && !isNaN(totalHours)) {
+        nextFeedingDate = new Date(countdownBaseTime.getTime() + totalHours * 60 * 60 * 1000);
         if (!countdownInterval) {
             countdownInterval = setInterval(renderCountdown, 1000);
         }
@@ -306,7 +311,8 @@ btnSwap.addEventListener('click', () => {
 });
 
 // Next feeding input logic
-nextFeedingInput.addEventListener('input', updateNextFeedingTime);
+nextFeedingHours.addEventListener('input', updateNextFeedingTime);
+nextFeedingMinutes.addEventListener('input', updateNextFeedingTime);
 
 const btnRegistrar = document.getElementById('btn-registrar');
 
