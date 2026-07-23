@@ -13,9 +13,10 @@
 <body>
     <div class="app-container">
 
-        <!-- MAIN VIEW: REGISTRO -->
-        <main id="view-registro" class="view active">
-            <h2 class="view-title">Toma del Pecho</h2>
+        <!-- MAIN VIEW: PECHO -->
+        <div id="input-views-container">
+            <main id="view-pecho" class="view active">
+                <h2 class="view-title">Toma del Pecho</h2>
             <!-- Top Section (Nursing) -->
             <section class="glass-card nursing-section">
                 <div class="grid-container">
@@ -91,8 +92,42 @@
                     </div>
                 </div>
             </section>
+            </main>
 
-            <!-- Middle Section (Next Feeding) -->
+            <!-- MAIN VIEW: BIBERON -->
+            <main id="view-biberon" class="view">
+                <h2 class="view-title">Toma Biberón</h2>
+                <section class="glass-card nursing-section">
+                    <div class="biberon-row" style="display: flex; justify-content: space-around; align-items: center; padding: 15px 5px;">
+                        <button class="play-btn" id="btn-bottle" aria-label="Iniciar biberón" style="width: 60px; height: 60px;">
+                            <svg viewBox="0 0 24 24" class="icon-play">
+                                <path d="M8 5v14l11-7z" />
+                            </svg>
+                        </button>
+                        
+                        <div class="stat-row time-clickable" data-target="ml-bottle" style="align-items: center; flex: 1;">
+                            <span class="label tag" style="color: var(--accent-primary);">Cantidad</span>
+                            <div style="display: flex; align-items: baseline; gap: 5px;">
+                                <span class="value" id="ml-bottle" style="font-size: 2rem;">--</span>
+                                <span style="font-size: 1rem; color: var(--text-secondary); font-weight: 600;">mL</span>
+                            </div>
+                        </div>
+
+                        <div class="divider" style="width: 1px; height: 50px; background: var(--card-border); margin: 0 10px;"></div>
+
+                        <div class="stat-row time-clickable" data-target="hour-bottle" style="align-items: center; flex: 1;">
+                            <span class="label tag" style="color: var(--accent-primary);">
+                                Hora
+                            </span>
+                            <span class="value time-display" id="hour-bottle" style="font-size: 1.8rem;">--:--</span>
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+            <!-- SHARED SECTIONS -->
+            <div id="shared-sections" style="display: flex; flex-direction: column; gap: 20px;">
+                <!-- Middle Section (Next Feeding) -->
             <section class="glass-card next-feeding-section" style="align-items: center;">
                 <div style="width: fit-content; display: flex; flex-direction: column; gap: 10px;">
                     <div class="input-group-row" style="flex-direction: row; align-items: center; justify-content: center; gap: 15px; width: auto;">
@@ -140,7 +175,8 @@
             <button class="main-action-btn" id="btn-registrar" style="padding: 12px;">
                 REGISTRAR
             </button>
-        </main>
+            </div> <!-- End Shared Sections -->
+        </div> <!-- End Input Views Container -->
 
         <!-- MAIN VIEW: HISTORIAL -->
         <main id="view-historial" class="view">
@@ -154,11 +190,17 @@
 
         <!-- Bottom Navigation -->
         <nav class="bottom-nav glass-nav">
-            <button class="nav-item active" data-target="view-registro">
+            <button class="nav-item active" data-target="view-pecho">
                 <svg viewBox="0 0 24 24" class="nav-icon">
                     <path d="M12 3L4 9v12h16V9l-8-6zm6 16h-3v-6H9v6H6v-9l6-4.5 6 4.5v9z" />
                 </svg>
-                <span>Registro</span>
+                <span>Pecho</span>
+            </button>
+            <button class="nav-item" data-target="view-biberon">
+                <svg viewBox="0 0 24 24" class="nav-icon" fill="currentColor">
+                    <path d="M12 2c-1.1 0-2 .9-2 2v2H8c-1.1 0-2 .9-2 2v1l1.5 5v7c0 1.1.9 2 2 2h5c1.1 0 2-.9 2-2v-7l1.5-5V8c0-1.1-.9-2-2-2h-2V4c0-1.1-.9-2-2-2zm0 2h2v2h-2V4z" />
+                </svg>
+                <span>Biberón</span>
             </button>
             <button class="nav-item" data-target="view-historial">
                 <svg viewBox="0 0 24 24" class="nav-icon">
@@ -182,6 +224,22 @@
             <div class="popup-actions">
                 <button id="modal-cancel" class="btn-secondary" style="flex: 1;">Cancelar</button>
                 <button id="modal-save" class="main-action-btn"
+                    style="padding: 12px; width: auto; flex: 1; border-radius: 12px; font-size: 1rem;">Guardar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- mL Selection Popup -->
+    <div id="ml-modal" class="time-popup-overlay">
+        <div class="time-popup-box glass-card">
+            <h3 style="text-align: center; margin-bottom: 10px;">Cantidad de biberón</h3>
+            <div style="display: flex; justify-content: center; align-items: center; gap: 10px; margin-bottom: 20px;">
+                <input type="number" id="modal-ml-input" min="0" step="10" placeholder="0" style="width: 100px; padding: 10px; border-radius: 12px; background: rgba(0,0,0,0.2); border: 1px solid var(--card-border); color: white; text-align: center; font-size: 2rem; font-family: inherit; outline: none;">
+                <span style="font-size: 1.2rem; color: var(--text-secondary); font-weight: 600;">mL</span>
+            </div>
+            <div class="popup-actions">
+                <button id="ml-cancel" class="btn-secondary" style="flex: 1;">Cancelar</button>
+                <button id="ml-save" class="main-action-btn"
                     style="padding: 12px; width: auto; flex: 1; border-radius: 12px; font-size: 1rem;">Guardar</button>
             </div>
         </div>

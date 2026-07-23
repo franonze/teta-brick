@@ -47,6 +47,9 @@ let rightStartMillis = null;
 let lastFeedingStartTime = null; // Stores the Date of the last play press
 let countdownBaseTime = null; // Used for next feeding timer so it persists across sessions
 
+let bottleMl = 0;
+let isBottlePlaying = false;
+
 const MIN_SECONDS_TO_KEEP = 10;
 
 // DOM Elements
@@ -88,7 +91,9 @@ function saveCurrentState() {
         nextFeedingHours: nextFeedingHours.value,
         nextFeedingMinutes: nextFeedingMinutes.value,
         leftHighlight: btnLeft.classList.contains('highlight-next'),
-        rightHighlight: btnRight.classList.contains('highlight-next')
+        rightHighlight: btnRight.classList.contains('highlight-next'),
+        bottleMl: document.getElementById('ml-bottle').textContent,
+        hourBottle: document.getElementById('hour-bottle').textContent
     };
     localStorage.setItem('babyLogCurrentState', JSON.stringify(state));
 }
@@ -106,6 +111,12 @@ function loadCurrentState() {
         if (state.hourLeft) hourLeft.textContent = state.hourLeft;
         if (state.hourRight) hourRight.textContent = state.hourRight;
         if (state.timeDiaper) timeDiaper.textContent = state.timeDiaper;
+        if (state.hourBottle) document.getElementById('hour-bottle').textContent = state.hourBottle;
+        
+        if (state.bottleMl !== undefined && state.bottleMl !== '--') {
+            bottleMl = parseInt(state.bottleMl) || 0;
+            document.getElementById('ml-bottle').textContent = state.bottleMl;
+        }
         
         if (state.lastFeedingStartTime) lastFeedingStartTime = new Date(state.lastFeedingStartTime);
         if (state.countdownBaseTime) countdownBaseTime = new Date(state.countdownBaseTime);
@@ -178,6 +189,18 @@ setInterval(() => {
         }
     } else {
         hourRight.parentElement.classList.remove('future-time');
+    }
+    
+    const hourBottle = document.getElementById('hour-bottle');
+    if (hourBottle && hourBottle.textContent !== '--:--') {
+        const diff = getDiffSeconds(hourBottle.textContent);
+        if (diff < 0) {
+            hourBottle.parentElement.classList.add('future-time');
+        } else {
+            hourBottle.parentElement.classList.remove('future-time');
+        }
+    } else if (hourBottle) {
+        hourBottle.parentElement.classList.remove('future-time');
     }
 }, 1000);
 
@@ -475,6 +498,82 @@ btnSwap.addEventListener('click', () => {
     saveCurrentState();
 });
 
+// --- Bottle Logic ---
+const btnBottle = document.getElementById('btn-bottle');
+const mlBottle = document.getElementById('ml-bottle');
+const hourBottle = document.getElementById('hour-bottle');
+
+const mlModal = document.getElementById('ml-modal');
+const modalMlInput = document.getElementById('modal-ml-input');
+const mlCancel = document.getElementById('ml-cancel');
+const mlSave = document.getElementById('ml-save');
+
+function openMlModal() {
+    modalMlInput.value = bottleMl > 0 ? bottleMl : '';
+    mlModal.classList.add('active');
+}
+
+btnBottle.addEventListener('click', () => {
+    if (isBottlePlaying) {
+        openMlModal();
+    } else {
+        const now = new Date();
+        if (hourBottle.textContent === '--:--') {
+            hourBottle.textContent = formatHHMM(now);
+            if (!lastFeedingStartTime) {
+                lastFeedingStartTime = now;
+                countdownBaseTime = now;
+            }
+        }
+        
+        if (!lastFeedingStartTime) {
+            const [h, m] = hourBottle.textContent.split(':');
+            const manualDate = new Date();
+            manualDate.setHours(parseInt(h, 10), parseInt(m, 10), 0, 0);
+            lastFeedingStartTime = manualDate;
+            countdownBaseTime = manualDate;
+        }
+        
+        updateNextFeedingTime();
+        
+        btnBottle.innerHTML = svgPause;
+        isBottlePlaying = true;
+        saveCurrentState();
+    }
+});
+
+mlCancel.addEventListener('click', () => {
+    mlModal.classList.remove('active');
+    if (isBottlePlaying) {
+        btnBottle.innerHTML = svgPlay;
+        isBottlePlaying = false;
+        saveCurrentState();
+    }
+});
+
+mlSave.addEventListener('click', () => {
+    const val = parseInt(modalMlInput.value);
+    if (!isNaN(val) && val > 0) {
+        bottleMl = val;
+        mlBottle.textContent = bottleMl;
+    } else {
+        bottleMl = 0;
+        mlBottle.textContent = '--';
+    }
+    
+    btnBottle.innerHTML = svgPlay;
+    isBottlePlaying = false;
+    
+    mlModal.classList.remove('active');
+    saveCurrentState();
+});
+
+mlModal.addEventListener('click', (e) => {
+    if (e.target === mlModal) {
+        mlCancel.click();
+    }
+});
+
 // Next feeding input logic
 nextFeedingHours.addEventListener('input', updateNextFeedingTime);
 nextFeedingMinutes.addEventListener('input', updateNextFeedingTime);
@@ -528,11 +627,15 @@ btnRegistrar.addEventListener('click', () => {
             durationSeconds: rightSeconds,
             startTime: hourRight.textContent !== '--:--' ? hourRight.textContent : null
         },
+        bottle: {
+            ml: bottleMl,
+            startTime: hourBottle.textContent !== '--:--' ? hourBottle.textContent : null
+        },
         diapers: timeDiaper.textContent !== '--:--' ? timeDiaper.textContent : null
     };
 
     // Check if there is anything to save
-    if (leftSeconds === 0 && rightSeconds === 0 && !sessionData.diapers) {
+    if (leftSeconds === 0 && rightSeconds === 0 && bottleMl === 0 && !sessionData.diapers) {
         alert('No hay datos activos para registrar.');
         return;
     }
@@ -575,6 +678,14 @@ function saveAndResetSession(sessionData, merge) {
             }
         }
         
+        if (sessionData.bottle && sessionData.bottle.ml > 0) {
+            lastRecord.bottle = lastRecord.bottle || { ml: 0, startTime: null };
+            lastRecord.bottle.ml += sessionData.bottle.ml;
+            if (!lastRecord.bottle.startTime && sessionData.bottle.startTime) {
+                lastRecord.bottle.startTime = sessionData.bottle.startTime;
+            }
+        }
+        
         if (sessionData.diapers) {
             lastRecord.diapers = sessionData.diapers;
         }
@@ -602,11 +713,21 @@ function saveAndResetSession(sessionData, merge) {
     rightSeconds = 0;
     lastFeedingStartTime = null;
     
+    bottleMl = 0;
+    isBottlePlaying = false;
+    const btnBottleEl = document.getElementById('btn-bottle');
+    if (btnBottleEl) btnBottleEl.innerHTML = svgPlay;
+    
     // Optional: Visual feedback
     timeLeft.textContent = '00:00';
     timeRight.textContent = '00:00';
     hourLeft.textContent = '--:--';
     hourRight.textContent = '--:--';
+    
+    const mlBottleEl = document.getElementById('ml-bottle');
+    if (mlBottleEl) mlBottleEl.textContent = '--';
+    const hourBottleEl = document.getElementById('hour-bottle');
+    if (hourBottleEl) hourBottleEl.textContent = '--:--';
     
     timeDiaper.textContent = '--:--';
 
@@ -655,6 +776,16 @@ navItems.forEach(item => {
                 view.classList.add('active');
             }
         });
+
+        // Hide shared sections in history
+        const sharedSections = document.getElementById('shared-sections');
+        if (sharedSections) {
+            if (targetId === 'view-historial') {
+                sharedSections.style.display = 'none';
+            } else {
+                sharedSections.style.display = 'flex';
+            }
+        }
 
         // If history view is opened, render history
         if (targetId === 'view-historial') {
@@ -707,6 +838,7 @@ function renderHistory() {
         let isFeeding = false;
         if (session.left && session.left.startTime) isFeeding = true;
         if (session.right && session.right.startTime) isFeeding = true;
+        if (session.bottle && session.bottle.startTime) isFeeding = true;
         if (isFeeding) daysMap[dayKey].totalFeedings++;
         
         if (session.diapers) daysMap[dayKey].totalDiapers++;
@@ -754,6 +886,12 @@ function renderHistory() {
             if (session.right && session.right.startTime) {
                 sessionEvents.push({
                     id: sid, key: 'right', timeStr: session.right.startTime, type: 'Toma Derecha', desc: `${Math.round(session.right.durationSeconds / 60)}min`, icon: '🍼'
+                });
+            }
+            // Bottle feeding
+            if (session.bottle && session.bottle.startTime) {
+                sessionEvents.push({
+                    id: sid, key: 'bottle', timeStr: session.bottle.startTime, type: 'Toma Biberón', desc: `${session.bottle.ml} mL`, icon: '🍼'
                 });
             }
             // Diaper
@@ -853,12 +991,14 @@ btnDeleteConfirm.addEventListener('click', () => {
         } else if (currentDeleteKey === 'right') {
             history[index].right.startTime = null;
             history[index].right.durationSeconds = 0;
+        } else if (currentDeleteKey === 'bottle') {
+            history[index].bottle = null;
         } else if (currentDeleteKey === 'diaper') {
             history[index].diapers = null;
         }
         
         // If session is completely empty, remove it entirely
-        if (!history[index].left.startTime && !history[index].right.startTime && !history[index].diapers) {
+        if (!history[index].left?.startTime && !history[index].right?.startTime && !history[index].bottle?.startTime && !history[index].diapers) {
             history.splice(index, 1);
         }
         
@@ -891,10 +1031,17 @@ window.editEvent = function(id, key) {
         currentTimeStr = session.left.startTime;
         editDuration.value = Math.round(session.left.durationSeconds / 60);
         editDurationContainer.style.display = 'flex';
+        document.querySelector('#edit-duration-container .sub-label').textContent = 'Duración (minutos)';
     } else if (key === 'right') {
         currentTimeStr = session.right.startTime;
         editDuration.value = Math.round(session.right.durationSeconds / 60);
         editDurationContainer.style.display = 'flex';
+        document.querySelector('#edit-duration-container .sub-label').textContent = 'Duración (minutos)';
+    } else if (key === 'bottle') {
+        currentTimeStr = session.bottle.startTime;
+        editDuration.value = session.bottle.ml;
+        editDurationContainer.style.display = 'flex';
+        document.querySelector('#edit-duration-container .sub-label').textContent = 'Cantidad (mL)';
     } else if (key === 'diaper') {
         let diaperTime = null;
         if (typeof session.diapers === 'string') {
@@ -951,6 +1098,10 @@ btnEditSave.addEventListener('click', () => {
         session.right.startTime = newTime;
         let mins = parseInt(editDuration.value) || 0;
         session.right.durationSeconds = Math.max(0, mins) * 60;
+    } else if (currentEditKey === 'bottle') {
+        session.bottle.startTime = newTime;
+        let val = parseInt(editDuration.value) || 0;
+        session.bottle.ml = Math.max(0, val);
     } else if (currentEditKey === 'diaper') {
         session.diapers = newTime;
     }
@@ -972,7 +1123,14 @@ let currentTargetId = null;
 // Open modal
 document.querySelectorAll('.time-clickable').forEach(el => {
     el.addEventListener('click', () => {
-        currentTargetId = el.getAttribute('data-target');
+        const targetId = el.getAttribute('data-target');
+        
+        if (targetId === 'ml-bottle') {
+            openMlModal();
+            return;
+        }
+        
+        currentTargetId = targetId;
         const currentVal = document.getElementById(currentTargetId).textContent;
         
         if (currentVal !== '--:--') {
@@ -1014,7 +1172,7 @@ modalSave.addEventListener('click', () => {
         
         const targetEl = document.getElementById(currentTargetId);
         
-        if (currentTargetId === 'hour-left' || currentTargetId === 'hour-right') {
+        if (currentTargetId === 'hour-left' || currentTargetId === 'hour-right' || currentTargetId === 'hour-bottle') {
             const oldTimeStr = targetEl.textContent;
             if (oldTimeStr !== '--:--') {
                 const [oldH, oldM] = oldTimeStr.split(':').map(Number);
@@ -1039,10 +1197,8 @@ modalSave.addEventListener('click', () => {
         
         targetEl.textContent = `${formattedH}:${formattedM}`;
         
-        // If left/right changed and lastFeedingStartTime is null, we can optionally set it.
-        // But for simplicity, we just update the text content. 
-        if (currentTargetId === 'hour-left' || currentTargetId === 'hour-right' || currentTargetId === 'time-diaper') {
-            // Update the next feeding time calculation if this is the first breast time set
+        // Update the next feeding time calculation if this is the first breast time set
+        if (currentTargetId === 'hour-left' || currentTargetId === 'hour-right' || currentTargetId === 'time-diaper' || currentTargetId === 'hour-bottle') {
             if (!lastFeedingStartTime) {
                 const now = new Date();
                 now.setHours(h, m, 0, 0);
