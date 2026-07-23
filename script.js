@@ -26,8 +26,10 @@ function addHoursToTime(baseDate, hoursToAdd) {
 // State
 let leftTimerInterval = null;
 let leftSeconds = 0;
+let leftStartMillis = null;
 let rightTimerInterval = null;
 let rightSeconds = 0;
+let rightStartMillis = null;
 let lastFeedingStartTime = null; // Stores the Date of the last play press
 let countdownBaseTime = null; // Used for next feeding timer so it persists across sessions
 
@@ -57,6 +59,86 @@ let nextFeedingDate = null;
 let alarmInterval = null;
 let alarmTriggered = false;
 let audioCtx = null;
+
+function saveCurrentState() {
+    const state = {
+        leftSeconds,
+        leftStartMillis: leftTimerInterval ? leftStartMillis : null,
+        rightSeconds,
+        rightStartMillis: rightTimerInterval ? rightStartMillis : null,
+        hourLeft: hourLeft.textContent,
+        hourRight: hourRight.textContent,
+        timeDiaper: timeDiaper.textContent,
+        lastFeedingStartTime: lastFeedingStartTime ? lastFeedingStartTime.getTime() : null,
+        countdownBaseTime: countdownBaseTime ? countdownBaseTime.getTime() : null,
+        nextFeedingHours: nextFeedingHours.value,
+        nextFeedingMinutes: nextFeedingMinutes.value,
+        leftHighlight: btnLeft.classList.contains('highlight-next'),
+        rightHighlight: btnRight.classList.contains('highlight-next')
+    };
+    localStorage.setItem('babyLogCurrentState', JSON.stringify(state));
+}
+
+function loadCurrentState() {
+    const saved = localStorage.getItem('babyLogCurrentState');
+    if (!saved) return;
+    
+    try {
+        const state = JSON.parse(saved);
+        
+        leftSeconds = state.leftSeconds || 0;
+        rightSeconds = state.rightSeconds || 0;
+        
+        if (state.hourLeft) hourLeft.textContent = state.hourLeft;
+        if (state.hourRight) hourRight.textContent = state.hourRight;
+        if (state.timeDiaper) timeDiaper.textContent = state.timeDiaper;
+        
+        if (state.lastFeedingStartTime) lastFeedingStartTime = new Date(state.lastFeedingStartTime);
+        if (state.countdownBaseTime) countdownBaseTime = new Date(state.countdownBaseTime);
+        
+        if (state.nextFeedingHours !== undefined) nextFeedingHours.value = state.nextFeedingHours;
+        if (state.nextFeedingMinutes !== undefined) nextFeedingMinutes.value = state.nextFeedingMinutes;
+        
+        if (state.leftHighlight) btnLeft.classList.add('highlight-next');
+        else btnLeft.classList.remove('highlight-next');
+        
+        if (state.rightHighlight) btnRight.classList.add('highlight-next');
+        else btnRight.classList.remove('highlight-next');
+        
+        if (state.leftStartMillis) {
+            btnLeft.innerHTML = svgPause;
+            leftStartMillis = state.leftStartMillis;
+            leftTimerInterval = setInterval(() => {
+                leftSeconds = Math.floor((Date.now() - leftStartMillis) / 1000);
+                timeLeft.textContent = formatTime(leftSeconds);
+                saveCurrentState();
+            }, 1000);
+        } else {
+            timeLeft.textContent = formatTime(leftSeconds);
+        }
+        
+        if (state.rightStartMillis) {
+            btnRight.innerHTML = svgPause;
+            rightStartMillis = state.rightStartMillis;
+            rightTimerInterval = setInterval(() => {
+                rightSeconds = Math.floor((Date.now() - rightStartMillis) / 1000);
+                timeRight.textContent = formatTime(rightSeconds);
+                saveCurrentState();
+            }, 1000);
+        } else {
+            timeRight.textContent = formatTime(rightSeconds);
+        }
+        
+        updateNextFeedingTime();
+    } catch (e) {
+        console.error("Failed to parse saved state", e);
+    }
+}
+
+document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') saveCurrentState();
+});
+window.addEventListener('beforeunload', saveCurrentState);
 
 function playAlarmBeep() {
     if (!audioCtx) {
@@ -129,6 +211,7 @@ function updateNextFeedingTime() {
         }
         nextFeedingTime.textContent = '--:--';
     }
+    saveCurrentState();
 }
 
 function renderCountdown() {
@@ -166,6 +249,7 @@ function pauseLeftTimer(isSwap = false) {
             timeLeft.textContent = '00:00';
             hourLeft.textContent = '--:--';
         }
+        saveCurrentState();
     }
 }
 
@@ -180,6 +264,7 @@ function pauseRightTimer(isSwap = false) {
             timeRight.textContent = '00:00';
             hourRight.textContent = '--:--';
         }
+        saveCurrentState();
     }
 }
 
@@ -204,10 +289,11 @@ btnLeft.addEventListener('click', () => {
         updateNextFeedingTime(); // Update calculation based on new start time
 
         btnLeft.innerHTML = svgPause;
-        const startMillis = Date.now() - leftSeconds * 1000;
+        leftStartMillis = Date.now() - leftSeconds * 1000;
         leftTimerInterval = setInterval(() => {
-            leftSeconds = Math.floor((Date.now() - startMillis) / 1000);
+            leftSeconds = Math.floor((Date.now() - leftStartMillis) / 1000);
             timeLeft.textContent = formatTime(leftSeconds);
+            saveCurrentState();
         }, 1000);
     }
 });
@@ -233,10 +319,11 @@ btnRight.addEventListener('click', () => {
         updateNextFeedingTime(); // Update calculation based on new start time
 
         btnRight.innerHTML = svgPause;
-        const startMillis = Date.now() - rightSeconds * 1000;
+        rightStartMillis = Date.now() - rightSeconds * 1000;
         rightTimerInterval = setInterval(() => {
-            rightSeconds = Math.floor((Date.now() - startMillis) / 1000);
+            rightSeconds = Math.floor((Date.now() - rightStartMillis) / 1000);
             timeRight.textContent = formatTime(rightSeconds);
+            saveCurrentState();
         }, 1000);
     }
 });
@@ -248,6 +335,7 @@ btnResetLeft.addEventListener('click', () => {
     leftSeconds = 0;
     timeLeft.textContent = '00:00';
     hourLeft.textContent = '--:--';
+    saveCurrentState();
 });
 
 const btnResetRight = document.getElementById('btn-reset-right');
@@ -256,6 +344,7 @@ btnResetRight.addEventListener('click', () => {
     rightSeconds = 0;
     timeRight.textContent = '00:00';
     hourRight.textContent = '--:--';
+    saveCurrentState();
 });
 
 // Swap logic
@@ -283,17 +372,19 @@ btnSwap.addEventListener('click', () => {
     // Resume appropriately
     if (leftWasPlaying) {
         btnRight.innerHTML = svgPause;
-        const startMillis = Date.now() - rightSeconds * 1000;
+        rightStartMillis = Date.now() - rightSeconds * 1000;
         rightTimerInterval = setInterval(() => {
-            rightSeconds = Math.floor((Date.now() - startMillis) / 1000);
+            rightSeconds = Math.floor((Date.now() - rightStartMillis) / 1000);
             timeRight.textContent = formatTime(rightSeconds);
+            saveCurrentState();
         }, 1000);
     } else if (rightWasPlaying) {
         btnLeft.innerHTML = svgPause;
-        const startMillis = Date.now() - leftSeconds * 1000;
+        leftStartMillis = Date.now() - leftSeconds * 1000;
         leftTimerInterval = setInterval(() => {
-            leftSeconds = Math.floor((Date.now() - startMillis) / 1000);
+            leftSeconds = Math.floor((Date.now() - leftStartMillis) / 1000);
             timeLeft.textContent = formatTime(leftSeconds);
+            saveCurrentState();
         }, 1000);
     }
     
@@ -308,6 +399,7 @@ btnSwap.addEventListener('click', () => {
         btnRight.classList.remove('highlight-next');
         btnLeft.classList.add('highlight-next');
     }
+    saveCurrentState();
 });
 
 // Next feeding input logic
@@ -320,6 +412,7 @@ const btnRegistrar = document.getElementById('btn-registrar');
 btnDiaper.addEventListener('click', () => {
     const now = new Date();
     timeDiaper.textContent = formatHHMM(now);
+    saveCurrentState();
 });
 
 const MERGE_WINDOW_MINUTES = 60;
@@ -444,6 +537,8 @@ function saveAndResetSession(sessionData, merge) {
     
     timeDiaper.textContent = '--:--';
 
+    saveCurrentState();
+
     const originalText = btnRegistrar.textContent;
     btnRegistrar.textContent = '¡REGISTRADO!';
     btnRegistrar.style.backgroundColor = 'var(--accent-primary)';
@@ -466,6 +561,7 @@ btnResetNext.addEventListener('click', () => {
         countdownInterval = null;
     }
     nextFeedingTime.textContent = '--:--';
+    saveCurrentState();
 });
 
 // --- Navigation Logic ---
@@ -859,5 +955,9 @@ modalSave.addEventListener('click', () => {
             }
         }
     }
+    saveCurrentState();
     closeModal();
 });
+
+// Initialize on load
+loadCurrentState();
