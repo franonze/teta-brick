@@ -322,6 +322,33 @@ btnDiaper.addEventListener('click', () => {
     timeDiaper.textContent = formatHHMM(now);
 });
 
+const MERGE_WINDOW_MINUTES = 60;
+let pendingSessionData = null;
+
+const mergeModal = document.getElementById('merge-modal');
+const btnMergeConfirm = document.getElementById('merge-confirm');
+const btnMergeCancel = document.getElementById('merge-cancel');
+
+function closeMergeModal() {
+    mergeModal.classList.remove('active');
+}
+
+btnMergeCancel.addEventListener('click', () => {
+    if (pendingSessionData) {
+        saveAndResetSession(pendingSessionData, false);
+        pendingSessionData = null;
+    }
+    closeMergeModal();
+});
+
+btnMergeConfirm.addEventListener('click', () => {
+    if (pendingSessionData) {
+        saveAndResetSession(pendingSessionData, true);
+        pendingSessionData = null;
+    }
+    closeMergeModal();
+});
+
 // Registrar Session
 btnRegistrar.addEventListener('click', () => {
     // 1. Gather current state
@@ -344,9 +371,53 @@ btnRegistrar.addEventListener('click', () => {
         return;
     }
 
-    // 2. Save to local storage
     const history = JSON.parse(localStorage.getItem('babyLogHistory')) || [];
-    history.push(sessionData);
+    
+    if (history.length > 0) {
+        const lastRecord = history[history.length - 1];
+        const lastRecordDate = new Date(lastRecord.date);
+        const now = new Date();
+        const diffMinutes = (now - lastRecordDate) / (1000 * 60);
+
+        if (diffMinutes <= MERGE_WINDOW_MINUTES) {
+            pendingSessionData = sessionData;
+            mergeModal.classList.add('active');
+            return; // Wait for user decision
+        }
+    }
+
+    saveAndResetSession(sessionData, false);
+});
+
+function saveAndResetSession(sessionData, merge) {
+    const history = JSON.parse(localStorage.getItem('babyLogHistory')) || [];
+    
+    if (merge && history.length > 0) {
+        let lastRecord = history[history.length - 1];
+        
+        if (sessionData.left.durationSeconds > 0) {
+            lastRecord.left.durationSeconds = (lastRecord.left.durationSeconds || 0) + sessionData.left.durationSeconds;
+            if (!lastRecord.left.startTime && sessionData.left.startTime) {
+                lastRecord.left.startTime = sessionData.left.startTime;
+            }
+        }
+        
+        if (sessionData.right.durationSeconds > 0) {
+            lastRecord.right.durationSeconds = (lastRecord.right.durationSeconds || 0) + sessionData.right.durationSeconds;
+            if (!lastRecord.right.startTime && sessionData.right.startTime) {
+                lastRecord.right.startTime = sessionData.right.startTime;
+            }
+        }
+        
+        if (sessionData.diapers) {
+            lastRecord.diapers = sessionData.diapers;
+        }
+        
+        history[history.length - 1] = lastRecord;
+    } else {
+        history.push(sessionData);
+    }
+    
     localStorage.setItem('babyLogHistory', JSON.stringify(history));
 
     // Highlight logic
@@ -381,7 +452,7 @@ btnRegistrar.addEventListener('click', () => {
         btnRegistrar.textContent = originalText;
         btnRegistrar.style.backgroundColor = '';
     }, 2000);
-});
+}
 
 // Reset next feed logic
 const btnResetNext = document.getElementById('btn-reset-next');

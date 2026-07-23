@@ -200,6 +200,19 @@
         </div>
     </div>
 
+    <!-- Confirm Merge Popup -->
+    <div id="merge-modal" class="time-popup-overlay">
+        <div class="time-popup-box glass-card">
+            <h3 style="text-align: center; margin-bottom: 10px;">¿Unir registros?</h3>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 10px; font-size: 0.9rem;">El último registro fue hace menos de 1 hora. ¿Quieres añadir esta toma a ese registro en lugar de crear uno nuevo?</p>
+            <div class="popup-actions" style="flex-direction: column;">
+                <button id="merge-confirm" class="main-action-btn"
+                    style="padding: 12px; width: auto; border-radius: 12px; font-size: 1rem; background: var(--accent-primary);">Sí, unir con el anterior</button>
+                <button id="merge-cancel" class="btn-secondary" style="width: auto;">No, crear uno nuevo</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Edit Event Popup -->
     <div id="edit-modal" class="time-popup-overlay">
         <div class="time-popup-box glass-card">
