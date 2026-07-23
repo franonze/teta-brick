@@ -130,8 +130,8 @@ function renderCountdown() {
     if (!nextFeedingDate) return;
     const now = new Date();
     const diff = nextFeedingDate.getTime() - now.getTime();
+    
     if (diff <= 0) {
-        nextFeedingTime.textContent = '00:00:00';
         if (!alarmTriggered) {
             alarmTriggered = true;
             nextFeedingTime.classList.add('alarm-ringing');
@@ -140,12 +140,14 @@ function renderCountdown() {
     } else {
         alarmTriggered = false;
         stopAlarm();
-        const totalSeconds = Math.floor(diff / 1000);
-        const h = Math.floor(totalSeconds / 3600).toString().padStart(2, '0');
-        const m = Math.floor((totalSeconds % 3600) / 60).toString().padStart(2, '0');
-        const s = (totalSeconds % 60).toString().padStart(2, '0');
-        nextFeedingTime.textContent = `${h}:${m}:${s}`;
     }
+    
+    const totalSeconds = Math.floor(Math.abs(diff) / 1000);
+    const h = Math.floor(totalSeconds / 3600).toString().padStart(2, '0');
+    const m = Math.floor((totalSeconds % 3600) / 60).toString().padStart(2, '0');
+    const s = (totalSeconds % 60).toString().padStart(2, '0');
+    const sign = diff < 0 && totalSeconds > 0 ? '-' : '';
+    nextFeedingTime.textContent = `${sign}${h}:${m}:${s}`;
 }
 
 function pauseLeftTimer(isSwap = false) {
@@ -197,8 +199,9 @@ btnLeft.addEventListener('click', () => {
         updateNextFeedingTime(); // Update calculation based on new start time
 
         btnLeft.innerHTML = svgPause;
+        const startMillis = Date.now() - leftSeconds * 1000;
         leftTimerInterval = setInterval(() => {
-            leftSeconds++;
+            leftSeconds = Math.floor((Date.now() - startMillis) / 1000);
             timeLeft.textContent = formatTime(leftSeconds);
         }, 1000);
     }
@@ -225,8 +228,9 @@ btnRight.addEventListener('click', () => {
         updateNextFeedingTime(); // Update calculation based on new start time
 
         btnRight.innerHTML = svgPause;
+        const startMillis = Date.now() - rightSeconds * 1000;
         rightTimerInterval = setInterval(() => {
-            rightSeconds++;
+            rightSeconds = Math.floor((Date.now() - startMillis) / 1000);
             timeRight.textContent = formatTime(rightSeconds);
         }, 1000);
     }
@@ -274,14 +278,16 @@ btnSwap.addEventListener('click', () => {
     // Resume appropriately
     if (leftWasPlaying) {
         btnRight.innerHTML = svgPause;
+        const startMillis = Date.now() - rightSeconds * 1000;
         rightTimerInterval = setInterval(() => {
-            rightSeconds++;
+            rightSeconds = Math.floor((Date.now() - startMillis) / 1000);
             timeRight.textContent = formatTime(rightSeconds);
         }, 1000);
     } else if (rightWasPlaying) {
         btnLeft.innerHTML = svgPause;
+        const startMillis = Date.now() - leftSeconds * 1000;
         leftTimerInterval = setInterval(() => {
-            leftSeconds++;
+            leftSeconds = Math.floor((Date.now() - startMillis) / 1000);
             timeLeft.textContent = formatTime(leftSeconds);
         }, 1000);
     }
