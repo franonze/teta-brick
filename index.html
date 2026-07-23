@@ -37,12 +37,12 @@
                                 <span class="value time-display" id="hour-left">--:--</span>
                             </div>
                         </div>
-                        <button class="control-btn" id="btn-reset-left" style="margin-top: 10px;">
-                            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                        <button class="control-btn" id="btn-reset-left" style="margin-top: 2px; padding: 4px 8px;">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
                                 <path
                                     d="M17.65 6.35A7.95 7.95 0 0012 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0112 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z" />
                             </svg>
-                            <span>Reset</span>
+                            <span style="font-size: 0.8rem;">Reset</span>
                         </button>
                     </div>
 
@@ -75,39 +75,41 @@
                                 <span class="value time-display" id="hour-right">--:--</span>
                             </div>
                         </div>
-                        <button class="control-btn" id="btn-reset-right" style="margin-top: 10px;">
-                            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                        <button class="control-btn" id="btn-reset-right" style="margin-top: 2px; padding: 4px 8px;">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
                                 <path
                                     d="M17.65 6.35A7.95 7.95 0 0012 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0112 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z" />
                             </svg>
-                            <span>Reset</span>
+                            <span style="font-size: 0.8rem;">Reset</span>
                         </button>
                     </div>
                 </div>
             </section>
 
             <!-- Middle Section (Next Feeding) -->
-            <section class="glass-card next-feeding-section">
-                <div class="input-group-row" style="flex-direction: column; align-items: stretch; gap: 10px;">
-                    <label style="text-align: center;">Próxima toma:</label>
-                    <div style="display: flex; gap: 10px; justify-content: center; align-items: center;">
-                        <input type="number" id="next-feeding-hours" min="0" value="4" style="width: 70px;">
-                        <span style="font-weight: 600; color: var(--text-secondary);">h</span>
-                        <input type="number" id="next-feeding-minutes" min="0" max="59" value="0" style="width: 70px;">
-                        <span style="font-weight: 600; color: var(--text-secondary);">min</span>
+            <section class="glass-card next-feeding-section" style="align-items: center;">
+                <div style="width: fit-content; display: flex; flex-direction: column; gap: 10px;">
+                    <div class="input-group-row" style="flex-direction: row; align-items: center; justify-content: center; gap: 15px; width: auto;">
+                        <label style="margin: 0; font-size: 1rem;">Próxima toma:</label>
+                        <div style="display: flex; gap: 5px; justify-content: flex-end; align-items: center;">
+                            <input type="number" id="next-feeding-hours" min="0" value="4" style="width: 50px; padding: 6px; font-size: 1rem;">
+                            <span style="font-weight: 600; color: var(--text-secondary); font-size: 0.9rem;">h</span>
+                            <input type="number" id="next-feeding-minutes" min="0" max="59" value="0" style="width: 50px; padding: 6px; font-size: 1rem;">
+                            <span style="font-weight: 600; color: var(--text-secondary); font-size: 0.9rem;">m</span>
+                        </div>
                     </div>
-                </div>
-                <div class="next-time-display"
-                    style="display: flex; align-items: center; justify-content: center; gap: 15px; position: relative;">
-                    <span class="value highlight" id="next-feeding-time">--:--</span>
-                    <button class="control-btn" id="btn-reset-next"
-                        style="position: absolute; right: 10px; margin: 0; padding: 6px;"
-                        aria-label="Resetear próxima toma">
-                        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-                            <path
-                                d="M17.65 6.35A7.95 7.95 0 0012 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0112 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z" />
-                        </svg>
-                    </button>
+                    <div class="next-time-display"
+                        style="display: flex; align-items: center; justify-content: center; position: relative; padding: 10px; width: 100%; box-sizing: border-box;">
+                        <span class="value highlight" id="next-feeding-time" style="font-size: 1.3rem;">--:--</span>
+                        <button class="control-btn" id="btn-reset-next"
+                            style="position: absolute; right: 8px; margin: 0; padding: 4px;"
+                            aria-label="Resetear próxima toma">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                                <path
+                                    d="M17.65 6.35A7.95 7.95 0 0012 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0112 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z" />
+                            </svg>
+                        </button>
+                    </div>
                 </div>
             </section>
 
@@ -126,7 +128,7 @@
             </section>
 
             <!-- Action Section -->
-            <button class="main-action-btn" id="btn-registrar">
+            <button class="main-action-btn" id="btn-registrar" style="padding: 12px;">
                 REGISTRAR
             </button>
         </main>
