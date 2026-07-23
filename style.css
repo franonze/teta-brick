@@ -275,6 +275,12 @@ h2 {
     box-shadow: 0 4px 16px rgba(103, 163, 255, 0.2);
 }
 
+.biberon-row .play-btn {
+    background: rgba(34, 197, 94, 0.2);
+    color: #22c55e;
+    box-shadow: 0 4px 16px rgba(34, 197, 94, 0.2);
+}
+
 .play-btn:active {
     transform: scale(0.95);
 }

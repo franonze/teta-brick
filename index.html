@@ -98,28 +98,28 @@
             <main id="view-biberon" class="view">
                 <h2 class="view-title">Toma Biberón</h2>
                 <section class="glass-card nursing-section">
-                    <div class="biberon-row" style="display: flex; justify-content: space-around; align-items: center; padding: 15px 5px;">
-                        <button class="play-btn" id="btn-bottle" aria-label="Iniciar biberón" style="width: 60px; height: 60px;">
+                    <div class="biberon-row" style="display: flex; justify-content: center; align-items: center; gap: 40px; padding: 15px 5px;">
+                        <button class="play-btn" id="btn-bottle" aria-label="Iniciar biberón" style="width: 60px; height: 60px; flex-shrink: 0;">
                             <svg viewBox="0 0 24 24" class="icon-play">
                                 <path d="M8 5v14l11-7z" />
                             </svg>
                         </button>
                         
-                        <div class="stat-row time-clickable" data-target="ml-bottle" style="align-items: center; flex: 1;">
-                            <span class="label tag" style="color: var(--accent-primary);">Cantidad</span>
-                            <div style="display: flex; align-items: baseline; gap: 5px;">
-                                <span class="value" id="ml-bottle" style="font-size: 2rem;">--</span>
-                                <span style="font-size: 1rem; color: var(--text-secondary); font-weight: 600;">mL</span>
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div class="stat-row time-clickable" data-target="ml-bottle" style="align-items: center; min-width: 50px;">
+                                <span class="label tag" style="color: var(--accent-primary); font-size: 0.7rem; padding: 2px 6px;">Cantidad</span>
+                                <div style="display: flex; align-items: baseline; gap: 3px;">
+                                    <span class="value" id="ml-bottle" style="font-size: 1.4rem;">--</span>
+                                    <span style="font-size: 0.8rem; color: var(--text-secondary); font-weight: 600;">mL</span>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="divider" style="width: 1px; height: 50px; background: var(--card-border); margin: 0 10px;"></div>
+                            <div class="divider" style="width: 1px; height: 40px; background: var(--card-border); margin: 0;"></div>
 
-                        <div class="stat-row time-clickable" data-target="hour-bottle" style="align-items: center; flex: 1;">
-                            <span class="label tag" style="color: var(--accent-primary);">
-                                Hora
-                            </span>
-                            <span class="value time-display" id="hour-bottle" style="font-size: 1.8rem;">--:--</span>
+                            <div class="stat-row time-clickable" data-target="hour-bottle" style="align-items: center; min-width: 50px;">
+                                <span class="label tag" style="color: var(--accent-primary); font-size: 0.7rem; padding: 2px 6px;">Hora</span>
+                                <span class="value time-display" id="hour-bottle" style="font-size: 1.4rem;">--:--</span>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -191,14 +191,14 @@
         <!-- Bottom Navigation -->
         <nav class="bottom-nav glass-nav">
             <button class="nav-item active" data-target="view-pecho">
-                <svg viewBox="0 0 24 24" class="nav-icon">
-                    <path d="M12 3L4 9v12h16V9l-8-6zm6 16h-3v-6H9v6H6v-9l6-4.5 6 4.5v9z" />
+                <svg viewBox="0 0 24 24" class="nav-icon" fill="currentColor">
+                    <path d="M 10 2 L 14 2 C 14 7 16 7 20 10 C 22 12 21 16 20 18 C 20 23 15 23 13 18 C 12.5 16 11.5 16 11 18 C 9 23 4 23 4 18 C 3 16 2 12 4 10 C 8 7 10 7 10 2 Z"/>
                 </svg>
                 <span>Pecho</span>
             </button>
             <button class="nav-item" data-target="view-biberon">
                 <svg viewBox="0 0 24 24" class="nav-icon" fill="currentColor">
-                    <path d="M12 2c-1.1 0-2 .9-2 2v2H8c-1.1 0-2 .9-2 2v1l1.5 5v7c0 1.1.9 2 2 2h5c1.1 0 2-.9 2-2v-7l1.5-5V8c0-1.1-.9-2-2-2h-2V4c0-1.1-.9-2-2-2zm0 2h2v2h-2V4z" />
+                    <path d="M 9.5 8 C 9.5 6 11 6.5 11 4.5 C 11 2.5 13 2.5 13 4.5 C 13 6.5 14.5 6 14.5 8 C 16 8 16.5 8.5 16.5 9 C 16.5 9.5 16 10 14.5 10 C 17 10 17.5 12.5 16.5 14.5 C 15.5 16.5 17 19 17 20 C 17 21.5 16 22 14 22 L 10 22 C 8 22 7 21.5 7 20 C 7 19 8.5 16.5 7.5 14.5 C 6.5 12.5 7 10 9.5 10 C 8 10 7.5 9.5 7.5 9 C 7.5 8.5 8 8 9.5 8 Z" />
                 </svg>
                 <span>Biberón</span>
             </button>
