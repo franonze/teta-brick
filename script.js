@@ -23,6 +23,20 @@ function addHoursToTime(baseDate, hoursToAdd) {
     return formatHHMM(futureTime);
 }
 
+function getDiffSeconds(timeStr) {
+    if (timeStr === '--:--') return 0;
+    const now = new Date();
+    const [h, m] = timeStr.split(':').map(Number);
+    const manualDate = new Date();
+    manualDate.setHours(h, m, 0, 0);
+    
+    let diffSeconds = Math.floor((now.getTime() - manualDate.getTime()) / 1000);
+    if (diffSeconds < -12 * 3600) diffSeconds += 24 * 3600;
+    else if (diffSeconds > 12 * 3600) diffSeconds -= 24 * 3600;
+    
+    return diffSeconds;
+}
+
 // State
 let leftTimerInterval = null;
 let leftSeconds = 0;
@@ -140,6 +154,33 @@ document.addEventListener('visibilitychange', () => {
 });
 window.addEventListener('beforeunload', saveCurrentState);
 
+// Future time checker loop
+setInterval(() => {
+    if (hourLeft.textContent !== '--:--') {
+        const diff = getDiffSeconds(hourLeft.textContent);
+        if (diff < 0) {
+            hourLeft.parentElement.classList.add('future-time');
+            if (!leftTimerInterval && leftSeconds <= 0) timeLeft.textContent = '00:00';
+        } else {
+            hourLeft.parentElement.classList.remove('future-time');
+        }
+    } else {
+        hourLeft.parentElement.classList.remove('future-time');
+    }
+    
+    if (hourRight.textContent !== '--:--') {
+        const diff = getDiffSeconds(hourRight.textContent);
+        if (diff < 0) {
+            hourRight.parentElement.classList.add('future-time');
+            if (!rightTimerInterval && rightSeconds <= 0) timeRight.textContent = '00:00';
+        } else {
+            hourRight.parentElement.classList.remove('future-time');
+        }
+    } else {
+        hourRight.parentElement.classList.remove('future-time');
+    }
+}, 1000);
+
 function playAlarmBeep() {
     if (!audioCtx) {
         audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -244,7 +285,7 @@ function pauseLeftTimer(isSwap = false) {
         leftTimerInterval = null;
         btnLeft.innerHTML = svgPlay;
         
-        if (!isSwap && leftSeconds < MIN_SECONDS_TO_KEEP) {
+        if (!isSwap && leftSeconds >= 0 && leftSeconds < MIN_SECONDS_TO_KEEP) {
             leftSeconds = 0;
             timeLeft.textContent = '00:00';
             hourLeft.textContent = '--:--';
@@ -259,7 +300,7 @@ function pauseRightTimer(isSwap = false) {
         rightTimerInterval = null;
         btnRight.innerHTML = svgPlay;
         
-        if (!isSwap && rightSeconds < MIN_SECONDS_TO_KEEP) {
+        if (!isSwap && rightSeconds >= 0 && rightSeconds < MIN_SECONDS_TO_KEEP) {
             rightSeconds = 0;
             timeRight.textContent = '00:00';
             hourRight.textContent = '--:--';
@@ -279,20 +320,36 @@ btnLeft.addEventListener('click', () => {
         pauseRightTimer();
         
         const now = new Date();
-        if (!lastFeedingStartTime) {
-            lastFeedingStartTime = now;
-            countdownBaseTime = now;
-        }
         if (hourLeft.textContent === '--:--') {
             hourLeft.textContent = formatHHMM(now);
+            if (!lastFeedingStartTime) {
+                lastFeedingStartTime = now;
+                countdownBaseTime = now;
+            }
+        } else if (leftSeconds <= 0) {
+            leftSeconds = getDiffSeconds(hourLeft.textContent);
+            
+            if (!lastFeedingStartTime) {
+                const [h, m] = hourLeft.textContent.split(':');
+                const manualDate = new Date();
+                manualDate.setHours(parseInt(h, 10), parseInt(m, 10), 0, 0);
+                lastFeedingStartTime = manualDate;
+                countdownBaseTime = manualDate;
+            }
+        } else {
+            if (!lastFeedingStartTime) {
+                lastFeedingStartTime = now;
+                countdownBaseTime = now;
+            }
         }
+        
         updateNextFeedingTime(); // Update calculation based on new start time
 
         btnLeft.innerHTML = svgPause;
         leftStartMillis = Date.now() - leftSeconds * 1000;
         leftTimerInterval = setInterval(() => {
             leftSeconds = Math.floor((Date.now() - leftStartMillis) / 1000);
-            timeLeft.textContent = formatTime(leftSeconds);
+            timeLeft.textContent = leftSeconds < 0 ? '00:00' : formatTime(leftSeconds);
             saveCurrentState();
         }, 1000);
     }
@@ -309,20 +366,36 @@ btnRight.addEventListener('click', () => {
         pauseLeftTimer();
         
         const now = new Date();
-        if (!lastFeedingStartTime) {
-            lastFeedingStartTime = now;
-            countdownBaseTime = now;
-        }
         if (hourRight.textContent === '--:--') {
             hourRight.textContent = formatHHMM(now);
+            if (!lastFeedingStartTime) {
+                lastFeedingStartTime = now;
+                countdownBaseTime = now;
+            }
+        } else if (rightSeconds <= 0) {
+            rightSeconds = getDiffSeconds(hourRight.textContent);
+            
+            if (!lastFeedingStartTime) {
+                const [h, m] = hourRight.textContent.split(':');
+                const manualDate = new Date();
+                manualDate.setHours(parseInt(h, 10), parseInt(m, 10), 0, 0);
+                lastFeedingStartTime = manualDate;
+                countdownBaseTime = manualDate;
+            }
+        } else {
+            if (!lastFeedingStartTime) {
+                lastFeedingStartTime = now;
+                countdownBaseTime = now;
+            }
         }
+        
         updateNextFeedingTime(); // Update calculation based on new start time
 
         btnRight.innerHTML = svgPause;
         rightStartMillis = Date.now() - rightSeconds * 1000;
         rightTimerInterval = setInterval(() => {
             rightSeconds = Math.floor((Date.now() - rightStartMillis) / 1000);
-            timeRight.textContent = formatTime(rightSeconds);
+            timeRight.textContent = rightSeconds < 0 ? '00:00' : formatTime(rightSeconds);
             saveCurrentState();
         }, 1000);
     }
@@ -361,8 +434,8 @@ btnSwap.addEventListener('click', () => {
     leftSeconds = rightSeconds;
     rightSeconds = tempSeconds;
     
-    timeLeft.textContent = formatTime(leftSeconds);
-    timeRight.textContent = formatTime(rightSeconds);
+    timeLeft.textContent = leftSeconds < 0 ? '00:00' : formatTime(leftSeconds);
+    timeRight.textContent = rightSeconds < 0 ? '00:00' : formatTime(rightSeconds);
     
     // Swap hours
     const tempHour = hourLeft.textContent;
@@ -375,7 +448,7 @@ btnSwap.addEventListener('click', () => {
         rightStartMillis = Date.now() - rightSeconds * 1000;
         rightTimerInterval = setInterval(() => {
             rightSeconds = Math.floor((Date.now() - rightStartMillis) / 1000);
-            timeRight.textContent = formatTime(rightSeconds);
+            timeRight.textContent = rightSeconds < 0 ? '00:00' : formatTime(rightSeconds);
             saveCurrentState();
         }, 1000);
     } else if (rightWasPlaying) {
@@ -383,7 +456,7 @@ btnSwap.addEventListener('click', () => {
         leftStartMillis = Date.now() - leftSeconds * 1000;
         leftTimerInterval = setInterval(() => {
             leftSeconds = Math.floor((Date.now() - leftStartMillis) / 1000);
-            timeLeft.textContent = formatTime(leftSeconds);
+            timeLeft.textContent = leftSeconds < 0 ? '00:00' : formatTime(leftSeconds);
             saveCurrentState();
         }, 1000);
     }
@@ -940,6 +1013,30 @@ modalSave.addEventListener('click', () => {
         const formattedM = m.toString().padStart(2, '0');
         
         const targetEl = document.getElementById(currentTargetId);
+        
+        if (currentTargetId === 'hour-left' || currentTargetId === 'hour-right') {
+            const oldTimeStr = targetEl.textContent;
+            if (oldTimeStr !== '--:--') {
+                const [oldH, oldM] = oldTimeStr.split(':').map(Number);
+                let diffMins = (h * 60 + m) - (oldH * 60 + oldM);
+                
+                if (diffMins > 12 * 60) diffMins -= 24 * 60;
+                else if (diffMins < -12 * 60) diffMins += 24 * 60;
+                
+                const diffSeconds = diffMins * 60;
+                
+                if (currentTargetId === 'hour-left' && leftSeconds !== 0) {
+                    leftSeconds -= diffSeconds;
+                    if (leftStartMillis) leftStartMillis += diffSeconds * 1000;
+                    timeLeft.textContent = leftSeconds < 0 ? '00:00' : formatTime(leftSeconds);
+                } else if (currentTargetId === 'hour-right' && rightSeconds !== 0) {
+                    rightSeconds -= diffSeconds;
+                    if (rightStartMillis) rightStartMillis += diffSeconds * 1000;
+                    timeRight.textContent = rightSeconds < 0 ? '00:00' : formatTime(rightSeconds);
+                }
+            }
+        }
+        
         targetEl.textContent = `${formattedH}:${formattedM}`;
         
         // If left/right changed and lastFeedingStartTime is null, we can optionally set it.
