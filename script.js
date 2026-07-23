@@ -424,137 +424,154 @@ navItems.forEach(item => {
 });
 
 // --- History Rendering Logic ---
-const countFeedings = document.getElementById('count-feedings');
-const countDiaper = document.getElementById('count-diaper');
 const historyContainer = document.getElementById('history-container');
 
-function isToday(dateString) {
-    const date = new Date(dateString);
+function formatDate(dateString) {
+    const d = new Date(dateString);
+    const months = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+    
+    // Check if it's today
     const today = new Date();
-    return date.getDate() === today.getDate() &&
-           date.getMonth() === today.getMonth() &&
-           date.getFullYear() === today.getFullYear();
+    if (d.getDate() === today.getDate() && d.getMonth() === today.getMonth() && d.getFullYear() === today.getFullYear()) {
+        return 'Hoy, ' + d.getDate() + ' ' + months[d.getMonth()];
+    }
+    
+    return d.getDate() + ' ' + months[d.getMonth()];
 }
 
 function renderHistory() {
     const history = JSON.parse(localStorage.getItem('babyLogHistory')) || [];
-    
-    // Filter to today only
-    const todaySessions = history.filter(session => isToday(session.date));
-    
-    let totalFeedings = 0;
-    let totalDiapers = 0;
-
-    // We'll prepare a structured array of sessions to render, sorted newest first
-    todaySessions.sort((a, b) => new Date(b.date) - new Date(a.date));
-
     historyContainer.innerHTML = '';
     
-    if (todaySessions.length === 0) {
-        historyContainer.innerHTML = '<div class="empty-state">No hay registros para hoy.</div>';
+    if (history.length === 0) {
+        historyContainer.innerHTML = '<div class="empty-state">No hay registros guardados.</div>';
         return;
     }
 
-    todaySessions.forEach(session => {
+    // Group by day string
+    const daysMap = {};
+    history.forEach(session => {
+        const d = new Date(session.date);
+        const dayKey = d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate();
+        if (!daysMap[dayKey]) {
+            daysMap[dayKey] = {
+                date: session.date, // keep one for sorting
+                sessions: [],
+                totalFeedings: 0,
+                totalDiapers: 0
+            };
+        }
+        daysMap[dayKey].sessions.push(session);
+        
+        // Count totals
         let isFeeding = false;
-        const sid = session.date;
-        const sessionEvents = [];
+        if (session.left && session.left.startTime) isFeeding = true;
+        if (session.right && session.right.startTime) isFeeding = true;
+        if (isFeeding) daysMap[dayKey].totalFeedings++;
         
-        // Left feeding
-        if (session.left && session.left.startTime) {
-            isFeeding = true;
-            sessionEvents.push({
-                id: sid,
-                key: 'left',
-                timeStr: session.left.startTime,
-                type: 'Toma Izquierda',
-                desc: `${Math.round(session.left.durationSeconds / 60)}min`,
-                icon: '🍼'
-            });
-        }
-        // Right feeding
-        if (session.right && session.right.startTime) {
-            isFeeding = true;
-            sessionEvents.push({
-                id: sid,
-                key: 'right',
-                timeStr: session.right.startTime,
-                type: 'Toma Derecha',
-                desc: `${Math.round(session.right.durationSeconds / 60)}min`,
-                icon: '🍼'
-            });
-        }
-        
-        if (isFeeding) {
-            totalFeedings++;
-        }
+        if (session.diapers) daysMap[dayKey].totalDiapers++;
+    });
 
-        // Diaper
-        if (session.diapers) {
-            let diaperTime = null;
-            if (typeof session.diapers === 'string') {
-                diaperTime = session.diapers;
-            } else if (typeof session.diapers === 'object') {
-                diaperTime = session.diapers.poop || session.diapers.pee;
-            }
-            
-            if (diaperTime) {
-                totalDiapers++;
-                sessionEvents.push({
-                    id: sid,
-                    key: 'diaper',
-                    timeStr: diaperTime,
-                    type: 'Cambio de pañal',
-                    desc: '',
-                    icon: '💩'
-                });
-            }
-        }
-        
-        // If there are no events in this session (e.g. everything was deleted), skip it
-        if (sessionEvents.length === 0) return;
+    const sortedDays = Object.values(daysMap).sort((a, b) => new Date(b.date) - new Date(a.date));
 
-        // Sort events inside the session by time descending just in case
-        sessionEvents.sort((a, b) => {
-            const timeA = typeof a.timeStr === 'string' ? a.timeStr : '';
-            const timeB = typeof b.timeStr === 'string' ? b.timeStr : '';
-            return timeB.localeCompare(timeA);
-        });
-
-        // Build HTML for the entire session group
-        let sessionHtml = `<div class="history-item" style="flex-direction: column; align-items: stretch; gap: 0;">`;
+    sortedDays.forEach((dayData, dayIndex) => {
+        const dateDisplay = formatDate(dayData.date);
         
-        sessionEvents.forEach((ev, idx) => {
-            const borderTop = idx > 0 ? `border-top: 1px solid rgba(255,255,255,0.05); margin-top: 12px; padding-top: 12px;` : '';
-            sessionHtml += `
-                <div style="display: flex; align-items: center; gap: 16px; ${borderTop}">
-                    <div class="history-time">${ev.timeStr}</div>
-                    <div class="history-content">
-                        <div class="history-title">
-                            <span>${ev.icon}</span> ${ev.type}
+        // Sort sessions inside the day
+        dayData.sessions.sort((a, b) => new Date(b.date) - new Date(a.date));
+        
+        // Build the HTML for the day
+        let dayHtml = `
+            <div class="daily-group glass-card" style="padding: 15px; margin-bottom: 15px;">
+                <div class="daily-header" style="display: flex; justify-content: space-between; align-items: center; cursor: pointer;" onclick="toggleDay('day-${dayIndex}')">
+                    <div style="font-size: 1.1rem; font-weight: 600;">${dateDisplay}</div>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="display: flex; align-items: center; gap: 5px; color: var(--text-secondary); font-weight: 600;">
+                            <span style="font-size: 1.2rem;">🍼</span> ${dayData.totalFeedings}
                         </div>
-                        ${ev.desc ? `<div class="history-desc">${ev.desc}</div>` : ''}
-                    </div>
-                    <div class="history-actions">
-                        <button class="action-btn edit-btn" onclick="editEvent('${ev.id}', '${ev.key}')" title="Editar">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
-                        </button>
-                        <button class="action-btn delete-btn" onclick="deleteEvent('${ev.id}', '${ev.key}')" title="Borrar">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
-                        </button>
+                        <div style="display: flex; align-items: center; gap: 5px; color: var(--text-secondary); font-weight: 600;">
+                            <span style="font-size: 1.2rem;">💩</span> ${dayData.totalDiapers}
+                        </div>
+                        <svg id="icon-day-${dayIndex}" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" style="transition: transform 0.3s; ${dayIndex === 0 ? 'transform: rotate(180deg);' : ''}">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
                     </div>
                 </div>
-            `;
-        });
+                <div id="day-${dayIndex}" style="display: ${dayIndex === 0 ? 'flex' : 'none'}; flex-direction: column; gap: 10px; margin-top: 15px; border-top: 1px solid var(--card-border); padding-top: 15px;">
+        `;
+        
+        dayData.sessions.forEach(session => {
+            const sid = session.date;
+            const sessionEvents = [];
+            
+            // Left feeding
+            if (session.left && session.left.startTime) {
+                sessionEvents.push({
+                    id: sid, key: 'left', timeStr: session.left.startTime, type: 'Toma Izquierda', desc: `${Math.round(session.left.durationSeconds / 60)}min`, icon: '🍼'
+                });
+            }
+            // Right feeding
+            if (session.right && session.right.startTime) {
+                sessionEvents.push({
+                    id: sid, key: 'right', timeStr: session.right.startTime, type: 'Toma Derecha', desc: `${Math.round(session.right.durationSeconds / 60)}min`, icon: '🍼'
+                });
+            }
+            // Diaper
+            if (session.diapers) {
+                let diaperTime = typeof session.diapers === 'string' ? session.diapers : (session.diapers.poop || session.diapers.pee);
+                if (diaperTime) {
+                    sessionEvents.push({ id: sid, key: 'diaper', timeStr: diaperTime, type: 'Cambio de pañal', desc: '', icon: '💩' });
+                }
+            }
+            
+            if (sessionEvents.length === 0) return;
+            sessionEvents.sort((a, b) => b.timeStr.localeCompare(a.timeStr));
 
-        sessionHtml += `</div>`;
-        historyContainer.insertAdjacentHTML('beforeend', sessionHtml);
+            let sessionHtml = `<div class="history-item" style="flex-direction: column; align-items: stretch; gap: 0; background: rgba(0,0,0,0.2); border: none;">`;
+            
+            sessionEvents.forEach((ev, idx) => {
+                const borderTop = idx > 0 ? `border-top: 1px solid rgba(255,255,255,0.05); margin-top: 12px; padding-top: 12px;` : '';
+                sessionHtml += `
+                    <div style="display: flex; align-items: center; gap: 16px; ${borderTop}">
+                        <div class="history-time">${ev.timeStr}</div>
+                        <div class="history-content">
+                            <div class="history-title"><span>${ev.icon}</span> ${ev.type}</div>
+                            ${ev.desc ? `<div class="history-desc">${ev.desc}</div>` : ''}
+                        </div>
+                        <div class="history-actions">
+                            <button class="action-btn edit-btn" onclick="editEvent('${ev.id}', '${ev.key}')" title="Editar">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+                            </button>
+                            <button class="action-btn delete-btn" onclick="deleteEvent('${ev.id}', '${ev.key}')" title="Borrar">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            sessionHtml += `</div>`;
+            dayHtml += sessionHtml;
+        });
+        
+        dayHtml += `</div></div>`;
+        historyContainer.insertAdjacentHTML('beforeend', dayHtml);
     });
-    
-    // Update summary counts
-    countFeedings.textContent = totalFeedings;
-    countDiaper.textContent = totalDiapers;
 }
+
+window.toggleDay = function(dayId) {
+    const el = document.getElementById(dayId);
+    const icon = document.getElementById('icon-' + dayId);
+    if (el.style.display === 'none') {
+        el.style.display = 'flex';
+        icon.style.transform = 'rotate(180deg)';
+    } else {
+        el.style.display = 'none';
+        icon.style.transform = 'rotate(0deg)';
+    }
+};
+
+
 
 // Logic for Editing and Deleting History Events
 let currentDeleteId = null;
