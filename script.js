@@ -1,4 +1,4 @@
-﻿// Utility to format time as mm:ss
+// Utility to format time as mm:ss
 function formatTime(seconds) {
     const m = Math.floor(seconds / 60).toString().padStart(2, '0');
     const s = (seconds % 60).toString().padStart(2, '0');
@@ -785,7 +785,7 @@ function saveAndResetSession(sessionData, merge) {
     saveCurrentState();
 
     const originalText = btnRegistrar.textContent;
-    btnRegistrar.textContent = '¡REGISTRADO!';
+    btnRegistrar.textContent = getTranslation('registered');
     btnRegistrar.style.backgroundColor = 'var(--accent-primary)';
     
     setTimeout(() => {
@@ -831,7 +831,7 @@ navItems.forEach(item => {
         // Hide shared sections in history
         const sharedSections = document.getElementById('shared-sections');
         if (sharedSections) {
-            if (targetId === 'view-historial') {
+            if (targetId === 'view-historial' || targetId === 'view-ajustes') {
                 sharedSections.style.display = 'none';
             } else {
                 sharedSections.style.display = 'flex';
@@ -866,7 +866,7 @@ function renderHistory() {
     historyContainer.innerHTML = '';
     
     if (history.length === 0) {
-        historyContainer.innerHTML = '<div class="empty-state">No hay registros guardados.</div>';
+        historyContainer.innerHTML = `<div class="empty-state">${getTranslation('empty_history')}</div>`;
         return;
     }
 
@@ -942,26 +942,26 @@ function renderHistory() {
             // Left feeding
             if (session.left && session.left.startTime) {
                 sessionEvents.push({
-                    id: sid, key: 'left', timeStr: session.left.startTime, type: 'Pecho Izquierdo', desc: `${Math.round(session.left.durationSeconds / 60)}min`, icon: '🍼'
+                    id: sid, key: 'left', timeStr: session.left.startTime, type: `${getTranslation('tab_pecho')} ${getTranslation('breast_left')}`, desc: `${Math.round(session.left.durationSeconds / 60)}min`, icon: '🍼'
                 });
             }
             // Right feeding
             if (session.right && session.right.startTime) {
                 sessionEvents.push({
-                    id: sid, key: 'right', timeStr: session.right.startTime, type: 'Pecho Derecho', desc: `${Math.round(session.right.durationSeconds / 60)}min`, icon: '🍼'
+                    id: sid, key: 'right', timeStr: session.right.startTime, type: `${getTranslation('tab_pecho')} ${getTranslation('breast_right')}`, desc: `${Math.round(session.right.durationSeconds / 60)}min`, icon: '🍼'
                 });
             }
             // Bottle feeding
             if (session.bottle && session.bottle.startTime) {
                 sessionEvents.push({
-                    id: sid, key: 'bottle', timeStr: session.bottle.startTime, type: 'Biberón', desc: `${session.bottle.ml} mL`, icon: '🍼'
+                    id: sid, key: 'bottle', timeStr: session.bottle.startTime, type: getTranslation('tab_biberon'), desc: `${session.bottle.ml} mL`, icon: '🍼'
                 });
             }
             // Diaper
             if (session.diapers) {
                 let diaperTime = typeof session.diapers === 'string' ? session.diapers : (session.diapers.poop || session.diapers.pee);
                 if (diaperTime) {
-                    sessionEvents.push({ id: sid, key: 'diaper', timeStr: diaperTime, type: 'Cambio de pañal', desc: '', icon: '💩' });
+                    sessionEvents.push({ id: sid, key: 'diaper', timeStr: diaperTime, type: getTranslation('diaper_change'), desc: '', icon: '💩' });
                 }
             }
             
@@ -1308,3 +1308,101 @@ modalSave.addEventListener('click', () => {
 
 // Initialize on load
 loadCurrentState();
+// --- Settings and i18n Logic ---
+let currentLang = CONFIG.app.defaultLang;
+
+function saveSettings(settings) {
+    localStorage.setItem(CONFIG.storage.settingsKey, JSON.stringify(settings));
+}
+
+function loadSettings() {
+    const saved = localStorage.getItem(CONFIG.storage.settingsKey);
+    let settings = {
+        lang: CONFIG.app.defaultLang,
+        theme: CONFIG.app.defaultTheme,
+        defaultTab: CONFIG.app.defaultTab
+    };
+    if (saved) {
+        try {
+            settings = { ...settings, ...JSON.parse(saved) };
+        } catch(e) {}
+    }
+    
+    // Apply Settings
+    currentLang = settings.lang;
+    document.getElementById('settings-lang').value = currentLang;
+    applyLanguage(currentLang);
+    
+    document.getElementById('settings-theme').checked = (settings.theme === 'light');
+    applyTheme(settings.theme);
+    
+    document.getElementById('settings-default-tab').value = settings.defaultTab;
+    
+    // Switch to the default tab on load
+    const targetBtn = document.querySelector('.nav-item[data-target="' + settings.defaultTab + '"]');
+    if (targetBtn && !targetBtn.classList.contains('active')) {
+        targetBtn.click();
+    }
+}
+
+function applyTheme(theme) {
+    if (theme === 'light') {
+        document.body.classList.add('light-theme');
+    } else {
+        document.body.classList.remove('light-theme');
+    }
+}
+
+function getTranslation(key) {
+    return TRANSLATIONS[currentLang] && TRANSLATIONS[currentLang][key] ? TRANSLATIONS[currentLang][key] : TRANSLATIONS['es'][key];
+}
+
+function applyLanguage(lang) {
+    const elements = document.querySelectorAll('[data-i18n]');
+    elements.forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (TRANSLATIONS[lang] && TRANSLATIONS[lang][key]) {
+            el.textContent = TRANSLATIONS[lang][key];
+        } else if (TRANSLATIONS['es'][key]) {
+            el.textContent = TRANSLATIONS['es'][key]; // fallback to es
+        }
+    });
+    
+    // Refresh history if we are currently looking at it
+    const activeView = document.querySelector('.view.active');
+    if (activeView && activeView.id === 'view-historial') {
+        renderHistory();
+    }
+}
+
+// Event Listeners for Settings
+document.getElementById('settings-lang').addEventListener('change', (e) => {
+    currentLang = e.target.value;
+    applyLanguage(currentLang);
+    updateSettingsStorage();
+});
+
+document.getElementById('settings-theme').addEventListener('change', (e) => {
+    const theme = e.target.checked ? 'light' : 'dark';
+    applyTheme(theme);
+    updateSettingsStorage();
+});
+
+document.getElementById('settings-default-tab').addEventListener('change', (e) => {
+    updateSettingsStorage();
+});
+
+function updateSettingsStorage() {
+    saveSettings({
+        lang: document.getElementById('settings-lang').value,
+        theme: document.getElementById('settings-theme').checked ? 'light' : 'dark',
+        defaultTab: document.getElementById('settings-default-tab').value
+    });
+}
+
+document.getElementById('btn-report-bug').addEventListener('click', () => {
+    alert('Próximamente: En versiones futuras podrás reportar un error directamente desde aquí.');
+});
+
+// Load settings on startup
+window.addEventListener('DOMContentLoaded', loadSettings);

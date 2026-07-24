@@ -17,11 +17,11 @@
             <main id="view-pecho" class="view active">
             <!-- Top Section (Nursing) -->
             <section class="glass-card nursing-section">
-                <h2 class="view-title" style="margin-bottom: 15px;">Pecho</h2>
+                <h2 class="view-title" style="margin-bottom: 15px;" data-i18n="tab_pecho">Pecho</h2>
                 <div class="grid-container">
                     <!-- Left Column -->
                     <div class="column left-col">
-                        <h2 class="col-title" style="font-size: 1.3rem;">Izquierdo</h2>
+                        <h2 class="col-title" style="font-size: 1.3rem;" data-i18n="breast_left">Izquierdo</h2>
                         <button class="play-btn" id="btn-left" aria-label="Iniciar pecho izquierdo">
                             <svg viewBox="0 0 24 24" class="icon-play">
                                 <path d="M8 5v14l11-7z" />
@@ -29,13 +29,13 @@
                         </button>
                         <div class="stats">
                             <div class="stat-row">
-                                <span class="label tag">Tiempo</span>
+                                <span class="label tag" data-i18n="time">Tiempo</span>
                                 <span class="value" id="time-left">00:00</span>
                             </div>
                             <div class="stat-row time-clickable" data-target="hour-left">
                                 <span class="label tag" style="display: flex; align-items: center; gap: 4px; color: var(--accent-primary);">
                                     <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" /></svg>
-                                    Hora
+                                    <span data-i18n="hour">Hora</span>
                                 </span>
                                 <span class="value time-display" id="hour-left">--:--</span>
                             </div>
@@ -62,7 +62,7 @@
 
                     <!-- Right Column -->
                     <div class="column right-col">
-                        <h2 class="col-title" style="font-size: 1.3rem;">Derecho</h2>
+                        <h2 class="col-title" style="font-size: 1.3rem;" data-i18n="breast_right">Derecho</h2>
                         <button class="play-btn" id="btn-right" aria-label="Iniciar pecho derecho">
                             <svg viewBox="0 0 24 24" class="icon-play">
                                 <path d="M8 5v14l11-7z" />
@@ -70,13 +70,13 @@
                         </button>
                         <div class="stats">
                             <div class="stat-row">
-                                <span class="label tag">Tiempo</span>
+                                <span class="label tag" data-i18n="time">Tiempo</span>
                                 <span class="value" id="time-right">00:00</span>
                             </div>
                             <div class="stat-row time-clickable" data-target="hour-right">
                                 <span class="label tag" style="display: flex; align-items: center; gap: 4px; color: var(--accent-primary);">
                                     <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" /></svg>
-                                    Hora
+                                    <span data-i18n="hour">Hora</span>
                                 </span>
                                 <span class="value time-display" id="hour-right">--:--</span>
                             </div>
@@ -96,7 +96,7 @@
             <!-- MAIN VIEW: BIBERON -->
             <main id="view-biberon" class="view">
                 <section class="glass-card nursing-section">
-                    <h2 class="view-title" style="margin-bottom: 15px;">Biberón</h2>
+                    <h2 class="view-title" style="margin-bottom: 15px;" data-i18n="tab_biberon">Biberón</h2>
                     <div class="biberon-row" style="display: flex; justify-content: center; align-items: center; gap: 40px; padding: 15px 5px;">
                         <button class="play-btn" id="btn-bottle" aria-label="Iniciar biberón" style="width: 60px; height: 60px; flex-shrink: 0;">
                             <svg viewBox="0 0 24 24" class="icon-play">
@@ -106,7 +106,7 @@
                         
                         <div style="display: flex; align-items: center; gap: 15px;">
                             <div class="stat-row time-clickable" data-target="ml-bottle" style="align-items: center; min-width: 50px;">
-                                <span class="label tag" style="color: var(--accent-primary); font-size: 0.7rem; padding: 2px 6px;">Cantidad</span>
+                                <span class="label tag" style="color: var(--accent-primary); font-size: 0.7rem; padding: 2px 6px;" data-i18n="amount">Cantidad</span>
                                 <div style="display: flex; align-items: baseline; gap: 3px;">
                                     <span class="value" id="ml-bottle" style="font-size: 1.4rem;">--</span>
                                     <span style="font-size: 0.8rem; color: var(--text-secondary); font-weight: 600;">mL</span>
@@ -116,7 +116,7 @@
                             <div class="divider" style="width: 1px; height: 40px; background: var(--card-border); margin: 0;"></div>
 
                             <div class="stat-row time-clickable" data-target="hour-bottle" style="align-items: center; min-width: 50px;">
-                                <span class="label tag" style="color: var(--accent-primary); font-size: 0.7rem; padding: 2px 6px;">Hora</span>
+                                <span class="label tag" style="color: var(--accent-primary); font-size: 0.7rem; padding: 2px 6px;" data-i18n="hour">Hora</span>
                                 <span class="value time-display" id="hour-bottle" style="font-size: 1.4rem;">--:--</span>
                             </div>
                         </div>
@@ -130,7 +130,7 @@
             <section class="glass-card next-feeding-section" style="align-items: center;">
                 <div style="width: fit-content; display: flex; flex-direction: column; gap: 10px;">
                     <div class="input-group-row" style="flex-direction: row; align-items: center; justify-content: center; gap: 15px; width: auto;">
-                        <label style="margin: 0; font-size: 1rem;">Próxima toma:</label>
+                        <label style="margin: 0; font-size: 1rem;" data-i18n="next_feeding">Próxima toma:</label>
                         <div style="display: flex; gap: 5px; justify-content: flex-end; align-items: center;">
                             <input type="number" id="next-feeding-hours" min="0" value="4" style="width: 50px; padding: 6px; font-size: 1rem;">
                             <span style="font-weight: 600; color: var(--text-secondary); font-size: 0.9rem;">h</span>
@@ -158,12 +158,12 @@
                 <div class="diaper-row">
                     <button class="diaper-btn poop-btn" id="btn-diaper">
                         <span class="emoji">💩</span>
-                        <span class="btn-text">Cambio de pañal</span>
+                        <span class="btn-text" data-i18n="diaper_change">Cambio de pañal</span>
                     </button>
                     <div class="time-label time-clickable" data-target="time-diaper">
                         <span class="label tag" style="display: flex; align-items: center; gap: 4px; color: var(--accent-primary);">
                             <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" /></svg>
-                            Hora
+                            <span data-i18n="hour">Hora</span>
                         </span>
                         <span class="value time-display" id="time-diaper">--:--</span>
                     </div>
@@ -171,7 +171,7 @@
             </section>
 
             <!-- Action Section -->
-            <button class="main-action-btn" id="btn-registrar" style="padding: 12px;">
+            <button class="main-action-btn" id="btn-registrar" style="padding: 12px;" data-i18n="register_btn">
                 REGISTRAR
             </button>
             </div> <!-- End Shared Sections -->
@@ -179,11 +179,57 @@
 
         <!-- MAIN VIEW: HISTORIAL -->
         <main id="view-historial" class="view">
-            <h2 class="view-title">Historial</h2>
+            <h2 class="view-title" data-i18n="tab_history">Historial</h2>
 
             <!-- History List -->
             <section class="history-list" id="history-container">
                 <!-- Timeline items injected via JS -->
+            </section>
+        </main>
+
+        <!-- MAIN VIEW: AJUSTES -->
+        <main id="view-ajustes" class="view">
+            <h2 class="view-title" data-i18n="settings_title">Ajustes</h2>
+            
+            <section class="glass-card nursing-section" style="padding: 1rem 1.5rem;">
+                <div class="settings-row">
+                    <span class="settings-label" data-i18n="settings_lang">Idioma</span>
+                    <select id="settings-lang" class="settings-select">
+                        <option value="es">Español</option>
+                        <option value="en">English</option>
+                        <option value="zh">中文</option>
+                        <option value="hi">हिन्दी</option>
+                        <option value="ar">العربية</option>
+                        <option value="fr">Français</option>
+                        <option value="ru">Русский</option>
+                        <option value="pt">Português</option>
+                        <option value="de">Deutsch</option>
+                        <option value="ja">日本語</option>
+                        <option value="it">Italiano</option>
+                    </select>
+                </div>
+                
+                <div class="settings-row">
+                    <span class="settings-label" data-i18n="settings_theme">Tema Claro</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="settings-theme">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                
+                <div class="settings-row">
+                    <span class="settings-label" data-i18n="settings_default_tab">Pestaña al abrir</span>
+                    <select id="settings-default-tab" class="settings-select">
+                        <option value="view-pecho" data-i18n="tab_pecho">Pecho</option>
+                        <option value="view-biberon" data-i18n="tab_biberon">Biberón</option>
+                    </select>
+                </div>
+                
+                <div class="settings-row" style="margin-top: 15px;">
+                    <button class="main-action-btn" id="btn-report-bug" style="padding: 10px; background-color: var(--accent-left); border-radius: 8px; font-size: 1rem;" data-i18n="settings_report">
+                        Reportar un error
+                    </button>
+                </div>
             </section>
         </main>
 
@@ -193,20 +239,26 @@
                 <svg viewBox="0 0 24 24" class="nav-icon" fill="currentColor">
                     <path d="M 10 2 L 14 2 C 14 7 16 7 20 10 C 22 12 21 16 20 18 C 20 23 15 23 13 18 C 12.5 16 11.5 16 11 18 C 9 23 4 23 4 18 C 3 16 2 12 4 10 C 8 7 10 7 10 2 Z"/>
                 </svg>
-                <span>Pecho</span>
+                <span data-i18n="tab_pecho">Pecho</span>
             </button>
             <button class="nav-item" data-target="view-biberon">
                 <svg viewBox="0 0 24 24" class="nav-icon" fill="currentColor">
                     <path d="M 9.5 8 C 9.5 6 11 6.5 11 4.5 C 11 2.5 13 2.5 13 4.5 C 13 6.5 14.5 6 14.5 8 C 16 8 16.5 8.5 16.5 9 C 16.5 9.5 16 10 14.5 10 C 17 10 17.5 12.5 16.5 14.5 C 15.5 16.5 17 19 17 20 C 17 21.5 16 22 14 22 L 10 22 C 8 22 7 21.5 7 20 C 7 19 8.5 16.5 7.5 14.5 C 6.5 12.5 7 10 9.5 10 C 8 10 7.5 9.5 7.5 9 C 7.5 8.5 8 8 9.5 8 Z" />
                 </svg>
-                <span>Biberón</span>
+                <span data-i18n="tab_biberon">Biberón</span>
             </button>
             <button class="nav-item" data-target="view-historial">
                 <svg viewBox="0 0 24 24" class="nav-icon">
                     <path
                         d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" />
                 </svg>
-                <span>Historial</span>
+                <span data-i18n="tab_history">Historial</span>
+            </button>
+            <button class="nav-item" data-target="view-ajustes">
+                <svg viewBox="0 0 24 24" class="nav-icon" fill="currentColor">
+                    <path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.06-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.73,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.06,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.43-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.49-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"/>
+                </svg>
+                <span data-i18n="tab_settings">Ajustes</span>
             </button>
         </nav>
     </div>
