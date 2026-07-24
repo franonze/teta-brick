@@ -76,6 +76,38 @@ let nextFeedingDate = null;
 let alarmInterval = null;
 let alarmTriggered = false;
 let audioCtx = null;
+let audioUnlocked = false;
+
+// Trick to unlock audio on mobile browsers (Safari/Chrome)
+function unlockAudioContext() {
+    if (audioUnlocked) return;
+    
+    if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    
+    if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+    }
+    
+    // Play a silent oscillator
+    const osc = audioCtx.createOscillator();
+    const gainNode = audioCtx.createGain();
+    gainNode.gain.value = 0;
+    osc.connect(gainNode);
+    gainNode.connect(audioCtx.destination);
+    osc.start(0);
+    osc.stop(0.1);
+    
+    audioUnlocked = true;
+    
+    // Remove listeners once unlocked
+    document.removeEventListener('touchstart', unlockAudioContext);
+    document.removeEventListener('click', unlockAudioContext);
+}
+
+document.addEventListener('touchstart', unlockAudioContext, { once: true });
+document.addEventListener('click', unlockAudioContext, { once: true });
 
 function saveCurrentState() {
     const state = {
@@ -294,12 +326,11 @@ function renderCountdown() {
         stopAlarm();
     }
     
-    const totalSeconds = Math.floor(Math.abs(diff) / 1000);
+    const totalSeconds = diff <= 0 ? 0 : Math.floor(diff / 1000);
     const h = Math.floor(totalSeconds / 3600).toString().padStart(2, '0');
     const m = Math.floor((totalSeconds % 3600) / 60).toString().padStart(2, '0');
     const s = (totalSeconds % 60).toString().padStart(2, '0');
-    const sign = diff < 0 && totalSeconds > 0 ? '-' : '';
-    nextFeedingTime.textContent = `${sign}${h}:${m}:${s}`;
+    nextFeedingTime.textContent = `${h}:${m}:${s}`;
 }
 
 function pauseLeftTimer(isSwap = false) {
