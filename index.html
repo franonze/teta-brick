@@ -13,12 +13,11 @@
 <body>
     <div class="app-container">
 
-        <!-- MAIN VIEW: PECHO -->
         <div id="input-views-container">
             <main id="view-pecho" class="view active">
-                <h2 class="view-title">Toma del Pecho</h2>
             <!-- Top Section (Nursing) -->
             <section class="glass-card nursing-section">
+                <h2 class="view-title" style="margin-bottom: 15px;">Pecho</h2>
                 <div class="grid-container">
                     <!-- Left Column -->
                     <div class="column left-col">
@@ -96,8 +95,8 @@
 
             <!-- MAIN VIEW: BIBERON -->
             <main id="view-biberon" class="view">
-                <h2 class="view-title">Toma Biberón</h2>
                 <section class="glass-card nursing-section">
+                    <h2 class="view-title" style="margin-bottom: 15px;">Biberón</h2>
                     <div class="biberon-row" style="display: flex; justify-content: center; align-items: center; gap: 40px; padding: 15px 5px;">
                         <button class="play-btn" id="btn-bottle" aria-label="Iniciar biberón" style="width: 60px; height: 60px; flex-shrink: 0;">
                             <svg viewBox="0 0 24 24" class="icon-play">
@@ -126,7 +125,7 @@
             </main>
 
             <!-- SHARED SECTIONS -->
-            <div id="shared-sections" style="display: flex; flex-direction: column; gap: 20px;">
+            <div id="shared-sections" style="display: flex; flex-direction: column; gap: 12px; margin-top: 12px;">
                 <!-- Middle Section (Next Feeding) -->
             <section class="glass-card next-feeding-section" style="align-items: center;">
                 <div style="width: fit-content; display: flex; flex-direction: column; gap: 10px;">
@@ -262,7 +261,7 @@
     <div id="merge-modal" class="time-popup-overlay">
         <div class="time-popup-box glass-card">
             <h3 style="text-align: center; margin-bottom: 10px;">¿Unir registros?</h3>
-            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 10px; font-size: 0.9rem;">El último registro fue hace menos de 1 hora. ¿Quieres añadir esta toma a ese registro en lugar de crear uno nuevo?</p>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 10px; font-size: 0.9rem;">El último registro fue hace menos de 1 hora. ¿Quieres añadir este pecho a ese registro en lugar de crear uno nuevo?</p>
             <div class="popup-actions" style="flex-direction: column;">
                 <button id="merge-confirm" class="main-action-btn"
                     style="padding: 12px; width: auto; border-radius: 12px; font-size: 1rem; background: var(--accent-primary);">Sí, unir con el anterior</button>

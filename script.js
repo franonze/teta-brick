@@ -548,6 +548,9 @@ btnBottle.addEventListener('click', () => {
     if (isBottlePlaying) {
         openMlModal();
     } else {
+        pauseLeftTimer();
+        pauseRightTimer();
+        
         const now = new Date();
         if (hourBottle.textContent === '--:--') {
             hourBottle.textContent = formatHHMM(now);
@@ -762,6 +765,22 @@ function saveAndResetSession(sessionData, merge) {
     
     timeDiaper.textContent = '--:--';
 
+    if (merge && history.length > 0) {
+        let lastRecord = history[history.length - 1];
+        let earliestTime = '23:59';
+        if (lastRecord.left && lastRecord.left.startTime && lastRecord.left.startTime < earliestTime) earliestTime = lastRecord.left.startTime;
+        if (lastRecord.right && lastRecord.right.startTime && lastRecord.right.startTime < earliestTime) earliestTime = lastRecord.right.startTime;
+        if (lastRecord.bottle && lastRecord.bottle.startTime && lastRecord.bottle.startTime < earliestTime) earliestTime = lastRecord.bottle.startTime;
+        
+        if (earliestTime !== '23:59') {
+            const d = new Date(lastRecord.date);
+            const [h, m] = earliestTime.split(':');
+            d.setHours(parseInt(h, 10), parseInt(m, 10), 0, 0);
+            countdownBaseTime = d;
+            updateNextFeedingTime();
+        }
+    }
+
     saveCurrentState();
 
     const originalText = btnRegistrar.textContent;
@@ -876,12 +895,24 @@ function renderHistory() {
     });
 
     const sortedDays = Object.values(daysMap).sort((a, b) => new Date(b.date) - new Date(a.date));
+    
+    function getSessionSortTime(session) {
+        let latestTime = '';
+        if (session.left && session.left.startTime && session.left.startTime > latestTime) latestTime = session.left.startTime;
+        if (session.right && session.right.startTime && session.right.startTime > latestTime) latestTime = session.right.startTime;
+        if (session.bottle && session.bottle.startTime && session.bottle.startTime > latestTime) latestTime = session.bottle.startTime;
+        if (session.diapers) {
+            let diaperTime = typeof session.diapers === 'string' ? session.diapers : (session.diapers.poop || session.diapers.pee);
+            if (diaperTime && diaperTime > latestTime) latestTime = diaperTime;
+        }
+        return latestTime || '00:00';
+    }
 
     sortedDays.forEach((dayData, dayIndex) => {
         const dateDisplay = formatDate(dayData.date);
         
-        // Sort sessions inside the day
-        dayData.sessions.sort((a, b) => new Date(b.date) - new Date(a.date));
+        // Sort sessions inside the day by their actual event times
+        dayData.sessions.sort((a, b) => getSessionSortTime(b).localeCompare(getSessionSortTime(a)));
         
         // Build the HTML for the day
         let dayHtml = `
@@ -910,19 +941,19 @@ function renderHistory() {
             // Left feeding
             if (session.left && session.left.startTime) {
                 sessionEvents.push({
-                    id: sid, key: 'left', timeStr: session.left.startTime, type: 'Toma Izquierda', desc: `${Math.round(session.left.durationSeconds / 60)}min`, icon: '🍼'
+                    id: sid, key: 'left', timeStr: session.left.startTime, type: 'Pecho Izquierdo', desc: `${Math.round(session.left.durationSeconds / 60)}min`, icon: '🍼'
                 });
             }
             // Right feeding
             if (session.right && session.right.startTime) {
                 sessionEvents.push({
-                    id: sid, key: 'right', timeStr: session.right.startTime, type: 'Toma Derecha', desc: `${Math.round(session.right.durationSeconds / 60)}min`, icon: '🍼'
+                    id: sid, key: 'right', timeStr: session.right.startTime, type: 'Pecho Derecho', desc: `${Math.round(session.right.durationSeconds / 60)}min`, icon: '🍼'
                 });
             }
             // Bottle feeding
             if (session.bottle && session.bottle.startTime) {
                 sessionEvents.push({
-                    id: sid, key: 'bottle', timeStr: session.bottle.startTime, type: 'Toma Biberón', desc: `${session.bottle.ml} mL`, icon: '🍼'
+                    id: sid, key: 'bottle', timeStr: session.bottle.startTime, type: 'Biberón', desc: `${session.bottle.ml} mL`, icon: '🍼'
                 });
             }
             // Diaper
@@ -1034,6 +1065,37 @@ btnDeleteConfirm.addEventListener('click', () => {
         }
         
         localStorage.setItem('babyLogHistory', JSON.stringify(history));
+        
+        // Recalculate next feeding time from previous history record if no active feeding is ongoing
+        const hourLeftEl = document.getElementById('hour-left');
+        const hourRightEl = document.getElementById('hour-right');
+        const hourBottleEl = document.getElementById('hour-bottle');
+        if (hourLeftEl && hourLeftEl.textContent === '--:--' && 
+            hourRightEl && hourRightEl.textContent === '--:--' && 
+            hourBottleEl && hourBottleEl.textContent === '--:--') {
+            
+            let foundLastFeedingTime = null;
+            for (let i = history.length - 1; i >= 0; i--) {
+                const s = history[i];
+                const timeStr = (s.left && s.left.startTime) || (s.right && s.right.startTime) || (s.bottle && s.bottle.startTime);
+                if (timeStr) {
+                    const d = new Date(s.date);
+                    const [h, m] = timeStr.split(':');
+                    d.setHours(parseInt(h, 10), parseInt(m, 10), 0, 0);
+                    foundLastFeedingTime = d;
+                    break;
+                }
+            }
+            if (foundLastFeedingTime) {
+                countdownBaseTime = foundLastFeedingTime;
+                lastFeedingStartTime = foundLastFeedingTime;
+            } else {
+                countdownBaseTime = null;
+                lastFeedingStartTime = null;
+            }
+            updateNextFeedingTime();
+        }
+        
         renderHistory();
     }
     closeDeleteModal();
