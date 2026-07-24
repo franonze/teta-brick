@@ -1,4 +1,4 @@
-// Utility to format time as mm:ss
+﻿// Utility to format time as mm:ss
 function formatTime(seconds) {
     const m = Math.floor(seconds / 60).toString().padStart(2, '0');
     const s = (seconds % 60).toString().padStart(2, '0');
@@ -50,7 +50,7 @@ let countdownBaseTime = null; // Used for next feeding timer so it persists acro
 let bottleMl = 0;
 let isBottlePlaying = false;
 
-const MIN_SECONDS_TO_KEEP = 10;
+const MIN_SECONDS_TO_KEEP = CONFIG.app.minSecondsToKeepTimer;
 
 // DOM Elements
 const btnLeft = document.getElementById('btn-left');
@@ -127,11 +127,11 @@ function saveCurrentState() {
         bottleMl: document.getElementById('ml-bottle').textContent,
         hourBottle: document.getElementById('hour-bottle').textContent
     };
-    localStorage.setItem('babyLogCurrentState', JSON.stringify(state));
+    localStorage.setItem(CONFIG.storage.stateKey, JSON.stringify(state));
 }
 
 function loadCurrentState() {
-    const saved = localStorage.getItem('babyLogCurrentState');
+    const saved = localStorage.getItem(CONFIG.storage.stateKey);
     if (!saved) return;
     
     try {
@@ -154,6 +154,7 @@ function loadCurrentState() {
         if (state.countdownBaseTime) countdownBaseTime = new Date(state.countdownBaseTime);
         
         if (state.nextFeedingHours !== undefined) nextFeedingHours.value = state.nextFeedingHours;
+        else nextFeedingHours.value = CONFIG.app.defaultNextFeedingHours;
         if (state.nextFeedingMinutes !== undefined) nextFeedingMinutes.value = state.nextFeedingMinutes;
         
         if (state.leftHighlight) btnLeft.classList.add('highlight-next');
@@ -253,7 +254,7 @@ function playAlarmBeep() {
         gainNode.connect(audioCtx.destination);
         
         osc.type = 'sine';
-        osc.frequency.setValueAtTime(800, audioCtx.currentTime + timeOffset);
+        osc.frequency.setValueAtTime(CONFIG.alarm.frequencyHz, audioCtx.currentTime + timeOffset);
         
         gainNode.gain.setValueAtTime(0, audioCtx.currentTime + timeOffset);
         gainNode.gain.linearRampToValueAtTime(1, audioCtx.currentTime + timeOffset + 0.05);
@@ -272,7 +273,7 @@ function playAlarmBeep() {
 function startAlarmLoop() {
     if (alarmInterval) return;
     playAlarmBeep(); 
-    alarmInterval = setInterval(playAlarmBeep, 2000); 
+    alarmInterval = setInterval(playAlarmBeep, CONFIG.alarm.repeatIntervalMs); 
 }
 
 function stopAlarm() {
@@ -289,7 +290,7 @@ nextFeedingTime.addEventListener('click', stopAlarm);
 function updateNextFeedingTime() {
     const hStr = nextFeedingHours.value;
     const mStr = nextFeedingMinutes.value;
-    const h = hStr !== '' ? parseFloat(hStr) : 4;
+    const h = hStr !== '' ? parseFloat(hStr) : CONFIG.app.defaultNextFeedingHours;
     const m = mStr !== '' ? parseFloat(mStr) : 0;
     const totalHours = h + (m / 60);
 
@@ -621,7 +622,7 @@ btnDiaper.addEventListener('click', () => {
     saveCurrentState();
 });
 
-const MERGE_WINDOW_MINUTES = 60;
+const MERGE_WINDOW_MINUTES = CONFIG.app.mergeWindowMinutes;
 let pendingSessionData = null;
 
 const mergeModal = document.getElementById('merge-modal');
@@ -674,7 +675,7 @@ btnRegistrar.addEventListener('click', () => {
         return;
     }
 
-    const history = JSON.parse(localStorage.getItem('babyLogHistory')) || [];
+    const history = JSON.parse(localStorage.getItem(CONFIG.storage.historyKey)) || [];
     
     if (history.length > 0) {
         const lastRecord = history[history.length - 1];
@@ -693,7 +694,7 @@ btnRegistrar.addEventListener('click', () => {
 });
 
 function saveAndResetSession(sessionData, merge) {
-    const history = JSON.parse(localStorage.getItem('babyLogHistory')) || [];
+    const history = JSON.parse(localStorage.getItem(CONFIG.storage.historyKey)) || [];
     
     if (merge && history.length > 0) {
         let lastRecord = history[history.length - 1];
@@ -729,7 +730,7 @@ function saveAndResetSession(sessionData, merge) {
         history.push(sessionData);
     }
     
-    localStorage.setItem('babyLogHistory', JSON.stringify(history));
+    localStorage.setItem(CONFIG.storage.historyKey, JSON.stringify(history));
 
     // Highlight logic
     btnLeft.classList.remove('highlight-next');
@@ -861,7 +862,7 @@ function formatDate(dateString) {
 }
 
 function renderHistory() {
-    const history = JSON.parse(localStorage.getItem('babyLogHistory')) || [];
+    const history = JSON.parse(localStorage.getItem(CONFIG.storage.historyKey)) || [];
     historyContainer.innerHTML = '';
     
     if (history.length === 0) {
@@ -1044,7 +1045,7 @@ deleteModal.addEventListener('click', (e) => {
 btnDeleteConfirm.addEventListener('click', () => {
     if (!currentDeleteId || !currentDeleteKey) return;
     
-    let history = JSON.parse(localStorage.getItem('babyLogHistory')) || [];
+    let history = JSON.parse(localStorage.getItem(CONFIG.storage.historyKey)) || [];
     const index = history.findIndex(s => s.date === currentDeleteId);
     if (index !== -1) {
         if (currentDeleteKey === 'left') {
@@ -1064,7 +1065,7 @@ btnDeleteConfirm.addEventListener('click', () => {
             history.splice(index, 1);
         }
         
-        localStorage.setItem('babyLogHistory', JSON.stringify(history));
+        localStorage.setItem(CONFIG.storage.historyKey, JSON.stringify(history));
         
         // Recalculate next feeding time from previous history record if no active feeding is ongoing
         const hourLeftEl = document.getElementById('hour-left');
@@ -1111,7 +1112,7 @@ const btnEditSave = document.getElementById('edit-save');
 const btnEditCancel = document.getElementById('edit-cancel');
 
 window.editEvent = function(id, key) {
-    let history = JSON.parse(localStorage.getItem('babyLogHistory')) || [];
+    let history = JSON.parse(localStorage.getItem(CONFIG.storage.historyKey)) || [];
     const index = history.findIndex(s => s.date === id);
     if (index === -1) return;
     
@@ -1168,7 +1169,7 @@ editModal.addEventListener('click', (e) => {
 btnEditSave.addEventListener('click', () => {
     if (!currentEditId || !currentEditKey) return;
     
-    let history = JSON.parse(localStorage.getItem('babyLogHistory')) || [];
+    let history = JSON.parse(localStorage.getItem(CONFIG.storage.historyKey)) || [];
     const index = history.findIndex(s => s.date === currentEditId);
     if (index === -1) {
         closeEditModal();
@@ -1200,7 +1201,7 @@ btnEditSave.addEventListener('click', () => {
     }
     
     history[index] = session;
-    localStorage.setItem('babyLogHistory', JSON.stringify(history));
+    localStorage.setItem(CONFIG.storage.historyKey, JSON.stringify(history));
     renderHistory();
     closeEditModal();
 });
