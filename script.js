@@ -612,6 +612,8 @@ mlModal.addEventListener('click', (e) => {
 // Next feeding input logic
 nextFeedingHours.addEventListener('input', updateNextFeedingTime);
 nextFeedingMinutes.addEventListener('input', updateNextFeedingTime);
+nextFeedingHours.addEventListener('focus', function() { this.select(); });
+nextFeedingMinutes.addEventListener('focus', function() { this.select(); });
 
 const btnRegistrar = document.getElementById('btn-registrar');
 
@@ -797,16 +799,10 @@ function saveAndResetSession(sessionData, merge) {
 // Reset next feed logic
 const btnResetNext = document.getElementById('btn-reset-next');
 btnResetNext.addEventListener('click', () => {
-    countdownBaseTime = null;
-    nextFeedingDate = null;
+    countdownBaseTime = new Date();
     alarmTriggered = false;
     stopAlarm();
-    if (countdownInterval) {
-        clearInterval(countdownInterval);
-        countdownInterval = null;
-    }
-    nextFeedingTime.textContent = '--:--';
-    saveCurrentState();
+    updateNextFeedingTime();
 });
 
 // --- Navigation Logic ---
