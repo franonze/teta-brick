@@ -968,10 +968,10 @@ function renderHistory() {
             if (sessionEvents.length === 0) return;
             sessionEvents.sort((a, b) => b.timeStr.localeCompare(a.timeStr));
 
-            let sessionHtml = `<div class="history-item" style="flex-direction: column; align-items: stretch; gap: 0; background: rgba(0,0,0,0.2); border: none;">`;
+            let sessionHtml = `<div class="history-item" style="flex-direction: column; align-items: stretch; gap: 0;">`;
             
             sessionEvents.forEach((ev, idx) => {
-                const borderTop = idx > 0 ? `border-top: 1px solid rgba(255,255,255,0.05); margin-top: 12px; padding-top: 12px;` : '';
+                const borderTop = idx > 0 ? `border-top: 1px solid var(--card-border); margin-top: 12px; padding-top: 12px;` : '';
                 sessionHtml += `
                     <div style="display: flex; align-items: center; gap: 16px; ${borderTop}">
                         <div class="history-time">${ev.timeStr}</div>
@@ -1320,7 +1320,8 @@ function loadSettings() {
     let settings = {
         lang: CONFIG.app.defaultLang,
         theme: CONFIG.app.defaultTheme,
-        defaultTab: CONFIG.app.defaultTab
+        defaultTab: CONFIG.app.defaultTab,
+        cloudColor: CONFIG.app.defaultCloudColor
     };
     if (saved) {
         try {
@@ -1335,6 +1336,16 @@ function loadSettings() {
     
     document.getElementById('settings-theme').checked = (settings.theme === 'light');
     applyTheme(settings.theme);
+    
+    const savedColor = settings.cloudColor || CONFIG.app.defaultCloudColor;
+    document.querySelectorAll('.color-circle').forEach(btn => {
+        if (btn.getAttribute('data-color').toUpperCase() === savedColor.toUpperCase()) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+    });
+    applyCloudColor(savedColor);
     
     document.getElementById('settings-default-tab').value = settings.defaultTab;
     
@@ -1351,6 +1362,23 @@ function applyTheme(theme) {
     } else {
         document.body.classList.remove('light-theme');
     }
+}
+
+function applyCloudColor(hex) {
+    if (!hex) return;
+    hex = hex.replace('#', '');
+    if (hex.length === 3) {
+        hex = hex.split('').map(c => c + c).join('');
+    }
+    const r = parseInt(hex.substring(0, 2), 16);
+    const g = parseInt(hex.substring(2, 4), 16);
+    const b = parseInt(hex.substring(4, 6), 16);
+    document.documentElement.style.setProperty('--cloud-color-rgb', `${r}, ${g}, ${b}`);
+    
+    const darkR = Math.floor(r * 0.20 + 35);
+    const darkG = Math.floor(g * 0.20 + 35);
+    const darkB = Math.floor(b * 0.20 + 40);
+    document.documentElement.style.setProperty('--bg-color-dark', `rgb(${darkR}, ${darkG}, ${darkB})`);
 }
 
 function getTranslation(key) {
@@ -1392,11 +1420,30 @@ document.getElementById('settings-default-tab').addEventListener('change', (e) =
     updateSettingsStorage();
 });
 
-function updateSettingsStorage() {
+document.querySelectorAll('.color-circle').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        const color = btn.getAttribute('data-color');
+        
+        document.querySelectorAll('.color-circle').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        applyCloudColor(color);
+        updateSettingsStorage(color);
+    });
+});
+
+function updateSettingsStorage(overrideColor = null) {
+    let cloudColor = overrideColor;
+    if (!cloudColor) {
+        const activeBtn = document.querySelector('.color-circle.active');
+        cloudColor = activeBtn ? activeBtn.getAttribute('data-color') : CONFIG.app.defaultCloudColor;
+    }
+    
     saveSettings({
         lang: document.getElementById('settings-lang').value,
         theme: document.getElementById('settings-theme').checked ? 'light' : 'dark',
-        defaultTab: document.getElementById('settings-default-tab').value
+        defaultTab: document.getElementById('settings-default-tab').value,
+        cloudColor: cloudColor
     });
 }
 

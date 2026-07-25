@@ -3,9 +3,10 @@ const CONFIG = {
         mergeWindowMinutes: 60,
         minSecondsToKeepTimer: 10,
         defaultNextFeedingHours: 4,
-        defaultTheme: 'dark', // 'dark' or 'light'
+        defaultTheme: 'light', // 'dark' or 'light'
         defaultTab: 'view-pecho', // 'view-pecho' or 'view-biberon'
-        defaultLang: 'es'
+        defaultLang: 'es',
+        defaultCloudColor: '#D6EAF8'
     },
     alarm: {
         frequencyHz: 800,
@@ -36,9 +37,14 @@ const TRANSLATIONS = {
         settings_title: "Ajustes",
         settings_lang: "Idioma",
         settings_theme: "Tema Claro",
+        settings_cloud_color: "Color del cielo",
         settings_default_tab: "Pestaña al abrir",
         settings_report: "Reportar un error",
-        empty_history: "No hay registros guardados."
+        empty_history: "No hay registros guardados.",
+        color_blue: "Azul claro",
+        color_green: "Verde claro",
+        color_pink: "Rosa",
+        color_yellow: "Amarillo claro"
     },
     en: {
         tab_pecho: "Nursing",
@@ -57,9 +63,14 @@ const TRANSLATIONS = {
         settings_title: "Settings",
         settings_lang: "Language",
         settings_theme: "Light Theme",
+        settings_cloud_color: "Sky Color",
         settings_default_tab: "Default Tab",
         settings_report: "Report a bug",
-        empty_history: "No records saved."
+        empty_history: "No records saved.",
+        color_blue: "Light blue",
+        color_green: "Light green",
+        color_pink: "Pink",
+        color_yellow: "Light yellow"
     },
     zh: {
         tab_pecho: "母乳喂养",
