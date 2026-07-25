@@ -942,26 +942,27 @@ function renderHistory() {
             // Left feeding
             if (session.left && session.left.startTime) {
                 sessionEvents.push({
-                    id: sid, key: 'left', timeStr: session.left.startTime, type: `${getTranslation('tab_pecho')} ${getTranslation('breast_left')}`, desc: `${Math.round(session.left.durationSeconds / 60)}min`, icon: '🍼'
+                    id: sid, key: 'left', timeStr: session.left.startTime, type: `${getTranslation('tab_pecho')} ${getTranslation('breast_left')}`, desc: `${Math.round(session.left.durationSeconds / 60)}min`, icon: '🍼', note: session.left.note || ''
                 });
             }
             // Right feeding
             if (session.right && session.right.startTime) {
                 sessionEvents.push({
-                    id: sid, key: 'right', timeStr: session.right.startTime, type: `${getTranslation('tab_pecho')} ${getTranslation('breast_right')}`, desc: `${Math.round(session.right.durationSeconds / 60)}min`, icon: '🍼'
+                    id: sid, key: 'right', timeStr: session.right.startTime, type: `${getTranslation('tab_pecho')} ${getTranslation('breast_right')}`, desc: `${Math.round(session.right.durationSeconds / 60)}min`, icon: '🍼', note: session.right.note || ''
                 });
             }
             // Bottle feeding
             if (session.bottle && session.bottle.startTime) {
                 sessionEvents.push({
-                    id: sid, key: 'bottle', timeStr: session.bottle.startTime, type: getTranslation('tab_biberon'), desc: `${session.bottle.ml} mL`, icon: '🍼'
+                    id: sid, key: 'bottle', timeStr: session.bottle.startTime, type: getTranslation('tab_biberon'), desc: `${session.bottle.ml} mL`, icon: '🍼', note: session.bottle.note || ''
                 });
             }
             // Diaper
             if (session.diapers) {
-                let diaperTime = typeof session.diapers === 'string' ? session.diapers : (session.diapers.poop || session.diapers.pee);
+                let diaperTime = typeof session.diapers === 'string' ? session.diapers : (session.diapers.poop || session.diapers.pee || session.diapers.time);
+                let diaperNote = typeof session.diapers === 'object' ? (session.diapers.note || '') : '';
                 if (diaperTime) {
-                    sessionEvents.push({ id: sid, key: 'diaper', timeStr: diaperTime, type: getTranslation('diaper_change'), desc: '', icon: '💩' });
+                    sessionEvents.push({ id: sid, key: 'diaper', timeStr: diaperTime, type: getTranslation('diaper_change'), desc: '', icon: '💩', note: diaperNote });
                 }
             }
             
@@ -972,21 +973,31 @@ function renderHistory() {
             
             sessionEvents.forEach((ev, idx) => {
                 const borderTop = idx > 0 ? `border-top: 1px solid var(--card-border); margin-top: 8px; padding-top: 8px;` : '';
+                const noteHtml = ev.note ? `<div class="history-note-content" style="display: none; width: 100%; margin-top: 8px; padding: 10px; background: rgba(0,0,0,0.05); border-radius: 8px; font-size: 0.9rem; color: var(--text-secondary); white-space: pre-wrap;">${ev.note}</div>` : '';
+                const infoBadge = ev.note ? `<div class="info-badge" style="position: absolute; top: -4px; left: -8px; background: rgba(96, 165, 250, 0.85); color: white; width: 14px; height: 14px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: bold; box-shadow: 0 1px 3px rgba(0,0,0,0.2); z-index: 10;">i</div>` : '';
+                const toggleClass = ev.note ? 'has-note' : '';
+                const clickHandler = ev.note ? `onclick="const nc = this.querySelector('.history-note-content'); nc.style.display = nc.style.display === 'none' ? 'block' : 'none';"` : '';
+                const cursorStyle = ev.note ? `cursor: pointer;` : '';
+                
                 sessionHtml += `
-                    <div style="display: flex; align-items: center; gap: 8px; ${borderTop}">
-                        <div class="history-time">${ev.timeStr}</div>
-                        <div class="history-content">
-                            <div class="history-title"><span>${ev.icon}</span> ${ev.type}</div>
-                            ${ev.desc ? `<div class="history-desc">${ev.desc}</div>` : ''}
+                    <div class="history-event-row ${toggleClass}" ${clickHandler} style="display: flex; flex-direction: column; width: 100%; ${borderTop} ${cursorStyle}">
+                        <div style="position: relative; display: flex; align-items: center; gap: 8px; width: 100%;">
+                            ${infoBadge}
+                            <div class="history-time">${ev.timeStr}</div>
+                            <div class="history-content">
+                                <div class="history-title"><span>${ev.icon}</span> ${ev.type}</div>
+                                ${ev.desc ? `<div class="history-desc">${ev.desc}</div>` : ''}
+                            </div>
+                            <div class="history-actions">
+                                <button class="action-btn edit-btn" onclick="editEvent('${ev.id}', '${ev.key}'); event.stopPropagation();" title="Editar">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+                                </button>
+                                <button class="action-btn delete-btn" onclick="deleteEvent('${ev.id}', '${ev.key}'); event.stopPropagation();" title="Borrar">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                                </button>
+                            </div>
                         </div>
-                        <div class="history-actions">
-                            <button class="action-btn edit-btn" onclick="editEvent('${ev.id}', '${ev.key}')" title="Editar">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
-                            </button>
-                            <button class="action-btn delete-btn" onclick="deleteEvent('${ev.id}', '${ev.key}')" title="Borrar">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
-                            </button>
-                        </div>
+                        ${noteHtml}
                     </div>
                 `;
             });
@@ -1120,28 +1131,34 @@ window.editEvent = function(id, key) {
     currentEditKey = key;
     let session = history[index];
     let currentTimeStr = '';
+    const editNote = document.getElementById('edit-note');
+    if (editNote) editNote.value = '';
     
     if (key === 'left') {
         currentTimeStr = session.left.startTime;
         editDuration.value = Math.round(session.left.durationSeconds / 60);
         editDurationContainer.style.display = 'flex';
         document.querySelector('#edit-duration-container .sub-label').textContent = 'Duración (minutos)';
+        if (editNote) editNote.value = session.left.note || '';
     } else if (key === 'right') {
         currentTimeStr = session.right.startTime;
         editDuration.value = Math.round(session.right.durationSeconds / 60);
         editDurationContainer.style.display = 'flex';
         document.querySelector('#edit-duration-container .sub-label').textContent = 'Duración (minutos)';
+        if (editNote) editNote.value = session.right.note || '';
     } else if (key === 'bottle') {
         currentTimeStr = session.bottle.startTime;
         editDuration.value = session.bottle.ml;
         editDurationContainer.style.display = 'flex';
         document.querySelector('#edit-duration-container .sub-label').textContent = 'Cantidad (mL)';
+        if (editNote) editNote.value = session.bottle.note || '';
     } else if (key === 'diaper') {
         let diaperTime = null;
         if (typeof session.diapers === 'string') {
             diaperTime = session.diapers;
         } else if (typeof session.diapers === 'object') {
-            diaperTime = session.diapers.poop || session.diapers.pee;
+            diaperTime = session.diapers.poop || session.diapers.pee || session.diapers.time;
+            if (editNote) editNote.value = session.diapers.note || '';
         }
         currentTimeStr = diaperTime;
         editDurationContainer.style.display = 'none';
@@ -1181,6 +1198,8 @@ btnEditSave.addEventListener('click', () => {
     h = Math.max(0, Math.min(23, h));
     m = Math.max(0, Math.min(59, m));
     const newTime = `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}`;
+    const editNote = document.getElementById('edit-note');
+    const noteVal = editNote ? editNote.value.trim() : '';
     
     let session = history[index];
     
@@ -1188,16 +1207,20 @@ btnEditSave.addEventListener('click', () => {
         session.left.startTime = newTime;
         let mins = parseInt(editDuration.value) || 0;
         session.left.durationSeconds = Math.max(0, mins) * 60;
+        session.left.note = noteVal;
     } else if (currentEditKey === 'right') {
         session.right.startTime = newTime;
         let mins = parseInt(editDuration.value) || 0;
         session.right.durationSeconds = Math.max(0, mins) * 60;
+        session.right.note = noteVal;
     } else if (currentEditKey === 'bottle') {
         session.bottle.startTime = newTime;
         let val = parseInt(editDuration.value) || 0;
         session.bottle.ml = Math.max(0, val);
+        session.bottle.note = noteVal;
     } else if (currentEditKey === 'diaper') {
-        session.diapers = newTime;
+        let oldObj = typeof session.diapers === 'object' ? session.diapers : {};
+        session.diapers = { ...oldObj, time: newTime, note: noteVal };
     }
     
     history[index] = session;
