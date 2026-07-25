@@ -4,7 +4,7 @@ const CONFIG = {
         minSecondsToKeepTimer: 10,
         defaultNextFeedingHours: 4,
         defaultTheme: 'light', // 'dark' or 'light'
-        defaultTab: 'view-pecho', // 'view-pecho' or 'view-biberon'
+        defaultTab: 'view-pecho', // 'view-pecho', 'view-biberon' or 'view-historial'
         defaultLang: 'es',
         defaultCloudColor: '#D6EAF8',
         defaultCompactHistory: false
