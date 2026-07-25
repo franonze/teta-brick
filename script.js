@@ -971,9 +971,9 @@ function renderHistory() {
             let sessionHtml = `<div class="history-item" style="flex-direction: column; align-items: stretch; gap: 0;">`;
             
             sessionEvents.forEach((ev, idx) => {
-                const borderTop = idx > 0 ? `border-top: 1px solid var(--card-border); margin-top: 12px; padding-top: 12px;` : '';
+                const borderTop = idx > 0 ? `border-top: 1px solid var(--card-border); margin-top: 8px; padding-top: 8px;` : '';
                 sessionHtml += `
-                    <div style="display: flex; align-items: center; gap: 16px; ${borderTop}">
+                    <div style="display: flex; align-items: center; gap: 8px; ${borderTop}">
                         <div class="history-time">${ev.timeStr}</div>
                         <div class="history-content">
                             <div class="history-title"><span>${ev.icon}</span> ${ev.type}</div>
