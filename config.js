@@ -7,7 +7,7 @@ const CONFIG = {
         defaultTab: 'view-pecho', // 'view-pecho' or 'view-biberon'
         defaultLang: 'es',
         defaultCloudColor: '#D6EAF8',
-        defaultCompactHistory: true
+        defaultCompactHistory: false
     },
     alarm: {
         frequencyHz: 800,
