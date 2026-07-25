@@ -1,3 +1,8 @@
+// Register Service Worker for push notifications
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js').catch(err => console.log('SW error', err));
+}
+
 // Utility to format time as mm:ss
 function formatTime(seconds) {
     const m = Math.floor(seconds / 60).toString().padStart(2, '0');
@@ -276,9 +281,17 @@ function startAlarmLoop() {
     alarmInterval = setInterval(playAlarmBeep, CONFIG.alarm.repeatIntervalMs); 
     
     if ('Notification' in window && Notification.permission === 'granted') {
-        new Notification('¡Hora de la toma!', {
-            body: 'El tiempo estimado para la próxima toma ha llegado.'
-        });
+        if (navigator.serviceWorker) {
+            navigator.serviceWorker.ready.then(registration => {
+                registration.showNotification('¡Hora de la toma!', {
+                    body: 'El tiempo estimado para la próxima toma ha llegado.'
+                });
+            }).catch(() => {
+                new Notification('¡Hora de la toma!', { body: 'El tiempo estimado para la próxima toma ha llegado.' });
+            });
+        } else {
+            new Notification('¡Hora de la toma!', { body: 'El tiempo estimado para la próxima toma ha llegado.' });
+        }
     }
 }
 
@@ -806,12 +819,31 @@ function saveAndResetSession(sessionData, merge) {
 
 // Reset next feed logic
 const btnResetNext = document.getElementById('btn-reset-next');
-btnResetNext.addEventListener('click', () => {
-    countdownBaseTime = new Date();
-    alarmTriggered = false;
-    stopAlarm();
-    updateNextFeedingTime();
-});
+if (btnResetNext) {
+    btnResetNext.addEventListener('click', () => {
+        countdownBaseTime = new Date();
+        alarmTriggered = false;
+        stopAlarm();
+        updateNextFeedingTime();
+    });
+}
+
+// Stop next feed logic
+const btnStopNext = document.getElementById('btn-stop-next');
+if (btnStopNext) {
+    btnStopNext.addEventListener('click', () => {
+        countdownBaseTime = null;
+        nextFeedingDate = null;
+        alarmTriggered = false;
+        stopAlarm();
+        if (countdownInterval) {
+            clearInterval(countdownInterval);
+            countdownInterval = null;
+        }
+        nextFeedingTime.textContent = '--:--';
+        saveCurrentState();
+    });
+}
 
 // --- Navigation Logic ---
 const navItems = document.querySelectorAll('.nav-item');
@@ -1172,7 +1204,7 @@ window.saveInlineNote = function(id, key, newNoteText) {
     } else if (key === 'bottle') {
         session.bottle.note = noteVal;
     } else if (key === 'diaper') {
-        let oldObj = typeof session.diapers === 'object' ? session.diapers : {};
+        let oldObj = typeof session.diapers === 'object' ? session.diapers : { time: session.diapers };
         session.diapers = { ...oldObj, note: noteVal };
     }
     
