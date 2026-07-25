@@ -973,33 +973,64 @@ function renderHistory() {
             
             sessionEvents.forEach((ev, idx) => {
                 const borderTop = idx > 0 ? `border-top: 1px solid var(--card-border); margin-top: 8px; padding-top: 8px;` : '';
-                const noteHtml = ev.note ? `<div class="history-note-content" style="display: none; width: 100%; margin-top: 8px; padding: 10px; background: rgba(0,0,0,0.05); border-radius: 8px; font-size: 0.9rem; color: var(--text-secondary); white-space: pre-wrap;">${ev.note}</div>` : '';
-                const infoBadge = ev.note ? `<div class="info-badge" style="position: absolute; top: -4px; left: -8px; background: rgba(96, 165, 250, 0.85); color: white; width: 14px; height: 14px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: bold; box-shadow: 0 1px 3px rgba(0,0,0,0.2); z-index: 10;">i</div>` : '';
-                const toggleClass = ev.note ? 'has-note' : '';
-                const clickHandler = ev.note ? `onclick="const nc = this.querySelector('.history-note-content'); nc.style.display = nc.style.display === 'none' ? 'block' : 'none';"` : '';
-                const cursorStyle = ev.note ? `cursor: pointer;` : '';
                 
-                sessionHtml += `
-                    <div class="history-event-row ${toggleClass}" ${clickHandler} style="display: flex; flex-direction: column; width: 100%; ${borderTop} ${cursorStyle}">
-                        <div style="position: relative; display: flex; align-items: center; gap: 8px; width: 100%;">
-                            ${infoBadge}
-                            <div class="history-time">${ev.timeStr}</div>
-                            <div class="history-content">
-                                <div class="history-title"><span>${ev.icon}</span> ${ev.type}</div>
-                                ${ev.desc ? `<div class="history-desc">${ev.desc}</div>` : ''}
+                if (appSettings.compactHistory) {
+                    const noteHtml = ev.note ? `<div class="history-note-content" style="display: none; width: 100%; margin-top: 8px; padding: 10px; background: rgba(0,0,0,0.05); border-radius: 8px; font-size: 0.9rem; color: var(--text-secondary); white-space: pre-wrap;">${ev.note}</div>` : '';
+                    const infoBadge = ev.note ? `<div class="info-badge" style="position: absolute; top: -4px; left: -8px; background: rgba(96, 165, 250, 0.85); color: white; width: 14px; height: 14px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: bold; box-shadow: 0 1px 3px rgba(0,0,0,0.2); z-index: 10;">i</div>` : '';
+                    const toggleClass = ev.note ? 'has-note' : '';
+                    const clickHandler = ev.note ? `onclick="const nc = this.querySelector('.history-note-content'); nc.style.display = nc.style.display === 'none' ? 'block' : 'none';"` : '';
+                    const cursorStyle = ev.note ? `cursor: pointer;` : '';
+                    
+                    sessionHtml += `
+                        <div class="history-event-row ${toggleClass}" ${clickHandler} style="display: flex; flex-direction: column; width: 100%; ${borderTop} ${cursorStyle}">
+                            <div style="position: relative; display: flex; align-items: center; gap: 8px; width: 100%;">
+                                ${infoBadge}
+                                <div class="history-time">${ev.timeStr}</div>
+                                <div class="history-content">
+                                    <div class="history-title"><span>${ev.icon}</span> ${ev.type}</div>
+                                    ${ev.desc ? `<div class="history-desc">${ev.desc}</div>` : ''}
+                                </div>
+                                <div class="history-actions">
+                                    <button class="action-btn edit-btn" onclick="editEvent('${ev.id}', '${ev.key}'); event.stopPropagation();" title="Editar">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+                                    </button>
+                                    <button class="action-btn delete-btn" onclick="deleteEvent('${ev.id}', '${ev.key}'); event.stopPropagation();" title="Borrar">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                                    </button>
+                                </div>
                             </div>
-                            <div class="history-actions">
-                                <button class="action-btn edit-btn" onclick="editEvent('${ev.id}', '${ev.key}'); event.stopPropagation();" title="Editar">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
-                                </button>
-                                <button class="action-btn delete-btn" onclick="deleteEvent('${ev.id}', '${ev.key}'); event.stopPropagation();" title="Borrar">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
-                                </button>
+                            ${noteHtml}
+                        </div>
+                    `;
+                } else {
+                    const noteValue = ev.note || '';
+                    
+                    sessionHtml += `
+                        <div class="history-event-row" style="display: flex; flex-direction: column; width: 100%; ${borderTop}">
+                            <div style="display: flex; align-items: center; gap: 8px; width: 100%;">
+                                <div class="history-time" style="font-size: 1.2rem; font-weight: 600;">${ev.timeStr}</div>
+                                <div class="history-content" style="flex: 1; display: flex; align-items: center;">
+                                    <div class="history-title" style="font-size: 1.15rem; flex: 1;"><span>${ev.icon}</span> ${ev.type}</div>
+                                    ${ev.desc ? `<div class="history-desc" style="font-size: 1rem; color: var(--text-secondary); margin-right: 8px;">${ev.desc}</div>` : ''}
+                                </div>
+                                <div class="history-actions">
+                                    <button class="action-btn edit-btn" onclick="editEvent('${ev.id}', '${ev.key}')" title="Editar">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+                                    </button>
+                                    <button class="action-btn delete-btn" onclick="deleteEvent('${ev.id}', '${ev.key}')" title="Borrar">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div style="margin-top: 6px; font-size: 1rem; color: var(--text-secondary); width: 100%; display: flex; gap: 4px; align-items: flex-start;">
+                                <strong>Notas:</strong>
+                                <span contenteditable="true" 
+                                      onblur="saveInlineNote('${ev.id}', '${ev.key}', this.innerText)" 
+                                      style="flex: 1; min-height: 1.2rem; outline: none; border-bottom: 1px dashed rgba(0,0,0,0.1); cursor: text; white-space: pre-wrap; break-word: break-word;">${noteValue}</span>
                             </div>
                         </div>
-                        ${noteHtml}
-                    </div>
-                `;
+                    `;
+                }
             });
 
             sessionHtml += `</div>`;
@@ -1121,6 +1152,30 @@ const editDurationContainer = document.getElementById('edit-duration-container')
 const editDuration = document.getElementById('edit-duration');
 const btnEditSave = document.getElementById('edit-save');
 const btnEditCancel = document.getElementById('edit-cancel');
+
+window.saveInlineNote = function(id, key, newNoteText) {
+    let history = JSON.parse(localStorage.getItem(CONFIG.storage.historyKey)) || [];
+    const index = history.findIndex(s => s.date === id);
+    if (index === -1) return;
+    
+    let session = history[index];
+    let noteVal = newNoteText.trim();
+    
+    if (key === 'left') {
+        session.left.note = noteVal;
+    } else if (key === 'right') {
+        session.right.note = noteVal;
+    } else if (key === 'bottle') {
+        session.bottle.note = noteVal;
+    } else if (key === 'diaper') {
+        let oldObj = typeof session.diapers === 'object' ? session.diapers : {};
+        session.diapers = { ...oldObj, note: noteVal };
+    }
+    
+    history[index] = session;
+    localStorage.setItem(CONFIG.storage.historyKey, JSON.stringify(history));
+    // No need to re-render, the UI is already showing the new text!
+};
 
 window.editEvent = function(id, key) {
     let history = JSON.parse(localStorage.getItem(CONFIG.storage.historyKey)) || [];
@@ -1333,6 +1388,7 @@ modalSave.addEventListener('click', () => {
 loadCurrentState();
 // --- Settings and i18n Logic ---
 let currentLang = CONFIG.app.defaultLang;
+let appSettings = {};
 
 function saveSettings(settings) {
     localStorage.setItem(CONFIG.storage.settingsKey, JSON.stringify(settings));
@@ -1344,7 +1400,8 @@ function loadSettings() {
         lang: CONFIG.app.defaultLang,
         theme: CONFIG.app.defaultTheme,
         defaultTab: CONFIG.app.defaultTab,
-        cloudColor: CONFIG.app.defaultCloudColor
+        cloudColor: CONFIG.app.defaultCloudColor,
+        compactHistory: CONFIG.app.defaultCompactHistory !== undefined ? CONFIG.app.defaultCompactHistory : true
     };
     if (saved) {
         try {
@@ -1371,6 +1428,10 @@ function loadSettings() {
     applyCloudColor(savedColor);
     
     document.getElementById('settings-default-tab').value = settings.defaultTab;
+    
+    document.getElementById('settings-compact-history').checked = settings.compactHistory;
+    
+    appSettings = settings;
     
     // Switch to the default tab on load
     const targetBtn = document.querySelector('.nav-item[data-target="' + settings.defaultTab + '"]');
@@ -1443,6 +1504,13 @@ document.getElementById('settings-default-tab').addEventListener('change', (e) =
     updateSettingsStorage();
 });
 
+document.getElementById('settings-compact-history').addEventListener('change', (e) => {
+    updateSettingsStorage();
+    if (document.querySelector('.view.active') && document.querySelector('.view.active').id === 'view-historial') {
+        renderHistory();
+    }
+});
+
 document.querySelectorAll('.color-circle').forEach(btn => {
     btn.addEventListener('click', (e) => {
         const color = btn.getAttribute('data-color');
@@ -1462,12 +1530,15 @@ function updateSettingsStorage(overrideColor = null) {
         cloudColor = activeBtn ? activeBtn.getAttribute('data-color') : CONFIG.app.defaultCloudColor;
     }
     
-    saveSettings({
+    const newSettings = {
         lang: document.getElementById('settings-lang').value,
         theme: document.getElementById('settings-theme').checked ? 'light' : 'dark',
         defaultTab: document.getElementById('settings-default-tab').value,
-        cloudColor: cloudColor
-    });
+        cloudColor: cloudColor,
+        compactHistory: document.getElementById('settings-compact-history').checked
+    };
+    appSettings = newSettings;
+    saveSettings(newSettings);
 }
 
 document.getElementById('btn-report-bug').addEventListener('click', () => {
