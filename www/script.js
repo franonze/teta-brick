@@ -395,6 +395,13 @@ btnLeft.addEventListener('click', () => {
         // Start playing left, so pause right first
         pauseRightTimer();
         
+        const hr = document.getElementById('hour-right').textContent;
+        const hb = document.getElementById('hour-bottle');
+        const hbText = hb ? hb.textContent : '--:--';
+        if (hourLeft.textContent === '--:--' && hr === '--:--' && hbText === '--:--') {
+            lastFeedingStartTime = null;
+        }
+
         const now = new Date();
         if (hourLeft.textContent === '--:--') {
             hourLeft.textContent = formatHHMM(now);
@@ -441,6 +448,13 @@ btnRight.addEventListener('click', () => {
         // Start playing right, so pause left first
         pauseLeftTimer();
         
+        const hl = document.getElementById('hour-left').textContent;
+        const hb = document.getElementById('hour-bottle');
+        const hbText = hb ? hb.textContent : '--:--';
+        if (hl === '--:--' && hourRight.textContent === '--:--' && hbText === '--:--') {
+            lastFeedingStartTime = null;
+        }
+
         const now = new Date();
         if (hourRight.textContent === '--:--') {
             hourRight.textContent = formatHHMM(now);
@@ -484,6 +498,14 @@ btnResetLeft.addEventListener('click', () => {
     leftSeconds = 0;
     timeLeft.textContent = '00:00';
     hourLeft.textContent = '--:--';
+    
+    const hr = document.getElementById('hour-right').textContent;
+    const hb = document.getElementById('hour-bottle');
+    const hbText = hb ? hb.textContent : '--:--';
+    if (hr === '--:--' && hbText === '--:--') {
+        lastFeedingStartTime = null;
+    }
+    
     saveCurrentState();
 });
 
@@ -493,6 +515,14 @@ btnResetRight.addEventListener('click', () => {
     rightSeconds = 0;
     timeRight.textContent = '00:00';
     hourRight.textContent = '--:--';
+    
+    const hl = document.getElementById('hour-left').textContent;
+    const hb = document.getElementById('hour-bottle');
+    const hbText = hb ? hb.textContent : '--:--';
+    if (hl === '--:--' && hbText === '--:--') {
+        lastFeedingStartTime = null;
+    }
+    
     saveCurrentState();
 });
 
@@ -572,6 +602,12 @@ btnBottle.addEventListener('click', () => {
     } else {
         pauseLeftTimer();
         pauseRightTimer();
+        
+        const hl = document.getElementById('hour-left').textContent;
+        const hr = document.getElementById('hour-right').textContent;
+        if (hl === '--:--' && hr === '--:--' && hourBottle.textContent === '--:--') {
+            lastFeedingStartTime = null;
+        }
         
         const now = new Date();
         if (hourBottle.textContent === '--:--') {
