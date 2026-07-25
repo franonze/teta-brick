@@ -241,7 +241,6 @@ function playAlarmBeep() {
     if (!audioCtx) {
         audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     }
-    // Si el contexto está suspendido (por políticas del navegador), intentamos reanudarlo
     if (audioCtx.state === 'suspended') {
         audioCtx.resume();
     }
@@ -274,7 +273,44 @@ function startAlarmLoop() {
     if (alarmInterval) return;
     playAlarmBeep(); 
     alarmInterval = setInterval(playAlarmBeep, CONFIG.alarm.repeatIntervalMs); 
+    
+    if ('Notification' in window && Notification.permission === 'granted') {
+        new Notification('¡Hora de la toma!', {
+            body: 'El tiempo estimado para la próxima toma ha llegado.'
+        });
+    }
 }
+
+// Desbloquear audio en móviles con el primer toque
+let audioUnlocked = false;
+function unlockAudio() {
+    if (audioUnlocked) return;
+    if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+    }
+    // Reproducir sonido silencioso para desbloquear Web Audio API
+    const osc = audioCtx.createOscillator();
+    const gainNode = audioCtx.createGain();
+    gainNode.gain.value = 0;
+    osc.connect(gainNode);
+    gainNode.connect(audioCtx.destination);
+    osc.start(0);
+    osc.stop(0.1);
+    
+    audioUnlocked = true;
+    document.removeEventListener('click', unlockAudio);
+    document.removeEventListener('touchstart', unlockAudio);
+    
+    // Solicitar permiso para notificaciones si aún no se ha preguntado
+    if ('Notification' in window && Notification.permission === 'default') {
+        Notification.requestPermission();
+    }
+}
+document.addEventListener('click', unlockAudio);
+document.addEventListener('touchstart', unlockAudio);
 
 function stopAlarm() {
     if (alarmInterval) {
