@@ -1632,8 +1632,55 @@ function updateSettingsStorage(overrideColor = null) {
     saveSettings(newSettings);
 }
 
-document.getElementById('btn-report-bug').addEventListener('click', () => {
-    alert('Próximamente: En versiones futuras podrás reportar un error directamente desde aquí.');
+const bugModal = document.getElementById('bug-modal');
+const bugDescription = document.getElementById('bug-description');
+const btnReportBug = document.getElementById('btn-report-bug');
+const bugCancel = document.getElementById('bug-cancel');
+const bugSend = document.getElementById('bug-send');
+
+btnReportBug.addEventListener('click', () => {
+    bugDescription.value = '';
+    bugModal.classList.add('active');
+    setTimeout(() => bugDescription.focus(), 100);
+});
+
+bugCancel.addEventListener('click', () => {
+    bugModal.classList.remove('active');
+});
+
+bugSend.addEventListener('click', () => {
+    const desc = bugDescription.value.trim();
+    if (!desc) return;
+    
+    bugSend.textContent = 'Enviando...';
+    bugSend.disabled = true;
+    
+    const templateParams = {
+        title: 'Reporte de Bug',
+        name: 'Usuario Teta Brick',
+        time: new Date().toLocaleString(),
+        message: desc,
+        email: 'noreply@tetabrick.app'
+    };
+    
+    // Enviar correo con EmailJS
+    emailjs.send('service_lj04q27', 'template_378ihes', templateParams)
+        .then(() => {
+            alert('¡Error reportado! Gracias por avisar.');
+            bugModal.classList.remove('active');
+        })
+        .catch((err) => {
+            alert('Hubo un problema al enviar el reporte. Por favor, revisa la conexión o la configuración de EmailJS.');
+            console.error('EmailJS Error:', err);
+        })
+        .finally(() => {
+            bugSend.textContent = 'Enviar';
+            bugSend.disabled = false;
+        });
+});
+
+bugModal.addEventListener('click', (e) => {
+    if (e.target === bugModal) bugModal.classList.remove('active');
 });
 
 // Load settings on startup

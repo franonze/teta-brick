@@ -7,7 +7,17 @@
     <title>Teta Brick</title>
     <link rel="stylesheet" href="style.css">
     <!-- Google Fonts for modern typography -->
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+       (function(){
+          emailjs.init({
+            publicKey: "tEmLfJhBJbtOcDRX9",
+          });
+       })();
+    </script>
 </head>
 
 <body>
@@ -386,6 +396,18 @@
                 <button id="edit-cancel" class="btn-secondary" style="flex: 1;">Cancelar</button>
                 <button id="edit-save" class="main-action-btn"
                     style="padding: 12px; width: auto; flex: 1; border-radius: 12px; font-size: 1rem;">Guardar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bug Report Modal -->
+    <div class="time-popup-overlay" id="bug-modal">
+        <div class="time-popup-box glass-card">
+            <h2 data-i18n="bug_title">Reportar un Error</h2>
+            <textarea id="bug-description" rows="4" style="width: 100%; border-radius: 12px; padding: 12px; background: var(--inner-bg); color: var(--text-primary); border: 1px solid var(--card-border); font-family: inherit; font-size: 1rem; outline: none; resize: none;" placeholder="Describe el problema detalladamente..."></textarea>
+            <div class="popup-actions" style="margin-top: 10px;">
+                <button class="btn-secondary" id="bug-cancel" style="flex: 1;" data-i18n="cancel">Cancelar</button>
+                <button class="main-action-btn" id="bug-send" style="flex: 1;" data-i18n="send">Enviar</button>
             </div>
         </div>
     </div>
