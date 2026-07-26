@@ -107,7 +107,9 @@ function unlockAudioContext() {
     audioUnlocked = true;
     
     // Solicitar permiso para notificaciones si aún no se ha preguntado
-    if ('Notification' in window && Notification.permission === 'default') {
+    if (window.Capacitor && window.Capacitor.isNativePlatform()) {
+        window.Capacitor.Plugins.LocalNotifications.requestPermissions();
+    } else if ('Notification' in window && Notification.permission === 'default') {
         Notification.requestPermission();
     }
 }
@@ -280,7 +282,9 @@ function startAlarmLoop() {
     playAlarmBeep(); 
     alarmInterval = setInterval(playAlarmBeep, CONFIG.alarm.repeatIntervalMs); 
     
-    if ('Notification' in window && Notification.permission === 'granted') {
+    if (window.Capacitor && window.Capacitor.isNativePlatform()) {
+        // La notificación nativa ya está gestionada por el SO, no lanzamos la web.
+    } else if ('Notification' in window && Notification.permission === 'granted') {
         if (navigator.serviceWorker) {
             navigator.serviceWorker.ready.then(registration => {
                 registration.showNotification('¡Hora de la toma!', {
@@ -303,6 +307,9 @@ function stopAlarm() {
         alarmInterval = null;
     }
     nextFeedingTime.classList.remove('alarm-ringing');
+    if (window.Capacitor && window.Capacitor.isNativePlatform()) {
+        window.Capacitor.Plugins.LocalNotifications.cancel({ notifications: [{ id: 1 }] });
+    }
 }
 
 // Detener la alarma tocando el temporizador
@@ -320,6 +327,20 @@ function updateNextFeedingTime() {
         if (!countdownInterval) {
             countdownInterval = setInterval(renderCountdown, 1000);
         }
+        
+        if (window.Capacitor && window.Capacitor.isNativePlatform()) {
+            window.Capacitor.Plugins.LocalNotifications.schedule({
+                notifications: [
+                    {
+                        title: "¡Hora de la toma!",
+                        body: "El tiempo estimado para la próxima toma ha llegado.",
+                        id: 1,
+                        schedule: { at: nextFeedingDate }
+                    }
+                ]
+            });
+        }
+        
         renderCountdown();
     } else {
         nextFeedingDate = null;
@@ -327,6 +348,11 @@ function updateNextFeedingTime() {
             clearInterval(countdownInterval);
             countdownInterval = null;
         }
+        
+        if (window.Capacitor && window.Capacitor.isNativePlatform()) {
+            window.Capacitor.Plugins.LocalNotifications.cancel({ notifications: [{ id: 1 }] });
+        }
+        
         nextFeedingTime.textContent = '--:--';
     }
     saveCurrentState();
