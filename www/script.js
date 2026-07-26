@@ -591,6 +591,8 @@ const modalMlInput = document.getElementById('modal-ml-input');
 const mlCancel = document.getElementById('ml-cancel');
 const mlSave = document.getElementById('ml-save');
 
+modalMlInput.addEventListener('focus', function() { this.select(); });
+
 function openMlModal() {
     modalMlInput.value = bottleMl > 0 ? bottleMl : '';
     mlModal.classList.add('active');
@@ -1235,6 +1237,10 @@ const editDuration = document.getElementById('edit-duration');
 const btnEditSave = document.getElementById('edit-save');
 const btnEditCancel = document.getElementById('edit-cancel');
 
+editHour.addEventListener('focus', function() { this.select(); });
+editMinute.addEventListener('focus', function() { this.select(); });
+editDuration.addEventListener('focus', function() { this.select(); });
+
 window.saveInlineNote = function(id, key, newNoteText) {
     let history = JSON.parse(localStorage.getItem(CONFIG.storage.historyKey)) || [];
     const index = history.findIndex(s => s.date === id);
@@ -1372,6 +1378,9 @@ const modalHour = document.getElementById('modal-hour');
 const modalMinute = document.getElementById('modal-minute');
 const modalSave = document.getElementById('modal-save');
 const modalCancel = document.getElementById('modal-cancel');
+
+modalHour.addEventListener('focus', function() { this.select(); });
+modalMinute.addEventListener('focus', function() { this.select(); });
 let currentTargetId = null;
 
 // Open modal
