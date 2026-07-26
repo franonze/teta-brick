@@ -195,6 +195,10 @@ h2 {
     transition: transform 0.3s ease;
 }
 
+.time-popup-box.glass-card {
+    background: rgba(0, 0, 0, 0.95);
+}
+
 .time-popup-overlay.active .time-popup-box {
     transform: translateY(0);
 }
@@ -717,6 +721,10 @@ body.light-theme .nav-item.active {
 
 body.light-theme .glass-card {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+body.light-theme .time-popup-box.glass-card {
+    background: rgba(255, 255, 255, 0.98);
 }
 
 /* --- SETTINGS UI --- */
