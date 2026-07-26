@@ -2,7 +2,7 @@ name: Deploy WWW to GitHub Pages
 
 on:
   push:
-    branches: ["main"] # Cambia a "master" si tu rama principal se llama así
+    branches: ["main"]
 
 permissions:
   contents: read
