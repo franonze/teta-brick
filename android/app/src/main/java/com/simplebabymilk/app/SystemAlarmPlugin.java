@@ -1,4 +1,4 @@
-package com.babymilk.app;
+package com.simplebabymilk.app;
 
 import android.content.Intent;
 import android.media.AudioAttributes;

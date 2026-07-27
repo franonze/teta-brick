@@ -1,4 +1,4 @@
-package com.babymilk.app;
+package com.simplebabymilk.app;
 
 import com.getcapacitor.BridgeActivity;
 
