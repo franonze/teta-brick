@@ -1305,6 +1305,7 @@ btnDeleteConfirm.addEventListener('click', () => {
 
 // Edit Modal Logic
 const editModal = document.getElementById('edit-modal');
+const editDate = document.getElementById('edit-date');
 const editHour = document.getElementById('edit-hour');
 const editMinute = document.getElementById('edit-minute');
 const editDurationContainer = document.getElementById('edit-duration-container');
@@ -1351,6 +1352,40 @@ window.editEvent = function(id, key) {
     let currentTimeStr = '';
     const editNote = document.getElementById('edit-note');
     if (editNote) editNote.value = '';
+    
+    if (editDate) {
+        editDate.innerHTML = '';
+        const sessionDate = new Date(session.date);
+        const today = new Date();
+        
+        const sDateOnly = new Date(sessionDate.getFullYear(), sessionDate.getMonth(), sessionDate.getDate());
+        const todayOnly = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+        const isToday = sDateOnly.getTime() === todayOnly.getTime();
+        
+        const prevDate = new Date(sDateOnly);
+        prevDate.setDate(prevDate.getDate() - 1);
+        
+        const nextDate = new Date(sDateOnly);
+        nextDate.setDate(nextDate.getDate() + 1);
+        
+        if (!isToday) {
+            const nextOpt = document.createElement('option');
+            nextOpt.value = nextDate.toISOString();
+            nextOpt.textContent = formatDate(nextDate.toISOString());
+            editDate.appendChild(nextOpt);
+        }
+        
+        const currOpt = document.createElement('option');
+        currOpt.value = sDateOnly.toISOString();
+        currOpt.textContent = formatDate(sDateOnly.toISOString());
+        currOpt.selected = true;
+        editDate.appendChild(currOpt);
+        
+        const prevOpt = document.createElement('option');
+        prevOpt.value = prevDate.toISOString();
+        prevOpt.textContent = formatDate(prevDate.toISOString());
+        editDate.appendChild(prevOpt);
+    }
     
     if (key === 'left') {
         currentTimeStr = session.left.startTime;
@@ -1420,6 +1455,13 @@ btnEditSave.addEventListener('click', () => {
     const noteVal = editNote ? editNote.value.trim() : '';
     
     let session = history[index];
+    
+    if (editDate && editDate.value) {
+        const d = new Date(session.date);
+        const selectedDate = new Date(editDate.value);
+        d.setFullYear(selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate());
+        session.date = d.toISOString();
+    }
     
     if (currentEditKey === 'left') {
         session.left.startTime = newTime;
