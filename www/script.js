@@ -813,6 +813,10 @@ btnRegistrar.addEventListener('click', () => {
 
     const history = JSON.parse(localStorage.getItem(CONFIG.storage.historyKey)) || [];
     
+    if (deduplicateHistoryDates(history)) {
+        localStorage.setItem(CONFIG.storage.historyKey, JSON.stringify(history));
+    }
+
     if (history.length > 0) {
         const lastRecord = history[history.length - 1];
         const lastRecordDate = new Date(lastRecord.date);
@@ -964,12 +968,15 @@ const views = document.querySelectorAll('.view');
 
 navItems.forEach(item => {
     item.addEventListener('click', () => {
+        const targetId = item.getAttribute('data-target');
+        if (!targetId) return;
+
         // Update active class on nav items
         navItems.forEach(nav => nav.classList.remove('active'));
         item.classList.add('active');
 
         // Show target view
-        const targetId = item.getAttribute('data-target');
+
         views.forEach(view => {
             view.classList.remove('active');
             if (view.id === targetId) {
@@ -996,6 +1003,21 @@ navItems.forEach(item => {
 
 // --- History Rendering Logic ---
 const historyContainer = document.getElementById('history-container');
+
+function deduplicateHistoryDates(history) {
+    let dates = new Set();
+    let modified = false;
+    for (let s of history) {
+        while (dates.has(s.date)) {
+            let d = new Date(s.date);
+            d.setMilliseconds(d.getMilliseconds() + 1);
+            s.date = d.toISOString();
+            modified = true;
+        }
+        dates.add(s.date);
+    }
+    return modified;
+}
 
 function formatDate(dateString) {
     const d = new Date(dateString);
@@ -1052,7 +1074,7 @@ function renderHistory() {
         if (session.right && session.right.startTime && session.right.startTime > latestTime) latestTime = session.right.startTime;
         if (session.bottle && session.bottle.startTime && session.bottle.startTime > latestTime) latestTime = session.bottle.startTime;
         if (session.diapers) {
-            let diaperTime = typeof session.diapers === 'string' ? session.diapers : (session.diapers.poop || session.diapers.pee);
+            let diaperTime = typeof session.diapers === 'string' ? session.diapers : (session.diapers.poop || session.diapers.pee || session.diapers.time);
             if (diaperTime && diaperTime > latestTime) latestTime = diaperTime;
         }
         return latestTime || '00:00';
@@ -1313,9 +1335,70 @@ const editDuration = document.getElementById('edit-duration');
 const btnEditSave = document.getElementById('edit-save');
 const btnEditCancel = document.getElementById('edit-cancel');
 
+let isAddingNew = false;
+
 editHour.addEventListener('focus', function() { this.select(); });
 editMinute.addEventListener('focus', function() { this.select(); });
 editDuration.addEventListener('focus', function() { this.select(); });
+
+const btnAddEvent = document.getElementById('btn-add-event');
+const eventType = document.getElementById('event-type');
+
+if (btnAddEvent) {
+    btnAddEvent.addEventListener('click', () => {
+        isAddingNew = true;
+        document.getElementById('modal-title').textContent = "Añadir registro";
+        eventType.style.display = 'block';
+        eventType.value = 'left';
+        
+        if (editDate) {
+            editDate.innerHTML = '';
+            const todayOnly = new Date();
+            todayOnly.setHours(0,0,0,0);
+            
+            const prevDate = new Date(todayOnly);
+            prevDate.setDate(prevDate.getDate() - 1);
+            
+            const currOpt = document.createElement('option');
+            currOpt.value = todayOnly.toISOString();
+            currOpt.textContent = formatDate(todayOnly.toISOString());
+            currOpt.selected = true;
+            editDate.appendChild(currOpt);
+            
+            const prevOpt = document.createElement('option');
+            prevOpt.value = prevDate.toISOString();
+            prevOpt.textContent = formatDate(prevDate.toISOString());
+            editDate.appendChild(prevOpt);
+        }
+        
+        const now = new Date();
+        editHour.value = now.getHours().toString().padStart(2, '0');
+        editMinute.value = now.getMinutes().toString().padStart(2, '0');
+        editDuration.value = '';
+        const editNote = document.getElementById('edit-note');
+        if (editNote) editNote.value = '';
+        
+        eventType.dispatchEvent(new Event('change'));
+        editModal.classList.add('active');
+    });
+}
+
+if (eventType) {
+    eventType.addEventListener('change', () => {
+        const val = eventType.value;
+        if (val === 'left' || val === 'right') {
+            editDurationContainer.style.display = 'flex';
+            document.querySelector('#edit-duration-container .sub-label').textContent = 'Duración (minutos)';
+            editDuration.placeholder = 'Min';
+        } else if (val === 'bottle') {
+            editDurationContainer.style.display = 'flex';
+            document.querySelector('#edit-duration-container .sub-label').textContent = 'Cantidad (mL)';
+            editDuration.placeholder = 'mL';
+        } else if (val === 'diaper') {
+            editDurationContainer.style.display = 'none';
+        }
+    });
+}
 
 window.saveInlineNote = function(id, key, newNoteText) {
     let history = JSON.parse(localStorage.getItem(CONFIG.storage.historyKey)) || [];
@@ -1353,6 +1436,10 @@ window.editEvent = function(id, key) {
     const editNote = document.getElementById('edit-note');
     if (editNote) editNote.value = '';
     
+    isAddingNew = false;
+    document.getElementById('modal-title').textContent = "Editar registro";
+    if (eventType) eventType.style.display = 'none';
+
     if (editDate) {
         editDate.innerHTML = '';
         const sessionDate = new Date(session.date);
@@ -1392,18 +1479,21 @@ window.editEvent = function(id, key) {
         editDuration.value = Math.round(session.left.durationSeconds / 60);
         editDurationContainer.style.display = 'flex';
         document.querySelector('#edit-duration-container .sub-label').textContent = 'Duración (minutos)';
+        editDuration.placeholder = 'Min';
         if (editNote) editNote.value = session.left.note || '';
     } else if (key === 'right') {
         currentTimeStr = session.right.startTime;
         editDuration.value = Math.round(session.right.durationSeconds / 60);
         editDurationContainer.style.display = 'flex';
         document.querySelector('#edit-duration-container .sub-label').textContent = 'Duración (minutos)';
+        editDuration.placeholder = 'Min';
         if (editNote) editNote.value = session.right.note || '';
     } else if (key === 'bottle') {
         currentTimeStr = session.bottle.startTime;
         editDuration.value = session.bottle.ml;
         editDurationContainer.style.display = 'flex';
         document.querySelector('#edit-duration-container .sub-label').textContent = 'Cantidad (mL)';
+        editDuration.placeholder = 'mL';
         if (editNote) editNote.value = session.bottle.note || '';
     } else if (key === 'diaper') {
         let diaperTime = null;
@@ -1437,15 +1527,7 @@ editModal.addEventListener('click', (e) => {
 });
 
 btnEditSave.addEventListener('click', () => {
-    if (!currentEditId || !currentEditKey) return;
-    
     let history = JSON.parse(localStorage.getItem(CONFIG.storage.historyKey)) || [];
-    const index = history.findIndex(s => s.date === currentEditId);
-    if (index === -1) {
-        closeEditModal();
-        return;
-    }
-    
     let h = parseInt(editHour.value) || 0;
     let m = parseInt(editMinute.value) || 0;
     h = Math.max(0, Math.min(23, h));
@@ -1453,6 +1535,39 @@ btnEditSave.addEventListener('click', () => {
     const newTime = `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}`;
     const editNote = document.getElementById('edit-note');
     const noteVal = editNote ? editNote.value.trim() : '';
+
+    if (isAddingNew) {
+        const type = eventType ? eventType.value : 'left';
+        const selectedDate = editDate && editDate.value ? new Date(editDate.value) : new Date();
+        const now = new Date();
+        now.setFullYear(selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate());
+        let newSession = { date: now.toISOString() };
+        
+        let mins = parseInt(editDuration.value) || 0;
+        if (type === 'left') {
+            newSession.left = { startTime: newTime, durationSeconds: mins * 60, note: noteVal };
+        } else if (type === 'right') {
+            newSession.right = { startTime: newTime, durationSeconds: mins * 60, note: noteVal };
+        } else if (type === 'bottle') {
+            newSession.bottle = { startTime: newTime, ml: mins, note: noteVal };
+        } else if (type === 'diaper') {
+            newSession.diapers = { time: newTime, note: noteVal };
+        }
+        
+        history.push(newSession);
+        localStorage.setItem(CONFIG.storage.historyKey, JSON.stringify(history));
+        renderHistory();
+        closeEditModal();
+        return;
+    }
+
+    if (!currentEditId || !currentEditKey) return;
+    
+    const index = history.findIndex(s => s.date === currentEditId);
+    if (index === -1) {
+        closeEditModal();
+        return;
+    }
     
     let session = history[index];
     

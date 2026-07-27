@@ -346,6 +346,11 @@
                 </svg>
                 <span data-i18n="tab_biberon">Biberón</span>
             </button>
+            <button class="nav-item" id="btn-add-event" style="flex: 0.4;">
+                <svg viewBox="0 0 24 24" class="nav-icon" fill="currentColor" style="width: 24px; height: 24px;">
+                    <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                </svg>
+            </button>
             <button class="nav-item" data-target="view-historial">
                 <svg viewBox="0 0 24 24" class="nav-icon">
                     <path
@@ -425,7 +430,13 @@
     <div id="edit-modal" class="time-popup-overlay">
         <div class="time-popup-box glass-card">
             <div style="display: flex; flex-direction: column; gap: 10px;">
-                <h3 style="text-align: center; margin-bottom: 5px;">Editar registro</h3>
+                <h3 id="modal-title" style="text-align: center; margin-bottom: 5px;">Editar registro</h3>
+                <select id="event-type" class="settings-select" style="width: 100%; text-align: center; margin-bottom: 5px; padding: 5px; display: none;">
+                    <option value="left">Pecho Izquierdo</option>
+                    <option value="right">Pecho Derecho</option>
+                    <option value="bottle">Biberón</option>
+                    <option value="diaper">Pañal</option>
+                </select>
                 <div style="display: flex; flex-direction: column; align-items: center; gap: 5px;">
                     <label class="sub-label" style="text-align: center;">Fecha y Hora</label>
                     <select id="edit-date" class="settings-select" style="width: 130px; text-align: center; margin-bottom: 5px; padding: 5px;">
