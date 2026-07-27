@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">BabyMilk</string>
-    <string name="title_activity_main">BabyMilk</string>
-    <string name="package_name">com.babymilk.app</string>
-    <string name="custom_url_scheme">com.babymilk.app</string>
+    <string name="app_name">SimpleBabyMilk</string>
+    <string name="title_activity_main">SimpleBabyMilk</string>
+    <string name="package_name">com.simplebabymilk.app</string>
+    <string name="custom_url_scheme">com.simplebabymilk.app</string>
 </resources>
