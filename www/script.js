@@ -84,7 +84,7 @@ let audioCtx = null;
 let audioUnlocked = false;
 
 // Trick to unlock audio on mobile browsers (Safari/Chrome)
-function unlockAudioContext() {
+async function unlockAudioContext() {
     if (audioUnlocked) return;
     
     if (!audioCtx) {
@@ -108,7 +108,18 @@ function unlockAudioContext() {
     
     // Solicitar permiso para notificaciones si aún no se ha preguntado
     if (window.Capacitor && window.Capacitor.isNativePlatform()) {
-        window.Capacitor.Plugins.LocalNotifications.requestPermissions();
+        try {
+            await window.Capacitor.Plugins.LocalNotifications.requestPermissions();
+            await window.Capacitor.Plugins.LocalNotifications.createChannel({
+                id: 'default',
+                name: 'Notificaciones Predeterminadas',
+                description: 'Canal principal para notificaciones de la app',
+                importance: 4,
+                visibility: 1
+            });
+        } catch (e) {
+            console.error('Error creating notification channel/permissions:', e);
+        }
     } else if ('Notification' in window && Notification.permission === 'default') {
         Notification.requestPermission();
     }
@@ -279,8 +290,25 @@ function playAlarmBeep() {
 
 function startAlarmLoop() {
     if (alarmInterval) return;
-    playAlarmBeep(); 
-    alarmInterval = setInterval(playAlarmBeep, CONFIG.alarm.repeatIntervalMs); 
+    
+    const isNative = window.Capacitor && window.Capacitor.isNativePlatform();
+    
+    if (isNative && appSettings.useSystemAlarm) {
+        // El sistema se encarga de la alarma
+        return;
+    }
+    
+    if (isNative) {
+        const SystemAlarmPlugin = window.Capacitor.Plugins.SystemAlarmPlugin;
+        if (SystemAlarmPlugin) {
+            SystemAlarmPlugin.playAlarmSound();
+        }
+        // Creamos un interval vacío solo para marcar que está activo
+        alarmInterval = setInterval(() => {}, 1000);
+    } else {
+        playAlarmBeep(); 
+        alarmInterval = setInterval(playAlarmBeep, CONFIG.alarm.repeatIntervalMs); 
+    } 
     
     if (window.Capacitor && window.Capacitor.isNativePlatform()) {
         // La notificación nativa ya está gestionada por el SO, no lanzamos la web.
@@ -306,8 +334,17 @@ function stopAlarm() {
         clearInterval(alarmInterval);
         alarmInterval = null;
     }
+    
+    const isNative = window.Capacitor && window.Capacitor.isNativePlatform();
+    if (isNative) {
+        const SystemAlarmPlugin = window.Capacitor.Plugins.SystemAlarmPlugin;
+        if (SystemAlarmPlugin) {
+            SystemAlarmPlugin.stopAlarmSound();
+        }
+    }
+    
     nextFeedingTime.classList.remove('alarm-ringing');
-    if (window.Capacitor && window.Capacitor.isNativePlatform()) {
+    if (isNative) {
         window.Capacitor.Plugins.LocalNotifications.cancel({ notifications: [{ id: 1 }] });
     }
 }
@@ -329,16 +366,28 @@ function updateNextFeedingTime() {
         }
         
         if (window.Capacitor && window.Capacitor.isNativePlatform()) {
-            window.Capacitor.Plugins.LocalNotifications.schedule({
-                notifications: [
-                    {
-                        title: "¡Hora de la toma!",
-                        body: "El tiempo estimado para la próxima toma ha llegado.",
-                        id: 1,
-                        schedule: { at: nextFeedingDate }
-                    }
-                ]
-            });
+            if (appSettings.useSystemAlarm) {
+                const SystemAlarmPlugin = window.Capacitor.Plugins.SystemAlarmPlugin;
+                if (SystemAlarmPlugin) {
+                    SystemAlarmPlugin.setAlarm({
+                        hour: nextFeedingDate.getHours(),
+                        minute: nextFeedingDate.getMinutes(),
+                        message: getTranslation('next_feeding')
+                    });
+                }
+            } else {
+                window.Capacitor.Plugins.LocalNotifications.schedule({
+                    notifications: [
+                        {
+                            title: getTranslation('next_feeding'),
+                            body: "El tiempo estimado para la próxima toma ha llegado.",
+                            id: 1,
+                            schedule: { at: nextFeedingDate },
+                            channelId: 'default'
+                        }
+                    ]
+                });
+            }
         }
         
         renderCountdown();
@@ -1518,7 +1567,8 @@ function loadSettings() {
         theme: CONFIG.app.defaultTheme,
         defaultTab: CONFIG.app.defaultTab,
         cloudColor: CONFIG.app.defaultCloudColor,
-        compactHistory: CONFIG.app.defaultCompactHistory !== undefined ? CONFIG.app.defaultCompactHistory : true
+        compactHistory: CONFIG.app.defaultCompactHistory !== undefined ? CONFIG.app.defaultCompactHistory : true,
+        useSystemAlarm: CONFIG.app.useSystemAlarm !== undefined ? CONFIG.app.useSystemAlarm : false
     };
     if (saved) {
         try {
@@ -1547,6 +1597,8 @@ function loadSettings() {
     document.getElementById('settings-default-tab').value = settings.defaultTab;
     
     document.getElementById('settings-compact-history').checked = settings.compactHistory;
+    
+    document.getElementById('settings-system-alarm').checked = settings.useSystemAlarm;
     
     appSettings = settings;
     
@@ -1628,6 +1680,24 @@ document.getElementById('settings-compact-history').addEventListener('change', (
     }
 });
 
+document.getElementById('settings-system-alarm').addEventListener('change', (e) => {
+    updateSettingsStorage();
+});
+
+const infoAlarmModal = document.getElementById('info-alarm-modal');
+const btnInfoAlarm = document.getElementById('btn-info-alarm');
+const btnInfoAlarmClose = document.getElementById('info-alarm-close');
+
+btnInfoAlarm.addEventListener('click', () => {
+    infoAlarmModal.classList.add('active');
+});
+btnInfoAlarmClose.addEventListener('click', () => {
+    infoAlarmModal.classList.remove('active');
+});
+infoAlarmModal.addEventListener('click', (e) => {
+    if (e.target === infoAlarmModal) infoAlarmModal.classList.remove('active');
+});
+
 document.querySelectorAll('.color-circle').forEach(btn => {
     btn.addEventListener('click', (e) => {
         const color = btn.getAttribute('data-color');
@@ -1652,7 +1722,8 @@ function updateSettingsStorage(overrideColor = null) {
         theme: document.getElementById('settings-theme').checked ? 'light' : 'dark',
         defaultTab: document.getElementById('settings-default-tab').value,
         cloudColor: cloudColor,
-        compactHistory: document.getElementById('settings-compact-history').checked
+        compactHistory: document.getElementById('settings-compact-history').checked,
+        useSystemAlarm: document.getElementById('settings-system-alarm').checked
     };
     appSettings = newSettings;
     saveSettings(newSettings);

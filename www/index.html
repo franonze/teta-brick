@@ -308,6 +308,21 @@
                         <span class="slider"></span>
                     </label>
                 </div>
+
+                <div class="settings-row">
+                    <span class="settings-label" style="display:flex;align-items:center;">
+                        <span data-i18n="settings_system_alarm">Alarma del Sistema</span>
+                        <button id="btn-info-alarm" style="background:none;border:none;padding:0;margin-left:5px;cursor:pointer;color:var(--accent-primary);display:flex;align-items:center;">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                                <path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                            </svg>
+                        </button>
+                    </span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="settings-system-alarm">
+                        <span class="slider"></span>
+                    </label>
+                </div>
                 
                 <div class="settings-row" style="margin-top: 15px;">
                     <button class="main-action-btn" id="btn-report-bug" style="padding: 10px; background-color: var(--accent-left); border-radius: 8px; font-size: 1rem;" data-i18n="settings_report">
@@ -448,6 +463,34 @@
             <div class="popup-actions" style="margin-top: 10px;">
                 <button class="btn-secondary" id="bug-cancel" style="flex: 1;" data-i18n="cancel">Cancelar</button>
                 <button class="main-action-btn" id="bug-send" style="flex: 1;" data-i18n="send">Enviar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Info Alarm Modal -->
+    <div class="time-popup-overlay" id="info-alarm-modal">
+        <div class="time-popup-box glass-card">
+            <h3 style="text-align: center; margin-bottom: 10px;" data-i18n="settings_system_alarm">Alarma del Sistema</h3>
+            <p style="text-align: justify; color: var(--text-primary); font-size: 0.95rem; line-height: 1.4; margin-bottom: 15px;">
+                <strong>Desactivado (por defecto):</strong> La alarma sonará integrada en la aplicación. Si cierras completamente la app, no sonará.<br><br>
+                <strong>Activado:</strong> La alarma se programará directamente en la aplicación de Reloj de tu móvil. Esto asegura que sonará a la hora exacta, incluso si cierras esta aplicación, usando tu pantalla de alarma habitual.
+            </p>
+            <div class="popup-actions" style="margin-top: 10px;">
+                <button class="main-action-btn" id="info-alarm-close" style="flex: 1; padding: 12px; border-radius: 12px;">Entendido</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Info Alarm Modal -->
+    <div class="time-popup-overlay" id="info-alarm-modal">
+        <div class="time-popup-box glass-card" style="padding: 20px;">
+            <h3 style="text-align: center; margin-bottom: 10px;" data-i18n="settings_system_alarm">Alarma del Sistema</h3>
+            <p style="text-align: left; color: var(--text-primary); font-size: 0.95rem; line-height: 1.4; margin-bottom: 15px;">
+                <strong>Desactivado (por defecto):</strong> La alarma sonará integrada en la aplicación. Si cierras completamente la app, no sonará.<br><br>
+                <strong>Activado:</strong> La alarma se programará directamente en la aplicación de Reloj de tu móvil. Esto asegura que sonará a la hora exacta, incluso si cierras esta aplicación, usando tu pantalla de alarma habitual.
+            </p>
+            <div class="popup-actions" style="margin-top: 10px;">
+                <button class="main-action-btn" id="info-alarm-close" style="flex: 1; padding: 12px; border-radius: 12px;">Entendido</button>
             </div>
         </div>
     </div>
