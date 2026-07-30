@@ -1,6 +1,10 @@
 # Establecer JAVA_HOME localmente por seguridad
 $env:JAVA_HOME = "C:\Program Files\Android\Android Studio\jbr"
 
+# Ejecutar script de traducción automática
+Write-Host "Comprobando traducciones faltantes..." -ForegroundColor Cyan
+node update_translations.js
+
 # Cerrar procesos de Java previos para evitar bloqueos
 Write-Host "Cerrando procesos de Java..." -ForegroundColor Cyan
 Stop-Process -Name "java", "javaw" -Force -ErrorAction SilentlyContinue

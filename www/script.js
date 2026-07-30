@@ -350,8 +350,8 @@ function startAlarmLoop() {
             localNotif.schedule({
                 notifications: [
                     {
-                        title: "¡Hora de la toma!",
-                        body: "Es hora de dar de comer a tu bebé.",
+                        title: getTranslation('notif_time_title'),
+                        body: getTranslation('notif_time_body'),
                         id: currentNotifId + 10000,
                         channelId: 'default'
                     }
@@ -361,14 +361,14 @@ function startAlarmLoop() {
     } else if ('Notification' in window && Notification.permission === 'granted') {
         if (navigator.serviceWorker) {
             navigator.serviceWorker.ready.then(registration => {
-                registration.showNotification('¡Hora de la toma!', {
-                    body: 'Es hora de dar de comer a tu bebé.'
+                registration.showNotification(getTranslation('notif_time_title'), {
+                    body: getTranslation('notif_time_body')
                 });
             }).catch(() => {
-                new Notification('¡Hora de la toma!', { body: 'Es hora de dar de comer a tu bebé.' });
+                new Notification(getTranslation('notif_time_title'), { body: getTranslation('notif_time_body') });
             });
         } else {
-            new Notification('¡Hora de la toma!', { body: 'Es hora de dar de comer a tu bebé..' });
+            new Notification(getTranslation('notif_time_title'), { body: getTranslation('notif_time_body') });
         }
     }
 }
@@ -430,8 +430,8 @@ function updateNextFeedingTime() {
                         return localNotif.schedule({
                             notifications: [
                                 {
-                                    title: "¡Hora de la toma!",
-                                    body: "El tiempo estimado ha llegado.",
+                                    title: getTranslation('notif_time_title'),
+                                    body: getTranslation('notif_time_body'),
                                     id: currentNotifId,
                                     schedule: { at: nextFeedingDate, allowWhileIdle: true },
                                     channelId: 'default'
