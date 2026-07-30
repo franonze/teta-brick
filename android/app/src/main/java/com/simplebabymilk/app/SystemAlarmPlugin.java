@@ -1,12 +1,13 @@
 package com.simplebabymilk.app;
 
+import android.content.Context;
 import android.content.Intent;
 import android.media.AudioAttributes;
-import android.media.MediaPlayer;
+import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
-import android.provider.AlarmClock;
-
+import android.os.Build;
+import android.app.AlarmManager;
 import com.getcapacitor.JSObject;
 import com.getcapacitor.Plugin;
 import com.getcapacitor.PluginCall;
@@ -16,36 +17,59 @@ import com.getcapacitor.annotation.CapacitorPlugin;
 @CapacitorPlugin(name = "SystemAlarmPlugin")
 public class SystemAlarmPlugin extends Plugin {
     
-    private MediaPlayer mediaPlayer;
+    private Ringtone ringtone;
 
     @PluginMethod
-    public void setAlarm(PluginCall call) {
-        Integer hour = call.getInt("hour");
-        Integer minute = call.getInt("minute");
-        String message = call.getString("message", "Toma");
-        
-        if (hour == null || minute == null) {
-            call.reject("Must provide hour and minute");
-            return;
+    public void checkExactAlarmPermission(PluginCall call) {
+        JSObject ret = new JSObject();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            AlarmManager alarmManager = (AlarmManager) getContext().getSystemService(Context.ALARM_SERVICE);
+            if (alarmManager != null && !alarmManager.canScheduleExactAlarms()) {
+                Intent intent = new Intent(android.provider.Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM);
+                intent.setData(Uri.parse("package:" + getContext().getPackageName()));
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                getContext().startActivity(intent);
+                
+                ret.put("granted", false);
+                call.resolve(ret);
+                return;
+            }
         }
+        ret.put("granted", true);
+        call.resolve(ret);
+    }
 
-        Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM);
-        intent.putExtra(AlarmClock.EXTRA_HOUR, hour);
-        intent.putExtra(AlarmClock.EXTRA_MINUTES, minute);
-        intent.putExtra(AlarmClock.EXTRA_MESSAGE, message);
-        intent.putExtra(AlarmClock.EXTRA_SKIP_UI, true);
-        
+    @PluginMethod
+    public void openExactAlarmSettings(PluginCall call) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            Intent intent = new Intent(android.provider.Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM);
+            intent.setData(Uri.parse("package:" + getContext().getPackageName()));
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            getContext().startActivity(intent);
+        }
+        call.resolve();
+    }
+
+    @PluginMethod
+    public void openNotificationSettings(PluginCall call) {
+        Intent intent = new Intent();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            intent.setAction(android.provider.Settings.ACTION_APP_NOTIFICATION_SETTINGS);
+            intent.putExtra(android.provider.Settings.EXTRA_APP_PACKAGE, getContext().getPackageName());
+        } else {
+            intent.setAction(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+            intent.setData(Uri.parse("package:" + getContext().getPackageName()));
+        }
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         getContext().startActivity(intent);
-        
         call.resolve();
     }
 
     @PluginMethod
     public void playAlarmSound(PluginCall call) {
         try {
-            if (mediaPlayer != null && mediaPlayer.isPlaying()) {
-                mediaPlayer.stop();
-                mediaPlayer.release();
+            if (ringtone != null && ringtone.isPlaying()) {
+                ringtone.stop();
             }
             
             Uri alarmUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
@@ -53,18 +77,25 @@ public class SystemAlarmPlugin extends Plugin {
                 alarmUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
             }
             
-            mediaPlayer = new MediaPlayer();
-            mediaPlayer.setDataSource(getContext(), alarmUri);
-            
-            AudioAttributes attributes = new AudioAttributes.Builder()
-                .setUsage(AudioAttributes.USAGE_ALARM)
-                .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-                .build();
+            ringtone = RingtoneManager.getRingtone(getContext(), alarmUri);
+            if (ringtone != null) {
+                AudioAttributes attributes = new AudioAttributes.Builder()
+                    .setUsage(AudioAttributes.USAGE_ALARM)
+                    .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                    .build();
                 
-            mediaPlayer.setAudioAttributes(attributes);
-            mediaPlayer.setLooping(true);
-            mediaPlayer.prepare();
-            mediaPlayer.start();
+                ringtone.setAudioAttributes(attributes);
+                
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                    ringtone.setLooping(true);
+                }
+                
+                ringtone.play();
+            }
+            
+            if (getActivity() != null) {
+                getActivity().setVolumeControlStream(android.media.AudioManager.STREAM_ALARM);
+            }
             
             call.resolve();
         } catch (Exception e) {
@@ -74,12 +105,15 @@ public class SystemAlarmPlugin extends Plugin {
     
     @PluginMethod
     public void stopAlarmSound(PluginCall call) {
-        if (mediaPlayer != null) {
-            if (mediaPlayer.isPlaying()) {
-                mediaPlayer.stop();
+        if (ringtone != null) {
+            if (ringtone.isPlaying()) {
+                ringtone.stop();
             }
-            mediaPlayer.release();
-            mediaPlayer = null;
+            ringtone = null;
+            
+            if (getActivity() != null) {
+                getActivity().setVolumeControlStream(android.media.AudioManager.USE_DEFAULT_STREAM_TYPE);
+            }
         }
         call.resolve();
     }

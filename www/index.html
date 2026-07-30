@@ -12,17 +12,18 @@
     <!-- EmailJS SDK -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script type="text/javascript">
-       (function(){
-          emailjs.init({
-            publicKey: "tEmLfJhBJbtOcDRX9",
-          });
-       })();
+        (function () {
+            emailjs.init({
+                publicKey: "tEmLfJhBJbtOcDRX9",
+            });
+        })();
     </script>
 </head>
 
 <body>
     <!-- Fixed background layer for the moon -->
-    <div class="fixed-bg-layer" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: -1; display: flex; justify-content: center; padding: 20px; pointer-events: none;">
+    <div class="fixed-bg-layer"
+        style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: -1; display: flex; justify-content: center; padding: 20px; pointer-events: none;">
         <div style="width: 100%; max-width: 420px; position: relative;">
             <div class="moon-fixed"></div>
         </div>
@@ -32,109 +33,128 @@
 
         <div id="input-views-container">
             <main id="view-pecho" class="view active">
-            <!-- Top Section (Nursing) -->
-            <section class="glass-card nursing-section">
-                <h2 class="view-title" style="margin-bottom: 15px;" data-i18n="tab_pecho">Pecho</h2>
-                <div class="grid-container">
-                    <!-- Left Column -->
-                    <div class="column left-col">
-                        <h2 class="col-title" style="font-size: 1.3rem;" data-i18n="breast_left">Izquierdo</h2>
-                        <button class="play-btn" id="btn-left" aria-label="Iniciar pecho izquierdo">
-                            <svg viewBox="0 0 24 24" class="icon-play">
-                                <path d="M8 5v14l11-7z" />
-                            </svg>
-                        </button>
-                        <div class="stats">
-                            <div class="stat-row">
-                                <span class="label tag" data-i18n="time">Tiempo</span>
-                                <span class="value" id="time-left">00:00</span>
+                <!-- Top Section (Nursing) -->
+                <section class="glass-card nursing-section">
+                    <h2 class="view-title" style="margin-bottom: 15px;" data-i18n="tab_pecho">Pecho</h2>
+                    <div class="grid-container">
+                        <!-- Left Column -->
+                        <div class="column left-col">
+                            <h2 class="col-title" style="font-size: 1.3rem;" data-i18n="breast_left">Izquierdo</h2>
+                            <button class="play-btn" id="btn-left" aria-label="Iniciar pecho izquierdo">
+                                <svg viewBox="0 0 24 24" class="icon-play">
+                                    <path d="M8 5v14l11-7z" />
+                                </svg>
+                            </button>
+                            <div class="stats">
+                                <div class="stat-row">
+                                    <span class="label tag" data-i18n="time">Tiempo</span>
+                                    <span class="value" id="time-left">00:00</span>
+                                </div>
+                                <div class="stat-row time-clickable" data-target="hour-left">
+                                    <span class="label tag"
+                                        style="display: flex; align-items: center; gap: 4px; color: var(--accent-primary);">
+                                        <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                                            <path
+                                                d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" />
+                                        </svg>
+                                        <span data-i18n="hour">Hora</span>
+                                    </span>
+                                    <span class="value time-display" id="hour-left">--:--</span>
+                                </div>
                             </div>
-                            <div class="stat-row time-clickable" data-target="hour-left">
-                                <span class="label tag" style="display: flex; align-items: center; gap: 4px; color: var(--accent-primary);">
-                                    <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" /></svg>
-                                    <span data-i18n="hour">Hora</span>
-                                </span>
-                                <span class="value time-display" id="hour-left">--:--</span>
-                            </div>
+                            <button class="control-btn" id="btn-reset-left" style="margin-top: 2px; padding: 4px 8px;">
+                                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                                    <path
+                                        d="M17.65 6.35A7.95 7.95 0 0012 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0112 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z" />
+                                </svg>
+                                <span style="font-size: 0.8rem;">Reset</span>
+                            </button>
                         </div>
-                        <button class="control-btn" id="btn-reset-left" style="margin-top: 2px; padding: 4px 8px;">
-                            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-                                <path
-                                    d="M17.65 6.35A7.95 7.95 0 0012 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0112 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z" />
-                            </svg>
-                            <span style="font-size: 0.8rem;">Reset</span>
-                        </button>
-                    </div>
 
-                    <div class="divider-col"
-                        style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 15px;">
-                        <div class="divider" style="height: 100%; min-height: 40px; margin: 0;"></div>
-                        <button class="control-btn swap-btn" id="btn-swap" aria-label="Invertir tiempos">
-                            <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
-                                <path d="M6.99 11L3 15l3.99 4v-3H14v-2H6.99v-3zM21 9l-3.99-4v3H10v2h7.01v3L21 9z" />
-                            </svg>
-                        </button>
-                        <div class="divider" style="height: 100%; min-height: 40px; margin: 0;"></div>
-                    </div>
-
-                    <!-- Right Column -->
-                    <div class="column right-col">
-                        <h2 class="col-title" style="font-size: 1.3rem;" data-i18n="breast_right">Derecho</h2>
-                        <button class="play-btn" id="btn-right" aria-label="Iniciar pecho derecho">
-                            <svg viewBox="0 0 24 24" class="icon-play">
-                                <path d="M8 5v14l11-7z" />
-                            </svg>
-                        </button>
-                        <div class="stats">
-                            <div class="stat-row">
-                                <span class="label tag" data-i18n="time">Tiempo</span>
-                                <span class="value" id="time-right">00:00</span>
-                            </div>
-                            <div class="stat-row time-clickable" data-target="hour-right">
-                                <span class="label tag" style="display: flex; align-items: center; gap: 4px; color: var(--accent-primary);">
-                                    <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" /></svg>
-                                    <span data-i18n="hour">Hora</span>
-                                </span>
-                                <span class="value time-display" id="hour-right">--:--</span>
-                            </div>
+                        <div class="divider-col"
+                            style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 15px;">
+                            <div class="divider" style="height: 100%; min-height: 40px; margin: 0;"></div>
+                            <button class="control-btn swap-btn" id="btn-swap" aria-label="Invertir tiempos">
+                                <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+                                    <path d="M6.99 11L3 15l3.99 4v-3H14v-2H6.99v-3zM21 9l-3.99-4v3H10v2h7.01v3L21 9z" />
+                                </svg>
+                            </button>
+                            <div class="divider" style="height: 100%; min-height: 40px; margin: 0;"></div>
                         </div>
-                        <button class="control-btn" id="btn-reset-right" style="margin-top: 2px; padding: 4px 8px;">
-                            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-                                <path
-                                    d="M17.65 6.35A7.95 7.95 0 0012 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0112 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z" />
-                            </svg>
-                            <span style="font-size: 0.8rem;">Reset</span>
-                        </button>
+
+                        <!-- Right Column -->
+                        <div class="column right-col">
+                            <h2 class="col-title" style="font-size: 1.3rem;" data-i18n="breast_right">Derecho</h2>
+                            <button class="play-btn" id="btn-right" aria-label="Iniciar pecho derecho">
+                                <svg viewBox="0 0 24 24" class="icon-play">
+                                    <path d="M8 5v14l11-7z" />
+                                </svg>
+                            </button>
+                            <div class="stats">
+                                <div class="stat-row">
+                                    <span class="label tag" data-i18n="time">Tiempo</span>
+                                    <span class="value" id="time-right">00:00</span>
+                                </div>
+                                <div class="stat-row time-clickable" data-target="hour-right">
+                                    <span class="label tag"
+                                        style="display: flex; align-items: center; gap: 4px; color: var(--accent-primary);">
+                                        <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                                            <path
+                                                d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" />
+                                        </svg>
+                                        <span data-i18n="hour">Hora</span>
+                                    </span>
+                                    <span class="value time-display" id="hour-right">--:--</span>
+                                </div>
+                            </div>
+                            <button class="control-btn" id="btn-reset-right" style="margin-top: 2px; padding: 4px 8px;">
+                                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                                    <path
+                                        d="M17.65 6.35A7.95 7.95 0 0012 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0112 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z" />
+                                </svg>
+                                <span style="font-size: 0.8rem;">Reset</span>
+                            </button>
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
             </main>
 
             <!-- MAIN VIEW: BIBERON -->
             <main id="view-biberon" class="view">
                 <section class="glass-card nursing-section">
                     <h2 class="view-title" style="margin-bottom: 15px;" data-i18n="tab_biberon">Biberón</h2>
-                    <div class="biberon-row" style="display: flex; justify-content: center; align-items: center; gap: 40px; padding: 15px 5px;">
-                        <button class="play-btn" id="btn-bottle" aria-label="Iniciar biberón" style="width: 60px; height: 60px; flex-shrink: 0;">
+                    <div class="biberon-row"
+                        style="display: flex; justify-content: center; align-items: center; gap: 40px; padding: 15px 5px;">
+                        <button class="play-btn" id="btn-bottle" aria-label="Iniciar biberón"
+                            style="width: 60px; height: 60px; flex-shrink: 0;">
                             <svg viewBox="0 0 24 24" class="icon-play">
                                 <path d="M8 5v14l11-7z" />
                             </svg>
                         </button>
-                        
+
                         <div style="display: flex; align-items: center; gap: 15px;">
-                            <div class="stat-row time-clickable" data-target="ml-bottle" style="align-items: center; min-width: 50px;">
-                                <span class="label tag" style="color: var(--accent-primary); font-size: 0.7rem; padding: 2px 6px;" data-i18n="amount">Cantidad</span>
+                            <div class="stat-row time-clickable" data-target="ml-bottle"
+                                style="align-items: center; min-width: 50px;">
+                                <span class="label tag"
+                                    style="color: var(--accent-primary); font-size: 0.7rem; padding: 2px 6px;"
+                                    data-i18n="amount">Cantidad</span>
                                 <div style="display: flex; align-items: baseline; gap: 3px;">
                                     <span class="value" id="ml-bottle" style="font-size: 1.4rem;">--</span>
-                                    <span style="font-size: 0.8rem; color: var(--text-secondary); font-weight: 600;">mL</span>
+                                    <span
+                                        style="font-size: 0.8rem; color: var(--text-secondary); font-weight: 600;">mL</span>
                                 </div>
                             </div>
 
-                            <div class="divider" style="width: 1px; height: 40px; background: var(--card-border); margin: 0;"></div>
+                            <div class="divider"
+                                style="width: 1px; height: 40px; background: var(--card-border); margin: 0;"></div>
 
-                            <div class="stat-row time-clickable" data-target="hour-bottle" style="align-items: center; min-width: 50px;">
-                                <span class="label tag" style="color: var(--accent-primary); font-size: 0.7rem; padding: 2px 6px;" data-i18n="hour">Hora</span>
-                                <span class="value time-display" id="hour-bottle" style="font-size: 1.4rem;">--:--</span>
+                            <div class="stat-row time-clickable" data-target="hour-bottle"
+                                style="align-items: center; min-width: 50px;">
+                                <span class="label tag"
+                                    style="color: var(--accent-primary); font-size: 0.7rem; padding: 2px 6px;"
+                                    data-i18n="hour">Hora</span>
+                                <span class="value time-display" id="hour-bottle"
+                                    style="font-size: 1.4rem;">--:--</span>
                             </div>
                         </div>
                     </div>
@@ -144,62 +164,71 @@
             <!-- SHARED SECTIONS -->
             <div id="shared-sections" style="display: flex; flex-direction: column; gap: 12px; margin-top: 12px;">
                 <!-- Middle Section (Next Feeding) -->
-            <section class="glass-card next-feeding-section" style="align-items: center;">
-                <div style="width: fit-content; display: flex; flex-direction: column; gap: 10px;">
-                    <div class="input-group-row" style="flex-direction: row; align-items: center; justify-content: center; gap: 15px; width: auto;">
-                        <label style="margin: 0; font-size: 1rem;" data-i18n="next_feeding">Próxima toma:</label>
-                        <div style="display: flex; gap: 5px; justify-content: flex-end; align-items: center;">
-                            <input type="number" id="next-feeding-hours" min="0" value="4" style="width: 50px; padding: 6px; font-size: 1rem;">
-                            <span style="font-weight: 600; color: var(--text-secondary); font-size: 0.9rem;">h</span>
-                            <input type="number" id="next-feeding-minutes" min="0" max="59" value="0" style="width: 50px; padding: 6px; font-size: 1rem;">
-                            <span style="font-weight: 600; color: var(--text-secondary); font-size: 0.9rem;">m</span>
+                <section class="glass-card next-feeding-section" style="align-items: center;">
+                    <div style="width: fit-content; display: flex; flex-direction: column; gap: 10px;">
+                        <div class="input-group-row"
+                            style="flex-direction: row; align-items: center; justify-content: center; gap: 15px; width: auto;">
+                            <label style="margin: 0; font-size: 1rem;" data-i18n="next_feeding">Próxima toma:</label>
+                            <div style="display: flex; gap: 5px; justify-content: flex-end; align-items: center;">
+                                <input type="number" id="next-feeding-hours" min="0" value="4"
+                                    style="width: 50px; padding: 6px; font-size: 1rem;">
+                                <span
+                                    style="font-weight: 600; color: var(--text-secondary); font-size: 0.9rem;">h</span>
+                                <input type="number" id="next-feeding-minutes" min="0" max="59" value="0"
+                                    style="width: 50px; padding: 6px; font-size: 1rem;">
+                                <span
+                                    style="font-weight: 600; color: var(--text-secondary); font-size: 0.9rem;">m</span>
+                            </div>
+                        </div>
+                        <div class="next-time-display"
+                            style="display: flex; align-items: center; justify-content: center; gap: 20px; position: relative; padding: 10px; width: 100%; box-sizing: border-box;">
+
+                            <button class="control-btn" id="btn-reset-next" style="margin: 0; padding: 4px;"
+                                aria-label="Reiniciar próxima toma">
+                                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                                    <path
+                                        d="M17.65 6.35A7.95 7.95 0 0012 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0112 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z" />
+                                </svg>
+                            </button>
+
+                            <span class="value" id="next-feeding-time"
+                                style="font-size: 1.3rem; color: var(--text-secondary);">--:--</span>
+
+                            <button class="control-btn" id="btn-stop-next" style="margin: 0; padding: 4px;"
+                                aria-label="Detener próxima toma">
+                                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                                    <path d="M6 6h12v12H6z" />
+                                </svg>
+                            </button>
                         </div>
                     </div>
-                    <div class="next-time-display"
-                        style="display: flex; align-items: center; justify-content: center; gap: 20px; position: relative; padding: 10px; width: 100%; box-sizing: border-box;">
-                        
-                        <button class="control-btn" id="btn-reset-next"
-                            style="margin: 0; padding: 4px;"
-                            aria-label="Reiniciar próxima toma">
-                            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-                                <path d="M17.65 6.35A7.95 7.95 0 0012 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0112 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z" />
-                            </svg>
+                </section>
+
+                <!-- Bottom Section (Diaper) -->
+                <section class="glass-card diaper-section">
+                    <div class="diaper-row">
+                        <button class="diaper-btn poop-btn" id="btn-diaper">
+                            <span class="emoji">💩</span>
+                            <span class="btn-text" data-i18n="diaper_change">Cambio de pañal</span>
                         </button>
-
-                        <span class="value" id="next-feeding-time" style="font-size: 1.3rem; color: var(--text-secondary);">--:--</span>
-                        
-                        <button class="control-btn" id="btn-stop-next"
-                            style="margin: 0; padding: 4px;"
-                            aria-label="Detener próxima toma">
-                            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-                                <path d="M6 6h12v12H6z" />
-                            </svg>
-                        </button>
+                        <div class="time-label time-clickable" data-target="time-diaper">
+                            <span class="label tag"
+                                style="display: flex; align-items: center; gap: 4px; color: var(--accent-primary);">
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                                    <path
+                                        d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" />
+                                </svg>
+                                <span data-i18n="hour">Hora</span>
+                            </span>
+                            <span class="value time-display" id="time-diaper">--:--</span>
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <!-- Bottom Section (Diaper) -->
-            <section class="glass-card diaper-section">
-                <div class="diaper-row">
-                    <button class="diaper-btn poop-btn" id="btn-diaper">
-                        <span class="emoji">💩</span>
-                        <span class="btn-text" data-i18n="diaper_change">Cambio de pañal</span>
-                    </button>
-                    <div class="time-label time-clickable" data-target="time-diaper">
-                        <span class="label tag" style="display: flex; align-items: center; gap: 4px; color: var(--accent-primary);">
-                            <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" /></svg>
-                            <span data-i18n="hour">Hora</span>
-                        </span>
-                        <span class="value time-display" id="time-diaper">--:--</span>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Action Section -->
-            <button class="main-action-btn" id="btn-registrar" style="padding: 12px;" data-i18n="register_btn">
-                REGISTRAR
-            </button>
+                <!-- Action Section -->
+                <button class="main-action-btn" id="btn-registrar" style="padding: 12px;" data-i18n="register_btn">
+                    REGISTRAR
+                </button>
             </div> <!-- End Shared Sections -->
         </div> <!-- End Input Views Container -->
 
@@ -216,7 +245,8 @@
         <!-- MAIN VIEW: AJUSTES -->
         <main id="view-ajustes" class="view">
             <h2 class="view-title" data-i18n="settings_title">Ajustes</h2>
-            
+
+
             <section class="glass-card nursing-section" style="padding: 1rem 1.5rem;">
                 <div class="settings-row">
                     <span class="settings-label" data-i18n="settings_lang">Idioma</span>
@@ -273,17 +303,21 @@
                         <option value="fi">Suomi</option>
                     </select>
                 </div>
-                
+
                 <div class="settings-row">
                     <span class="settings-label" data-i18n="settings_cloud_color">Color del tema</span>
                     <div id="settings-cloud-color-group" class="color-picker-group">
-                        <button class="color-circle" data-color="#D6EAF8" style="background-color: #D6EAF8;" aria-label="Azul claro"></button>
-                        <button class="color-circle" data-color="#D5F5E3" style="background-color: #D5F5E3;" aria-label="Verde claro"></button>
-                        <button class="color-circle" data-color="#FADBD8" style="background-color: #FADBD8;" aria-label="Rosa"></button>
-                        <button class="color-circle" data-color="#FCF3CF" style="background-color: #FCF3CF;" aria-label="Amarillo claro"></button>
+                        <button class="color-circle" data-color="#D6EAF8" style="background-color: #D6EAF8;"
+                            aria-label="Azul claro"></button>
+                        <button class="color-circle" data-color="#D5F5E3" style="background-color: #D5F5E3;"
+                            aria-label="Verde claro"></button>
+                        <button class="color-circle" data-color="#FADBD8" style="background-color: #FADBD8;"
+                            aria-label="Rosa"></button>
+                        <button class="color-circle" data-color="#FCF3CF" style="background-color: #FCF3CF;"
+                            aria-label="Amarillo claro"></button>
                     </div>
                 </div>
-                
+
                 <div class="settings-row">
                     <span class="settings-label" data-i18n="settings_theme">Tema Claro</span>
                     <label class="toggle-switch">
@@ -291,7 +325,7 @@
                         <span class="slider"></span>
                     </label>
                 </div>
-                
+
                 <div class="settings-row">
                     <span class="settings-label" data-i18n="settings_default_tab">Pestaña inicial</span>
                     <select id="settings-default-tab" class="settings-select">
@@ -300,7 +334,7 @@
                         <option value="view-historial" data-i18n="tab_history">Historial</option>
                     </select>
                 </div>
-                
+
                 <div class="settings-row">
                     <span class="settings-label">Historial Compacto</span>
                     <label class="toggle-switch">
@@ -309,23 +343,31 @@
                     </label>
                 </div>
 
-                <div class="settings-row">
-                    <span class="settings-label" style="display:flex;align-items:center;">
-                        <span data-i18n="settings_system_alarm">Alarma del Sistema</span>
-                        <button id="btn-info-alarm" style="background:none;border:none;padding:0;margin-left:5px;cursor:pointer;color:var(--accent-primary);display:flex;align-items:center;">
-                            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-                                <path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
-                            </svg>
+                <div class="settings-row"
+                    style="flex-direction: column; align-items: flex-start; gap: 15px; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 15px; margin-top: 15px;">
+                    <span class="settings-label" data-i18n="settings_permissions_title">Permisos (Android)</span>
+                    <div style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
+                        <button class="main-action-btn" id="btn-perm-alarms"
+                            style="padding: 10px; font-size: 0.9rem; position: relative; width: 100%; display: flex; justify-content: center; align-items: center;">
+                            <span>Permiso de Alarma</span>
+                            <div id="btn-info-alarm"
+                                style="position: absolute; right: 10px; padding: 5px; cursor: pointer; color: inherit; display: flex; align-items: center;">
+                                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                                    <path
+                                        d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
+                                </svg>
+                            </div>
                         </button>
-                    </span>
-                    <label class="toggle-switch">
-                        <input type="checkbox" id="settings-system-alarm">
-                        <span class="slider"></span>
-                    </label>
+                        <button class="main-action-btn" id="btn-perm-notif" 
+                            style="padding: 10px; font-size: 0.9rem; width: 100%; display: flex; justify-content: center; align-items: center;"
+                            data-i18n="settings_perm_notif">Permiso de Notificaciones</button>
+                    </div>
                 </div>
-                
+
                 <div class="settings-row" style="margin-top: 15px;">
-                    <button class="main-action-btn" id="btn-report-bug" style="padding: 10px; background-color: var(--accent-left); border-radius: 8px; font-size: 1rem;" data-i18n="settings_report">
+                    <button class="main-action-btn" id="btn-report-bug"
+                        style="padding: 10px; background-color: var(--accent-left); border-radius: 8px; font-size: 1rem;"
+                        data-i18n="settings_report">
                         Reportar un error
                     </button>
                 </div>
@@ -336,13 +378,15 @@
         <nav class="bottom-nav glass-nav">
             <button class="nav-item active" data-target="view-pecho">
                 <svg viewBox="0 0 24 24" class="nav-icon" fill="currentColor">
-                    <path d="M 10 2 L 14 2 C 14 7 16 7 20 10 C 22 12 21 16 20 18 C 20 23 15 23 13 18 C 12.5 16 11.5 16 11 18 C 9 23 4 23 4 18 C 3 16 2 12 4 10 C 8 7 10 7 10 2 Z"/>
+                    <path
+                        d="M 10 2 L 14 2 C 14 7 16 7 20 10 C 22 12 21 16 20 18 C 20 23 15 23 13 18 C 12.5 16 11.5 16 11 18 C 9 23 4 23 4 18 C 3 16 2 12 4 10 C 8 7 10 7 10 2 Z" />
                 </svg>
                 <span data-i18n="tab_pecho">Pecho</span>
             </button>
             <button class="nav-item" data-target="view-biberon">
                 <svg viewBox="0 0 24 24" class="nav-icon" fill="currentColor">
-                    <path d="M 9.5 8 C 9.5 6 11 6.5 11 4.5 C 11 2.5 13 2.5 13 4.5 C 13 6.5 14.5 6 14.5 8 C 16 8 16.5 8.5 16.5 9 C 16.5 9.5 16 10 14.5 10 C 17 10 17.5 12.5 16.5 14.5 C 15.5 16.5 17 19 17 20 C 17 21.5 16 22 14 22 L 10 22 C 8 22 7 21.5 7 20 C 7 19 8.5 16.5 7.5 14.5 C 6.5 12.5 7 10 9.5 10 C 8 10 7.5 9.5 7.5 9 C 7.5 8.5 8 8 9.5 8 Z" />
+                    <path
+                        d="M 9.5 8 C 9.5 6 11 6.5 11 4.5 C 11 2.5 13 2.5 13 4.5 C 13 6.5 14.5 6 14.5 8 C 16 8 16.5 8.5 16.5 9 C 16.5 9.5 16 10 14.5 10 C 17 10 17.5 12.5 16.5 14.5 C 15.5 16.5 17 19 17 20 C 17 21.5 16 22 14 22 L 10 22 C 8 22 7 21.5 7 20 C 7 19 8.5 16.5 7.5 14.5 C 6.5 12.5 7 10 9.5 10 C 8 10 7.5 9.5 7.5 9 C 7.5 8.5 8 8 9.5 8 Z" />
                 </svg>
                 <span data-i18n="tab_biberon">Biberón</span>
             </button>
@@ -360,7 +404,8 @@
             </button>
             <button class="nav-item" data-target="view-ajustes">
                 <svg viewBox="0 0 24 24" class="nav-icon" fill="currentColor">
-                    <path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.06-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.73,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.06,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.43-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.49-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"/>
+                    <path
+                        d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.06-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.73,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.06,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.43-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.49-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z" />
                 </svg>
                 <span data-i18n="tab_settings">Ajustes</span>
             </button>
@@ -389,7 +434,8 @@
         <div class="time-popup-box glass-card">
             <h3 style="text-align: center; margin-bottom: 10px;">Cantidad de biberón</h3>
             <div style="display: flex; justify-content: center; align-items: center; gap: 10px; margin-bottom: 20px;">
-                <input type="number" id="modal-ml-input" min="0" step="10" placeholder="0" style="width: 100px; padding: 10px; border-radius: 12px; background: rgba(0,0,0,0.2); border: 1px solid var(--card-border); color: white; text-align: center; font-size: 2rem; font-family: inherit; outline: none;">
+                <input type="number" id="modal-ml-input" min="0" step="10" placeholder="0"
+                    style="width: 100px; padding: 10px; border-radius: 12px; background: rgba(0,0,0,0.2); border: 1px solid var(--card-border); color: white; text-align: center; font-size: 2rem; font-family: inherit; outline: none;">
                 <span style="font-size: 1.2rem; color: var(--text-secondary); font-weight: 600;">mL</span>
             </div>
             <div class="popup-actions">
@@ -404,7 +450,8 @@
     <div id="delete-modal" class="time-popup-overlay">
         <div class="time-popup-box glass-card">
             <h3 style="text-align: center; margin-bottom: 10px;">¿Borrar registro?</h3>
-            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 10px;">Esta acción no se puede deshacer.</p>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 10px;">Esta acción no se puede
+                deshacer.</p>
             <div class="popup-actions">
                 <button id="delete-cancel" class="btn-secondary" style="flex: 1;">Cancelar</button>
                 <button id="delete-confirm" class="main-action-btn"
@@ -417,10 +464,13 @@
     <div id="merge-modal" class="time-popup-overlay">
         <div class="time-popup-box glass-card">
             <h3 style="text-align: center; margin-bottom: 10px;">¿Unir registros?</h3>
-            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 10px; font-size: 0.9rem;">El último registro fue hace menos de 1 hora. ¿Quieres añadir este pecho a ese registro en lugar de crear uno nuevo?</p>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 10px; font-size: 0.9rem;">El
+                último registro fue hace menos de 1 hora. ¿Quieres añadir este pecho a ese registro en lugar de crear
+                uno nuevo?</p>
             <div class="popup-actions" style="flex-direction: column;">
                 <button id="merge-confirm" class="main-action-btn"
-                    style="padding: 12px; width: auto; border-radius: 12px; font-size: 1rem; background: var(--accent-primary);">Sí, unir con el anterior</button>
+                    style="padding: 12px; width: auto; border-radius: 12px; font-size: 1rem; background: var(--accent-primary);">Sí,
+                    unir con el anterior</button>
                 <button id="merge-cancel" class="btn-secondary" style="width: auto;">No, crear uno nuevo</button>
             </div>
         </div>
@@ -431,7 +481,8 @@
         <div class="time-popup-box glass-card">
             <div style="display: flex; flex-direction: column; gap: 10px;">
                 <h3 id="modal-title" style="text-align: center; margin-bottom: 5px;">Editar registro</h3>
-                <select id="event-type" class="settings-select" style="width: 100%; text-align: center; margin-bottom: 5px; padding: 5px; display: none;">
+                <select id="event-type" class="settings-select"
+                    style="width: 100%; text-align: center; margin-bottom: 5px; padding: 5px; display: none;">
                     <option value="left">Pecho Izquierdo</option>
                     <option value="right">Pecho Derecho</option>
                     <option value="bottle">Biberón</option>
@@ -439,7 +490,8 @@
                 </select>
                 <div style="display: flex; flex-direction: column; align-items: center; gap: 5px;">
                     <label class="sub-label" style="text-align: center;">Fecha y Hora</label>
-                    <select id="edit-date" class="settings-select" style="width: 130px; text-align: center; margin-bottom: 5px; padding: 5px;">
+                    <select id="edit-date" class="settings-select"
+                        style="width: 130px; text-align: center; margin-bottom: 5px; padding: 5px;">
                     </select>
                     <div class="time-inputs">
                         <input type="number" id="edit-hour" min="0" max="23" placeholder="HH">
@@ -447,15 +499,18 @@
                         <input type="number" id="edit-minute" min="0" max="59" placeholder="MM">
                     </div>
                 </div>
-                
-                <div id="edit-duration-container" style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+
+                <div id="edit-duration-container"
+                    style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
                     <label class="sub-label" style="text-align: center;">Duración (minutos)</label>
-                    <input type="number" id="edit-duration" min="0" placeholder="Min" style="width: 100px; padding: 10px; border-radius: 12px; border: 1px solid var(--card-border); color: var(--text-primary); text-align: center; font-size: 1.2rem; font-family: inherit; outline: none;">
+                    <input type="number" id="edit-duration" min="0" placeholder="Min"
+                        style="width: 100px; padding: 10px; border-radius: 12px; border: 1px solid var(--card-border); color: var(--text-primary); text-align: center; font-size: 1.2rem; font-family: inherit; outline: none;">
                 </div>
-                
+
                 <div style="display: flex; flex-direction: column; align-items: center; gap: 10px; width: 100%;">
                     <label class="sub-label" style="text-align: center;">Nota (opcional)</label>
-                    <textarea id="edit-note" placeholder="Añadir una nota..." style="width: 100%; padding: 10px; border-radius: 12px; background: var(--inner-bg); border: 1px solid var(--card-border); color: var(--text-primary); font-family: inherit; outline: none; resize: vertical; min-height: 60px;"></textarea>
+                    <textarea id="edit-note" placeholder="Añadir una nota..."
+                        style="width: 100%; padding: 10px; border-radius: 12px; background: var(--inner-bg); border: 1px solid var(--card-border); color: var(--text-primary); font-family: inherit; outline: none; resize: vertical; min-height: 60px;"></textarea>
                 </div>
             </div>
 
@@ -467,11 +522,27 @@
         </div>
     </div>
 
+    <!-- Info Alarm Modal -->
+    <div class="time-popup-overlay" id="info-alarm-modal">
+        <div class="time-popup glass-card" style="padding: 1.5rem; text-align: center; max-width: 320px; background: var(--bg-color); border: 2px solid var(--accent-primary);">
+            <h3 style="margin-top: 0; color: var(--text-primary); margin-bottom: 1rem;">Funcionamiento de la Alarma</h3>
+            <p style="color: var(--text-secondary); line-height: 1.5; font-size: 0.95rem; margin-bottom: 1.5rem;">
+                La aplicación usará el volumen general de la Alarma del dispositivo para asegurarse de que suene. Sin
+                embargo, <b>la app necesita estar abierta</b> (en primer o segundo plano) para poder sonar cuando acabe
+                el temporizador.
+            </p>
+            <button class="main-action-btn" id="btn-info-alarm-ok"
+                style="padding: 10px; border-radius: 8px;">Entendido</button>
+        </div>
+    </div>
+
     <!-- Bug Report Modal -->
     <div class="time-popup-overlay" id="bug-modal">
         <div class="time-popup-box glass-card">
             <h2 data-i18n="bug_title">Reportar un Error</h2>
-            <textarea id="bug-description" rows="4" style="width: 100%; border-radius: 12px; padding: 12px; background: var(--inner-bg); color: var(--text-primary); border: 1px solid var(--card-border); font-family: inherit; font-size: 1rem; outline: none; resize: none;" placeholder="Describe el problema detalladamente..."></textarea>
+            <textarea id="bug-description" rows="4"
+                style="width: 100%; border-radius: 12px; padding: 12px; background: var(--inner-bg); color: var(--text-primary); border: 1px solid var(--card-border); font-family: inherit; font-size: 1rem; outline: none; resize: none;"
+                placeholder="Describe el problema detalladamente..."></textarea>
             <div class="popup-actions" style="margin-top: 10px;">
                 <button class="btn-secondary" id="bug-cancel" style="flex: 1;" data-i18n="cancel">Cancelar</button>
                 <button class="main-action-btn" id="bug-send" style="flex: 1;" data-i18n="send">Enviar</button>
@@ -479,34 +550,13 @@
         </div>
     </div>
 
-    <!-- Info Alarm Modal -->
-    <div class="time-popup-overlay" id="info-alarm-modal">
-        <div class="time-popup-box glass-card">
-            <h3 style="text-align: center; margin-bottom: 10px;" data-i18n="settings_system_alarm">Alarma del Sistema</h3>
-            <p style="text-align: justify; color: var(--text-primary); font-size: 0.95rem; line-height: 1.4; margin-bottom: 15px;">
-                <strong>Desactivado (por defecto):</strong> La alarma sonará integrada en la aplicación. Si cierras completamente la app, no sonará.<br><br>
-                <strong>Activado:</strong> La alarma se programará directamente en la aplicación de Reloj de tu móvil. Esto asegura que sonará a la hora exacta, incluso si cierras esta aplicación, usando tu pantalla de alarma habitual.
-            </p>
-            <div class="popup-actions" style="margin-top: 10px;">
-                <button class="main-action-btn" id="info-alarm-close" style="flex: 1; padding: 12px; border-radius: 12px;">Entendido</button>
-            </div>
-        </div>
-    </div>
 
-    <!-- Info Alarm Modal -->
-    <div class="time-popup-overlay" id="info-alarm-modal">
-        <div class="time-popup-box glass-card" style="padding: 20px;">
-            <h3 style="text-align: center; margin-bottom: 10px;" data-i18n="settings_system_alarm">Alarma del Sistema</h3>
-            <p style="text-align: left; color: var(--text-primary); font-size: 0.95rem; line-height: 1.4; margin-bottom: 15px;">
-                <strong>Desactivado (por defecto):</strong> La alarma sonará integrada en la aplicación. Si cierras completamente la app, no sonará.<br><br>
-                <strong>Activado:</strong> La alarma se programará directamente en la aplicación de Reloj de tu móvil. Esto asegura que sonará a la hora exacta, incluso si cierras esta aplicación, usando tu pantalla de alarma habitual.
-            </p>
-            <div class="popup-actions" style="margin-top: 10px;">
-                <button class="main-action-btn" id="info-alarm-close" style="flex: 1; padding: 12px; border-radius: 12px;">Entendido</button>
-            </div>
-        </div>
-    </div>
 
+    <!-- Info Alarm Modal Removed -->
+
+    <!-- Capacitor JS -->
+    <script src="capacitor.js"></script>
+    <script src="capacitor-local-notifications.js"></script>
     <script src="config.js"></script>
     <script src="script.js"></script>
 </body>
