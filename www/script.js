@@ -1161,7 +1161,7 @@ function renderHistory() {
         
         // Build the HTML for the day
         let dayHtml = `
-            <div class="daily-group glass-card" style="padding: 15px; margin-bottom: 15px;">
+            <div class="daily-group glass-card" style="padding: 15px;">
                 <div class="daily-header" style="display: flex; justify-content: space-between; align-items: center; cursor: pointer;" onclick="toggleDay('day-${dayIndex}')">
                     <div style="font-size: 1.1rem; font-weight: 600;">${dateDisplay}</div>
                     <div style="display: flex; align-items: center; gap: 15px;">
@@ -1213,10 +1213,11 @@ function renderHistory() {
             if (sessionEvents.length === 0) return;
             sessionEvents.sort((a, b) => b.timeStr.localeCompare(a.timeStr));
 
-            let sessionHtml = `<div class="history-item" style="flex-direction: column; align-items: stretch; gap: 0;">`;
+            let containerPadding = appSettings.compactHistory ? 'padding: 6px 12px;' : '';
+            let sessionHtml = `<div class="history-item" style="flex-direction: column; align-items: stretch; gap: 0; ${containerPadding}">`;
             
             sessionEvents.forEach((ev, idx) => {
-                const borderTop = idx > 0 ? `border-top: 1px solid var(--card-border); margin-top: 8px; padding-top: 8px;` : '';
+                const borderTop = idx > 0 ? (appSettings.compactHistory ? `border-top: 1px solid var(--card-border); margin-top: 6px; padding-top: 6px;` : `border-top: 1px solid var(--card-border); margin-top: 8px; padding-top: 8px;`) : '';
                 
                 if (appSettings.compactHistory) {
                     const noteHtml = ev.note ? `<div class="history-note-content" contenteditable="true" onblur="saveInlineNote('${ev.id}', '${ev.key}', this.innerText)" onclick="event.stopPropagation();" style="display: none; width: 100%; margin-top: 8px; padding: 8px 10px; background: rgba(0,0,0,0.05); border-radius: 8px; font-size: 0.9rem; color: var(--text-secondary); white-space: pre-wrap; line-height: 1.3; outline: none; cursor: text;">${ev.note}</div>` : '';
@@ -1237,7 +1238,7 @@ function renderHistory() {
                                 
                                 <!-- Right Column: Type & Actions -->
                                 <div style="display: flex; align-items: center; justify-content: space-between; flex: 1;">
-                                    <div class="history-title" style="font-size: 1.1rem; font-weight: 500; display: flex; align-items: center;"><span>${ev.icon}</span> <span style="margin-left: 4px;">${ev.type}</span></div>
+                                    <div class="history-title" style="font-size: 1.1rem; font-weight: 500; display: flex; align-items: center;"><span>${ev.type}</span> <span style="margin-left: 4px;">${ev.icon}</span></div>
                                     <div class="history-actions" style="display: flex; gap: 4px;">
                                         <button class="action-btn edit-btn" onclick="editEvent('${ev.id}', '${ev.key}'); event.stopPropagation();" title="Editar">
                                             <svg viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
@@ -1258,14 +1259,14 @@ function renderHistory() {
                         <div class="history-event-row" style="display: flex; width: 100%; gap: 12px; align-items: center; ${borderTop}">
                             <!-- Left Column: Time & Duration -->
                             <div style="display: flex; flex-direction: column; align-items: center; min-width: 65px;">
-                                <div class="history-time" style="font-size: 1.2rem; font-weight: 600;">${ev.timeStr}</div>
-                                ${ev.desc ? `<div class="history-desc" style="font-size: 0.95rem; color: var(--text-secondary); font-weight: 500; margin-top: 2px;">${ev.desc}</div>` : ''}
+                                <div class="history-time" style="font-size: 1.1rem; font-weight: 600;">${ev.timeStr}</div>
+                                ${ev.desc ? `<div class="history-desc" style="font-size: 0.85rem; color: var(--text-secondary); font-weight: 500; margin-top: 2px;">${ev.desc}</div>` : ''}
                             </div>
                             
                             <!-- Right Column: Type, Actions & Notes -->
                             <div style="display: flex; flex-direction: column; flex: 1;">
                                 <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
-                                    <div class="history-title" style="font-size: 1.15rem; font-weight: 500;"><span>${ev.icon}</span> ${ev.type}</div>
+                                    <div class="history-title" style="font-size: 1.1rem; font-weight: 500; display: flex; align-items: center;"><span>${ev.type}</span> <span style="margin-left: 4px;">${ev.icon}</span></div>
                                     <div class="history-actions" style="display: flex; gap: 4px;">
                                         <button class="action-btn edit-btn" onclick="editEvent('${ev.id}', '${ev.key}')" title="Editar">
                                             <svg viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
@@ -1275,7 +1276,7 @@ function renderHistory() {
                                         </button>
                                     </div>
                                 </div>
-                                <div style="margin-top: 6px; font-size: 0.95rem; color: var(--text-secondary); width: 100%;">
+                                <div style="margin-top: 6px; font-size: 0.9rem; color: var(--text-secondary); width: 100%;">
                                     <strong>Notas:</strong>
                                     <span contenteditable="true" 
                                           onblur="saveInlineNote('${ev.id}', '${ev.key}', this.innerText)" 

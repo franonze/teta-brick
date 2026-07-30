@@ -610,7 +610,7 @@ input[type="number"]:focus {
 .history-list {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 6px;
 }
 
 .history-item {
