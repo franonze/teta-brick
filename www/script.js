@@ -362,13 +362,13 @@ function startAlarmLoop() {
         if (navigator.serviceWorker) {
             navigator.serviceWorker.ready.then(registration => {
                 registration.showNotification('¡Hora de la toma!', {
-                    body: 'El tiempo estimado para la próxima toma ha llegado.'
+                    body: 'Es hora de dar de comer a tu bebé.'
                 });
             }).catch(() => {
-                new Notification('¡Hora de la toma!', { body: 'El tiempo estimado para la próxima toma ha llegado.' });
+                new Notification('¡Hora de la toma!', { body: 'Es hora de dar de comer a tu bebé.' });
             });
         } else {
-            new Notification('¡Hora de la toma!', { body: 'El tiempo estimado para la próxima toma ha llegado.' });
+            new Notification('¡Hora de la toma!', { body: 'Es hora de dar de comer a tu bebé..' });
         }
     }
 }
@@ -1264,8 +1264,9 @@ function renderHistory() {
                                 
                                 <!-- Right Column: Type & Actions -->
                                 <div style="display: flex; align-items: center; justify-content: space-between; flex: 1;">
-                                    <div class="history-title" style="font-size: 1.1rem; font-weight: 500; line-height: 1.2;">${ev.type} <span style="margin-left: 4px;">${ev.icon}</span></div>
-                                    <div class="history-actions" style="display: flex; gap: 4px; flex-shrink: 0;">
+                                    <div class="history-title" style="font-size: 0.95rem; font-weight: 500; line-height: 1.2;">${ev.type}</div>
+                                    <div class="history-actions" style="display: flex; gap: 4px; flex-shrink: 0; align-items: center;">
+                                        <span style="font-size: 1.1rem; margin-right: 4px;">${ev.icon}</span>
                                         <button class="action-btn edit-btn" onclick="editEvent('${ev.id}', '${ev.key}'); event.stopPropagation();" title="Editar">
                                             <svg viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
                                         </button>
@@ -1292,8 +1293,9 @@ function renderHistory() {
                             <!-- Right Column: Type, Actions & Notes -->
                             <div style="display: flex; flex-direction: column; flex: 1;">
                                 <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
-                                    <div class="history-title" style="font-size: 1.1rem; font-weight: 500; line-height: 1.2;">${ev.type} <span style="margin-left: 4px;">${ev.icon}</span></div>
-                                    <div class="history-actions" style="display: flex; gap: 4px; flex-shrink: 0;">
+                                    <div class="history-title" style="font-size: 0.95rem; font-weight: 500; line-height: 1.2;">${ev.type}</div>
+                                    <div class="history-actions" style="display: flex; gap: 4px; flex-shrink: 0; align-items: center;">
+                                        <span style="font-size: 1.1rem; margin-right: 4px;">${ev.icon}</span>
                                         <button class="action-btn edit-btn" onclick="editEvent('${ev.id}', '${ev.key}')" title="Editar">
                                             <svg viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
                                         </button>
