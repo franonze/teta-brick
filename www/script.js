@@ -3,6 +3,30 @@ if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('sw.js').catch(err => console.log('SW error', err));
 }
 
+// Initialize Capacitor Plugins lazily
+function getCap() { return window.Capacitor; }
+function isNative() { 
+    const c = getCap(); 
+    if (!c) return false;
+    if (typeof c.isNativePlatform === 'function' && c.isNativePlatform()) return true;
+    if (c.isNative === true) return true;
+    if (typeof c.getPlatform === 'function' && c.getPlatform() !== 'web') return true;
+    if (c.platform && c.platform !== 'web') return true;
+    return !!(c.Plugins && (c.Plugins.SystemAlarmPlugin || c.Plugins.LocalNotifications));
+}
+function getSysAlarm() { 
+    const c = getCap(); 
+    if (!c) return null;
+    if (c.Plugins && c.Plugins.SystemAlarmPlugin) return c.Plugins.SystemAlarmPlugin;
+    return c.registerPlugin ? c.registerPlugin('SystemAlarmPlugin') : null; 
+}
+function getLocalNotif() { 
+    const c = getCap(); 
+    if (!c) return null;
+    if (c.Plugins && c.Plugins.LocalNotifications) return c.Plugins.LocalNotifications;
+    return c.registerPlugin ? c.registerPlugin('LocalNotifications') : null; 
+}
+
 // Utility to format time as mm:ss
 function formatTime(seconds) {
     const m = Math.floor(seconds / 60).toString().padStart(2, '0');
@@ -107,10 +131,12 @@ async function unlockAudioContext() {
     audioUnlocked = true;
     
     // Solicitar permiso para notificaciones si aún no se ha preguntado
-    if (window.Capacitor && window.Capacitor.isNativePlatform()) {
-        try {
-            await window.Capacitor.Plugins.LocalNotifications.requestPermissions();
-            await window.Capacitor.Plugins.LocalNotifications.createChannel({
+    if (isNative()) {
+        const localNotif = getLocalNotif();
+        if (localNotif) {
+            try {
+                await localNotif.requestPermissions();
+                await localNotif.createChannel({
                 id: 'default',
                 name: 'Notificaciones Predeterminadas',
                 description: 'Canal principal para notificaciones de la app',
@@ -119,6 +145,7 @@ async function unlockAudioContext() {
             });
         } catch (e) {
             console.error('Error creating notification channel/permissions:', e);
+        }
         }
     } else if ('Notification' in window && Notification.permission === 'default') {
         Notification.requestPermission();
@@ -291,27 +318,34 @@ function playAlarmBeep() {
 function startAlarmLoop() {
     if (alarmInterval) return;
     
-    const isNative = window.Capacitor && window.Capacitor.isNativePlatform();
+    alarmTriggered = true;
+    nextFeedingTime.classList.add('alarm-ringing');
     
-    if (isNative && appSettings.useSystemAlarm) {
-        // El sistema se encarga de la alarma
-        return;
+    let playedNativeSound = false;
+    
+    if (isNative()) {
+        const sysAlarm = getSysAlarm();
+        if (sysAlarm) {
+            try {
+                sysAlarm.playAlarmSound();
+                playedNativeSound = true;
+                alarmInterval = setInterval(() => {}, 1000);
+            } catch(e) {
+                console.error('Failed to play native sound', e);
+            }
+        }
     }
     
-    if (isNative) {
-        const SystemAlarmPlugin = window.Capacitor.Plugins.SystemAlarmPlugin;
-        if (SystemAlarmPlugin) {
-            SystemAlarmPlugin.playAlarmSound();
-        }
-        // Creamos un interval vacío solo para marcar que está activo
-        alarmInterval = setInterval(() => {}, 1000);
-    } else {
+    if (!playedNativeSound) {
         playAlarmBeep(); 
         alarmInterval = setInterval(playAlarmBeep, CONFIG.alarm.repeatIntervalMs); 
     } 
     
-    if (window.Capacitor && window.Capacitor.isNativePlatform()) {
-        // La notificación nativa ya está gestionada por el SO, no lanzamos la web.
+    if (isNative()) {
+        const localNotif = getLocalNotif();
+        if (localNotif) {
+            // La notificación nativa ya está gestionada por el SO si usamos schedule()
+        }
     } else if ('Notification' in window && Notification.permission === 'granted') {
         if (navigator.serviceWorker) {
             navigator.serviceWorker.ready.then(registration => {
@@ -327,26 +361,25 @@ function startAlarmLoop() {
     }
 }
 
-
-
 function stopAlarm() {
+    alarmTriggered = false;
     if (alarmInterval) {
         clearInterval(alarmInterval);
         alarmInterval = null;
     }
     
-    const isNative = window.Capacitor && window.Capacitor.isNativePlatform();
-    if (isNative) {
-        const SystemAlarmPlugin = window.Capacitor.Plugins.SystemAlarmPlugin;
-        if (SystemAlarmPlugin) {
-            SystemAlarmPlugin.stopAlarmSound();
+    if (isNative()) {
+        const sysAlarm = getSysAlarm();
+        if (sysAlarm) {
+            sysAlarm.stopAlarmSound();
+        }
+        const localNotif = getLocalNotif();
+        if (localNotif) {
+            localNotif.cancel({ notifications: [{ id: 1 }] }).catch(console.error);
         }
     }
     
     nextFeedingTime.classList.remove('alarm-ringing');
-    if (isNative) {
-        window.Capacitor.Plugins.LocalNotifications.cancel({ notifications: [{ id: 1 }] });
-    }
 }
 
 // Detener la alarma tocando el temporizador
@@ -365,28 +398,25 @@ function updateNextFeedingTime() {
             countdownInterval = setInterval(renderCountdown, 1000);
         }
         
-        if (window.Capacitor && window.Capacitor.isNativePlatform()) {
-            if (appSettings.useSystemAlarm) {
-                const SystemAlarmPlugin = window.Capacitor.Plugins.SystemAlarmPlugin;
-                if (SystemAlarmPlugin) {
-                    SystemAlarmPlugin.setAlarm({
-                        hour: nextFeedingDate.getHours(),
-                        minute: nextFeedingDate.getMinutes(),
-                        message: getTranslation('next_feeding')
-                    });
-                }
-            } else {
-                window.Capacitor.Plugins.LocalNotifications.schedule({
+        if (isNative()) {
+            const sysAlarm = getSysAlarm();
+            if (sysAlarm) {
+                sysAlarm.checkExactAlarmPermission().catch(e => console.error('Error checking alarm permission:', e));
+            }
+            
+            const localNotif = getLocalNotif();
+            if (localNotif) {
+                localNotif.schedule({
                     notifications: [
                         {
-                            title: getTranslation('next_feeding'),
-                            body: "El tiempo estimado para la próxima toma ha llegado.",
+                            title: "¡Hora de la toma!",
+                            body: "El tiempo estimado ha llegado.",
                             id: 1,
                             schedule: { at: nextFeedingDate },
                             channelId: 'default'
                         }
                     ]
-                });
+                }).catch(e => console.error('Error scheduling local notification:', e));
             }
         }
         
@@ -398,8 +428,11 @@ function updateNextFeedingTime() {
             countdownInterval = null;
         }
         
-        if (window.Capacitor && window.Capacitor.isNativePlatform()) {
-            window.Capacitor.Plugins.LocalNotifications.cancel({ notifications: [{ id: 1 }] });
+        if (isNative()) {
+            const localNotif = getLocalNotif();
+            if (localNotif) {
+                localNotif.cancel({ notifications: [{ id: 1 }] });
+            }
         }
         
         nextFeedingTime.textContent = '--:--';
@@ -787,9 +820,17 @@ btnMergeConfirm.addEventListener('click', () => {
 
 // Registrar Session
 btnRegistrar.addEventListener('click', () => {
+    // Determine the date to group this session under.
+    // If a timer was started, use the day it was started on, to avoid crossing midnight issues.
+    let baseDate = new Date();
+    if (lastFeedingStartTime) {
+        const start = new Date(lastFeedingStartTime);
+        baseDate.setFullYear(start.getFullYear(), start.getMonth(), start.getDate());
+    }
+
     // 1. Gather current state
     const sessionData = {
-        date: new Date().toISOString(),
+        date: baseDate.toISOString(),
         left: {
             durationSeconds: leftSeconds,
             startTime: hourLeft.textContent !== '--:--' ? hourLeft.textContent : null
@@ -819,14 +860,46 @@ btnRegistrar.addEventListener('click', () => {
 
     if (history.length > 0) {
         const lastRecord = history[history.length - 1];
-        const lastRecordDate = new Date(lastRecord.date);
-        const now = new Date();
-        const diffMinutes = (now - lastRecordDate) / (1000 * 60);
+        
+        // Find earliest start time of last record
+        let lastEarliestStr = '23:59';
+        if (lastRecord.left && lastRecord.left.startTime && lastRecord.left.startTime < lastEarliestStr) lastEarliestStr = lastRecord.left.startTime;
+        if (lastRecord.right && lastRecord.right.startTime && lastRecord.right.startTime < lastEarliestStr) lastEarliestStr = lastRecord.right.startTime;
+        if (lastRecord.bottle && lastRecord.bottle.startTime && lastRecord.bottle.startTime < lastEarliestStr) lastEarliestStr = lastRecord.bottle.startTime;
+        
+        // Find earliest start time of current session
+        let currEarliestStr = '23:59';
+        if (sessionData.left.startTime && sessionData.left.startTime < currEarliestStr) currEarliestStr = sessionData.left.startTime;
+        if (sessionData.right.startTime && sessionData.right.startTime < currEarliestStr) currEarliestStr = sessionData.right.startTime;
+        if (sessionData.bottle.startTime && sessionData.bottle.startTime < currEarliestStr) currEarliestStr = sessionData.bottle.startTime;
 
-        if (diffMinutes <= MERGE_WINDOW_MINUTES) {
-            pendingSessionData = sessionData;
-            mergeModal.classList.add('active');
-            return; // Wait for user decision
+        if (lastEarliestStr !== '23:59' && currEarliestStr !== '23:59') {
+            const lastDate = new Date(lastRecord.date);
+            const [lh, lm] = lastEarliestStr.split(':');
+            lastDate.setHours(parseInt(lh, 10), parseInt(lm, 10), 0, 0);
+            
+            const currDate = new Date(sessionData.date);
+            const [ch, cm] = currEarliestStr.split(':');
+            currDate.setHours(parseInt(ch, 10), parseInt(cm, 10), 0, 0);
+            
+            const diffMinutes = (currDate - lastDate) / (1000 * 60);
+
+            if (diffMinutes >= 0 && diffMinutes <= MERGE_WINDOW_MINUTES) {
+                pendingSessionData = sessionData;
+                mergeModal.classList.add('active');
+                return; // Wait for user decision
+            }
+        } else {
+            // Fallback if no start times are available
+            const lastRecordDate = new Date(lastRecord.date);
+            const now = new Date();
+            const diffMinutes = (now - lastRecordDate) / (1000 * 60);
+
+            if (diffMinutes >= 0 && diffMinutes <= MERGE_WINDOW_MINUTES) {
+                pendingSessionData = sessionData;
+                mergeModal.classList.add('active');
+                return; // Wait for user decision
+            }
         }
     }
 
@@ -1241,7 +1314,7 @@ window.toggleDay = function(dayId) {
 let currentDeleteId = null;
 let currentDeleteKey = null;
 
-let currentEditId = null;
+let currentEditId = null; 
 let currentEditKey = null;
 
 // Delete Modal Logic
@@ -1724,8 +1797,7 @@ function loadSettings() {
         theme: CONFIG.app.defaultTheme,
         defaultTab: CONFIG.app.defaultTab,
         cloudColor: CONFIG.app.defaultCloudColor,
-        compactHistory: CONFIG.app.defaultCompactHistory !== undefined ? CONFIG.app.defaultCompactHistory : true,
-        useSystemAlarm: CONFIG.app.useSystemAlarm !== undefined ? CONFIG.app.useSystemAlarm : false
+        compactHistory: CONFIG.app.defaultCompactHistory !== undefined ? CONFIG.app.defaultCompactHistory : true
     };
     if (saved) {
         try {
@@ -1754,8 +1826,6 @@ function loadSettings() {
     document.getElementById('settings-default-tab').value = settings.defaultTab;
     
     document.getElementById('settings-compact-history').checked = settings.compactHistory;
-    
-    document.getElementById('settings-system-alarm').checked = settings.useSystemAlarm;
     
     appSettings = settings;
     
@@ -1837,23 +1907,33 @@ document.getElementById('settings-compact-history').addEventListener('change', (
     }
 });
 
-document.getElementById('settings-system-alarm').addEventListener('change', (e) => {
-    updateSettingsStorage();
-});
+// Permission buttons
+const btnPermAlarms = document.getElementById('btn-perm-alarms');
+const btnPermNotif = document.getElementById('btn-perm-notif');
 
-const infoAlarmModal = document.getElementById('info-alarm-modal');
-const btnInfoAlarm = document.getElementById('btn-info-alarm');
-const btnInfoAlarmClose = document.getElementById('info-alarm-close');
+if (btnPermAlarms) {
+    btnPermAlarms.addEventListener('click', () => {
+        if (isNative()) {
+            const sysAlarm = getSysAlarm();
+            if (sysAlarm) sysAlarm.openExactAlarmSettings().catch(e => alert("Error Alarmas: " + JSON.stringify(e) + " " + e));
+            else alert("Error: sysAlarm es null");
+        } else {
+            alert('Solo disponible en Android');
+        }
+    });
+}
 
-btnInfoAlarm.addEventListener('click', () => {
-    infoAlarmModal.classList.add('active');
-});
-btnInfoAlarmClose.addEventListener('click', () => {
-    infoAlarmModal.classList.remove('active');
-});
-infoAlarmModal.addEventListener('click', (e) => {
-    if (e.target === infoAlarmModal) infoAlarmModal.classList.remove('active');
-});
+if (btnPermNotif) {
+    btnPermNotif.addEventListener('click', () => {
+        if (isNative()) {
+            const sysAlarm = getSysAlarm();
+            if (sysAlarm) sysAlarm.openNotificationSettings().catch(e => alert("Error Notif: " + JSON.stringify(e) + " " + e));
+            else alert("Error: sysAlarm es null (Notif)");
+        } else {
+            alert('Solo disponible en Android');
+        }
+    });
+}
 
 document.querySelectorAll('.color-circle').forEach(btn => {
     btn.addEventListener('click', (e) => {
@@ -1879,11 +1959,24 @@ function updateSettingsStorage(overrideColor = null) {
         theme: document.getElementById('settings-theme').checked ? 'light' : 'dark',
         defaultTab: document.getElementById('settings-default-tab').value,
         cloudColor: cloudColor,
-        compactHistory: document.getElementById('settings-compact-history').checked,
-        useSystemAlarm: document.getElementById('settings-system-alarm').checked
+        compactHistory: document.getElementById('settings-compact-history').checked
     };
     appSettings = newSettings;
     saveSettings(newSettings);
+}
+
+const infoAlarmModal = document.getElementById('info-alarm-modal');
+const btnInfoAlarmOk = document.getElementById('btn-info-alarm-ok');
+const btnInfoAlarm = document.getElementById('btn-info-alarm');
+
+if (btnInfoAlarm && infoAlarmModal && btnInfoAlarmOk) {
+    btnInfoAlarm.addEventListener('click', (e) => {
+        e.stopPropagation();
+        infoAlarmModal.classList.add('active');
+    });
+    btnInfoAlarmOk.addEventListener('click', () => {
+        infoAlarmModal.classList.remove('active');
+    });
 }
 
 const bugModal = document.getElementById('bug-modal');
