@@ -5,8 +5,8 @@ if ('serviceWorker' in navigator) {
 
 // Initialize Capacitor Plugins lazily
 function getCap() { return window.Capacitor; }
-function isNative() { 
-    const c = getCap(); 
+function isNative() {
+    const c = getCap();
     if (!c) return false;
     if (typeof c.isNativePlatform === 'function' && c.isNativePlatform()) return true;
     if (c.isNative === true) return true;
@@ -14,17 +14,17 @@ function isNative() {
     if (c.platform && c.platform !== 'web') return true;
     return !!(c.Plugins && (c.Plugins.SystemAlarmPlugin || c.Plugins.LocalNotifications));
 }
-function getSysAlarm() { 
-    const c = getCap(); 
+function getSysAlarm() {
+    const c = getCap();
     if (!c) return null;
     if (c.Plugins && c.Plugins.SystemAlarmPlugin) return c.Plugins.SystemAlarmPlugin;
-    return c.registerPlugin ? c.registerPlugin('SystemAlarmPlugin') : null; 
+    return c.registerPlugin ? c.registerPlugin('SystemAlarmPlugin') : null;
 }
-function getLocalNotif() { 
-    const c = getCap(); 
+function getLocalNotif() {
+    const c = getCap();
     if (!c) return null;
     if (c.Plugins && c.Plugins.LocalNotifications) return c.Plugins.LocalNotifications;
-    return c.registerPlugin ? c.registerPlugin('LocalNotifications') : null; 
+    return c.registerPlugin ? c.registerPlugin('LocalNotifications') : null;
 }
 
 // Utility to format time as mm:ss
@@ -47,7 +47,7 @@ function getCurrentTime() {
 // Add hours to a specific date and format as HH:MMh
 function addHoursToTime(baseDate, hoursToAdd) {
     if (!hoursToAdd || isNaN(hoursToAdd) || !baseDate) return '--:--';
-    
+
     const futureTime = new Date(baseDate.getTime() + hoursToAdd * 60 * 60 * 1000);
     return formatHHMM(futureTime);
 }
@@ -58,11 +58,11 @@ function getDiffSeconds(timeStr) {
     const [h, m] = timeStr.split(':').map(Number);
     const manualDate = new Date();
     manualDate.setHours(h, m, 0, 0);
-    
+
     let diffSeconds = Math.floor((now.getTime() - manualDate.getTime()) / 1000);
     if (diffSeconds < -12 * 3600) diffSeconds += 24 * 3600;
     else if (diffSeconds > 12 * 3600) diffSeconds -= 24 * 3600;
-    
+
     return diffSeconds;
 }
 
@@ -75,6 +75,7 @@ let rightSeconds = 0;
 let rightStartMillis = null;
 let lastFeedingStartTime = null; // Stores the Date of the last play press
 let countdownBaseTime = null; // Used for next feeding timer so it persists across sessions
+let currentNotifId = 1;
 
 let bottleMl = 0;
 let isBottlePlaying = false;
@@ -110,15 +111,15 @@ let audioUnlocked = false;
 // Trick to unlock audio on mobile browsers (Safari/Chrome)
 async function unlockAudioContext() {
     if (audioUnlocked) return;
-    
+
     if (!audioCtx) {
         audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     }
-    
+
     if (audioCtx.state === 'suspended') {
         audioCtx.resume();
     }
-    
+
     // Play a silent oscillator
     const osc = audioCtx.createOscillator();
     const gainNode = audioCtx.createGain();
@@ -127,9 +128,9 @@ async function unlockAudioContext() {
     gainNode.connect(audioCtx.destination);
     osc.start(0);
     osc.stop(0.1);
-    
+
     audioUnlocked = true;
-    
+
     // Solicitar permiso para notificaciones si aún no se ha preguntado
     if (isNative()) {
         const localNotif = getLocalNotif();
@@ -137,15 +138,15 @@ async function unlockAudioContext() {
             try {
                 await localNotif.requestPermissions();
                 await localNotif.createChannel({
-                id: 'default',
-                name: 'Notificaciones Predeterminadas',
-                description: 'Canal principal para notificaciones de la app',
-                importance: 4,
-                visibility: 1
-            });
-        } catch (e) {
-            console.error('Error creating notification channel/permissions:', e);
-        }
+                    id: 'default',
+                    name: 'Notificaciones Predeterminadas',
+                    description: 'Canal principal para notificaciones de la app',
+                    importance: 4,
+                    visibility: 1
+                });
+            } catch (e) {
+                console.error('Error creating notification channel/permissions:', e);
+            }
         }
     } else if ('Notification' in window && Notification.permission === 'default') {
         Notification.requestPermission();
@@ -166,6 +167,7 @@ function saveCurrentState() {
         timeDiaper: timeDiaper.textContent,
         lastFeedingStartTime: lastFeedingStartTime ? lastFeedingStartTime.getTime() : null,
         countdownBaseTime: countdownBaseTime ? countdownBaseTime.getTime() : null,
+        currentNotifId: currentNotifId,
         nextFeedingHours: nextFeedingHours.value,
         nextFeedingMinutes: nextFeedingMinutes.value,
         leftHighlight: btnLeft.classList.contains('highlight-next'),
@@ -179,36 +181,37 @@ function saveCurrentState() {
 function loadCurrentState() {
     const saved = localStorage.getItem(CONFIG.storage.stateKey);
     if (!saved) return;
-    
+
     try {
         const state = JSON.parse(saved);
-        
+
         leftSeconds = state.leftSeconds || 0;
         rightSeconds = state.rightSeconds || 0;
-        
+
         if (state.hourLeft) hourLeft.textContent = state.hourLeft;
         if (state.hourRight) hourRight.textContent = state.hourRight;
         if (state.timeDiaper) timeDiaper.textContent = state.timeDiaper;
         if (state.hourBottle) document.getElementById('hour-bottle').textContent = state.hourBottle;
-        
+
         if (state.bottleMl !== undefined && state.bottleMl !== '--') {
             bottleMl = parseInt(state.bottleMl) || 0;
             document.getElementById('ml-bottle').textContent = state.bottleMl;
         }
-        
+
         if (state.lastFeedingStartTime) lastFeedingStartTime = new Date(state.lastFeedingStartTime);
         if (state.countdownBaseTime) countdownBaseTime = new Date(state.countdownBaseTime);
-        
+        if (state.currentNotifId) currentNotifId = state.currentNotifId;
+
         if (state.nextFeedingHours !== undefined) nextFeedingHours.value = state.nextFeedingHours;
         else nextFeedingHours.value = CONFIG.app.defaultNextFeedingHours;
         if (state.nextFeedingMinutes !== undefined) nextFeedingMinutes.value = state.nextFeedingMinutes;
-        
+
         if (state.leftHighlight) btnLeft.classList.add('highlight-next');
         else btnLeft.classList.remove('highlight-next');
-        
+
         if (state.rightHighlight) btnRight.classList.add('highlight-next');
         else btnRight.classList.remove('highlight-next');
-        
+
         if (state.leftStartMillis) {
             btnLeft.innerHTML = svgPause;
             leftStartMillis = state.leftStartMillis;
@@ -220,7 +223,7 @@ function loadCurrentState() {
         } else {
             timeLeft.textContent = formatTime(leftSeconds);
         }
-        
+
         if (state.rightStartMillis) {
             btnRight.innerHTML = svgPause;
             rightStartMillis = state.rightStartMillis;
@@ -232,7 +235,7 @@ function loadCurrentState() {
         } else {
             timeRight.textContent = formatTime(rightSeconds);
         }
-        
+
         updateNextFeedingTime();
     } catch (e) {
         console.error("Failed to parse saved state", e);
@@ -257,7 +260,7 @@ setInterval(() => {
     } else {
         hourLeft.parentElement.classList.remove('future-time');
     }
-    
+
     if (hourRight.textContent !== '--:--') {
         const diff = getDiffSeconds(hourRight.textContent);
         if (diff < 0) {
@@ -269,7 +272,7 @@ setInterval(() => {
     } else {
         hourRight.parentElement.classList.remove('future-time');
     }
-    
+
     const hourBottle = document.getElementById('hour-bottle');
     if (hourBottle && hourBottle.textContent !== '--:--') {
         const diff = getDiffSeconds(hourBottle.textContent);
@@ -290,22 +293,22 @@ function playAlarmBeep() {
     if (audioCtx.state === 'suspended') {
         audioCtx.resume();
     }
-    
+
     const playBeep = (timeOffset) => {
         const osc = audioCtx.createOscillator();
         const gainNode = audioCtx.createGain();
-        
+
         osc.connect(gainNode);
         gainNode.connect(audioCtx.destination);
-        
+
         osc.type = 'sine';
         osc.frequency.setValueAtTime(CONFIG.alarm.frequencyHz, audioCtx.currentTime + timeOffset);
-        
+
         gainNode.gain.setValueAtTime(0, audioCtx.currentTime + timeOffset);
         gainNode.gain.linearRampToValueAtTime(1, audioCtx.currentTime + timeOffset + 0.05);
         gainNode.gain.setValueAtTime(1, audioCtx.currentTime + timeOffset + 0.15);
         gainNode.gain.linearRampToValueAtTime(0, audioCtx.currentTime + timeOffset + 0.2);
-        
+
         osc.start(audioCtx.currentTime + timeOffset);
         osc.stop(audioCtx.currentTime + timeOffset + 0.25);
     };
@@ -317,34 +320,43 @@ function playAlarmBeep() {
 
 function startAlarmLoop() {
     if (alarmInterval) return;
-    
+
     alarmTriggered = true;
     nextFeedingTime.classList.add('alarm-ringing');
-    
+
     let playedNativeSound = false;
-    
+
     if (isNative()) {
         const sysAlarm = getSysAlarm();
         if (sysAlarm) {
             try {
                 sysAlarm.playAlarmSound();
                 playedNativeSound = true;
-                alarmInterval = setInterval(() => {}, 1000);
-            } catch(e) {
+                alarmInterval = setInterval(() => { }, 1000);
+            } catch (e) {
                 console.error('Failed to play native sound', e);
             }
         }
     }
-    
+
     if (!playedNativeSound) {
-        playAlarmBeep(); 
-        alarmInterval = setInterval(playAlarmBeep, CONFIG.alarm.repeatIntervalMs); 
-    } 
-    
+        playAlarmBeep();
+        alarmInterval = setInterval(playAlarmBeep, CONFIG.alarm.repeatIntervalMs);
+    }
     if (isNative()) {
         const localNotif = getLocalNotif();
         if (localNotif) {
-            // La notificación nativa ya está gestionada por el SO si usamos schedule()
+            // Forzamos la notificación inmediata en caso de que la programada haya fallado o estemos en primer plano
+            localNotif.schedule({
+                notifications: [
+                    {
+                        title: "¡Hora de la toma!",
+                        body: "Es hora de dar de comer a tu bebé.",
+                        id: currentNotifId + 10000,
+                        channelId: 'default'
+                    }
+                ]
+            }).catch(e => console.error("Error triggering immediate notif:", e));
         }
     } else if ('Notification' in window && Notification.permission === 'granted') {
         if (navigator.serviceWorker) {
@@ -367,7 +379,7 @@ function stopAlarm() {
         clearInterval(alarmInterval);
         alarmInterval = null;
     }
-    
+
     if (isNative()) {
         const sysAlarm = getSysAlarm();
         if (sysAlarm) {
@@ -375,10 +387,10 @@ function stopAlarm() {
         }
         const localNotif = getLocalNotif();
         if (localNotif) {
-            localNotif.cancel({ notifications: [{ id: 1 }] }).catch(console.error);
+            localNotif.cancel({ notifications: [{ id: currentNotifId }] }).catch(console.error);
         }
     }
-    
+
     nextFeedingTime.classList.remove('alarm-ringing');
 }
 
@@ -397,29 +409,43 @@ function updateNextFeedingTime() {
         if (!countdownInterval) {
             countdownInterval = setInterval(renderCountdown, 1000);
         }
-        
+
         if (isNative()) {
             const sysAlarm = getSysAlarm();
             if (sysAlarm) {
                 sysAlarm.checkExactAlarmPermission().catch(e => console.error('Error checking alarm permission:', e));
             }
-            
+
             const localNotif = getLocalNotif();
             if (localNotif) {
-                localNotif.schedule({
-                    notifications: [
-                        {
-                            title: "¡Hora de la toma!",
-                            body: "El tiempo estimado ha llegado.",
-                            id: 1,
-                            schedule: { at: nextFeedingDate },
-                            channelId: 'default'
+                currentNotifId = Math.floor(Math.random() * 1000000) + 1;
+                saveCurrentState(); // Guardamos el nuevo ID para poder cancelarlo si cerramos la app
+
+                localNotif.createChannel({ id: 'default', name: 'Default', importance: 4, visibility: 1 })
+                    .then(() => {
+                        if (nextFeedingDate.getTime() <= Date.now()) {
+                            // Solo mostramos alerta para que el usuario sepa que está intentando probar una alarma en el pasado
+                            // console.log("La alarma está en el pasado");
                         }
-                    ]
-                }).catch(e => console.error('Error scheduling local notification:', e));
+                        return localNotif.schedule({
+                            notifications: [
+                                {
+                                    title: "¡Hora de la toma!",
+                                    body: "El tiempo estimado ha llegado.",
+                                    id: currentNotifId,
+                                    schedule: { at: nextFeedingDate, allowWhileIdle: true },
+                                    channelId: 'default'
+                                }
+                            ]
+                        });
+                    })
+                    .then(() => {
+                        // Solo mostramos alerta en desarrollo para diagnosticar
+                        // alert("Alarma real programada para: " + nextFeedingDate.toLocaleTimeString());
+                    }).catch(e => console.error('Error scheduling local notification:', e));
             }
         }
-        
+
         renderCountdown();
     } else {
         nextFeedingDate = null;
@@ -427,14 +453,14 @@ function updateNextFeedingTime() {
             clearInterval(countdownInterval);
             countdownInterval = null;
         }
-        
+
         if (isNative()) {
             const localNotif = getLocalNotif();
             if (localNotif) {
-                localNotif.cancel({ notifications: [{ id: 1 }] });
+                localNotif.cancel({ notifications: [{ id: currentNotifId }] }).catch(e => console.error(e));
             }
         }
-        
+
         nextFeedingTime.textContent = '--:--';
     }
     saveCurrentState();
@@ -444,7 +470,7 @@ function renderCountdown() {
     if (!nextFeedingDate) return;
     const now = new Date();
     const diff = nextFeedingDate.getTime() - now.getTime();
-    
+
     if (diff <= 0) {
         if (!alarmTriggered) {
             alarmTriggered = true;
@@ -455,7 +481,7 @@ function renderCountdown() {
         alarmTriggered = false;
         stopAlarm();
     }
-    
+
     const totalSeconds = diff <= 0 ? 0 : Math.floor(diff / 1000);
     const h = Math.floor(totalSeconds / 3600).toString().padStart(2, '0');
     const m = Math.floor((totalSeconds % 3600) / 60).toString().padStart(2, '0');
@@ -468,7 +494,7 @@ function pauseLeftTimer(isSwap = false) {
         clearInterval(leftTimerInterval);
         leftTimerInterval = null;
         btnLeft.innerHTML = svgPlay;
-        
+
         if (!isSwap && leftSeconds >= 0 && leftSeconds < MIN_SECONDS_TO_KEEP) {
             leftSeconds = 0;
             timeLeft.textContent = '00:00';
@@ -483,7 +509,7 @@ function pauseRightTimer(isSwap = false) {
         clearInterval(rightTimerInterval);
         rightTimerInterval = null;
         btnRight.innerHTML = svgPlay;
-        
+
         if (!isSwap && rightSeconds >= 0 && rightSeconds < MIN_SECONDS_TO_KEEP) {
             rightSeconds = 0;
             timeRight.textContent = '00:00';
@@ -502,7 +528,7 @@ btnLeft.addEventListener('click', () => {
     } else {
         // Start playing left, so pause right first
         pauseRightTimer();
-        
+
         const hr = document.getElementById('hour-right').textContent;
         const hb = document.getElementById('hour-bottle');
         const hbText = hb ? hb.textContent : '--:--';
@@ -519,7 +545,7 @@ btnLeft.addEventListener('click', () => {
             }
         } else if (leftSeconds <= 0) {
             leftSeconds = getDiffSeconds(hourLeft.textContent);
-            
+
             if (!lastFeedingStartTime) {
                 const [h, m] = hourLeft.textContent.split(':');
                 const manualDate = new Date();
@@ -533,7 +559,7 @@ btnLeft.addEventListener('click', () => {
                 countdownBaseTime = now;
             }
         }
-        
+
         updateNextFeedingTime(); // Update calculation based on new start time
 
         btnLeft.innerHTML = svgPause;
@@ -555,7 +581,7 @@ btnRight.addEventListener('click', () => {
     } else {
         // Start playing right, so pause left first
         pauseLeftTimer();
-        
+
         const hl = document.getElementById('hour-left').textContent;
         const hb = document.getElementById('hour-bottle');
         const hbText = hb ? hb.textContent : '--:--';
@@ -572,7 +598,7 @@ btnRight.addEventListener('click', () => {
             }
         } else if (rightSeconds <= 0) {
             rightSeconds = getDiffSeconds(hourRight.textContent);
-            
+
             if (!lastFeedingStartTime) {
                 const [h, m] = hourRight.textContent.split(':');
                 const manualDate = new Date();
@@ -586,7 +612,7 @@ btnRight.addEventListener('click', () => {
                 countdownBaseTime = now;
             }
         }
-        
+
         updateNextFeedingTime(); // Update calculation based on new start time
 
         btnRight.innerHTML = svgPause;
@@ -606,14 +632,14 @@ btnResetLeft.addEventListener('click', () => {
     leftSeconds = 0;
     timeLeft.textContent = '00:00';
     hourLeft.textContent = '--:--';
-    
+
     const hr = document.getElementById('hour-right').textContent;
     const hb = document.getElementById('hour-bottle');
     const hbText = hb ? hb.textContent : '--:--';
     if (hr === '--:--' && hbText === '--:--') {
         lastFeedingStartTime = null;
     }
-    
+
     saveCurrentState();
 });
 
@@ -623,14 +649,14 @@ btnResetRight.addEventListener('click', () => {
     rightSeconds = 0;
     timeRight.textContent = '00:00';
     hourRight.textContent = '--:--';
-    
+
     const hl = document.getElementById('hour-left').textContent;
     const hb = document.getElementById('hour-bottle');
     const hbText = hb ? hb.textContent : '--:--';
     if (hl === '--:--' && hbText === '--:--') {
         lastFeedingStartTime = null;
     }
-    
+
     saveCurrentState();
 });
 
@@ -639,23 +665,23 @@ const btnSwap = document.getElementById('btn-swap');
 btnSwap.addEventListener('click', () => {
     const leftWasPlaying = !!leftTimerInterval;
     const rightWasPlaying = !!rightTimerInterval;
-    
+
     pauseLeftTimer(true);
     pauseRightTimer(true);
-    
+
     // Swap seconds
     const tempSeconds = leftSeconds;
     leftSeconds = rightSeconds;
     rightSeconds = tempSeconds;
-    
+
     timeLeft.textContent = leftSeconds < 0 ? '00:00' : formatTime(leftSeconds);
     timeRight.textContent = rightSeconds < 0 ? '00:00' : formatTime(rightSeconds);
-    
+
     // Swap hours
     const tempHour = hourLeft.textContent;
     hourLeft.textContent = hourRight.textContent;
     hourRight.textContent = tempHour;
-    
+
     // Resume appropriately
     if (leftWasPlaying) {
         btnRight.innerHTML = svgPause;
@@ -674,11 +700,11 @@ btnSwap.addEventListener('click', () => {
             saveCurrentState();
         }, 1000);
     }
-    
+
     // Swap highlights if applicable
     const leftHasHighlight = btnLeft.classList.contains('highlight-next');
     const rightHasHighlight = btnRight.classList.contains('highlight-next');
-    
+
     if (leftHasHighlight) {
         btnLeft.classList.remove('highlight-next');
         btnRight.classList.add('highlight-next');
@@ -699,7 +725,7 @@ const modalMlInput = document.getElementById('modal-ml-input');
 const mlCancel = document.getElementById('ml-cancel');
 const mlSave = document.getElementById('ml-save');
 
-modalMlInput.addEventListener('focus', function() { this.select(); });
+modalMlInput.addEventListener('focus', function () { this.select(); });
 
 function openMlModal() {
     modalMlInput.value = bottleMl > 0 ? bottleMl : '';
@@ -712,13 +738,13 @@ btnBottle.addEventListener('click', () => {
     } else {
         pauseLeftTimer();
         pauseRightTimer();
-        
+
         const hl = document.getElementById('hour-left').textContent;
         const hr = document.getElementById('hour-right').textContent;
         if (hl === '--:--' && hr === '--:--' && hourBottle.textContent === '--:--') {
             lastFeedingStartTime = null;
         }
-        
+
         const now = new Date();
         if (hourBottle.textContent === '--:--') {
             hourBottle.textContent = formatHHMM(now);
@@ -727,7 +753,7 @@ btnBottle.addEventListener('click', () => {
                 countdownBaseTime = now;
             }
         }
-        
+
         if (!lastFeedingStartTime) {
             const [h, m] = hourBottle.textContent.split(':');
             const manualDate = new Date();
@@ -735,9 +761,9 @@ btnBottle.addEventListener('click', () => {
             lastFeedingStartTime = manualDate;
             countdownBaseTime = manualDate;
         }
-        
+
         updateNextFeedingTime();
-        
+
         btnBottle.innerHTML = svgPause;
         isBottlePlaying = true;
         saveCurrentState();
@@ -762,10 +788,10 @@ mlSave.addEventListener('click', () => {
         bottleMl = 0;
         mlBottle.textContent = '--';
     }
-    
+
     btnBottle.innerHTML = svgPlay;
     isBottlePlaying = false;
-    
+
     mlModal.classList.remove('active');
     saveCurrentState();
 });
@@ -779,8 +805,8 @@ mlModal.addEventListener('click', (e) => {
 // Next feeding input logic
 nextFeedingHours.addEventListener('input', updateNextFeedingTime);
 nextFeedingMinutes.addEventListener('input', updateNextFeedingTime);
-nextFeedingHours.addEventListener('focus', function() { this.select(); });
-nextFeedingMinutes.addEventListener('focus', function() { this.select(); });
+nextFeedingHours.addEventListener('focus', function () { this.select(); });
+nextFeedingMinutes.addEventListener('focus', function () { this.select(); });
 
 const btnRegistrar = document.getElementById('btn-registrar');
 
@@ -853,20 +879,20 @@ btnRegistrar.addEventListener('click', () => {
     }
 
     const history = JSON.parse(localStorage.getItem(CONFIG.storage.historyKey)) || [];
-    
+
     if (deduplicateHistoryDates(history)) {
         localStorage.setItem(CONFIG.storage.historyKey, JSON.stringify(history));
     }
 
     if (history.length > 0) {
         const lastRecord = history[history.length - 1];
-        
+
         // Find earliest start time of last record
         let lastEarliestStr = '23:59';
         if (lastRecord.left && lastRecord.left.startTime && lastRecord.left.startTime < lastEarliestStr) lastEarliestStr = lastRecord.left.startTime;
         if (lastRecord.right && lastRecord.right.startTime && lastRecord.right.startTime < lastEarliestStr) lastEarliestStr = lastRecord.right.startTime;
         if (lastRecord.bottle && lastRecord.bottle.startTime && lastRecord.bottle.startTime < lastEarliestStr) lastEarliestStr = lastRecord.bottle.startTime;
-        
+
         // Find earliest start time of current session
         let currEarliestStr = '23:59';
         if (sessionData.left.startTime && sessionData.left.startTime < currEarliestStr) currEarliestStr = sessionData.left.startTime;
@@ -877,11 +903,11 @@ btnRegistrar.addEventListener('click', () => {
             const lastDate = new Date(lastRecord.date);
             const [lh, lm] = lastEarliestStr.split(':');
             lastDate.setHours(parseInt(lh, 10), parseInt(lm, 10), 0, 0);
-            
+
             const currDate = new Date(sessionData.date);
             const [ch, cm] = currEarliestStr.split(':');
             currDate.setHours(parseInt(ch, 10), parseInt(cm, 10), 0, 0);
-            
+
             const diffMinutes = (currDate - lastDate) / (1000 * 60);
 
             if (diffMinutes >= 0 && diffMinutes <= MERGE_WINDOW_MINUTES) {
@@ -908,24 +934,24 @@ btnRegistrar.addEventListener('click', () => {
 
 function saveAndResetSession(sessionData, merge) {
     const history = JSON.parse(localStorage.getItem(CONFIG.storage.historyKey)) || [];
-    
+
     if (merge && history.length > 0) {
         let lastRecord = history[history.length - 1];
-        
+
         if (sessionData.left.durationSeconds > 0) {
             lastRecord.left.durationSeconds = (lastRecord.left.durationSeconds || 0) + sessionData.left.durationSeconds;
             if (!lastRecord.left.startTime && sessionData.left.startTime) {
                 lastRecord.left.startTime = sessionData.left.startTime;
             }
         }
-        
+
         if (sessionData.right.durationSeconds > 0) {
             lastRecord.right.durationSeconds = (lastRecord.right.durationSeconds || 0) + sessionData.right.durationSeconds;
             if (!lastRecord.right.startTime && sessionData.right.startTime) {
                 lastRecord.right.startTime = sessionData.right.startTime;
             }
         }
-        
+
         if (sessionData.bottle && sessionData.bottle.ml > 0) {
             lastRecord.bottle = lastRecord.bottle || { ml: 0, startTime: null };
             lastRecord.bottle.ml += sessionData.bottle.ml;
@@ -933,16 +959,16 @@ function saveAndResetSession(sessionData, merge) {
                 lastRecord.bottle.startTime = sessionData.bottle.startTime;
             }
         }
-        
+
         if (sessionData.diapers) {
             lastRecord.diapers = sessionData.diapers;
         }
-        
+
         history[history.length - 1] = lastRecord;
     } else {
         history.push(sessionData);
     }
-    
+
     localStorage.setItem(CONFIG.storage.historyKey, JSON.stringify(history));
 
     // Highlight logic
@@ -960,23 +986,23 @@ function saveAndResetSession(sessionData, merge) {
     leftSeconds = 0;
     rightSeconds = 0;
     lastFeedingStartTime = null;
-    
+
     bottleMl = 0;
     isBottlePlaying = false;
     const btnBottleEl = document.getElementById('btn-bottle');
     if (btnBottleEl) btnBottleEl.innerHTML = svgPlay;
-    
+
     // Optional: Visual feedback
     timeLeft.textContent = '00:00';
     timeRight.textContent = '00:00';
     hourLeft.textContent = '--:--';
     hourRight.textContent = '--:--';
-    
+
     const mlBottleEl = document.getElementById('ml-bottle');
     if (mlBottleEl) mlBottleEl.textContent = '--';
     const hourBottleEl = document.getElementById('hour-bottle');
     if (hourBottleEl) hourBottleEl.textContent = '--:--';
-    
+
     timeDiaper.textContent = '--:--';
 
     if (merge && history.length > 0) {
@@ -985,7 +1011,7 @@ function saveAndResetSession(sessionData, merge) {
         if (lastRecord.left && lastRecord.left.startTime && lastRecord.left.startTime < earliestTime) earliestTime = lastRecord.left.startTime;
         if (lastRecord.right && lastRecord.right.startTime && lastRecord.right.startTime < earliestTime) earliestTime = lastRecord.right.startTime;
         if (lastRecord.bottle && lastRecord.bottle.startTime && lastRecord.bottle.startTime < earliestTime) earliestTime = lastRecord.bottle.startTime;
-        
+
         if (earliestTime !== '23:59') {
             const d = new Date(lastRecord.date);
             const [h, m] = earliestTime.split(':');
@@ -1000,7 +1026,7 @@ function saveAndResetSession(sessionData, merge) {
     const originalText = btnRegistrar.textContent;
     btnRegistrar.textContent = getTranslation('registered');
     btnRegistrar.style.backgroundColor = 'var(--accent-primary)';
-    
+
     setTimeout(() => {
         btnRegistrar.textContent = originalText;
         btnRegistrar.style.backgroundColor = '';
@@ -1095,20 +1121,20 @@ function deduplicateHistoryDates(history) {
 function formatDate(dateString) {
     const d = new Date(dateString);
     const months = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
-    
+
     // Check if it's today
     const today = new Date();
     if (d.getDate() === today.getDate() && d.getMonth() === today.getMonth() && d.getFullYear() === today.getFullYear()) {
         return 'Hoy, ' + d.getDate() + ' ' + months[d.getMonth()];
     }
-    
+
     return d.getDate() + ' ' + months[d.getMonth()];
 }
 
 function renderHistory() {
     const history = JSON.parse(localStorage.getItem(CONFIG.storage.historyKey)) || [];
     historyContainer.innerHTML = '';
-    
+
     if (history.length === 0) {
         historyContainer.innerHTML = `<div class="empty-state">${getTranslation('empty_history')}</div>`;
         return;
@@ -1128,19 +1154,19 @@ function renderHistory() {
             };
         }
         daysMap[dayKey].sessions.push(session);
-        
+
         // Count totals
         let isFeeding = false;
         if (session.left && session.left.startTime) isFeeding = true;
         if (session.right && session.right.startTime) isFeeding = true;
         if (session.bottle && session.bottle.startTime) isFeeding = true;
         if (isFeeding) daysMap[dayKey].totalFeedings++;
-        
+
         if (session.diapers) daysMap[dayKey].totalDiapers++;
     });
 
     const sortedDays = Object.values(daysMap).sort((a, b) => new Date(b.date) - new Date(a.date));
-    
+
     function getSessionSortTime(session) {
         let latestTime = '';
         if (session.left && session.left.startTime && session.left.startTime > latestTime) latestTime = session.left.startTime;
@@ -1155,10 +1181,10 @@ function renderHistory() {
 
     sortedDays.forEach((dayData, dayIndex) => {
         const dateDisplay = formatDate(dayData.date);
-        
+
         // Sort sessions inside the day by their actual event times
         dayData.sessions.sort((a, b) => getSessionSortTime(b).localeCompare(getSessionSortTime(a)));
-        
+
         // Build the HTML for the day
         let dayHtml = `
             <div class="daily-group glass-card" style="padding: 15px;">
@@ -1178,11 +1204,11 @@ function renderHistory() {
                 </div>
                 <div id="day-${dayIndex}" style="display: ${dayIndex === 0 ? 'flex' : 'none'}; flex-direction: column; gap: 10px; margin-top: 15px; border-top: 1px solid var(--card-border); padding-top: 15px;">
         `;
-        
+
         dayData.sessions.forEach(session => {
             const sid = session.date;
             const sessionEvents = [];
-            
+
             // Left feeding
             if (session.left && session.left.startTime) {
                 sessionEvents.push({
@@ -1209,23 +1235,23 @@ function renderHistory() {
                     sessionEvents.push({ id: sid, key: 'diaper', timeStr: diaperTime, type: getTranslation('diaper_change'), desc: '', icon: '💩', note: diaperNote });
                 }
             }
-            
+
             if (sessionEvents.length === 0) return;
             sessionEvents.sort((a, b) => b.timeStr.localeCompare(a.timeStr));
 
             let containerPadding = appSettings.compactHistory ? 'padding: 6px 12px;' : '';
             let sessionHtml = `<div class="history-item" style="flex-direction: column; align-items: stretch; gap: 0; ${containerPadding}">`;
-            
+
             sessionEvents.forEach((ev, idx) => {
                 const borderTop = idx > 0 ? (appSettings.compactHistory ? `border-top: 1px solid var(--card-border); margin-top: 6px; padding-top: 6px;` : `border-top: 1px solid var(--card-border); margin-top: 8px; padding-top: 8px;`) : '';
-                
+
                 if (appSettings.compactHistory) {
                     const noteHtml = ev.note ? `<div class="history-note-content" contenteditable="true" onblur="saveInlineNote('${ev.id}', '${ev.key}', this.innerText)" onclick="event.stopPropagation();" style="display: none; width: 100%; margin-top: 8px; padding: 8px 10px; background: rgba(0,0,0,0.05); border-radius: 8px; font-size: 0.9rem; color: var(--text-secondary); white-space: pre-wrap; line-height: 1.3; outline: none; cursor: text;">${ev.note}</div>` : '';
                     const infoBadge = ev.note ? `<div class="info-badge" style="position: absolute; top: -6px; left: -6px; background: rgba(96, 165, 250, 0.85); color: white; width: 14px; height: 14px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: bold; box-shadow: 0 1px 3px rgba(0,0,0,0.2); z-index: 10;">i</div>` : '';
                     const toggleClass = ev.note ? 'has-note' : '';
                     const clickHandler = ev.note ? `onclick="const nc = this.querySelector('.history-note-content'); nc.style.display = nc.style.display === 'none' ? 'block' : 'none';"` : '';
                     const cursorStyle = ev.note ? `cursor: pointer;` : '';
-                    
+
                     sessionHtml += `
                         <div class="history-event-row ${toggleClass}" ${clickHandler} style="display: flex; flex-direction: column; width: 100%; ${borderTop} ${cursorStyle}; padding-top: 2px; padding-bottom: 2px;">
                             <div style="display: flex; align-items: center; gap: 12px; width: 100%;">
@@ -1238,8 +1264,8 @@ function renderHistory() {
                                 
                                 <!-- Right Column: Type & Actions -->
                                 <div style="display: flex; align-items: center; justify-content: space-between; flex: 1;">
-                                    <div class="history-title" style="font-size: 1.1rem; font-weight: 500; display: flex; align-items: center;"><span>${ev.type}</span> <span style="margin-left: 4px;">${ev.icon}</span></div>
-                                    <div class="history-actions" style="display: flex; gap: 4px;">
+                                    <div class="history-title" style="font-size: 1.1rem; font-weight: 500; line-height: 1.2;">${ev.type} <span style="margin-left: 4px;">${ev.icon}</span></div>
+                                    <div class="history-actions" style="display: flex; gap: 4px; flex-shrink: 0;">
                                         <button class="action-btn edit-btn" onclick="editEvent('${ev.id}', '${ev.key}'); event.stopPropagation();" title="Editar">
                                             <svg viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
                                         </button>
@@ -1254,7 +1280,7 @@ function renderHistory() {
                     `;
                 } else {
                     const noteValue = ev.note || '';
-                    
+
                     sessionHtml += `
                         <div class="history-event-row" style="display: flex; width: 100%; gap: 12px; align-items: center; ${borderTop}">
                             <!-- Left Column: Time & Duration -->
@@ -1266,8 +1292,8 @@ function renderHistory() {
                             <!-- Right Column: Type, Actions & Notes -->
                             <div style="display: flex; flex-direction: column; flex: 1;">
                                 <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
-                                    <div class="history-title" style="font-size: 1.1rem; font-weight: 500; display: flex; align-items: center;"><span>${ev.type}</span> <span style="margin-left: 4px;">${ev.icon}</span></div>
-                                    <div class="history-actions" style="display: flex; gap: 4px;">
+                                    <div class="history-title" style="font-size: 1.1rem; font-weight: 500; line-height: 1.2;">${ev.type} <span style="margin-left: 4px;">${ev.icon}</span></div>
+                                    <div class="history-actions" style="display: flex; gap: 4px; flex-shrink: 0;">
                                         <button class="action-btn edit-btn" onclick="editEvent('${ev.id}', '${ev.key}')" title="Editar">
                                             <svg viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
                                         </button>
@@ -1291,13 +1317,13 @@ function renderHistory() {
             sessionHtml += `</div>`;
             dayHtml += sessionHtml;
         });
-        
+
         dayHtml += `</div></div>`;
         historyContainer.insertAdjacentHTML('beforeend', dayHtml);
     });
 }
 
-window.toggleDay = function(dayId) {
+window.toggleDay = function (dayId) {
     const el = document.getElementById(dayId);
     const icon = document.getElementById('icon-' + dayId);
     if (el.style.display === 'none') {
@@ -1315,7 +1341,7 @@ window.toggleDay = function(dayId) {
 let currentDeleteId = null;
 let currentDeleteKey = null;
 
-let currentEditId = null; 
+let currentEditId = null;
 let currentEditKey = null;
 
 // Delete Modal Logic
@@ -1323,7 +1349,7 @@ const deleteModal = document.getElementById('delete-modal');
 const btnDeleteConfirm = document.getElementById('delete-confirm');
 const btnDeleteCancel = document.getElementById('delete-cancel');
 
-window.deleteEvent = function(id, key) {
+window.deleteEvent = function (id, key) {
     currentDeleteId = id;
     currentDeleteKey = key;
     deleteModal.classList.add('active');
@@ -1341,7 +1367,7 @@ deleteModal.addEventListener('click', (e) => {
 
 btnDeleteConfirm.addEventListener('click', () => {
     if (!currentDeleteId || !currentDeleteKey) return;
-    
+
     let history = JSON.parse(localStorage.getItem(CONFIG.storage.historyKey)) || [];
     const index = history.findIndex(s => s.date === currentDeleteId);
     if (index !== -1) {
@@ -1356,22 +1382,22 @@ btnDeleteConfirm.addEventListener('click', () => {
         } else if (currentDeleteKey === 'diaper') {
             history[index].diapers = null;
         }
-        
+
         // If session is completely empty, remove it entirely
         if (!history[index].left?.startTime && !history[index].right?.startTime && !history[index].bottle?.startTime && !history[index].diapers) {
             history.splice(index, 1);
         }
-        
+
         localStorage.setItem(CONFIG.storage.historyKey, JSON.stringify(history));
-        
+
         // Recalculate next feeding time from previous history record if no active feeding is ongoing
         const hourLeftEl = document.getElementById('hour-left');
         const hourRightEl = document.getElementById('hour-right');
         const hourBottleEl = document.getElementById('hour-bottle');
-        if (hourLeftEl && hourLeftEl.textContent === '--:--' && 
-            hourRightEl && hourRightEl.textContent === '--:--' && 
+        if (hourLeftEl && hourLeftEl.textContent === '--:--' &&
+            hourRightEl && hourRightEl.textContent === '--:--' &&
             hourBottleEl && hourBottleEl.textContent === '--:--') {
-            
+
             let foundLastFeedingTime = null;
             for (let i = history.length - 1; i >= 0; i--) {
                 const s = history[i];
@@ -1393,7 +1419,7 @@ btnDeleteConfirm.addEventListener('click', () => {
             }
             updateNextFeedingTime();
         }
-        
+
         renderHistory();
     }
     closeDeleteModal();
@@ -1411,9 +1437,9 @@ const btnEditCancel = document.getElementById('edit-cancel');
 
 let isAddingNew = false;
 
-editHour.addEventListener('focus', function() { this.select(); });
-editMinute.addEventListener('focus', function() { this.select(); });
-editDuration.addEventListener('focus', function() { this.select(); });
+editHour.addEventListener('focus', function () { this.select(); });
+editMinute.addEventListener('focus', function () { this.select(); });
+editDuration.addEventListener('focus', function () { this.select(); });
 
 const btnAddEvent = document.getElementById('btn-add-event');
 const eventType = document.getElementById('event-type');
@@ -1424,34 +1450,34 @@ if (btnAddEvent) {
         document.getElementById('modal-title').textContent = "Añadir registro";
         eventType.style.display = 'block';
         eventType.value = 'left';
-        
+
         if (editDate) {
             editDate.innerHTML = '';
             const todayOnly = new Date();
-            todayOnly.setHours(0,0,0,0);
-            
+            todayOnly.setHours(0, 0, 0, 0);
+
             const prevDate = new Date(todayOnly);
             prevDate.setDate(prevDate.getDate() - 1);
-            
+
             const currOpt = document.createElement('option');
             currOpt.value = todayOnly.toISOString();
             currOpt.textContent = formatDate(todayOnly.toISOString());
             currOpt.selected = true;
             editDate.appendChild(currOpt);
-            
+
             const prevOpt = document.createElement('option');
             prevOpt.value = prevDate.toISOString();
             prevOpt.textContent = formatDate(prevDate.toISOString());
             editDate.appendChild(prevOpt);
         }
-        
+
         const now = new Date();
         editHour.value = now.getHours().toString().padStart(2, '0');
         editMinute.value = now.getMinutes().toString().padStart(2, '0');
         editDuration.value = '';
         const editNote = document.getElementById('edit-note');
         if (editNote) editNote.value = '';
-        
+
         eventType.dispatchEvent(new Event('change'));
         editModal.classList.add('active');
     });
@@ -1474,14 +1500,14 @@ if (eventType) {
     });
 }
 
-window.saveInlineNote = function(id, key, newNoteText) {
+window.saveInlineNote = function (id, key, newNoteText) {
     let history = JSON.parse(localStorage.getItem(CONFIG.storage.historyKey)) || [];
     const index = history.findIndex(s => s.date === id);
     if (index === -1) return;
-    
+
     let session = history[index];
     let noteVal = newNoteText.trim();
-    
+
     if (key === 'left') {
         session.left.note = noteVal;
     } else if (key === 'right') {
@@ -1492,24 +1518,24 @@ window.saveInlineNote = function(id, key, newNoteText) {
         let oldObj = typeof session.diapers === 'object' ? session.diapers : { time: session.diapers };
         session.diapers = { ...oldObj, note: noteVal };
     }
-    
+
     history[index] = session;
     localStorage.setItem(CONFIG.storage.historyKey, JSON.stringify(history));
     // No need to re-render, the UI is already showing the new text!
 };
 
-window.editEvent = function(id, key) {
+window.editEvent = function (id, key) {
     let history = JSON.parse(localStorage.getItem(CONFIG.storage.historyKey)) || [];
     const index = history.findIndex(s => s.date === id);
     if (index === -1) return;
-    
+
     currentEditId = id;
     currentEditKey = key;
     let session = history[index];
     let currentTimeStr = '';
     const editNote = document.getElementById('edit-note');
     if (editNote) editNote.value = '';
-    
+
     isAddingNew = false;
     document.getElementById('modal-title').textContent = "Editar registro";
     if (eventType) eventType.style.display = 'none';
@@ -1518,36 +1544,36 @@ window.editEvent = function(id, key) {
         editDate.innerHTML = '';
         const sessionDate = new Date(session.date);
         const today = new Date();
-        
+
         const sDateOnly = new Date(sessionDate.getFullYear(), sessionDate.getMonth(), sessionDate.getDate());
         const todayOnly = new Date(today.getFullYear(), today.getMonth(), today.getDate());
         const isToday = sDateOnly.getTime() === todayOnly.getTime();
-        
+
         const prevDate = new Date(sDateOnly);
         prevDate.setDate(prevDate.getDate() - 1);
-        
+
         const nextDate = new Date(sDateOnly);
         nextDate.setDate(nextDate.getDate() + 1);
-        
+
         if (!isToday) {
             const nextOpt = document.createElement('option');
             nextOpt.value = nextDate.toISOString();
             nextOpt.textContent = formatDate(nextDate.toISOString());
             editDate.appendChild(nextOpt);
         }
-        
+
         const currOpt = document.createElement('option');
         currOpt.value = sDateOnly.toISOString();
         currOpt.textContent = formatDate(sDateOnly.toISOString());
         currOpt.selected = true;
         editDate.appendChild(currOpt);
-        
+
         const prevOpt = document.createElement('option');
         prevOpt.value = prevDate.toISOString();
         prevOpt.textContent = formatDate(prevDate.toISOString());
         editDate.appendChild(prevOpt);
     }
-    
+
     if (key === 'left') {
         currentTimeStr = session.left.startTime;
         editDuration.value = Math.round(session.left.durationSeconds / 60);
@@ -1580,13 +1606,13 @@ window.editEvent = function(id, key) {
         currentTimeStr = diaperTime;
         editDurationContainer.style.display = 'none';
     }
-    
+
     if (currentTimeStr && currentTimeStr.includes(':')) {
         const [h, m] = currentTimeStr.split(':');
         editHour.value = h;
         editMinute.value = m;
     }
-    
+
     editModal.classList.add('active');
 };
 
@@ -1616,7 +1642,7 @@ btnEditSave.addEventListener('click', () => {
         const now = new Date();
         now.setFullYear(selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate());
         let newSession = { date: now.toISOString() };
-        
+
         let mins = parseInt(editDuration.value) || 0;
         if (type === 'left') {
             newSession.left = { startTime: newTime, durationSeconds: mins * 60, note: noteVal };
@@ -1627,7 +1653,7 @@ btnEditSave.addEventListener('click', () => {
         } else if (type === 'diaper') {
             newSession.diapers = { time: newTime, note: noteVal };
         }
-        
+
         history.push(newSession);
         localStorage.setItem(CONFIG.storage.historyKey, JSON.stringify(history));
         renderHistory();
@@ -1636,22 +1662,22 @@ btnEditSave.addEventListener('click', () => {
     }
 
     if (!currentEditId || !currentEditKey) return;
-    
+
     const index = history.findIndex(s => s.date === currentEditId);
     if (index === -1) {
         closeEditModal();
         return;
     }
-    
+
     let session = history[index];
-    
+
     if (editDate && editDate.value) {
         const d = new Date(session.date);
         const selectedDate = new Date(editDate.value);
         d.setFullYear(selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate());
         session.date = d.toISOString();
     }
-    
+
     if (currentEditKey === 'left') {
         session.left.startTime = newTime;
         let mins = parseInt(editDuration.value) || 0;
@@ -1671,7 +1697,7 @@ btnEditSave.addEventListener('click', () => {
         let oldObj = typeof session.diapers === 'object' ? session.diapers : {};
         session.diapers = { ...oldObj, time: newTime, note: noteVal };
     }
-    
+
     history[index] = session;
     localStorage.setItem(CONFIG.storage.historyKey, JSON.stringify(history));
     renderHistory();
@@ -1685,23 +1711,23 @@ const modalMinute = document.getElementById('modal-minute');
 const modalSave = document.getElementById('modal-save');
 const modalCancel = document.getElementById('modal-cancel');
 
-modalHour.addEventListener('focus', function() { this.select(); });
-modalMinute.addEventListener('focus', function() { this.select(); });
+modalHour.addEventListener('focus', function () { this.select(); });
+modalMinute.addEventListener('focus', function () { this.select(); });
 let currentTargetId = null;
 
 // Open modal
 document.querySelectorAll('.time-clickable').forEach(el => {
     el.addEventListener('click', () => {
         const targetId = el.getAttribute('data-target');
-        
+
         if (targetId === 'ml-bottle') {
             openMlModal();
             return;
         }
-        
+
         currentTargetId = targetId;
         const currentVal = document.getElementById(currentTargetId).textContent;
-        
+
         if (currentVal !== '--:--') {
             const [h, m] = currentVal.split(':');
             modalHour.value = h;
@@ -1711,7 +1737,7 @@ document.querySelectorAll('.time-clickable').forEach(el => {
             modalHour.value = now.getHours().toString().padStart(2, '0');
             modalMinute.value = now.getMinutes().toString().padStart(2, '0');
         }
-        
+
         timeModal.classList.add('active');
     });
 });
@@ -1731,27 +1757,27 @@ modalSave.addEventListener('click', () => {
     if (currentTargetId) {
         let h = parseInt(modalHour.value) || 0;
         let m = parseInt(modalMinute.value) || 0;
-        
+
         // Boundaries
         h = Math.max(0, Math.min(23, h));
         m = Math.max(0, Math.min(59, m));
-        
+
         const formattedH = h.toString().padStart(2, '0');
         const formattedM = m.toString().padStart(2, '0');
-        
+
         const targetEl = document.getElementById(currentTargetId);
-        
+
         if (currentTargetId === 'hour-left' || currentTargetId === 'hour-right' || currentTargetId === 'hour-bottle') {
             const oldTimeStr = targetEl.textContent;
             if (oldTimeStr !== '--:--') {
                 const [oldH, oldM] = oldTimeStr.split(':').map(Number);
                 let diffMins = (h * 60 + m) - (oldH * 60 + oldM);
-                
+
                 if (diffMins > 12 * 60) diffMins -= 24 * 60;
                 else if (diffMins < -12 * 60) diffMins += 24 * 60;
-                
+
                 const diffSeconds = diffMins * 60;
-                
+
                 if (currentTargetId === 'hour-left' && leftSeconds !== 0) {
                     leftSeconds -= diffSeconds;
                     if (leftStartMillis) leftStartMillis += diffSeconds * 1000;
@@ -1763,9 +1789,9 @@ modalSave.addEventListener('click', () => {
                 }
             }
         }
-        
+
         targetEl.textContent = `${formattedH}:${formattedM}`;
-        
+
         // Update the next feeding time calculation if this is the first breast time set
         if (currentTargetId === 'hour-left' || currentTargetId === 'hour-right' || currentTargetId === 'time-diaper' || currentTargetId === 'hour-bottle') {
             if (!lastFeedingStartTime) {
@@ -1803,17 +1829,17 @@ function loadSettings() {
     if (saved) {
         try {
             settings = { ...settings, ...JSON.parse(saved) };
-        } catch(e) {}
+        } catch (e) { }
     }
-    
+
     // Apply Settings
     currentLang = settings.lang;
     document.getElementById('settings-lang').value = currentLang;
     applyLanguage(currentLang);
-    
+
     document.getElementById('settings-theme').checked = (settings.theme === 'light');
     applyTheme(settings.theme);
-    
+
     const savedColor = settings.cloudColor || CONFIG.app.defaultCloudColor;
     document.querySelectorAll('.color-circle').forEach(btn => {
         if (btn.getAttribute('data-color').toUpperCase() === savedColor.toUpperCase()) {
@@ -1823,13 +1849,13 @@ function loadSettings() {
         }
     });
     applyCloudColor(savedColor);
-    
+
     document.getElementById('settings-default-tab').value = settings.defaultTab;
-    
+
     document.getElementById('settings-compact-history').checked = settings.compactHistory;
-    
+
     appSettings = settings;
-    
+
     // Switch to the default tab on load
     const targetBtn = document.querySelector('.nav-item[data-target="' + settings.defaultTab + '"]');
     if (targetBtn && !targetBtn.classList.contains('active')) {
@@ -1855,7 +1881,7 @@ function applyCloudColor(hex) {
     const g = parseInt(hex.substring(2, 4), 16);
     const b = parseInt(hex.substring(4, 6), 16);
     document.documentElement.style.setProperty('--cloud-color-rgb', `${r}, ${g}, ${b}`);
-    
+
     const darkR = Math.floor(r * 0.20 + 35);
     const darkG = Math.floor(g * 0.20 + 35);
     const darkB = Math.floor(b * 0.20 + 40);
@@ -1876,7 +1902,7 @@ function applyLanguage(lang) {
             el.textContent = TRANSLATIONS['es'][key]; // fallback to es
         }
     });
-    
+
     // Refresh history if we are currently looking at it
     const activeView = document.querySelector('.view.active');
     if (activeView && activeView.id === 'view-historial') {
@@ -1925,11 +1951,35 @@ if (btnPermAlarms) {
 }
 
 if (btnPermNotif) {
-    btnPermNotif.addEventListener('click', () => {
+    btnPermNotif.addEventListener('click', async () => {
         if (isNative()) {
             const sysAlarm = getSysAlarm();
             if (sysAlarm) sysAlarm.openNotificationSettings().catch(e => alert("Error Notif: " + JSON.stringify(e) + " " + e));
             else alert("Error: sysAlarm es null (Notif)");
+
+            // Test notification
+            const localNotif = getLocalNotif();
+            if (localNotif) {
+                try {
+                    let perm = await localNotif.requestPermissions();
+                    alert("Permiso Notif: " + JSON.stringify(perm));
+                    await localNotif.createChannel({ id: 'default', name: 'Default', importance: 4, visibility: 1 });
+                    await localNotif.schedule({
+                        notifications: [{
+                            title: "TEST",
+                            body: "Test Notif",
+                            id: 99,
+                            schedule: { at: new Date(Date.now() + 5000), allowWhileIdle: true },
+                            channelId: 'default'
+                        }]
+                    });
+                    alert("Test notif scheduled for 5s");
+                } catch (e) {
+                    alert("Test Error: " + JSON.stringify(e) + " " + e);
+                }
+            } else {
+                alert("localNotif Plugin is null");
+            }
         } else {
             alert('Solo disponible en Android');
         }
@@ -1939,10 +1989,10 @@ if (btnPermNotif) {
 document.querySelectorAll('.color-circle').forEach(btn => {
     btn.addEventListener('click', (e) => {
         const color = btn.getAttribute('data-color');
-        
+
         document.querySelectorAll('.color-circle').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        
+
         applyCloudColor(color);
         updateSettingsStorage(color);
     });
@@ -1954,7 +2004,7 @@ function updateSettingsStorage(overrideColor = null) {
         const activeBtn = document.querySelector('.color-circle.active');
         cloudColor = activeBtn ? activeBtn.getAttribute('data-color') : CONFIG.app.defaultCloudColor;
     }
-    
+
     const newSettings = {
         lang: document.getElementById('settings-lang').value,
         theme: document.getElementById('settings-theme').checked ? 'light' : 'dark',
@@ -1999,10 +2049,10 @@ bugCancel.addEventListener('click', () => {
 bugSend.addEventListener('click', () => {
     const desc = bugDescription.value.trim();
     if (!desc) return;
-    
+
     bugSend.textContent = 'Enviando...';
     bugSend.disabled = true;
-    
+
     const templateParams = {
         title: 'Reporte de Bug',
         name: 'Usuario Teta Brick',
@@ -2010,7 +2060,7 @@ bugSend.addEventListener('click', () => {
         message: desc,
         email: 'noreply@tetabrick.app'
     };
-    
+
     // Enviar correo con EmailJS
     emailjs.send('service_lj04q27', 'template_378ihes', templateParams)
         .then(() => {

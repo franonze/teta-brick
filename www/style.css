@@ -642,9 +642,6 @@ input[type="number"]:focus {
 .history-title {
     font-weight: 500;
     font-size: 1.05rem;
-    display: flex;
-    align-items: center;
-    gap: 4px;
 }
 
 .history-desc {
