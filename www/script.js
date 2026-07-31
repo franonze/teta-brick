@@ -846,12 +846,22 @@ btnMergeConfirm.addEventListener('click', () => {
 
 // Registrar Session
 btnRegistrar.addEventListener('click', () => {
-    // Determine the date to group this session under.
-    // If a timer was started, use the day it was started on, to avoid crossing midnight issues.
     let baseDate = new Date();
-    if (lastFeedingStartTime) {
-        const start = new Date(lastFeedingStartTime);
-        baseDate.setFullYear(start.getFullYear(), start.getMonth(), start.getDate());
+    
+    // Find the earliest start time among active timers to correctly determine the session date
+    let earliestTimeStr = '23:59';
+    if (hourLeft.textContent !== '--:--' && hourLeft.textContent < earliestTimeStr) earliestTimeStr = hourLeft.textContent;
+    if (hourRight.textContent !== '--:--' && hourRight.textContent < earliestTimeStr) earliestTimeStr = hourRight.textContent;
+    const hbEl = document.getElementById('hour-bottle');
+    if (hbEl && hbEl.textContent !== '--:--' && hbEl.textContent < earliestTimeStr) earliestTimeStr = hbEl.textContent;
+
+    if (earliestTimeStr !== '23:59') {
+        const [eh] = earliestTimeStr.split(':').map(Number);
+        const currH = baseDate.getHours();
+        // If the earliest start time is > 12 hours ahead of the current time (e.g. 23 > 0 + 12), it started yesterday
+        if (eh > currH + 12) {
+            baseDate.setDate(baseDate.getDate() - 1);
+        }
     }
 
     // 1. Gather current state
