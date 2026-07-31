@@ -4,6 +4,7 @@
   "description": "Aplicacion para controlar cuando y como das de mamar a tu bebe",
   "main": "config.js",
   "scripts": {
+    "release": "node scripts/release.js",
     "test": "jest"
   },
   "repository": {
