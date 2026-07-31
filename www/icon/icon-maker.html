@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creador de Icono</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; background: #f0f0f0; display: flex; flex-direction: column; align-items: center; }
+        .container { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center; max-width: 500px; width: 100%; }
+        .controls { margin: 20px 0; display: flex; flex-direction: column; gap: 15px; }
+        .control-group { display: flex; justify-content: space-between; align-items: center; }
+        canvas { max-width: 100%; border: 1px solid #ccc; margin-top: 20px; border-radius: 16px; }
+        button { background: #3498db; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-size: 16px; }
+        button:hover { background: #2980b9; }
+        input[type="file"] { margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Adaptar Icono de Lactancia</h2>
+    <p>Selecciona tu imagen cuadrada para engrosar las líneas y añadir un fondo pastel.</p>
+    
+    <input type="file" id="imageInput" accept="image/*">
+    
+    <div class="controls">
+        <div class="control-group">
+            <label for="bgColor">Color de fondo:</label>
+            <input type="color" id="bgColor" value="#FDEBD0"> <!-- Un tono crema/pastel por defecto -->
+        </div>
+        <div class="control-group">
+            <label for="thickness">Grosor extra de línea:</label>
+            <input type="range" id="thickness" min="0" max="5" value="1" step="0.5">
+        </div>
+    </div>
+
+    <canvas id="canvas" width="512" height="512" style="display: none;"></canvas>
+    
+    <div style="margin-top: 20px;">
+        <button id="downloadBtn" style="display: none;">Descargar Icono</button>
+    </div>
+</div>
+
+<script>
+    const imageInput = document.getElementById('imageInput');
+    const bgColorInput = document.getElementById('bgColor');
+    const thicknessInput = document.getElementById('thickness');
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    const downloadBtn = document.getElementById('downloadBtn');
+    
+    let img = new Image();
+
+    imageInput.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                img.onload = () => {
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    canvas.style.display = 'block';
+                    downloadBtn.style.display = 'inline-block';
+                    draw();
+                }
+                img.src = event.target.result;
+            }
+            reader.readAsDataURL(file);
+        }
+    });
+
+    bgColorInput.addEventListener('input', draw);
+    thicknessInput.addEventListener('input', draw);
+
+    function draw() {
+        if (!img.src) return;
+        
+        const w = canvas.width;
+        const h = canvas.height;
+        const thickness = parseFloat(thicknessInput.value);
+        
+        // Dibujar fondo pastel
+        ctx.fillStyle = bgColorInput.value;
+        ctx.fillRect(0, 0, w, h);
+        
+        // Técnica para engrosar líneas: dibujar la imagen varias veces desplazada ligeramente
+        // Solo oscurecemos (multiplicar) para que el fondo blanco de la imagen original no tape nuestras líneas
+        // Como la imagen tiene fondo blanco, primero la dibujamos normal con modo 'multiply' para que el blanco sea transparente
+        
+        ctx.globalCompositeOperation = 'multiply';
+        
+        if (thickness > 0) {
+            const steps = 8;
+            for (let i = 0; i < steps; i++) {
+                const angle = (i / steps) * Math.PI * 2;
+                const dx = Math.cos(angle) * thickness;
+                const dy = Math.sin(angle) * thickness;
+                ctx.drawImage(img, dx, dy, w, h);
+            }
+        }
+        
+        // Dibujar en el centro
+        ctx.drawImage(img, 0, 0, w, h);
+        
+        // Restaurar modo
+        ctx.globalCompositeOperation = 'source-over';
+    }
+
+    downloadBtn.addEventListener('click', () => {
+        const link = document.createElement('a');
+        link.download = 'icono_adaptado.png';
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+    });
+</script>
+
+</body>
+</html>
