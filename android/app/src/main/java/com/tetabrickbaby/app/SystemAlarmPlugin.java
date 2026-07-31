@@ -1,4 +1,4 @@
-package com.simplebabymilk.app;
+package com.tetabrickbaby.app;
 
 import android.content.Context;
 import android.content.Intent;
