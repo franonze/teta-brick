@@ -1816,11 +1816,29 @@ modalSave.addEventListener('click', () => {
 
         targetEl.textContent = `${formattedH}:${formattedM}`;
 
-        // Update the next feeding time calculation if this is the first breast time set
-        if (currentTargetId === 'hour-left' || currentTargetId === 'hour-right' || currentTargetId === 'time-diaper' || currentTargetId === 'hour-bottle') {
-            if (!lastFeedingStartTime) {
+        // Update the next feeding time calculation based on the earliest active timer
+        if (currentTargetId === 'hour-left' || currentTargetId === 'hour-right' || currentTargetId === 'hour-bottle') {
+            let earliestStr = '23:59';
+            const hl = document.getElementById('hour-left').textContent;
+            const hr = document.getElementById('hour-right').textContent;
+            const hb = document.getElementById('hour-bottle');
+            const hbText = hb ? hb.textContent : '--:--';
+            
+            if (hl !== '--:--' && hl < earliestStr) earliestStr = hl;
+            if (hr !== '--:--' && hr < earliestStr) earliestStr = hr;
+            if (hbText !== '--:--' && hbText < earliestStr) earliestStr = hbText;
+
+            if (earliestStr !== '23:59') {
                 const now = new Date();
-                now.setHours(h, m, 0, 0);
+                const [eh, em] = earliestStr.split(':').map(Number);
+                now.setHours(eh, em, 0, 0);
+                
+                if (lastFeedingStartTime && lastFeedingStartTime.getDate() !== now.getDate()) {
+                    now.setFullYear(lastFeedingStartTime.getFullYear(), lastFeedingStartTime.getMonth(), lastFeedingStartTime.getDate());
+                } else if (eh > new Date().getHours() + 12) {
+                    now.setDate(now.getDate() - 1);
+                }
+
                 lastFeedingStartTime = now;
                 countdownBaseTime = now;
                 updateNextFeedingTime();
