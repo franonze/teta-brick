@@ -416,10 +416,13 @@
     <div id="time-modal" class="time-popup-overlay">
         <div class="time-popup-box glass-card">
             <h3 style="text-align: center; margin-bottom: 10px;">Introduce la hora</h3>
-            <div class="time-inputs">
-                <input type="number" id="modal-hour" min="0" max="23" placeholder="HH">
-                <span>:</span>
-                <input type="number" id="modal-minute" min="0" max="59" placeholder="MM">
+            <div class="time-inputs wheel-container">
+                <div class="wheel-picker" data-target="modal-hour" data-min="0" data-max="23"></div>
+                <span class="wheel-separator">:</span>
+                <div class="wheel-picker" data-target="modal-minute" data-min="0" data-max="59"></div>
+                <div class="wheel-highlight-band"></div>
+                <input type="hidden" id="modal-hour" value="0">
+                <input type="hidden" id="modal-minute" value="0">
             </div>
             <div class="popup-actions">
                 <button id="modal-cancel" class="btn-secondary" style="flex: 1;">Cancelar</button>
@@ -493,10 +496,13 @@
                     <select id="edit-date" class="settings-select"
                         style="width: 130px; text-align: center; margin-bottom: 5px; padding: 5px;">
                     </select>
-                    <div class="time-inputs">
-                        <input type="number" id="edit-hour" min="0" max="23" placeholder="HH">
-                        <span>:</span>
-                        <input type="number" id="edit-minute" min="0" max="59" placeholder="MM">
+                    <div class="time-inputs wheel-container" style="margin-bottom: 15px;">
+                        <div class="wheel-picker" data-target="edit-hour" data-min="0" data-max="23"></div>
+                        <span class="wheel-separator">:</span>
+                        <div class="wheel-picker" data-target="edit-minute" data-min="0" data-max="59"></div>
+                        <div class="wheel-highlight-band"></div>
+                        <input type="hidden" id="edit-hour" value="0">
+                        <input type="hidden" id="edit-minute" value="0">
                     </div>
                 </div>
 

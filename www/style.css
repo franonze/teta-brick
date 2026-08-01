@@ -821,3 +821,82 @@ input:checked + .slider {
 input:checked + .slider:before {
     transform: translateX(22px);
 }
+
+/* --- Wheel Picker Styles --- */
+.wheel-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+    background: var(--inner-bg);
+    border-radius: 16px;
+    border: 1px solid var(--card-border);
+    overflow: hidden;
+    margin: 15px 0;
+    /* Fade effect for top and bottom */
+    mask-image: linear-gradient(to bottom, transparent, black 25%, black 75%, transparent);
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black 30%, black 70%, transparent);
+}
+
+.wheel-picker {
+    height: 100%;
+    width: 80px;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scrollbar-width: none; /* Firefox */
+    position: relative;
+    z-index: 2;
+}
+
+.wheel-picker::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+}
+
+.wheel-item {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    scroll-snap-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    user-select: none;
+}
+
+.wheel-separator {
+    font-size: 2rem;
+    font-weight: 700;
+    padding: 0 5px;
+    margin-bottom: 4px;
+    z-index: 2;
+}
+
+.wheel-highlight-band {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 50px;
+    transform: translateY(-50%);
+    background: var(--accent-light);
+    opacity: 0.3;
+    pointer-events: none;
+    border-top: 1px solid var(--accent-primary);
+    border-bottom: 1px solid var(--accent-primary);
+    z-index: 1;
+}
+
+/* For small inline pickers (like Next Feeding) */
+.wheel-picker.mini-wheel {
+    height: 40px;
+    width: 40px;
+    background: var(--inner-bg);
+    border-radius: 8px;
+    border: 1px solid var(--card-border);
+}
+.wheel-picker.mini-wheel .wheel-item {
+    height: 40px;
+    font-size: 1.2rem;
+}

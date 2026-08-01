@@ -2104,4 +2104,147 @@ bugModal.addEventListener('click', (e) => {
 });
 
 // Load settings on startup
-window.addEventListener('DOMContentLoaded', loadSettings);
+window.addEventListener('DOMContentLoaded', () => {
+    setupAllWheelPickers();
+    loadSettings();
+});
+
+/* --- Wheel Picker Logic --- */
+function setupAllWheelPickers() {
+    document.querySelectorAll('.wheel-picker').forEach(pickerEl => {
+        const min = parseInt(pickerEl.getAttribute('data-min') || '0');
+        const max = parseInt(pickerEl.getAttribute('data-max') || '59');
+        const targetId = pickerEl.getAttribute('data-target');
+        const hiddenInput = document.getElementById(targetId);
+        
+        const isMini = pickerEl.classList.contains('mini-wheel');
+        const itemHeight = isMini ? 40 : 50;
+        
+        const range = [];
+        for(let i=min; i<=max; i++) range.push(i);
+        
+        pickerEl.innerHTML = '';
+        // Add top padding
+        pickerEl.insertAdjacentHTML('beforeend', `<div class="wheel-padding" style="height: ${itemHeight}px;"></div>`);
+        
+        const numBlocks = 5;
+        for(let b=0; b<numBlocks; b++) {
+            for(let i=0; i<range.length; i++) {
+                const val = range[i].toString().padStart(2, '0');
+                pickerEl.insertAdjacentHTML('beforeend', `<div class="wheel-item" data-val="${val}">${val}</div>`);
+            }
+        }
+        
+        // Add bottom padding
+        pickerEl.insertAdjacentHTML('beforeend', `<div class="wheel-padding" style="height: ${itemHeight}px;"></div>`);
+        
+        const blockHeight = range.length * itemHeight;
+        
+        pickerEl.setValue = (val) => {
+            val = parseInt(val);
+            if (isNaN(val)) val = min;
+            let idx = val - min;
+            if (idx < 0) idx = 0;
+            const targetScroll = (2 * blockHeight) + (idx * itemHeight);
+            pickerEl.scrollTo({ top: targetScroll, behavior: 'instant' });
+            if (hiddenInput && hiddenInput.value !== val.toString().padStart(2, '0')) {
+                const originalSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, "value").set;
+                originalSetter.call(hiddenInput, val.toString().padStart(2, '0'));
+                hiddenInput.dispatchEvent(new Event('input'));
+            }
+        };
+
+        let isScrolling = null;
+        pickerEl.addEventListener('scroll', () => {
+            clearTimeout(isScrolling);
+            isScrolling = setTimeout(() => {
+                const st = pickerEl.scrollTop;
+                const centerIdx = Math.round(st / itemHeight);
+                
+                const currentBlock = Math.floor(centerIdx / range.length);
+                const localIdx = centerIdx % range.length;
+                
+                if (currentBlock <= 0 || currentBlock >= numBlocks - 1) {
+                    const targetScroll = (2 * blockHeight) + (localIdx * itemHeight);
+                    pickerEl.scrollTo({ top: targetScroll, behavior: 'instant' });
+                }
+                
+                const actualVal = range[localIdx].toString().padStart(2, '0');
+                if (hiddenInput && hiddenInput.value !== actualVal) {
+                    const originalSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, "value").set;
+                    originalSetter.call(hiddenInput, actualVal);
+                    hiddenInput.dispatchEvent(new Event('input'));
+                }
+            }, 150);
+        });
+
+        // Drag to scroll for non-touch devices (Windows/Mouse)
+        let isDragging = false;
+        let startY;
+        let scrollTop;
+        pickerEl.addEventListener('pointerdown', (e) => {
+            isDragging = true;
+            startY = e.pageY;
+            scrollTop = pickerEl.scrollTop;
+            pickerEl.style.scrollSnapType = 'none'; // Disable snapping while dragging
+            pickerEl.setPointerCapture(e.pointerId);
+        });
+        pickerEl.addEventListener('pointerup', (e) => {
+            if (!isDragging) return;
+            isDragging = false;
+            pickerEl.style.scrollSnapType = 'y mandatory';
+            pickerEl.releasePointerCapture(e.pointerId);
+            
+            // Trigger snap by doing a tiny programmatic scroll
+            pickerEl.scrollBy(0, 1);
+            pickerEl.scrollBy(0, -1);
+        });
+        pickerEl.addEventListener('pointercancel', (e) => {
+            if (!isDragging) return;
+            isDragging = false;
+            pickerEl.style.scrollSnapType = 'y mandatory';
+        });
+        pickerEl.addEventListener('pointermove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+            const y = e.pageY;
+            const walk = (y - startY) * 1.5; // Scroll speed multiplier
+            pickerEl.scrollTop = scrollTop - walk;
+        });
+
+        // Initialize value if hidden input has one
+        if (hiddenInput && hiddenInput.value) {
+            pickerEl.setValue(hiddenInput.value);
+        } else {
+            pickerEl.setValue(min);
+        }
+
+        // Overwrite hiddenInput setter to allow script to control picker
+        if (hiddenInput) {
+            const originalSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, "value").set;
+            Object.defineProperty(hiddenInput, "value", {
+                set: function(val) {
+                    originalSetter.call(this, val);
+                    if (!this._isUpdating) {
+                        this._isUpdating = true;
+                        pickerEl.setValue(val);
+                        this._isUpdating = false;
+                    }
+                },
+                get: function() {
+                    return Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, "value").get.call(this);
+                }
+            });
+        }
+
+        // When modals open (element becomes visible), ensure scroll position is correct
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && hiddenInput) {
+                    pickerEl.setValue(hiddenInput.value);
+                }
+            });
+        });
+        observer.observe(pickerEl);
+    });
+}
