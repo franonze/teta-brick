@@ -1849,11 +1849,12 @@ modalSave.addEventListener('click', () => {
     closeModal();
 });
 
-// Initialize on load
-loadCurrentState();
 // --- Settings and i18n Logic ---
 let currentLang = CONFIG.app.defaultLang;
 let appSettings = {};
+
+// Initialize on load
+loadCurrentState();
 
 function saveSettings(settings) {
     localStorage.setItem(CONFIG.storage.settingsKey, JSON.stringify(settings));
