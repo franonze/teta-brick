@@ -1350,6 +1350,43 @@ window.toggleDay = function (dayId) {
 
 
 // Logic for Editing and Deleting History Events
+
+function recalculateNextFeedingFromHistory(history) {
+    const hourLeftEl = document.getElementById('hour-left');
+    const hourRightEl = document.getElementById('hour-right');
+    const hourBottleEl = document.getElementById('hour-bottle');
+    if (hourLeftEl && hourLeftEl.textContent === '--:--' &&
+        hourRightEl && hourRightEl.textContent === '--:--' &&
+        hourBottleEl && hourBottleEl.textContent === '--:--') {
+
+        let foundLastFeedingTime = null;
+        for (let i = 0; i < history.length; i++) {
+            const s = history[i];
+            const times = [];
+            if (s.left && s.left.startTime) times.push(s.left.startTime);
+            if (s.right && s.right.startTime) times.push(s.right.startTime);
+            if (s.bottle && s.bottle.startTime) times.push(s.bottle.startTime);
+            
+            times.forEach(timeStr => {
+                const d = new Date(s.date);
+                const [h, m] = timeStr.split(':');
+                d.setHours(parseInt(h, 10), parseInt(m, 10), 0, 0);
+                if (!foundLastFeedingTime || d > foundLastFeedingTime) {
+                    foundLastFeedingTime = d;
+                }
+            });
+        }
+        if (foundLastFeedingTime) {
+            countdownBaseTime = foundLastFeedingTime;
+            lastFeedingStartTime = foundLastFeedingTime;
+        } else {
+            countdownBaseTime = null;
+            lastFeedingStartTime = null;
+        }
+        updateNextFeedingTime();
+    }
+}
+
 let currentDeleteId = null;
 let currentDeleteKey = null;
 
@@ -1403,34 +1440,7 @@ btnDeleteConfirm.addEventListener('click', () => {
         localStorage.setItem(CONFIG.storage.historyKey, JSON.stringify(history));
 
         // Recalculate next feeding time from previous history record if no active feeding is ongoing
-        const hourLeftEl = document.getElementById('hour-left');
-        const hourRightEl = document.getElementById('hour-right');
-        const hourBottleEl = document.getElementById('hour-bottle');
-        if (hourLeftEl && hourLeftEl.textContent === '--:--' &&
-            hourRightEl && hourRightEl.textContent === '--:--' &&
-            hourBottleEl && hourBottleEl.textContent === '--:--') {
-
-            let foundLastFeedingTime = null;
-            for (let i = history.length - 1; i >= 0; i--) {
-                const s = history[i];
-                const timeStr = (s.left && s.left.startTime) || (s.right && s.right.startTime) || (s.bottle && s.bottle.startTime);
-                if (timeStr) {
-                    const d = new Date(s.date);
-                    const [h, m] = timeStr.split(':');
-                    d.setHours(parseInt(h, 10), parseInt(m, 10), 0, 0);
-                    foundLastFeedingTime = d;
-                    break;
-                }
-            }
-            if (foundLastFeedingTime) {
-                countdownBaseTime = foundLastFeedingTime;
-                lastFeedingStartTime = foundLastFeedingTime;
-            } else {
-                countdownBaseTime = null;
-                lastFeedingStartTime = null;
-            }
-            updateNextFeedingTime();
-        }
+        recalculateNextFeedingFromHistory(history);
 
         renderHistory();
     }
@@ -1668,6 +1678,7 @@ btnEditSave.addEventListener('click', () => {
 
         history.push(newSession);
         localStorage.setItem(CONFIG.storage.historyKey, JSON.stringify(history));
+        recalculateNextFeedingFromHistory(history);
         renderHistory();
         closeEditModal();
         return;
@@ -1712,6 +1723,7 @@ btnEditSave.addEventListener('click', () => {
 
     history[index] = session;
     localStorage.setItem(CONFIG.storage.historyKey, JSON.stringify(history));
+    recalculateNextFeedingFromHistory(history);
     renderHistory();
     closeEditModal();
 });
@@ -1954,10 +1966,9 @@ if (btnPermAlarms) {
     btnPermAlarms.addEventListener('click', () => {
         if (isNative()) {
             const sysAlarm = getSysAlarm();
-            if (sysAlarm) sysAlarm.openExactAlarmSettings().catch(e => alert("Error Alarmas: " + JSON.stringify(e) + " " + e));
-            else alert("Error: sysAlarm es null");
-        } else {
-            alert('Solo disponible en Android');
+            if (sysAlarm) {
+                sysAlarm.openExactAlarmSettings().catch(e => console.error(e));
+            }
         }
     });
 }
@@ -1966,34 +1977,14 @@ if (btnPermNotif) {
     btnPermNotif.addEventListener('click', async () => {
         if (isNative()) {
             const sysAlarm = getSysAlarm();
-            if (sysAlarm) sysAlarm.openNotificationSettings().catch(e => alert("Error Notif: " + JSON.stringify(e) + " " + e));
-            else alert("Error: sysAlarm es null (Notif)");
+            if (sysAlarm) {
+                sysAlarm.openNotificationSettings().catch(e => console.error(e));
+            }
 
-            // Test notification
             const localNotif = getLocalNotif();
             if (localNotif) {
-                try {
-                    let perm = await localNotif.requestPermissions();
-                    alert("Permiso Notif: " + JSON.stringify(perm));
-                    await localNotif.createChannel({ id: 'default', name: 'Default', importance: 4, visibility: 1 });
-                    await localNotif.schedule({
-                        notifications: [{
-                            title: "TEST",
-                            body: "Test Notif",
-                            id: 99,
-                            schedule: { at: new Date(Date.now() + 5000), allowWhileIdle: true },
-                            channelId: 'default'
-                        }]
-                    });
-                    alert("Test notif scheduled for 5s");
-                } catch (e) {
-                    alert("Test Error: " + JSON.stringify(e) + " " + e);
-                }
-            } else {
-                alert("localNotif Plugin is null");
+                localNotif.requestPermissions().catch(e => console.error(e));
             }
-        } else {
-            alert('Solo disponible en Android');
         }
     });
 }
