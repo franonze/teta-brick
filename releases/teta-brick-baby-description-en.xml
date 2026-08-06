@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+    STORE LISTING TRANSLATION TEMPLATE (ENGLISH DEFAULT)
+    App: com.tetabrickbaby.app
+    
+    Google Play strict limits:
+    - app_name: Max 30 characters (Current: 15)
+    - short_description: Max 80 characters (Current: 74)
+    - full_description: Max 4000 characters
+    - release_notes: Max 500 characters
+-->
+<resources>
+    <!-- Application Title (Max 30 characters) -->
+    <string name="app_name">Teta-Brick Baby</string>
+
+    <!-- Short Description (Max 80 characters) -->
+    <string name="short_description">Easily track your baby's breastfeeding, bottle feeds, and diaper changes.</string>
+
+    <!-- Full Description (Max 4000 characters) -->
+    <string name="full_description">Teta-Brick Baby is your perfect companion to easily and accurately track your baby's feeding and care routines. Designed for parents, this app is intuitive, fast, and keeps everything under control, even during sleepless nights.
+
+Key Features:
+
+- Breastfeeding: Accurately log nursing time for each breast independently (left and right). Easily start, stop, or reset timers with a single tap.
+- Bottle Feeding: Quickly record the exact amount in milliliters (mL) and time for every feed.
+- Diaper Tracking: Fast-log diaper changes to keep track of your little one's digestion.
+- Next Feed Alarm: Set a timer to remind you exactly when it's time to feed again. The app notifies you so you don't have to keep checking the clock!
+- Comprehensive History: Review all past entries organized chronologically. Made a mistake? No problem—edit times, amounts, add notes, delete entries, or merge recent feeds.
+- Customization: Make the app yours. Choose from various pastel colors, switch between light and dark modes, and select which tab opens when you launch the app.
+- Parent-Friendly Design: Modern, friendly interface easy to navigate with one hand (because the other is holding your baby!).
+- Multilingual: Available in over 80 languages.
+
+Everything you need for your baby's daily tracking in one hassle-free app, designed 100% for your peace of mind. Download now and enjoy your baby while we remember the details!</string>
+
+    <!-- Release Notes / What's New (Max 500 characters) -->
+    <string name="release_notes">Welcome to the initial release of Teta-Brick Baby! This first release includes everything essential for your baby's daily care:
+
+- Independent timers for breastfeeding (left and right breast).
+- Quick logging for bottle feeds and diaper changes.
+- Next feed reminder alarm.
+- Detailed, editable history logs.
+- Dark mode and custom color themes.
+- Support for over 80 languages.
+Thank you for trusting us!</string>
+</resources>

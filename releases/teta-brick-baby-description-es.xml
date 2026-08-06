@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+    PLANTILLA DE TRADUCCIÓN DE FICHA DE PLAY STORE
+    App: com.tetabrickbaby.app
+    
+    Límites obligatorios de Google Play:
+    - app_name: Máximo 30 caracteres
+    - short_description: Máximo 80 caracteres
+    - full_description: Máximo 4000 caracteres
+    - release_notes: Máximo 500 caracteres
+-->
+<resources>
+    <!-- Nombre / Título de la aplicación -->
+    <string name="app_name">Teta-Brick Baby</string>
+
+    <!-- Descripción corta (Resumen visible en la tienda) -->
+    <string name="short_description">Lleva el control de la lactancia, biberones y pañales de tu bebé fácilmente.</string>
+
+    <!-- Descripción completa (Detalles y características principales) -->
+    <string name="full_description">Teta-Brick Baby es tu aliado perfecto para llevar un registro detallado y sencillo de las rutinas de alimentación y cuidado de tu bebé. Diseñada para padres y madres, esta aplicación es intuitiva, rápida y te permite tener todo bajo control, incluso en las noches de insomnio.
+
+Características principales:
+
+- Lactancia Materna (Pecho): Registra el tiempo exacto de cada toma de forma independiente para el pecho izquierdo y derecho. Con un solo toque puedes iniciar, detener, o reiniciar los cronómetros.
+- Biberón: Anota fácilmente la cantidad exacta en mililitros (mL) y la hora de cada toma.
+- Control de Pañales: Registra rápidamente los cambios de pañal para llevar un seguimiento de la digestión de tu pequeño.
+- Alarma de Próxima Toma: Configura un temporizador para recordarte exactamente cuándo le toca comer de nuevo. ¡La app te avisará para que no tengas que estar mirando el reloj!
+- Historial Completo: Revisa todos tus registros anteriores organizados cronológicamente. Si te equivocas, no hay problema: puedes editar horas, cantidades, añadir notas, borrar entradas o incluso unir tomas recientes.
+- Personalización a tu gusto: Haz que la app sea tuya. Elige entre diferentes colores pastel, activa el modo claro o modo oscuro, y decide qué pestaña quieres ver apenas abras la aplicación.
+- Diseño pensado para ti: Interfaz moderna, amigable y muy sencilla de usar con una sola mano (sabemos que con la otra estarás sosteniendo a tu bebé).
+- Multilingüe: Disponible en más de 80 idiomas.
+
+Todo lo que necesitas para el seguimiento diario de tu bebé en una sola app, sin complicaciones y pensada 100% para tu tranquilidad. ¡Descárgala y dedícate a disfrutar de tu bebé mientras nosotros recordamos el resto!</string>
+
+    <!-- Novedades de la versión (Notas para los testers o la tienda) -->
+    <string name="release_notes">¡Bienvenidos a la versión inicial de Teta-Brick Baby! En esta primera entrega incluimos todo lo esencial para el día a día con tu bebé:
+
+- Temporizadores independientes para lactancia (pecho izquierdo y derecho).
+- Registro rápido de tomas de biberón y pañales.
+- Alarma recordatoria para la próxima toma.
+- Historial detallado y editable.
+- Modo oscuro y temas de colores para personalizar la app a tu gusto.
+- Soporte para más de 80 idiomas.
+¡Gracias por confiar en nosotros!</string>
+</resources>
