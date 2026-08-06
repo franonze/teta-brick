@@ -1901,6 +1901,7 @@ function loadSettings() {
     currentLang = settings.lang;
     document.getElementById('settings-lang').value = currentLang;
     applyLanguage(currentLang);
+    sortLanguageOptions();
 
     document.getElementById('settings-theme').checked = (settings.theme === 'light');
     applyTheme(settings.theme);
@@ -1965,6 +1966,7 @@ function applyLanguage(lang) {
             el.textContent = TRANSLATIONS[lang][key];
         } else if (TRANSLATIONS['es'][key]) {
             el.textContent = TRANSLATIONS['es'][key]; // fallback to es
+        }
     });
 
     const placeholders = document.querySelectorAll('[data-i18n-placeholder]');
@@ -1982,6 +1984,40 @@ function applyLanguage(lang) {
     if (activeView && activeView.id === 'view-historial') {
         renderHistory();
     }
+}
+
+function sortLanguageOptions() {
+    const langSelect = document.getElementById('settings-lang');
+    if (!langSelect) return;
+    
+    const defaultLang = CONFIG.app.defaultLang || 'en';
+    const otherLang = defaultLang === 'en' ? 'es' : 'en';
+
+    let options = Array.from(langSelect.options);
+    options = options.filter(o => o.value !== 'separator');
+
+    const defaultOpt = options.find(o => o.value === defaultLang);
+    const otherOpt = options.find(o => o.value === otherLang);
+    
+    const restOpts = options.filter(o => o.value !== defaultLang && o.value !== otherLang);
+    restOpts.sort((a, b) => a.text.localeCompare(b.text));
+
+    langSelect.innerHTML = '';
+
+    if (defaultOpt) langSelect.appendChild(defaultOpt);
+    if (otherOpt) langSelect.appendChild(otherOpt);
+
+    if (restOpts.length > 0) {
+        const separator = document.createElement('option');
+        separator.disabled = true;
+        separator.text = '──────────';
+        separator.value = 'separator';
+        langSelect.appendChild(separator);
+        
+        restOpts.forEach(o => langSelect.appendChild(o));
+    }
+    
+    langSelect.value = currentLang;
 }
 
 // Event Listeners for Settings
