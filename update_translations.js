@@ -91,8 +91,13 @@ async function updateTranslations() {
 
             // Inject the new keys into the string specifically for this language
             // Find `lang: { ... }` block and insert right before the closing brace
-            const langRegex = new RegExp(`(^\\s*${lang}\\s*:\\s*\\{[^}]+)(\\})`, 'm');
-            newContent = newContent.replace(langRegex, `$1${additions} $2`);
+            const langRegex = new RegExp(`(^\\s*${lang}\\s*:\\s*\\{)([^}]*)(\\})`, 'm');
+            let replaceWith = additions;
+            const match = newContent.match(langRegex);
+            if (match && match[2].trim().length === 0) {
+                replaceWith = additions.replace(/^, /, '');
+            }
+            newContent = newContent.replace(langRegex, `$1${match ? match[2] : ''}${replaceWith} $3`);
         }
     }
 
