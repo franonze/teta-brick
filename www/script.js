@@ -889,7 +889,7 @@ btnRegistrar.addEventListener('click', () => {
 
     // Check if there is anything to save
     if (leftSeconds === 0 && rightSeconds === 0 && bottleMl === 0 && !sessionData.diapers) {
-        alert('No hay datos activos para registrar.');
+        alert(getTranslation('no_active_data'));
         return;
     }
 
@@ -1137,15 +1137,16 @@ function deduplicateHistoryDates(history) {
 
 function formatDate(dateString) {
     const d = new Date(dateString);
-    const months = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
 
     // Check if it's today
     const today = new Date();
+    const options = { month: 'short', day: 'numeric' };
+    
     if (d.getDate() === today.getDate() && d.getMonth() === today.getMonth() && d.getFullYear() === today.getFullYear()) {
-        return 'Hoy, ' + d.getDate() + ' ' + months[d.getMonth()];
+        return getTranslation('today') + ', ' + d.toLocaleDateString(currentLang, options);
     }
 
-    return d.getDate() + ' ' + months[d.getMonth()];
+    return d.toLocaleDateString(currentLang, options);
 }
 
 function renderHistory() {
@@ -1487,7 +1488,7 @@ function openEventModal(isNew, editId = null, editKey = null) {
     currentEditId = isNew ? null : editId;
     currentEditKey = isNew ? null : editKey;
     
-    document.getElementById('modal-title').textContent = isNew ? "Añadir registro" : "Editar registro";
+    document.getElementById('modal-title').textContent = isNew ? getTranslation('add_record') : getTranslation('edit_record');
     if (eventType) {
         eventType.style.display = 'block';
         if (isNew) {
@@ -1964,6 +1965,15 @@ function applyLanguage(lang) {
             el.textContent = TRANSLATIONS[lang][key];
         } else if (TRANSLATIONS['es'][key]) {
             el.textContent = TRANSLATIONS['es'][key]; // fallback to es
+    });
+
+    const placeholders = document.querySelectorAll('[data-i18n-placeholder]');
+    placeholders.forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (TRANSLATIONS[lang] && TRANSLATIONS[lang][key]) {
+            el.placeholder = TRANSLATIONS[lang][key];
+        } else if (TRANSLATIONS['es'][key]) {
+            el.placeholder = TRANSLATIONS['es'][key]; // fallback to es
         }
     });
 
