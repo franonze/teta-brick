@@ -731,6 +731,12 @@ const mlCancel = document.getElementById('ml-cancel');
 const mlSave = document.getElementById('ml-save');
 
 modalMlInput.addEventListener('focus', function () { this.select(); });
+modalMlInput.addEventListener('input', function () {
+    const max = CONFIG.app.maxBottleQuantityMl;
+    if (this.value !== '' && parseInt(this.value) > max) {
+        this.value = max;
+    }
+});
 
 function openMlModal() {
     modalMlInput.value = bottleMl > 0 ? bottleMl : '';
@@ -1470,6 +1476,13 @@ let isAddingNew = false;
 editHour.addEventListener('focus', function () { this.select(); });
 editMinute.addEventListener('focus', function () { this.select(); });
 editDuration.addEventListener('focus', function () { this.select(); });
+editDuration.addEventListener('input', function () {
+    const type = eventType ? eventType.value : null;
+    const max = (type === 'bottle') ? CONFIG.app.maxBottleQuantityMl : CONFIG.app.maxNurseDurationMinutes;
+    if (this.value !== '' && parseInt(this.value) > max) {
+        this.value = max;
+    }
+});
 
 const btnAddEvent = document.getElementById('btn-add-event');
 const eventType = document.getElementById('event-type');

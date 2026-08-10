@@ -1,5 +1,7 @@
 const CONFIG = {
     app: {
+        maxNurseDurationMinutes: 59,
+        maxBottleQuantityMl: 999,
         mergeWindowMinutes: 30,
         minSecondsToKeepTimer: 10,
         defaultNextFeedingHours: 4,
