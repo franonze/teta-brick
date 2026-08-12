@@ -13,6 +13,11 @@ const newVersion = args[0];
 console.log(`🚀 Starting release process for version: ${newVersion}`);
 
 try {
+    // 0. Run tests
+    console.log('🧪 Running tests to ensure everything is stable...');
+    execSync('npm test', { stdio: 'inherit', cwd: path.resolve(__dirname, '..') });
+    console.log('✅ Tests passed successfully');
+
     // 1. Update package.json
     const packageJsonPath = path.resolve(__dirname, '../package.json');
     const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));

@@ -1,6 +1,6 @@
 {
   "name": "teta-brick",
-  "version": "1.3",
+  "version": "2.0",
   "description": "Aplicacion para controlar cuando y como das de mamar a tu bebe",
   "main": "config.js",
   "scripts": {
