@@ -217,6 +217,10 @@ function loadCurrentState() {
             leftStartMillis = state.leftStartMillis;
             leftTimerInterval = setInterval(() => {
                 leftSeconds = Math.floor((Date.now() - leftStartMillis) / 1000);
+                if (leftSeconds >= CONFIG.app.maxNurseDurationMinutes * 60) {
+                    leftSeconds = CONFIG.app.maxNurseDurationMinutes * 60;
+                    pauseLeftTimer();
+                }
                 timeLeft.textContent = formatTime(leftSeconds);
                 saveCurrentState();
             }, 1000);
@@ -229,6 +233,10 @@ function loadCurrentState() {
             rightStartMillis = state.rightStartMillis;
             rightTimerInterval = setInterval(() => {
                 rightSeconds = Math.floor((Date.now() - rightStartMillis) / 1000);
+                if (rightSeconds >= CONFIG.app.maxNurseDurationMinutes * 60) {
+                    rightSeconds = CONFIG.app.maxNurseDurationMinutes * 60;
+                    pauseRightTimer();
+                }
                 timeRight.textContent = formatTime(rightSeconds);
                 saveCurrentState();
             }, 1000);
@@ -566,6 +574,10 @@ btnLeft.addEventListener('click', () => {
         leftStartMillis = Date.now() - leftSeconds * 1000;
         leftTimerInterval = setInterval(() => {
             leftSeconds = Math.floor((Date.now() - leftStartMillis) / 1000);
+            if (leftSeconds >= CONFIG.app.maxNurseDurationMinutes * 60) {
+                leftSeconds = CONFIG.app.maxNurseDurationMinutes * 60;
+                pauseLeftTimer();
+            }
             timeLeft.textContent = leftSeconds < 0 ? '00:00' : formatTime(leftSeconds);
             saveCurrentState();
         }, 1000);
@@ -619,6 +631,10 @@ btnRight.addEventListener('click', () => {
         rightStartMillis = Date.now() - rightSeconds * 1000;
         rightTimerInterval = setInterval(() => {
             rightSeconds = Math.floor((Date.now() - rightStartMillis) / 1000);
+            if (rightSeconds >= CONFIG.app.maxNurseDurationMinutes * 60) {
+                rightSeconds = CONFIG.app.maxNurseDurationMinutes * 60;
+                pauseRightTimer();
+            }
             timeRight.textContent = rightSeconds < 0 ? '00:00' : formatTime(rightSeconds);
             saveCurrentState();
         }, 1000);
@@ -688,6 +704,10 @@ btnSwap.addEventListener('click', () => {
         rightStartMillis = Date.now() - rightSeconds * 1000;
         rightTimerInterval = setInterval(() => {
             rightSeconds = Math.floor((Date.now() - rightStartMillis) / 1000);
+            if (rightSeconds >= CONFIG.app.maxNurseDurationMinutes * 60) {
+                rightSeconds = CONFIG.app.maxNurseDurationMinutes * 60;
+                pauseRightTimer();
+            }
             timeRight.textContent = rightSeconds < 0 ? '00:00' : formatTime(rightSeconds);
             saveCurrentState();
         }, 1000);
@@ -696,6 +716,10 @@ btnSwap.addEventListener('click', () => {
         leftStartMillis = Date.now() - leftSeconds * 1000;
         leftTimerInterval = setInterval(() => {
             leftSeconds = Math.floor((Date.now() - leftStartMillis) / 1000);
+            if (leftSeconds >= CONFIG.app.maxNurseDurationMinutes * 60) {
+                leftSeconds = CONFIG.app.maxNurseDurationMinutes * 60;
+                pauseLeftTimer();
+            }
             timeLeft.textContent = leftSeconds < 0 ? '00:00' : formatTime(leftSeconds);
             saveCurrentState();
         }, 1000);
