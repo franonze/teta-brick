@@ -1912,6 +1912,11 @@ modalSave.addEventListener('click', () => {
 let currentLang = CONFIG.app.defaultLang;
 let appSettings = {};
 
+try {
+    const savedSettings = JSON.parse(localStorage.getItem(CONFIG.storage.settingsKey));
+    if (savedSettings && savedSettings.lang) currentLang = savedSettings.lang;
+} catch(e) {}
+
 // Initialize on load
 loadCurrentState();
 
@@ -2062,6 +2067,7 @@ document.getElementById('settings-lang').addEventListener('change', (e) => {
     currentLang = e.target.value;
     applyLanguage(currentLang);
     updateSettingsStorage();
+    updateNextFeedingTime();
 });
 
 document.getElementById('settings-theme').addEventListener('change', (e) => {
