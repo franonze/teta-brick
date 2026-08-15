@@ -854,6 +854,7 @@ btnDiaper.addEventListener('click', () => {
 
 const MERGE_WINDOW_MINUTES = CONFIG.app.mergeWindowMinutes;
 let pendingSessionData = null;
+let mergeContext = 'main';
 
 const mergeModal = document.getElementById('merge-modal');
 const btnMergeConfirm = document.getElementById('merge-confirm');
@@ -865,7 +866,8 @@ function closeMergeModal() {
 
 btnMergeCancel.addEventListener('click', () => {
     if (pendingSessionData) {
-        saveAndResetSession(pendingSessionData, false);
+        if (mergeContext === 'manual' || mergeContext === 'edit') saveManualMerge(pendingSessionData, false);
+        else saveAndResetSession(pendingSessionData, false);
         pendingSessionData = null;
     }
     closeMergeModal();
@@ -873,7 +875,8 @@ btnMergeCancel.addEventListener('click', () => {
 
 btnMergeConfirm.addEventListener('click', () => {
     if (pendingSessionData) {
-        saveAndResetSession(pendingSessionData, true);
+        if (mergeContext === 'manual' || mergeContext === 'edit') saveManualMerge(pendingSessionData, true);
+        else saveAndResetSession(pendingSessionData, true);
         pendingSessionData = null;
     }
     closeMergeModal();
@@ -923,7 +926,24 @@ btnRegistrar.addEventListener('click', () => {
         return;
     }
 
+    
     const history = JSON.parse(localStorage.getItem(CONFIG.storage.historyKey)) || [];
+
+    let isOverlap = false;
+    if (sessionData.left && sessionData.left.startTime) {
+        if (checkOverlap(history, null, 'left', sessionData.left.startTime, sessionData.left.durationSeconds, baseDate)) isOverlap = true;
+    }
+    if (sessionData.right && sessionData.right.startTime) {
+        if (checkOverlap(history, null, 'right', sessionData.right.startTime, sessionData.right.durationSeconds, baseDate)) isOverlap = true;
+    }
+    if (sessionData.bottle && sessionData.bottle.startTime) {
+        if (checkOverlap(history, null, 'bottle', sessionData.bottle.startTime, 0, baseDate)) isOverlap = true;
+    }
+    if (isOverlap) {
+        alert(getTranslation('error_overlap'));
+        return;
+    }
+
 
     if (deduplicateHistoryDates(history)) {
         localStorage.setItem(CONFIG.storage.historyKey, JSON.stringify(history));
@@ -956,17 +976,20 @@ btnRegistrar.addEventListener('click', () => {
             const diffMinutes = (currDate - lastDate) / (1000 * 60);
 
             if (diffMinutes >= 0 && diffMinutes <= MERGE_WINDOW_MINUTES) {
+                mergeContext = 'main';
                 pendingSessionData = sessionData;
                 mergeModal.classList.add('active');
                 return; // Wait for user decision
             }
         } else {
             // Fallback if no start times are available
+            mergeContext = 'main';
             const lastRecordDate = new Date(lastRecord.date);
             const now = new Date();
             const diffMinutes = (now - lastRecordDate) / (1000 * 60);
 
             if (diffMinutes >= 0 && diffMinutes <= MERGE_WINDOW_MINUTES) {
+                mergeContext = 'main';
                 pendingSessionData = sessionData;
                 mergeModal.classList.add('active');
                 return; // Wait for user decision
@@ -983,14 +1006,16 @@ function saveAndResetSession(sessionData, merge) {
     if (merge && history.length > 0) {
         let lastRecord = history[history.length - 1];
 
-        if (sessionData.left.durationSeconds > 0) {
+        if (sessionData.left && sessionData.left.durationSeconds > 0) {
+            if (!lastRecord.left) lastRecord.left = {};
             lastRecord.left.durationSeconds = (lastRecord.left.durationSeconds || 0) + sessionData.left.durationSeconds;
             if (!lastRecord.left.startTime && sessionData.left.startTime) {
                 lastRecord.left.startTime = sessionData.left.startTime;
             }
         }
 
-        if (sessionData.right.durationSeconds > 0) {
+        if (sessionData.right && sessionData.right.durationSeconds > 0) {
+            if (!lastRecord.right) lastRecord.right = {};
             lastRecord.right.durationSeconds = (lastRecord.right.durationSeconds || 0) + sessionData.right.durationSeconds;
             if (!lastRecord.right.startTime && sessionData.right.startTime) {
                 lastRecord.right.startTime = sessionData.right.startTime;

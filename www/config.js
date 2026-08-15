@@ -25,6 +25,7 @@ const CONFIG = {
 
 const TRANSLATIONS = {
     "es": {
+        "error_overlap": "Error: El evento se solapa con otro existente.",
         "reset": "Reiniciar",
         "today": "Hoy",
         "no_active_data": "No hay datos activos para registrar.",
@@ -80,6 +81,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Permiso de Alarma"
     },
     "en": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Reset",
         "today": "Today",
         "no_active_data": "No active data to record.",
@@ -135,6 +137,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "zh": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "重置",
         "today": "今天",
         "no_active_data": "没有活动数据可记录。",
@@ -190,6 +193,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "hi": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "रीसेट",
         "today": "आज",
         "no_active_data": "रिकॉर्ड करने के लिए कोई सक्रिय डेटा नहीं।",
@@ -245,6 +249,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "ar": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "إعادة تعيين",
         "today": "اليوم",
         "no_active_data": "لا توجد بيانات نشطة للتسجيل.",
@@ -300,6 +305,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "fr": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Réinitialiser",
         "today": "Aujourd'hui",
         "no_active_data": "Aucune donnée active à enregistrer.",
@@ -355,6 +361,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "ru": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Сбросить",
         "today": "Сегодня",
         "no_active_data": "Нет активных данных для записи.",
@@ -410,6 +417,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "pt": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Redefinir",
         "today": "Hoje",
         "no_active_data": "Sem dados ativos para registrar.",
@@ -465,6 +473,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "de": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Zurücksetzen",
         "today": "Heute",
         "no_active_data": "Keine aktiven Daten zum Speichern.",
@@ -520,6 +529,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "ja": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "リセット",
         "today": "今日",
         "no_active_data": "記録するアクティブなデータがありません。",
@@ -575,6 +585,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "it": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Ripristina",
         "today": "Oggi",
         "no_active_data": "Nessun dato attivo da registrare.",
@@ -630,6 +641,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "bn": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "রিসেট",
         "today": "আজ",
         "no_active_data": "রেকর্ড করার মত কোনো সক্রিয় ডেটা নেই।",
@@ -685,6 +697,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "ur": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "ری سیٹ",
         "today": "آج",
         "no_active_data": "ریکارڈ کرنے کے لیے کوئی فعال ڈیٹا نہیں۔",
@@ -740,6 +753,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "id": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Setel Ulang",
         "today": "Hari ini",
         "no_active_data": "Tidak ada data aktif untuk direkam.",
@@ -795,6 +809,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "sw": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Weka upya",
         "today": "Leo",
         "no_active_data": "Hakuna data inayoendelea kurekodi.",
@@ -850,6 +865,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "mr": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "रीसेट",
         "today": "आज",
         "no_active_data": "नोंद करण्यासाठी कोणताही सक्रिय डेटा नाही.",
@@ -905,6 +921,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "te": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "రీసెట్",
         "today": "ఈ రోజు",
         "no_active_data": "రికార్డ్ చేయడానికి సక్రియ డేటా లేదు.",
@@ -960,6 +977,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "tr": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Sıfırla",
         "today": "Bugün",
         "no_active_data": "Kaydedilecek aktif veri yok.",
@@ -1015,6 +1033,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "ta": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "மீட்டமை",
         "today": "இன்று",
         "no_active_data": "பதிவு செய்ய எந்த தரவும் இல்லை.",
@@ -1070,6 +1089,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "vi": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Đặt lại",
         "today": "Hôm nay",
         "no_active_data": "Không có dữ liệu hoạt động để lưu.",
@@ -1125,6 +1145,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "ko": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "초기화",
         "today": "오늘",
         "no_active_data": "기록할 활성 데이터가 없습니다.",
@@ -1180,6 +1201,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "fa": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "بازنشانی",
         "today": "امروز",
         "no_active_data": "هیچ داده فعالی برای ثبت وجود ندارد.",
@@ -1235,6 +1257,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "ha": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Sake saita",
         "today": "Yau",
         "no_active_data": "Babu bayanai masu aiki don rikodi.",
@@ -1290,6 +1313,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "jv": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Setel maneh",
         "today": "Dina iki",
         "no_active_data": "Ora ana data aktif kanggo direkam.",
@@ -1345,6 +1369,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "pa": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "ਰੀਸੈਟ",
         "today": "ਅੱਜ",
         "no_active_data": "ਰਿਕਾਰਡ ਕਰਨ ਲਈ ਕੋਈ ਸਰਗਰਮ ਡਾਟਾ ਨਹੀਂ।",
@@ -1400,6 +1425,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "gu": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "રીસેટ",
         "today": "આજે",
         "no_active_data": "રેકોર્ડ કરવા માટે કોઈ સક્રિય ડેટા નથી.",
@@ -1455,6 +1481,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "th": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Reset",
         "today": "Today",
         "no_active_data": "No active data to record.",
@@ -1510,6 +1537,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "am": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Reset",
         "today": "Today",
         "no_active_data": "No active data to record.",
@@ -1565,6 +1593,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "kn": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Reset",
         "today": "Today",
         "no_active_data": "No active data to record.",
@@ -1620,6 +1649,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "or": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Reset",
         "today": "Today",
         "no_active_data": "No active data to record.",
@@ -1730,6 +1760,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "su": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Reset",
         "today": "Today",
         "no_active_data": "No active data to record.",
@@ -1785,6 +1816,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "ro": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Reset",
         "today": "Today",
         "no_active_data": "No active data to record.",
@@ -1840,6 +1872,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "nl": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Reset",
         "today": "Today",
         "no_active_data": "No active data to record.",
@@ -1895,6 +1928,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "km": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Reset",
         "today": "Today",
         "no_active_data": "No active data to record.",
@@ -1950,6 +1984,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "uz": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Reset",
         "today": "Today",
         "no_active_data": "No active data to record.",
@@ -2005,6 +2040,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "sd": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Reset",
         "today": "Today",
         "no_active_data": "No active data to record.",
@@ -2060,6 +2096,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "my": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Reset",
         "today": "Today",
         "no_active_data": "No active data to record.",
@@ -2115,6 +2152,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "yo": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Reset",
         "today": "Today",
         "no_active_data": "No active data to record.",
@@ -2170,6 +2208,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "ig": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Reset",
         "today": "Today",
         "no_active_data": "No active data to record.",
@@ -2225,6 +2264,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "ms": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Reset",
         "today": "Today",
         "no_active_data": "No active data to record.",
@@ -2280,6 +2320,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "ne": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Reset",
         "today": "Today",
         "no_active_data": "No active data to record.",
@@ -2335,6 +2376,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "uk": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Reset",
         "today": "Today",
         "no_active_data": "No active data to record.",
@@ -2445,6 +2487,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "ku": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Reset",
         "today": "Today",
         "no_active_data": "No active data to record.",
@@ -2500,6 +2543,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "sv": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Reset",
         "today": "Today",
         "no_active_data": "No active data to record.",
@@ -2555,6 +2599,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "pl": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Reset",
         "today": "Today",
         "no_active_data": "No active data to record.",
@@ -2610,6 +2655,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "tl": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Reset",
         "today": "Today",
         "no_active_data": "No active data to record.",
@@ -2665,6 +2711,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "ml": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Reset",
         "today": "Today",
         "no_active_data": "No active data to record.",
@@ -2720,6 +2767,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "fi": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Reset",
         "today": "Today",
         "no_active_data": "No active data to record.",
@@ -2775,6 +2823,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "af": {
+        "error_overlap": "Fout: Die gebeurtenis oorvleuel met 'n bestaande een.",
         "reset": "Herlaai",
         "today": "Vandag",
         "no_active_data": "Daar is geen aktiewe data om op te teken nie.",
@@ -2830,6 +2879,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Toestemming"
     },
     "sq": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Rindizni",
         "today": "Sot",
         "no_active_data": "Nuk ka të dhëna aktive për të regjistruar.",
@@ -2885,6 +2935,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "hy": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Վերագործարկեք",
         "today": "Այսօր",
         "no_active_data": "Գրանցման ակտիվ տվյալներ չկան:",
@@ -2940,6 +2991,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "az": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Yenidən başladın",
         "today": "Bu gün",
         "no_active_data": "Qeyd etmək üçün aktiv məlumat yoxdur.",
@@ -2995,6 +3047,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "be": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Перазагрузка",
         "today": "сёння",
         "no_active_data": "Няма актыўных даных для запісу.",
@@ -3050,6 +3103,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "bg": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Рестартирайте",
         "today": "Днес",
         "no_active_data": "Няма активни данни за запис.",
@@ -3105,6 +3159,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "ca": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Reiniciar",
         "today": "Avui",
         "no_active_data": "No hi ha dades actives per registrar.",
@@ -3160,6 +3215,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "cs": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Restartujte",
         "today": "Dnes",
         "no_active_data": "Nejsou k dispozici žádná aktivní data k záznamu.",
@@ -3215,6 +3271,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "si": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "නැවත ආරම්භ කරන්න",
         "today": "අද",
         "no_active_data": "වාර්තා කිරීමට ක්රියාකාරී දත්ත නොමැත.",
@@ -3270,6 +3327,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "hr": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Ponovno pokretanje",
         "today": "Danas",
         "no_active_data": "Nema aktivnih podataka za snimanje.",
@@ -3325,6 +3383,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "da": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Genstart",
         "today": "I dag",
         "no_active_data": "Der er ingen aktive data at registrere.",
@@ -3380,6 +3439,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "sk": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Reštartujte",
         "today": "Dnes",
         "no_active_data": "Neexistujú žiadne aktívne údaje na zaznamenanie.",
@@ -3435,6 +3495,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "sl": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Znova zaženite",
         "today": "Danes",
         "no_active_data": "Ni aktivnih podatkov za snemanje.",
@@ -3490,6 +3551,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "et": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Taaskäivitage",
         "today": "Täna",
         "no_active_data": "Salvestamiseks pole aktiivseid andmeid.",
@@ -3545,6 +3607,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "eu": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Berrabiarazi",
         "today": "Gaur",
         "no_active_data": "Ez dago datu aktiborik erregistratzeko.",
@@ -3600,6 +3663,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "gl": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Reinicie",
         "today": "Hoxe",
         "no_active_data": "Non hai datos activos para gravar.",
@@ -3655,6 +3719,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "ka": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "გადატვირთვა",
         "today": "დღეს",
         "no_active_data": "ჩასაწერი აქტიური მონაცემები არ არის.",
@@ -3710,6 +3775,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "el": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Επανεκκίνηση",
         "today": "Σήμερα",
         "no_active_data": "Δεν υπάρχουν ενεργά δεδομένα για εγγραφή.",
@@ -3765,6 +3831,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "he": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "לְאַתחֵל",
         "today": "הַיוֹם",
         "no_active_data": "אין נתונים פעילים לרישום.",
@@ -3820,6 +3887,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "hu": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Indítsa újra",
         "today": "Ma",
         "no_active_data": "Nincs aktív adat rögzítésre.",
@@ -3875,6 +3943,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "is": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Endurræstu",
         "today": "Í dag",
         "no_active_data": "Það eru engin virk gögn til að skrá.",
@@ -3930,6 +3999,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "kk": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Қайта жүктеу",
         "today": "Бүгін",
         "no_active_data": "Жазу үшін белсенді деректер жоқ.",
@@ -3985,6 +4055,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "ky": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Кайра жүктөө",
         "today": "Бүгүн",
         "no_active_data": "Жаздыруу үчүн активдүү маалымат жок.",
@@ -4040,6 +4111,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "lo": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "ປິດເປີດໃໝ່",
         "today": "ມື້ນີ້",
         "no_active_data": "ບໍ່ມີຂໍ້ມູນການເຄື່ອນໄຫວທີ່ຈະບັນທຶກ.",
@@ -4095,6 +4167,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "lv": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Reboot",
         "today": "Šodien",
         "no_active_data": "Nav aktīvu datu, ko ierakstīt.",
@@ -4150,6 +4223,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "lt": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Perkraukite",
         "today": "Šiandien",
         "no_active_data": "Nėra aktyvių duomenų, kuriuos būtų galima įrašyti.",
@@ -4205,6 +4279,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "mk": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Рестартирај",
         "today": "Денес",
         "no_active_data": "Нема активни податоци за снимање.",
@@ -4260,6 +4335,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "mn": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Дахин ачаална уу",
         "today": "Өнөөдөр",
         "no_active_data": "Бүртгүүлэх идэвхтэй өгөгдөл алга.",
@@ -4315,6 +4391,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "no": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Start på nytt",
         "today": "I dag",
         "no_active_data": "Det er ingen aktive data å registrere.",
@@ -4370,6 +4447,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "rm": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Reiniciar",
         "today": "Hoy",
         "no_active_data": "No hay datos activos para registrar.",
@@ -4425,6 +4503,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "sr": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Поново покрени",
         "today": "данас",
         "no_active_data": "Нема активних података за снимање.",
@@ -4480,6 +4559,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "zu": {
+        "error_overlap": "Error: The event overlaps with an existing one.",
         "reset": "Qalisa kabusha",
         "today": "Namuhla",
         "no_active_data": "Ayikho idatha esebenzayo engarekhodwa.",
