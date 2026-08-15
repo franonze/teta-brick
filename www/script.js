@@ -882,6 +882,155 @@ btnMergeConfirm.addEventListener('click', () => {
     closeMergeModal();
 });
 
+
+function checkOverlap(history, ignoreDateStr, eventType, startStr, durationSeconds, compareDate) {
+    if (!startStr || eventType === 'diaper') return false;
+    const s1 = new Date(compareDate || new Date());
+    const [h1, m1] = startStr.split(':').map(Number);
+    s1.setHours(h1, m1, 0, 0);
+    const end1 = new Date(s1.getTime() + (durationSeconds || 0) * 1000);
+
+    for (const session of history) {
+        if (ignoreDateStr && session.date === ignoreDateStr) continue;
+
+        const checkType = (type, data) => {
+            if (!data || !data.startTime || type === 'diaper') return false;
+            const s2 = new Date(session.date);
+            const [h2, m2] = data.startTime.split(':').map(Number);
+            s2.setHours(h2, m2, 0, 0);
+            let dur2 = 0;
+            if (type === 'left' || type === 'right') dur2 = data.durationSeconds || 0;
+            const end2 = new Date(s2.getTime() + dur2 * 1000);
+
+            if (s1 < end2 && s2 < end1) return true;
+            if (s1.getTime() === s2.getTime()) return true;
+            return false;
+        };
+
+        if (checkType('left', session.left)) return true;
+        if (checkType('right', session.right)) return true;
+        if (checkType('bottle', session.bottle)) return true;
+    }
+    return false;
+}
+
+function saveManualMerge(sessionData, merge) {
+    let history = JSON.parse(localStorage.getItem(CONFIG.storage.historyKey)) || [];
+
+    if (merge && sessionData.targetSessionId) {
+        const idx = history.findIndex(s => s.date === sessionData.targetSessionId);
+        if (idx !== -1) {
+            let lastRecord = history[idx];
+            if (sessionData.left && sessionData.left.durationSeconds > 0) {
+                if (!lastRecord.left) lastRecord.left = {};
+                lastRecord.left.durationSeconds = (lastRecord.left.durationSeconds || 0) + sessionData.left.durationSeconds;
+                if (!lastRecord.left.startTime && sessionData.left.startTime) lastRecord.left.startTime = sessionData.left.startTime;
+            }
+            if (sessionData.right && sessionData.right.durationSeconds > 0) {
+                if (!lastRecord.right) lastRecord.right = {};
+                lastRecord.right.durationSeconds = (lastRecord.right.durationSeconds || 0) + sessionData.right.durationSeconds;
+                if (!lastRecord.right.startTime && sessionData.right.startTime) lastRecord.right.startTime = sessionData.right.startTime;
+            }
+            if (sessionData.bottle && sessionData.bottle.ml > 0) {
+                lastRecord.bottle = lastRecord.bottle || { ml: 0, startTime: null };
+                lastRecord.bottle.ml += sessionData.bottle.ml;
+                if (!lastRecord.bottle.startTime && sessionData.bottle.startTime) lastRecord.bottle.startTime = sessionData.bottle.startTime;
+            }
+            if (sessionData.diapers) lastRecord.diapers = sessionData.diapers;
+            history[idx] = lastRecord;
+            
+            if (sessionData.isEdit && sessionData.id !== sessionData.targetSessionId) {
+                const oldIdx = history.findIndex(s => s.date === sessionData.id);
+                if (oldIdx !== -1) {
+                    delete history[oldIdx][sessionData.editKey === 'diaper' ? 'diapers' : sessionData.editKey];
+                    if (!history[oldIdx].left?.startTime && !history[oldIdx].right?.startTime && !history[oldIdx].bottle?.startTime && !history[oldIdx].diapers) {
+                        history.splice(oldIdx, 1);
+                    }
+                }
+            }
+        } else {
+            history.push(sessionData.fullSession || sessionData);
+        }
+    } else {
+        if (sessionData.isEdit) {
+            const idx = history.findIndex(s => s.date === sessionData.id);
+            if (idx !== -1) history[idx] = sessionData.fullSession;
+            else history.push(sessionData.fullSession);
+        } else {
+            history.push(sessionData);
+        }
+    }
+
+    history = performAutoSplit(history);
+    localStorage.setItem(CONFIG.storage.historyKey, JSON.stringify(history));
+    recalculateNextFeedingFromHistory(history);
+    renderHistory();
+    closeEditModal();
+}
+
+function performAutoSplit(history) {
+    const newHistory = [];
+    for (const session of history) {
+        const events = [];
+        if (session.left && session.left.startTime) events.push({ type: 'left', data: session.left });
+        if (session.right && session.right.startTime) events.push({ type: 'right', data: session.right });
+        if (session.bottle && session.bottle.startTime) events.push({ type: 'bottle', data: session.bottle });
+        if (session.diapers) events.push({ type: 'diaper', data: session.diapers });
+
+        if (events.length <= 1) {
+            newHistory.push(session);
+            continue;
+        }
+
+        events.forEach(ev => {
+            let timeStr = ev.type === 'diaper' ? (typeof ev.data === 'string' ? ev.data : ev.data.time) : ev.data.startTime;
+            const d = new Date(session.date);
+            if (timeStr && timeStr.includes(':')) {
+                const [h, m] = timeStr.split(':').map(Number);
+                d.setHours(h, m, 0, 0);
+            }
+            ev.dateObj = d;
+        });
+
+        events.sort((a, b) => a.dateObj - b.dateObj);
+
+        let currentGroup = [];
+        const groups = [currentGroup];
+        for (let i = 0; i < events.length; i++) {
+            if (currentGroup.length === 0) {
+                currentGroup.push(events[i]);
+            } else {
+                const lastEvent = currentGroup[currentGroup.length - 1];
+                let diffMins = Math.abs((events[i].dateObj - lastEvent.dateObj) / (1000 * 60));
+                if (diffMins > 12 * 60) diffMins = 24 * 60 - diffMins; 
+                
+                if (diffMins > CONFIG.app.mergeWindowMinutes) {
+                    currentGroup = [events[i]];
+                    groups.push(currentGroup);
+                } else {
+                    currentGroup.push(events[i]);
+                }
+            }
+        }
+
+        if (groups.length === 1) {
+            newHistory.push(session);
+        } else {
+            groups.forEach(group => {
+                const newSess = { date: group[0].dateObj.toISOString() };
+                group.forEach(ev => {
+                    newSess[ev.type === 'diaper' ? 'diapers' : ev.type] = ev.data;
+                });
+                newHistory.push(newSess);
+            });
+        }
+    }
+    
+    deduplicateHistoryDates(newHistory);
+    newHistory.sort((a, b) => new Date(a.date) - new Date(b.date));
+    return newHistory;
+}
+
 // Registrar Session
 btnRegistrar.addEventListener('click', () => {
     let baseDate = new Date();
