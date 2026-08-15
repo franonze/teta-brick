@@ -137,7 +137,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "zh": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "错误：该事件与现有事件重叠。",
         "reset": "重置",
         "today": "今天",
         "no_active_data": "没有活动数据可记录。",
@@ -189,11 +189,11 @@ const TRANSLATIONS = {
         "notif_time_title": "射击时间！",
         "notif_time_body": "是时候给宝宝喂奶了。",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "权限（安卓）",
+        "settings_perm_alarm": "报警权限"
     },
     "hi": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "त्रुटि: ईवेंट मौजूदा ईवेंट के साथ ओवरलैप होता है।",
         "reset": "रीसेट",
         "today": "आज",
         "no_active_data": "रिकॉर्ड करने के लिए कोई सक्रिय डेटा नहीं।",
@@ -245,11 +245,11 @@ const TRANSLATIONS = {
         "notif_time_title": "शॉट का समय!",
         "notif_time_body": "यह आपके बच्चे को दूध पिलाने का समय है।",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "अनुमतियाँ (एंड्रॉइड)",
+        "settings_perm_alarm": "अलार्म अनुमति"
     },
     "ar": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "خطأ: يتداخل الحدث مع حدث موجود.",
         "reset": "إعادة تعيين",
         "today": "اليوم",
         "no_active_data": "لا توجد بيانات نشطة للتسجيل.",
@@ -301,11 +301,11 @@ const TRANSLATIONS = {
         "notif_time_title": "وقت إطلاق النار!",
         "notif_time_body": "حان الوقت لإطعام طفلك.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "الأذونات (أندرويد)",
+        "settings_perm_alarm": "إذن التنبيه"
     },
     "fr": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "Erreur : l'événement chevauche un événement existant.",
         "reset": "Réinitialiser",
         "today": "Aujourd'hui",
         "no_active_data": "Aucune donnée active à enregistrer.",
@@ -357,11 +357,11 @@ const TRANSLATIONS = {
         "notif_time_title": "C'est l'heure du tir !",
         "notif_time_body": "Il est temps de nourrir votre bébé.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "Autorisations (Android)",
+        "settings_perm_alarm": "Autorisation d'alarme"
     },
     "ru": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "Ошибка: событие пересекается с существующим.",
         "reset": "Сбросить",
         "today": "Сегодня",
         "no_active_data": "Нет активных данных для записи.",
@@ -413,11 +413,11 @@ const TRANSLATIONS = {
         "notif_time_title": "Время выстрела!",
         "notif_time_body": "Пришло время покормить ребенка.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "Разрешения (Android)",
+        "settings_perm_alarm": "Разрешение тревоги"
     },
     "pt": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "Erro: O evento se sobrepõe a um evento existente.",
         "reset": "Redefinir",
         "today": "Hoje",
         "no_active_data": "Sem dados ativos para registrar.",
@@ -469,11 +469,11 @@ const TRANSLATIONS = {
         "notif_time_title": "Hora do tiro!",
         "notif_time_body": "É hora de alimentar seu bebê.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "Permissões (Android)",
+        "settings_perm_alarm": "Permissão de alarme"
     },
     "de": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "Fehler: Das Ereignis überschneidet sich mit einem vorhandenen.",
         "reset": "Zurücksetzen",
         "today": "Heute",
         "no_active_data": "Keine aktiven Daten zum Speichern.",
@@ -525,11 +525,11 @@ const TRANSLATIONS = {
         "notif_time_title": "Schusszeit!",
         "notif_time_body": "Es ist Zeit, Ihr Baby zu füttern.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "Berechtigungen (Android)",
+        "settings_perm_alarm": "Alarmberechtigung"
     },
     "ja": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "エラー: イベントは既存のイベントと重複しています。",
         "reset": "リセット",
         "today": "今日",
         "no_active_data": "記録するアクティブなデータがありません。",
@@ -581,11 +581,11 @@ const TRANSLATIONS = {
         "notif_time_title": "ショットタイム！",
         "notif_time_body": "赤ちゃんに食事を与える時間です。",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "権限 (Android)",
+        "settings_perm_alarm": "アラーム許可"
     },
     "it": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "Errore: l'evento si sovrappone a uno esistente.",
         "reset": "Ripristina",
         "today": "Oggi",
         "no_active_data": "Nessun dato attivo da registrare.",
@@ -637,11 +637,11 @@ const TRANSLATIONS = {
         "notif_time_title": "È ora di sparare!",
         "notif_time_body": "È ora di dare da mangiare al tuo bambino.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "Autorizzazioni (Android)",
+        "settings_perm_alarm": "Autorizzazione allarme"
     },
     "bn": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "ত্রুটি: ইভেন্টটি বিদ্যমান একটির সাথে ওভারল্যাপ করে৷",
         "reset": "রিসেট",
         "today": "আজ",
         "no_active_data": "রেকর্ড করার মত কোনো সক্রিয় ডেটা নেই।",
@@ -693,11 +693,11 @@ const TRANSLATIONS = {
         "notif_time_title": "শট টাইম!",
         "notif_time_body": "আপনার শিশুকে খাওয়ানোর সময় এসেছে।",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "অনুমতি (Android)",
+        "settings_perm_alarm": "অ্যালার্ম অনুমতি"
     },
     "ur": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "خرابی: ایونٹ ایک موجودہ کے ساتھ اوورلیپ ہو جاتا ہے۔",
         "reset": "ری سیٹ",
         "today": "آج",
         "no_active_data": "ریکارڈ کرنے کے لیے کوئی فعال ڈیٹا نہیں۔",
@@ -749,11 +749,11 @@ const TRANSLATIONS = {
         "notif_time_title": "شاٹ ٹائم!",
         "notif_time_body": "یہ آپ کے بچے کو دودھ پلانے کا وقت ہے.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "اجازتیں (Android)",
+        "settings_perm_alarm": "الارم کی اجازت"
     },
     "id": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "Kesalahan: Acara tersebut tumpang tindih dengan acara yang sudah ada.",
         "reset": "Setel Ulang",
         "today": "Hari ini",
         "no_active_data": "Tidak ada data aktif untuk direkam.",
@@ -805,11 +805,11 @@ const TRANSLATIONS = {
         "notif_time_title": "Waktunya menembak!",
         "notif_time_body": "Saatnya memberi makan bayi Anda.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "Izin (Android)",
+        "settings_perm_alarm": "Izin Alarm"
     },
     "sw": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "Hitilafu: Tukio linapishana na lililopo.",
         "reset": "Weka upya",
         "today": "Leo",
         "no_active_data": "Hakuna data inayoendelea kurekodi.",
@@ -861,11 +861,11 @@ const TRANSLATIONS = {
         "notif_time_title": "Muda wa risasi!",
         "notif_time_body": "Ni wakati wa kulisha mtoto wako.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "Ruhusa (Android)",
+        "settings_perm_alarm": "Ruhusa ya Kengele"
     },
     "mr": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "त्रुटी: इव्हेंट विद्यमान इव्हेंटसह ओव्हरलॅप होतो.",
         "reset": "रीसेट",
         "today": "आज",
         "no_active_data": "नोंद करण्यासाठी कोणताही सक्रिय डेटा नाही.",
@@ -917,11 +917,11 @@ const TRANSLATIONS = {
         "notif_time_title": "शॉट वेळ!",
         "notif_time_body": "आपल्या बाळाला खायला देण्याची वेळ आली आहे.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "परवानग्या (Android)",
+        "settings_perm_alarm": "अलार्म परवानगी"
     },
     "te": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "లోపం: ఈవెంట్ ఇప్పటికే ఉన్న దానితో అతివ్యాప్తి చెందుతుంది.",
         "reset": "రీసెట్",
         "today": "ఈ రోజు",
         "no_active_data": "రికార్డ్ చేయడానికి సక్రియ డేటా లేదు.",
@@ -973,11 +973,11 @@ const TRANSLATIONS = {
         "notif_time_title": "షాట్ టైమ్!",
         "notif_time_body": "ఇది మీ బిడ్డకు ఆహారం ఇవ్వడానికి సమయం.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "అనుమతులు (Android)",
+        "settings_perm_alarm": "అలారం అనుమతి"
     },
     "tr": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "Hata: Etkinlik mevcut bir etkinlikle çakışıyor.",
         "reset": "Sıfırla",
         "today": "Bugün",
         "no_active_data": "Kaydedilecek aktif veri yok.",
@@ -1029,11 +1029,11 @@ const TRANSLATIONS = {
         "notif_time_title": "Vuruş zamanı!",
         "notif_time_body": "Bebeğinizi beslemenin zamanı geldi.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "İzinler (Android)",
+        "settings_perm_alarm": "Alarm İzni"
     },
     "ta": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "பிழை: நிகழ்வு ஏற்கனவே உள்ளவற்றுடன் மேலெழுகிறது.",
         "reset": "மீட்டமை",
         "today": "இன்று",
         "no_active_data": "பதிவு செய்ய எந்த தரவும் இல்லை.",
@@ -1085,11 +1085,11 @@ const TRANSLATIONS = {
         "notif_time_title": "ஷாட் நேரம்!",
         "notif_time_body": "உங்கள் குழந்தைக்கு உணவளிக்கும் நேரம் இது.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "அனுமதிகள் (Android)",
+        "settings_perm_alarm": "அலாரம் அனுமதி"
     },
     "vi": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "Lỗi: Sự kiện trùng lặp với sự kiện hiện có.",
         "reset": "Đặt lại",
         "today": "Hôm nay",
         "no_active_data": "Không có dữ liệu hoạt động để lưu.",
@@ -1141,11 +1141,11 @@ const TRANSLATIONS = {
         "notif_time_title": "Đã đến lúc bắn!",
         "notif_time_body": "Đã đến lúc cho bé ăn.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "Quyền (Android)",
+        "settings_perm_alarm": "Quyền báo động"
     },
     "ko": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "오류: 이벤트가 기존 이벤트와 겹칩니다.",
         "reset": "초기화",
         "today": "오늘",
         "no_active_data": "기록할 활성 데이터가 없습니다.",
@@ -1197,11 +1197,11 @@ const TRANSLATIONS = {
         "notif_time_title": "촬영 시간!",
         "notif_time_body": "이제 아기에게 젖을 먹일 시간입니다.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "권한(안드로이드)",
+        "settings_perm_alarm": "알람 권한"
     },
     "fa": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "خطا: رویداد با رویداد موجود همپوشانی دارد.",
         "reset": "بازنشانی",
         "today": "امروز",
         "no_active_data": "هیچ داده فعالی برای ثبت وجود ندارد.",
@@ -1253,11 +1253,11 @@ const TRANSLATIONS = {
         "notif_time_title": "زمان شلیک!",
         "notif_time_body": "وقت آن است که به کودک خود غذا دهید.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "مجوزها (اندروید)",
+        "settings_perm_alarm": "مجوز هشدار"
     },
     "ha": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "Kuskure: Lamarin ya zo tare da wanda yake.",
         "reset": "Sake saita",
         "today": "Yau",
         "no_active_data": "Babu bayanai masu aiki don rikodi.",
@@ -1309,11 +1309,11 @@ const TRANSLATIONS = {
         "notif_time_title": "Lokacin harbi!",
         "notif_time_body": "Lokaci ya yi da za ku ciyar da jaririnku.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "Izini (Android)",
+        "settings_perm_alarm": "Izinin ƙararrawa"
     },
     "jv": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "Error: Acara tumpang tindih karo sing wis ana.",
         "reset": "Setel maneh",
         "today": "Dina iki",
         "no_active_data": "Ora ana data aktif kanggo direkam.",
@@ -1365,11 +1365,11 @@ const TRANSLATIONS = {
         "notif_time_title": "wektu dijupuk!",
         "notif_time_body": "Iku wektu kanggo Feed bayi.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "Izin (Android)",
+        "settings_perm_alarm": "Izin Weker"
     },
     "pa": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "ਤਰੁੱਟੀ: ਇਵੈਂਟ ਮੌਜੂਦਾ ਇੱਕ ਨਾਲ ਓਵਰਲੈਪ ਹੁੰਦਾ ਹੈ।",
         "reset": "ਰੀਸੈਟ",
         "today": "ਅੱਜ",
         "no_active_data": "ਰਿਕਾਰਡ ਕਰਨ ਲਈ ਕੋਈ ਸਰਗਰਮ ਡਾਟਾ ਨਹੀਂ।",
@@ -1421,11 +1421,11 @@ const TRANSLATIONS = {
         "notif_time_title": "ਗੋਲੀ ਦਾ ਸਮਾਂ!",
         "notif_time_body": "ਇਹ ਤੁਹਾਡੇ ਬੱਚੇ ਨੂੰ ਦੁੱਧ ਪਿਲਾਉਣ ਦਾ ਸਮਾਂ ਹੈ।",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "ਅਨੁਮਤੀਆਂ (Android)",
+        "settings_perm_alarm": "ਅਲਾਰਮ ਦੀ ਇਜਾਜ਼ਤ"
     },
     "gu": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "ભૂલ: ઇવેન્ટ અસ્તિત્વમાં છે તે સાથે ઓવરલેપ થાય છે.",
         "reset": "રીસેટ",
         "today": "આજે",
         "no_active_data": "રેકોર્ડ કરવા માટે કોઈ સક્રિય ડેટા નથી.",
@@ -1477,11 +1477,11 @@ const TRANSLATIONS = {
         "notif_time_title": "શોટ સમય!",
         "notif_time_body": "તમારા બાળકને ખવડાવવાનો સમય છે.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "પરવાનગીઓ (Android)",
+        "settings_perm_alarm": "એલાર્મ પરવાનગી"
     },
     "th": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "ข้อผิดพลาด: เหตุการณ์ซ้อนทับกับเหตุการณ์ที่มีอยู่",
         "reset": "Reset",
         "today": "Today",
         "no_active_data": "No active data to record.",
@@ -1533,11 +1533,11 @@ const TRANSLATIONS = {
         "notif_time_title": "ถึงเวลายิง!",
         "notif_time_body": "ถึงเวลาให้อาหารลูกน้อยของคุณแล้ว",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "สิทธิ์ (Android)",
+        "settings_perm_alarm": "การอนุญาตปลุก"
     },
     "am": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "ስህተት፡ ክስተቱ ከነባሩ ጋር ይደራረባል።",
         "reset": "Reset",
         "today": "Today",
         "no_active_data": "No active data to record.",
@@ -1589,11 +1589,11 @@ const TRANSLATIONS = {
         "notif_time_title": "የተኩስ ጊዜ!",
         "notif_time_body": "ልጅዎን ለመመገብ ጊዜው አሁን ነው.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "ፈቃዶች (አንድሮይድ)",
+        "settings_perm_alarm": "የማንቂያ ፍቃድ"
     },
     "kn": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "ದೋಷ: ಈವೆಂಟ್ ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ಒಂದರೊಂದಿಗೆ ಅತಿಕ್ರಮಿಸುತ್ತದೆ.",
         "reset": "Reset",
         "today": "Today",
         "no_active_data": "No active data to record.",
@@ -1645,11 +1645,11 @@ const TRANSLATIONS = {
         "notif_time_title": "ಹೊಡೆದ ಸಮಯ!",
         "notif_time_body": "ನಿಮ್ಮ ಮಗುವಿಗೆ ಆಹಾರ ನೀಡುವ ಸಮಯ ಇದು.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "ಅನುಮತಿಗಳು (ಆಂಡ್ರಾಯ್ಡ್)",
+        "settings_perm_alarm": "ಅಲಾರಾಂ ಅನುಮತಿ"
     },
     "or": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "ତ୍ରୁଟି: ଏକ ବିଦ୍ୟମାନ ସହିତ ଇଭେଣ୍ଟଟି ଅଲଗା ହୋଇଯାଏ |",
         "reset": "Reset",
         "today": "Today",
         "no_active_data": "No active data to record.",
@@ -1701,8 +1701,8 @@ const TRANSLATIONS = {
         "notif_time_title": "ଗୁଳି ସମୟ!",
         "notif_time_body": "ତୁମ ଛୁଆକୁ ଖାଇବାକୁ ଦେବାର ସମୟ ଆସିଛି |",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "ଅନୁମତି (ଆଣ୍ଡ୍ରଏଡ୍)",
+        "settings_perm_alarm": "ଆଲାର୍ମ ଅନୁମତି"
     },
     "bho": {
         "reset": "Reset",
@@ -1756,11 +1756,12 @@ const TRANSLATIONS = {
         "notif_time_title": "गोली मार के समय!",
         "notif_time_body": "अपना बच्चा के दूध पियावे के समय आ गईल बा।",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "अनुमति (एंड्रॉयड) के बा।",
+        "settings_perm_alarm": "अलार्म के अनुमति दिहल गइल बा",
+        "error_overlap": "त्रुटि: घटना मौजूदा के साथ ओवरलैप हो जाला।"
     },
     "su": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "Kasalahan: Acara tumpang tindih sareng anu tos aya.",
         "reset": "Reset",
         "today": "Today",
         "no_active_data": "No active data to record.",
@@ -1812,11 +1813,11 @@ const TRANSLATIONS = {
         "notif_time_title": "waktos shot!",
         "notif_time_body": "Geus waktuna pikeun nyoco orok anjeun.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "Idin (Android)",
+        "settings_perm_alarm": "Idin Alarm"
     },
     "ro": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "Eroare: evenimentul se suprapune cu unul existent.",
         "reset": "Reset",
         "today": "Today",
         "no_active_data": "No active data to record.",
@@ -1868,11 +1869,11 @@ const TRANSLATIONS = {
         "notif_time_title": "Timp de filmare!",
         "notif_time_body": "Este timpul să-ți hrănești copilul.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "Permisiuni (Android)",
+        "settings_perm_alarm": "Permisiune de alarmă"
     },
     "nl": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "Fout: de gebeurtenis overlapt met een bestaande gebeurtenis.",
         "reset": "Reset",
         "today": "Today",
         "no_active_data": "No active data to record.",
@@ -1924,11 +1925,11 @@ const TRANSLATIONS = {
         "notif_time_title": "Schot tijd!",
         "notif_time_body": "Het is tijd om je baby te voeden.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "Machtigingen (Android)",
+        "settings_perm_alarm": "Alarmtoestemming"
     },
     "km": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "កំហុស៖ ព្រឹត្តិការណ៍នេះត្រួតលើគ្នាជាមួយព្រឹត្តិការណ៍ដែលមានស្រាប់។",
         "reset": "Reset",
         "today": "Today",
         "no_active_data": "No active data to record.",
@@ -1980,11 +1981,11 @@ const TRANSLATIONS = {
         "notif_time_title": "ដល់ម៉ោងបាញ់ហើយ!",
         "notif_time_body": "ដល់ពេលចិញ្ចឹមកូនហើយ។",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "ការអនុញ្ញាត (Android)",
+        "settings_perm_alarm": "ការអនុញ្ញាតសំឡេងរោទិ៍"
     },
     "uz": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "Xato: Hodisa mavjud voqea bilan bir-biriga mos tushdi.",
         "reset": "Reset",
         "today": "Today",
         "no_active_data": "No active data to record.",
@@ -2036,11 +2037,11 @@ const TRANSLATIONS = {
         "notif_time_title": "Otish vaqti!",
         "notif_time_body": "Farzandingizni ovqatlantirish vaqti keldi.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "Ruxsatlar (Android)",
+        "settings_perm_alarm": "Signal ruxsati"
     },
     "sd": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "نقص: واقعو موجوده ھڪڙي سان اوورليپ ٿئي ٿو.",
         "reset": "Reset",
         "today": "Today",
         "no_active_data": "No active data to record.",
@@ -2092,11 +2093,11 @@ const TRANSLATIONS = {
         "notif_time_title": "شاٽ وقت!",
         "notif_time_body": "اهو توهان جي ٻار کي کارائڻ جو وقت آهي.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "اجازتون (Android)",
+        "settings_perm_alarm": "الارم جي اجازت"
     },
     "my": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "အမှား- ဖြစ်ရပ်သည် ရှိပြီးသားတစ်ခုနှင့် ထပ်နေပါသည်။",
         "reset": "Reset",
         "today": "Today",
         "no_active_data": "No active data to record.",
@@ -2148,11 +2149,11 @@ const TRANSLATIONS = {
         "notif_time_title": "ပစ်ချိန်။",
         "notif_time_body": "သင့်ကလေးကို အစာကျွေးဖို့ အချိန်ရောက်ပါပြီ။",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "ခွင့်ပြုချက်များ (Android)",
+        "settings_perm_alarm": "နှိုးစက်ခွင့်ပြုချက်"
     },
     "yo": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "Aṣiṣe: Iṣẹlẹ naa ṣakojọpọ pẹlu eyi ti o wa tẹlẹ.",
         "reset": "Reset",
         "today": "Today",
         "no_active_data": "No active data to record.",
@@ -2204,11 +2205,11 @@ const TRANSLATIONS = {
         "notif_time_title": "Akoko shot!",
         "notif_time_body": "O to akoko lati fun ọmọ rẹ jẹ.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "Awọn igbanilaaye (Android)",
+        "settings_perm_alarm": "Gbigbanilaaye Itaniji"
     },
     "ig": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "Njehie: Ihe omume a dakọtara na nke dị.",
         "reset": "Reset",
         "today": "Today",
         "no_active_data": "No active data to record.",
@@ -2260,11 +2261,11 @@ const TRANSLATIONS = {
         "notif_time_title": "Oge agba!",
         "notif_time_body": "Oge erugo inye nwa gi nri.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "Ikikere (Android)",
+        "settings_perm_alarm": "Ikike mkpu"
     },
     "ms": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "Ralat: Acara bertindih dengan yang sedia ada.",
         "reset": "Reset",
         "today": "Today",
         "no_active_data": "No active data to record.",
@@ -2316,11 +2317,11 @@ const TRANSLATIONS = {
         "notif_time_title": "masa syot!",
         "notif_time_body": "Sudah tiba masanya untuk menyusukan bayi anda.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "Kebenaran (Android)",
+        "settings_perm_alarm": "Kebenaran Penggera"
     },
     "ne": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "त्रुटि: घटना अवस्थित एउटासँग ओभरल्याप हुन्छ।",
         "reset": "Reset",
         "today": "Today",
         "no_active_data": "No active data to record.",
@@ -2372,11 +2373,11 @@ const TRANSLATIONS = {
         "notif_time_title": "शट समय!",
         "notif_time_body": "यो तपाईंको बच्चालाई खुवाउने समय हो।",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "अनुमतिहरू (एन्ड्रोइड)",
+        "settings_perm_alarm": "अलार्म अनुमति"
     },
     "uk": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "Помилка: подія збігається з існуючою.",
         "reset": "Reset",
         "today": "Today",
         "no_active_data": "No active data to record.",
@@ -2428,8 +2429,8 @@ const TRANSLATIONS = {
         "notif_time_title": "Час стрільби!",
         "notif_time_body": "Пора годувати дитину.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "Дозволи (Android)",
+        "settings_perm_alarm": "Дозвіл на будильник"
     },
     "ceb": {
         "reset": "Reset",
@@ -2483,11 +2484,12 @@ const TRANSLATIONS = {
         "notif_time_title": "Shot time!",
         "notif_time_body": "Panahon na sa pagpakaon sa imong anak.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "Mga Permiso (Android)",
+        "settings_perm_alarm": "Pagtugot sa Alarm",
+        "error_overlap": "Sayop: Ang panghitabo nagsapaw sa usa nga anaa na."
     },
     "ku": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "Çewtî: Bûyer bi ya heyî re li hev dikeve.",
         "reset": "Reset",
         "today": "Today",
         "no_active_data": "No active data to record.",
@@ -2539,11 +2541,11 @@ const TRANSLATIONS = {
         "notif_time_title": "Dema gulebaranê!",
         "notif_time_body": "Wext e ku hûn zarokê xwe bixwin.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "Destûr (Android)",
+        "settings_perm_alarm": "Destûra Alarm"
     },
     "sv": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "Fel: Händelsen överlappar en befintlig.",
         "reset": "Reset",
         "today": "Today",
         "no_active_data": "No active data to record.",
@@ -2595,11 +2597,11 @@ const TRANSLATIONS = {
         "notif_time_title": "Skotttid!",
         "notif_time_body": "Det är dags att mata ditt barn.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "Behörigheter (Android)",
+        "settings_perm_alarm": "Larmtillstånd"
     },
     "pl": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "Błąd: wydarzenie pokrywa się z istniejącym.",
         "reset": "Reset",
         "today": "Today",
         "no_active_data": "No active data to record.",
@@ -2651,11 +2653,11 @@ const TRANSLATIONS = {
         "notif_time_title": "Czas na strzał!",
         "notif_time_body": "Nadszedł czas, aby nakarmić dziecko.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "Uprawnienia (Android)",
+        "settings_perm_alarm": "Zezwolenie na alarm"
     },
     "tl": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "Error: Ang kaganapan ay nag-o-overlap sa isang umiiral na.",
         "reset": "Reset",
         "today": "Today",
         "no_active_data": "No active data to record.",
@@ -2707,11 +2709,11 @@ const TRANSLATIONS = {
         "notif_time_title": "Oras ng pagbaril!",
         "notif_time_body": "Oras na para pakainin ang iyong sanggol.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "Mga Pahintulot (Android)",
+        "settings_perm_alarm": "Pahintulot sa Alarm"
     },
     "ml": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "പിശക്: ഇവൻ്റ് നിലവിലുള്ള ഒന്നുമായി ഓവർലാപ്പ് ചെയ്യുന്നു.",
         "reset": "Reset",
         "today": "Today",
         "no_active_data": "No active data to record.",
@@ -2763,11 +2765,11 @@ const TRANSLATIONS = {
         "notif_time_title": "ഷോട്ട് സമയം!",
         "notif_time_body": "നിങ്ങളുടെ കുഞ്ഞിന് ഭക്ഷണം നൽകാനുള്ള സമയമാണിത്.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "അനുമതികൾ (Android)",
+        "settings_perm_alarm": "അലാറം അനുമതി"
     },
     "fi": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "Virhe: Tapahtuma on päällekkäinen olemassa olevan tapahtuman kanssa.",
         "reset": "Reset",
         "today": "Today",
         "no_active_data": "No active data to record.",
@@ -2819,8 +2821,8 @@ const TRANSLATIONS = {
         "notif_time_title": "Laukausaika!",
         "notif_time_body": "On aika ruokkia vauvasi.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "Käyttöoikeudet (Android)",
+        "settings_perm_alarm": "Hälytyslupa"
     },
     "af": {
         "error_overlap": "Fout: Die gebeurtenis oorvleuel met 'n bestaande een.",
@@ -2879,7 +2881,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Toestemming"
     },
     "sq": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "Gabim: Ngjarja mbivendoset me një ekzistuese.",
         "reset": "Rindizni",
         "today": "Sot",
         "no_active_data": "Nuk ka të dhëna aktive për të regjistruar.",
@@ -2931,11 +2933,11 @@ const TRANSLATIONS = {
         "notif_time_title": "Koha e gjuajtjes!",
         "notif_time_body": "Është koha për të ushqyer fëmijën tuaj.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "Lejet (Android)",
+        "settings_perm_alarm": "Leja e alarmit"
     },
     "hy": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "Սխալ․ իրադարձությունը համընկնում է գոյություն ունեցողի հետ։",
         "reset": "Վերագործարկեք",
         "today": "Այսօր",
         "no_active_data": "Գրանցման ակտիվ տվյալներ չկան:",
@@ -2987,11 +2989,11 @@ const TRANSLATIONS = {
         "notif_time_title": "Նկարահանումների ժամանակ!",
         "notif_time_body": "Ժամանակն է կերակրել ձեր երեխային:",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "Թույլտվություններ (Android)",
+        "settings_perm_alarm": "Տագնապային թույլտվություն"
     },
     "az": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "Xəta: Tədbir mövcud hadisə ilə üst-üstə düşür.",
         "reset": "Yenidən başladın",
         "today": "Bu gün",
         "no_active_data": "Qeyd etmək üçün aktiv məlumat yoxdur.",
@@ -3043,11 +3045,11 @@ const TRANSLATIONS = {
         "notif_time_title": "Atış vaxtı!",
         "notif_time_body": "Körpənizi qidalandırmaq vaxtıdır.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "İcazələr (Android)",
+        "settings_perm_alarm": "Siqnal icazəsi"
     },
     "be": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "Памылка: падзея накладваецца на існуючую.",
         "reset": "Перазагрузка",
         "today": "сёння",
         "no_active_data": "Няма актыўных даных для запісу.",
@@ -3099,11 +3101,11 @@ const TRANSLATIONS = {
         "notif_time_title": "Час страляць!",
         "notif_time_body": "Прыйшоў час карміць дзіця.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "Дазволы (Android)",
+        "settings_perm_alarm": "Дазвол будзільніка"
     },
     "bg": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "Грешка: Събитието се припокрива със съществуващо.",
         "reset": "Рестартирайте",
         "today": "Днес",
         "no_active_data": "Няма активни данни за запис.",
@@ -3155,11 +3157,11 @@ const TRANSLATIONS = {
         "notif_time_title": "Време за изстрел!",
         "notif_time_body": "Време е да нахраните бебето си.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "Разрешения (Android)",
+        "settings_perm_alarm": "Разрешение за аларма"
     },
     "ca": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "Error: l'esdeveniment se solapa amb un d'existent.",
         "reset": "Reiniciar",
         "today": "Avui",
         "no_active_data": "No hi ha dades actives per registrar.",
@@ -3211,11 +3213,11 @@ const TRANSLATIONS = {
         "notif_time_title": "Hora de la presa!",
         "notif_time_body": "És hora de donar menjar al teu nadó.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "Permisos (Android)",
+        "settings_perm_alarm": "Permís d'alarma"
     },
     "cs": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "Chyba: Událost se překrývá s již existující.",
         "reset": "Restartujte",
         "today": "Dnes",
         "no_active_data": "Nejsou k dispozici žádná aktivní data k záznamu.",
@@ -3267,11 +3269,11 @@ const TRANSLATIONS = {
         "notif_time_title": "Čas výstřelu!",
         "notif_time_body": "Je čas nakrmit své dítě.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "Oprávnění (Android)",
+        "settings_perm_alarm": "Povolení k poplachu"
     },
     "si": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "දෝෂය: සිදුවීම පවතින එකක් සමඟ අතිච්ඡාදනය වේ.",
         "reset": "නැවත ආරම්භ කරන්න",
         "today": "අද",
         "no_active_data": "වාර්තා කිරීමට ක්රියාකාරී දත්ත නොමැත.",
@@ -3323,11 +3325,11 @@ const TRANSLATIONS = {
         "notif_time_title": "වෙඩි තැබීමේ කාලය!",
         "notif_time_body": "ඔබේ දරුවාට පෝෂණය කිරීමට කාලයයි.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "අවසර (Android)",
+        "settings_perm_alarm": "අනතුරු ඇඟවීමේ අවසරය"
     },
     "hr": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "Pogreška: događaj se preklapa s postojećim.",
         "reset": "Ponovno pokretanje",
         "today": "Danas",
         "no_active_data": "Nema aktivnih podataka za snimanje.",
@@ -3379,11 +3381,11 @@ const TRANSLATIONS = {
         "notif_time_title": "Vrijeme pucanja!",
         "notif_time_body": "Vrijeme je da nahranite svoju bebu.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "Dopuštenja (Android)",
+        "settings_perm_alarm": "Dopuštenje za alarm"
     },
     "da": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "Fejl: Hændelsen overlapper med en eksisterende.",
         "reset": "Genstart",
         "today": "I dag",
         "no_active_data": "Der er ingen aktive data at registrere.",
@@ -3435,11 +3437,11 @@ const TRANSLATIONS = {
         "notif_time_title": "Skudtid!",
         "notif_time_body": "Det er tid til at fodre din baby.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "Tilladelser (Android)",
+        "settings_perm_alarm": "Alarmtilladelse"
     },
     "sk": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "Chyba: Udalosť sa prekrýva s existujúcou udalosťou.",
         "reset": "Reštartujte",
         "today": "Dnes",
         "no_active_data": "Neexistujú žiadne aktívne údaje na zaznamenanie.",
@@ -3491,11 +3493,11 @@ const TRANSLATIONS = {
         "notif_time_title": "Čas výstrelu!",
         "notif_time_body": "Je čas nakŕmiť svoje dieťa.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "Povolenia (Android)",
+        "settings_perm_alarm": "Povolenie alarmu"
     },
     "sl": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "Napaka: dogodek se prekriva z obstoječim.",
         "reset": "Znova zaženite",
         "today": "Danes",
         "no_active_data": "Ni aktivnih podatkov za snemanje.",
@@ -3547,11 +3549,11 @@ const TRANSLATIONS = {
         "notif_time_title": "Čas streljanja!",
         "notif_time_body": "Čas je, da nahranite svojega otroka.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "Dovoljenja (Android)",
+        "settings_perm_alarm": "Dovoljenje za alarm"
     },
     "et": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "Viga: sündmus kattub olemasolevaga.",
         "reset": "Taaskäivitage",
         "today": "Täna",
         "no_active_data": "Salvestamiseks pole aktiivseid andmeid.",
@@ -3603,11 +3605,11 @@ const TRANSLATIONS = {
         "notif_time_title": "Laskeaeg!",
         "notif_time_body": "On aeg last toita.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "Load (Android)",
+        "settings_perm_alarm": "Häire luba"
     },
     "eu": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "Errorea: gertaera lehendik dagoen batekin gainjartzen da.",
         "reset": "Berrabiarazi",
         "today": "Gaur",
         "no_active_data": "Ez dago datu aktiborik erregistratzeko.",
@@ -3659,11 +3661,11 @@ const TRANSLATIONS = {
         "notif_time_title": "Jaurtiketa ordua!",
         "notif_time_body": "Zure haurra elikatzeko garaia da.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "Baimenak (Android)",
+        "settings_perm_alarm": "Alarma Baimena"
     },
     "gl": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "Erro: o evento se solapa cun existente.",
         "reset": "Reinicie",
         "today": "Hoxe",
         "no_active_data": "Non hai datos activos para gravar.",
@@ -3715,11 +3717,11 @@ const TRANSLATIONS = {
         "notif_time_title": "Hora do tiro!",
         "notif_time_body": "É hora de alimentar ao teu bebé.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "Permisos (Android)",
+        "settings_perm_alarm": "Permiso de alarma"
     },
     "ka": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "შეცდომა: მოვლენა გადაფარავს არსებულს.",
         "reset": "გადატვირთვა",
         "today": "დღეს",
         "no_active_data": "ჩასაწერი აქტიური მონაცემები არ არის.",
@@ -3771,11 +3773,11 @@ const TRANSLATIONS = {
         "notif_time_title": "სროლის დრო!",
         "notif_time_body": "დროა ბავშვის კვება.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "ნებართვები (Android)",
+        "settings_perm_alarm": "განგაშის ნებართვა"
     },
     "el": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "Σφάλμα: Το συμβάν επικαλύπτεται με ένα υπάρχον.",
         "reset": "Επανεκκίνηση",
         "today": "Σήμερα",
         "no_active_data": "Δεν υπάρχουν ενεργά δεδομένα για εγγραφή.",
@@ -3827,11 +3829,11 @@ const TRANSLATIONS = {
         "notif_time_title": "Ώρα βολής!",
         "notif_time_body": "Ήρθε η ώρα να ταΐσετε το μωρό σας.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "Άδειες (Android)",
+        "settings_perm_alarm": "Άδεια συναγερμού"
     },
     "he": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "שגיאה: האירוע חופף לאירוע קיים.",
         "reset": "לְאַתחֵל",
         "today": "הַיוֹם",
         "no_active_data": "אין נתונים פעילים לרישום.",
@@ -3883,11 +3885,11 @@ const TRANSLATIONS = {
         "notif_time_title": "זמן זריקה!",
         "notif_time_body": "זה הזמן להאכיל את התינוק שלך.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "הרשאות (אנדרואיד)",
+        "settings_perm_alarm": "הרשאת אזעקה"
     },
     "hu": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "Hiba: Az esemény átfedésben van egy meglévővel.",
         "reset": "Indítsa újra",
         "today": "Ma",
         "no_active_data": "Nincs aktív adat rögzítésre.",
@@ -3939,11 +3941,11 @@ const TRANSLATIONS = {
         "notif_time_title": "Lövés ideje!",
         "notif_time_body": "Ideje megetetni a babát.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "Engedélyek (Android)",
+        "settings_perm_alarm": "Riasztási engedély"
     },
     "is": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "Villa: Atburðurinn skarast við þann sem fyrir er.",
         "reset": "Endurræstu",
         "today": "Í dag",
         "no_active_data": "Það eru engin virk gögn til að skrá.",
@@ -3995,11 +3997,11 @@ const TRANSLATIONS = {
         "notif_time_title": "Skottími!",
         "notif_time_body": "Það er kominn tími til að gefa barninu þínu að borða.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
+        "settings_permissions_title": "Heimildir (Android)",
         "settings_perm_alarm": "Alarm Permission"
     },
     "kk": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "Қате: оқиға бұрыннан бар оқиғамен қабаттасады.",
         "reset": "Қайта жүктеу",
         "today": "Бүгін",
         "no_active_data": "Жазу үшін белсенді деректер жоқ.",
@@ -4051,11 +4053,11 @@ const TRANSLATIONS = {
         "notif_time_title": "Түсіру уақыты!",
         "notif_time_body": "Балаңызды тамақтандыру уақыты келді.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "Рұқсаттар (Android)",
+        "settings_perm_alarm": "Дабыл рұқсаты"
     },
     "ky": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "Ката: Окуя учурдагы менен дал келет.",
         "reset": "Кайра жүктөө",
         "today": "Бүгүн",
         "no_active_data": "Жаздыруу үчүн активдүү маалымат жок.",
@@ -4107,11 +4109,11 @@ const TRANSLATIONS = {
         "notif_time_title": "Атуу убактысы!",
         "notif_time_body": "Балаңызды тамактандырууга убакыт келди.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "Уруксаттар (Android)",
+        "settings_perm_alarm": "Ойготкучка уруксат"
     },
     "lo": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "ຜິດພາດ: ເຫດການທັບຊ້ອນກັບອັນທີ່ມີຢູ່ແລ້ວ.",
         "reset": "ປິດເປີດໃໝ່",
         "today": "ມື້ນີ້",
         "no_active_data": "ບໍ່ມີຂໍ້ມູນການເຄື່ອນໄຫວທີ່ຈະບັນທຶກ.",
@@ -4163,11 +4165,11 @@ const TRANSLATIONS = {
         "notif_time_title": "ເວລາຍິງ!",
         "notif_time_body": "ຮອດເວລາລ້ຽງລູກແລ້ວ.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "ການອະນຸຍາດ (Android)",
+        "settings_perm_alarm": "ການອະນຸຍາດປຸກ"
     },
     "lv": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "Kļūda: notikums pārklājas ar esošu.",
         "reset": "Reboot",
         "today": "Šodien",
         "no_active_data": "Nav aktīvu datu, ko ierakstīt.",
@@ -4219,11 +4221,11 @@ const TRANSLATIONS = {
         "notif_time_title": "Šaušanas laiks!",
         "notif_time_body": "Ir pienācis laiks pabarot mazuli.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "Atļaujas (Android)",
+        "settings_perm_alarm": "Signalizācijas atļauja"
     },
     "lt": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "Klaida: įvykis sutampa su esamu.",
         "reset": "Perkraukite",
         "today": "Šiandien",
         "no_active_data": "Nėra aktyvių duomenų, kuriuos būtų galima įrašyti.",
@@ -4275,11 +4277,11 @@ const TRANSLATIONS = {
         "notif_time_title": "Šaudymo laikas!",
         "notif_time_body": "Atėjo laikas maitinti kūdikį.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "Leidimai („Android“)",
+        "settings_perm_alarm": "Signalizacijos leidimas"
     },
     "mk": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "Грешка: настанот се преклопува со постоечки.",
         "reset": "Рестартирај",
         "today": "Денес",
         "no_active_data": "Нема активни податоци за снимање.",
@@ -4331,11 +4333,11 @@ const TRANSLATIONS = {
         "notif_time_title": "Застрелан време!",
         "notif_time_body": "Време е да го нахраните вашето бебе.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "Дозволи (Андроид)",
+        "settings_perm_alarm": "Дозвола за аларм"
     },
     "mn": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "Алдаа: Үйл явдал одоо байгаа үйл явдалтай давхцаж байна.",
         "reset": "Дахин ачаална уу",
         "today": "Өнөөдөр",
         "no_active_data": "Бүртгүүлэх идэвхтэй өгөгдөл алга.",
@@ -4387,11 +4389,11 @@ const TRANSLATIONS = {
         "notif_time_title": "Буудлагын цаг!",
         "notif_time_body": "Хүүхдээ хооллох цаг болжээ.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "Зөвшөөрөл (Android)",
+        "settings_perm_alarm": "Сэрүүлгийн зөвшөөрөл"
     },
     "no": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "Feil: Hendelsen overlapper med en eksisterende.",
         "reset": "Start på nytt",
         "today": "I dag",
         "no_active_data": "Det er ingen aktive data å registrere.",
@@ -4443,8 +4445,8 @@ const TRANSLATIONS = {
         "notif_time_title": "Skuddtid!",
         "notif_time_body": "Det er på tide å mate babyen din.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "Tillatelser (Android)",
+        "settings_perm_alarm": "Alarmtillatelse"
     },
     "rm": {
         "error_overlap": "Error: The event overlaps with an existing one.",
@@ -4503,7 +4505,7 @@ const TRANSLATIONS = {
         "settings_perm_alarm": "Alarm Permission"
     },
     "sr": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "Грешка: Догађај се преклапа са постојећим.",
         "reset": "Поново покрени",
         "today": "данас",
         "no_active_data": "Нема активних података за снимање.",
@@ -4555,11 +4557,11 @@ const TRANSLATIONS = {
         "notif_time_title": "Схот тиме!",
         "notif_time_body": "Време је да нахраните бебу.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "Дозволе (Андроид)",
+        "settings_perm_alarm": "Дозвола за аларм"
     },
     "zu": {
-        "error_overlap": "Error: The event overlaps with an existing one.",
+        "error_overlap": "Iphutha: Umcimbi ugqagqene nesivele sikhona.",
         "reset": "Qalisa kabusha",
         "today": "Namuhla",
         "no_active_data": "Ayikho idatha esebenzayo engarekhodwa.",
@@ -4611,7 +4613,7 @@ const TRANSLATIONS = {
         "notif_time_title": "Isikhathi sokudubula!",
         "notif_time_body": "Sekuyisikhathi sokupha ingane yakho ukudla.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_permissions_title": "Izimvume (Android)",
+        "settings_perm_alarm": "Imvume ye-alamu"
     }
 };
