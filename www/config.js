@@ -77,7 +77,7 @@ const TRANSLATIONS = {
         "notif_time_title": "¡Hora de la toma!",
         "notif_time_body": "Es hora de dar de comer a tu bebé.",
         "settings_compact_history": "Historial Compacto",
-        "settings_permissions_title": "Permisos (Android)",
+        "settings_permissions_title": "Permisos",
         "settings_perm_alarm": "Permiso de Alarma"
     },
     "en": {
@@ -133,7 +133,7 @@ const TRANSLATIONS = {
         "notif_time_title": "Shot time!",
         "notif_time_body": "It's time to feed your baby.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
+        "settings_permissions_title": "Permissions",
         "settings_perm_alarm": "Alarm Permission"
     },
     "zh": {
@@ -357,7 +357,7 @@ const TRANSLATIONS = {
         "notif_time_title": "C'est l'heure du tir !",
         "notif_time_body": "Il est temps de nourrir votre bébé.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Autorisations (Android)",
+        "settings_permissions_title": "Autorisations",
         "settings_perm_alarm": "Autorisation d'alarme"
     },
     "ru": {
@@ -413,7 +413,7 @@ const TRANSLATIONS = {
         "notif_time_title": "Время выстрела!",
         "notif_time_body": "Пришло время покормить ребенка.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Разрешения (Android)",
+        "settings_permissions_title": "Разрешения",
         "settings_perm_alarm": "Разрешение тревоги"
     },
     "pt": {
@@ -469,7 +469,7 @@ const TRANSLATIONS = {
         "notif_time_title": "Hora do tiro!",
         "notif_time_body": "É hora de alimentar seu bebê.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissões (Android)",
+        "settings_permissions_title": "Permissões",
         "settings_perm_alarm": "Permissão de alarme"
     },
     "de": {
@@ -525,7 +525,7 @@ const TRANSLATIONS = {
         "notif_time_title": "Schusszeit!",
         "notif_time_body": "Es ist Zeit, Ihr Baby zu füttern.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Berechtigungen (Android)",
+        "settings_permissions_title": "Berechtigungen",
         "settings_perm_alarm": "Alarmberechtigung"
     },
     "ja": {
@@ -581,7 +581,7 @@ const TRANSLATIONS = {
         "notif_time_title": "ショットタイム！",
         "notif_time_body": "赤ちゃんに食事を与える時間です。",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "権限 (Android)",
+        "settings_permissions_title": "権限",
         "settings_perm_alarm": "アラーム許可"
     },
     "it": {
@@ -637,7 +637,7 @@ const TRANSLATIONS = {
         "notif_time_title": "È ora di sparare!",
         "notif_time_body": "È ora di dare da mangiare al tuo bambino.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Autorizzazioni (Android)",
+        "settings_permissions_title": "Autorizzazioni",
         "settings_perm_alarm": "Autorizzazione allarme"
     },
     "bn": {
@@ -693,7 +693,7 @@ const TRANSLATIONS = {
         "notif_time_title": "শট টাইম!",
         "notif_time_body": "আপনার শিশুকে খাওয়ানোর সময় এসেছে।",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "অনুমতি (Android)",
+        "settings_permissions_title": "অনুমতি",
         "settings_perm_alarm": "অ্যালার্ম অনুমতি"
     },
     "ur": {
@@ -749,7 +749,7 @@ const TRANSLATIONS = {
         "notif_time_title": "شاٹ ٹائم!",
         "notif_time_body": "یہ آپ کے بچے کو دودھ پلانے کا وقت ہے.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "اجازتیں (Android)",
+        "settings_permissions_title": "اجازتیں",
         "settings_perm_alarm": "الارم کی اجازت"
     },
     "id": {
@@ -805,7 +805,7 @@ const TRANSLATIONS = {
         "notif_time_title": "Waktunya menembak!",
         "notif_time_body": "Saatnya memberi makan bayi Anda.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Izin (Android)",
+        "settings_permissions_title": "Izin",
         "settings_perm_alarm": "Izin Alarm"
     },
     "sw": {
@@ -861,7 +861,7 @@ const TRANSLATIONS = {
         "notif_time_title": "Muda wa risasi!",
         "notif_time_body": "Ni wakati wa kulisha mtoto wako.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Ruhusa (Android)",
+        "settings_permissions_title": "Ruhusa",
         "settings_perm_alarm": "Ruhusa ya Kengele"
     },
     "mr": {
@@ -917,7 +917,7 @@ const TRANSLATIONS = {
         "notif_time_title": "शॉट वेळ!",
         "notif_time_body": "आपल्या बाळाला खायला देण्याची वेळ आली आहे.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "परवानग्या (Android)",
+        "settings_permissions_title": "परवानग्या",
         "settings_perm_alarm": "अलार्म परवानगी"
     },
     "te": {
@@ -973,7 +973,7 @@ const TRANSLATIONS = {
         "notif_time_title": "షాట్ టైమ్!",
         "notif_time_body": "ఇది మీ బిడ్డకు ఆహారం ఇవ్వడానికి సమయం.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "అనుమతులు (Android)",
+        "settings_permissions_title": "అనుమతులు",
         "settings_perm_alarm": "అలారం అనుమతి"
     },
     "tr": {
@@ -1029,7 +1029,7 @@ const TRANSLATIONS = {
         "notif_time_title": "Vuruş zamanı!",
         "notif_time_body": "Bebeğinizi beslemenin zamanı geldi.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "İzinler (Android)",
+        "settings_permissions_title": "İzinler",
         "settings_perm_alarm": "Alarm İzni"
     },
     "ta": {
@@ -1085,7 +1085,7 @@ const TRANSLATIONS = {
         "notif_time_title": "ஷாட் நேரம்!",
         "notif_time_body": "உங்கள் குழந்தைக்கு உணவளிக்கும் நேரம் இது.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "அனுமதிகள் (Android)",
+        "settings_permissions_title": "அனுமதிகள்",
         "settings_perm_alarm": "அலாரம் அனுமதி"
     },
     "vi": {
@@ -1141,7 +1141,7 @@ const TRANSLATIONS = {
         "notif_time_title": "Đã đến lúc bắn!",
         "notif_time_body": "Đã đến lúc cho bé ăn.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Quyền (Android)",
+        "settings_permissions_title": "Quyền",
         "settings_perm_alarm": "Quyền báo động"
     },
     "ko": {
@@ -1309,7 +1309,7 @@ const TRANSLATIONS = {
         "notif_time_title": "Lokacin harbi!",
         "notif_time_body": "Lokaci ya yi da za ku ciyar da jaririnku.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Izini (Android)",
+        "settings_permissions_title": "Izini",
         "settings_perm_alarm": "Izinin ƙararrawa"
     },
     "jv": {
@@ -1365,7 +1365,7 @@ const TRANSLATIONS = {
         "notif_time_title": "wektu dijupuk!",
         "notif_time_body": "Iku wektu kanggo Feed bayi.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Izin (Android)",
+        "settings_permissions_title": "Izin",
         "settings_perm_alarm": "Izin Weker"
     },
     "pa": {
@@ -1421,7 +1421,7 @@ const TRANSLATIONS = {
         "notif_time_title": "ਗੋਲੀ ਦਾ ਸਮਾਂ!",
         "notif_time_body": "ਇਹ ਤੁਹਾਡੇ ਬੱਚੇ ਨੂੰ ਦੁੱਧ ਪਿਲਾਉਣ ਦਾ ਸਮਾਂ ਹੈ।",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "ਅਨੁਮਤੀਆਂ (Android)",
+        "settings_permissions_title": "ਅਨੁਮਤੀਆਂ",
         "settings_perm_alarm": "ਅਲਾਰਮ ਦੀ ਇਜਾਜ਼ਤ"
     },
     "gu": {
@@ -1477,7 +1477,7 @@ const TRANSLATIONS = {
         "notif_time_title": "શોટ સમય!",
         "notif_time_body": "તમારા બાળકને ખવડાવવાનો સમય છે.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "પરવાનગીઓ (Android)",
+        "settings_permissions_title": "પરવાનગીઓ",
         "settings_perm_alarm": "એલાર્મ પરવાનગી"
     },
     "th": {
@@ -1533,7 +1533,7 @@ const TRANSLATIONS = {
         "notif_time_title": "ถึงเวลายิง!",
         "notif_time_body": "ถึงเวลาให้อาหารลูกน้อยของคุณแล้ว",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "สิทธิ์ (Android)",
+        "settings_permissions_title": "สิทธิ์",
         "settings_perm_alarm": "การอนุญาตปลุก"
     },
     "am": {
@@ -1813,7 +1813,7 @@ const TRANSLATIONS = {
         "notif_time_title": "waktos shot!",
         "notif_time_body": "Geus waktuna pikeun nyoco orok anjeun.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Idin (Android)",
+        "settings_permissions_title": "Idin",
         "settings_perm_alarm": "Idin Alarm"
     },
     "ro": {
@@ -1869,7 +1869,7 @@ const TRANSLATIONS = {
         "notif_time_title": "Timp de filmare!",
         "notif_time_body": "Este timpul să-ți hrănești copilul.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permisiuni (Android)",
+        "settings_permissions_title": "Permisiuni",
         "settings_perm_alarm": "Permisiune de alarmă"
     },
     "nl": {
@@ -1925,7 +1925,7 @@ const TRANSLATIONS = {
         "notif_time_title": "Schot tijd!",
         "notif_time_body": "Het is tijd om je baby te voeden.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Machtigingen (Android)",
+        "settings_permissions_title": "Machtigingen",
         "settings_perm_alarm": "Alarmtoestemming"
     },
     "km": {
@@ -1981,7 +1981,7 @@ const TRANSLATIONS = {
         "notif_time_title": "ដល់ម៉ោងបាញ់ហើយ!",
         "notif_time_body": "ដល់ពេលចិញ្ចឹមកូនហើយ។",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "ការអនុញ្ញាត (Android)",
+        "settings_permissions_title": "ការអនុញ្ញាត",
         "settings_perm_alarm": "ការអនុញ្ញាតសំឡេងរោទិ៍"
     },
     "uz": {
@@ -2037,7 +2037,7 @@ const TRANSLATIONS = {
         "notif_time_title": "Otish vaqti!",
         "notif_time_body": "Farzandingizni ovqatlantirish vaqti keldi.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Ruxsatlar (Android)",
+        "settings_permissions_title": "Ruxsatlar",
         "settings_perm_alarm": "Signal ruxsati"
     },
     "sd": {
@@ -2093,7 +2093,7 @@ const TRANSLATIONS = {
         "notif_time_title": "شاٽ وقت!",
         "notif_time_body": "اهو توهان جي ٻار کي کارائڻ جو وقت آهي.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "اجازتون (Android)",
+        "settings_permissions_title": "اجازتون",
         "settings_perm_alarm": "الارم جي اجازت"
     },
     "my": {
@@ -2149,7 +2149,7 @@ const TRANSLATIONS = {
         "notif_time_title": "ပစ်ချိန်။",
         "notif_time_body": "သင့်ကလေးကို အစာကျွေးဖို့ အချိန်ရောက်ပါပြီ။",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "ခွင့်ပြုချက်များ (Android)",
+        "settings_permissions_title": "ခွင့်ပြုချက်များ",
         "settings_perm_alarm": "နှိုးစက်ခွင့်ပြုချက်"
     },
     "yo": {
@@ -2205,7 +2205,7 @@ const TRANSLATIONS = {
         "notif_time_title": "Akoko shot!",
         "notif_time_body": "O to akoko lati fun ọmọ rẹ jẹ.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Awọn igbanilaaye (Android)",
+        "settings_permissions_title": "Awọn igbanilaaye",
         "settings_perm_alarm": "Gbigbanilaaye Itaniji"
     },
     "ig": {
@@ -2261,7 +2261,7 @@ const TRANSLATIONS = {
         "notif_time_title": "Oge agba!",
         "notif_time_body": "Oge erugo inye nwa gi nri.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Ikikere (Android)",
+        "settings_permissions_title": "Ikikere",
         "settings_perm_alarm": "Ikike mkpu"
     },
     "ms": {
@@ -2317,7 +2317,7 @@ const TRANSLATIONS = {
         "notif_time_title": "masa syot!",
         "notif_time_body": "Sudah tiba masanya untuk menyusukan bayi anda.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Kebenaran (Android)",
+        "settings_permissions_title": "Kebenaran",
         "settings_perm_alarm": "Kebenaran Penggera"
     },
     "ne": {
@@ -2429,7 +2429,7 @@ const TRANSLATIONS = {
         "notif_time_title": "Час стрільби!",
         "notif_time_body": "Пора годувати дитину.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Дозволи (Android)",
+        "settings_permissions_title": "Дозволи",
         "settings_perm_alarm": "Дозвіл на будильник"
     },
     "ceb": {
@@ -2484,7 +2484,7 @@ const TRANSLATIONS = {
         "notif_time_title": "Shot time!",
         "notif_time_body": "Panahon na sa pagpakaon sa imong anak.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Mga Permiso (Android)",
+        "settings_permissions_title": "Mga Permiso",
         "settings_perm_alarm": "Pagtugot sa Alarm",
         "error_overlap": "Sayop: Ang panghitabo nagsapaw sa usa nga anaa na."
     },
@@ -2541,7 +2541,7 @@ const TRANSLATIONS = {
         "notif_time_title": "Dema gulebaranê!",
         "notif_time_body": "Wext e ku hûn zarokê xwe bixwin.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Destûr (Android)",
+        "settings_permissions_title": "Destûr",
         "settings_perm_alarm": "Destûra Alarm"
     },
     "sv": {
@@ -2597,7 +2597,7 @@ const TRANSLATIONS = {
         "notif_time_title": "Skotttid!",
         "notif_time_body": "Det är dags att mata ditt barn.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Behörigheter (Android)",
+        "settings_permissions_title": "Behörigheter",
         "settings_perm_alarm": "Larmtillstånd"
     },
     "pl": {
@@ -2653,7 +2653,7 @@ const TRANSLATIONS = {
         "notif_time_title": "Czas na strzał!",
         "notif_time_body": "Nadszedł czas, aby nakarmić dziecko.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Uprawnienia (Android)",
+        "settings_permissions_title": "Uprawnienia",
         "settings_perm_alarm": "Zezwolenie na alarm"
     },
     "tl": {
@@ -2709,7 +2709,7 @@ const TRANSLATIONS = {
         "notif_time_title": "Oras ng pagbaril!",
         "notif_time_body": "Oras na para pakainin ang iyong sanggol.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Mga Pahintulot (Android)",
+        "settings_permissions_title": "Mga Pahintulot",
         "settings_perm_alarm": "Pahintulot sa Alarm"
     },
     "ml": {
@@ -2765,7 +2765,7 @@ const TRANSLATIONS = {
         "notif_time_title": "ഷോട്ട് സമയം!",
         "notif_time_body": "നിങ്ങളുടെ കുഞ്ഞിന് ഭക്ഷണം നൽകാനുള്ള സമയമാണിത്.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "അനുമതികൾ (Android)",
+        "settings_permissions_title": "അനുമതികൾ",
         "settings_perm_alarm": "അലാറം അനുമതി"
     },
     "fi": {
@@ -2821,7 +2821,7 @@ const TRANSLATIONS = {
         "notif_time_title": "Laukausaika!",
         "notif_time_body": "On aika ruokkia vauvasi.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Käyttöoikeudet (Android)",
+        "settings_permissions_title": "Käyttöoikeudet",
         "settings_perm_alarm": "Hälytyslupa"
     },
     "af": {
@@ -2877,7 +2877,7 @@ const TRANSLATIONS = {
         "notif_time_title": "Skiettyd!",
         "notif_time_body": "Dit is tyd om jou baba te voed.",
         "settings_compact_history": "Kompakte Rekord",
-        "settings_permissions_title": "Toestemmings (Android)",
+        "settings_permissions_title": "Toestemmings",
         "settings_perm_alarm": "Alarm Toestemming"
     },
     "sq": {
@@ -2933,7 +2933,7 @@ const TRANSLATIONS = {
         "notif_time_title": "Koha e gjuajtjes!",
         "notif_time_body": "Është koha për të ushqyer fëmijën tuaj.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Lejet (Android)",
+        "settings_permissions_title": "Lejet",
         "settings_perm_alarm": "Leja e alarmit"
     },
     "hy": {
@@ -2989,7 +2989,7 @@ const TRANSLATIONS = {
         "notif_time_title": "Նկարահանումների ժամանակ!",
         "notif_time_body": "Ժամանակն է կերակրել ձեր երեխային:",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Թույլտվություններ (Android)",
+        "settings_permissions_title": "Թույլտվություններ",
         "settings_perm_alarm": "Տագնապային թույլտվություն"
     },
     "az": {
@@ -3045,7 +3045,7 @@ const TRANSLATIONS = {
         "notif_time_title": "Atış vaxtı!",
         "notif_time_body": "Körpənizi qidalandırmaq vaxtıdır.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "İcazələr (Android)",
+        "settings_permissions_title": "İcazələr",
         "settings_perm_alarm": "Siqnal icazəsi"
     },
     "be": {
@@ -3101,7 +3101,7 @@ const TRANSLATIONS = {
         "notif_time_title": "Час страляць!",
         "notif_time_body": "Прыйшоў час карміць дзіця.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Дазволы (Android)",
+        "settings_permissions_title": "Дазволы",
         "settings_perm_alarm": "Дазвол будзільніка"
     },
     "bg": {
@@ -3157,7 +3157,7 @@ const TRANSLATIONS = {
         "notif_time_title": "Време за изстрел!",
         "notif_time_body": "Време е да нахраните бебето си.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Разрешения (Android)",
+        "settings_permissions_title": "Разрешения",
         "settings_perm_alarm": "Разрешение за аларма"
     },
     "ca": {
@@ -3213,7 +3213,7 @@ const TRANSLATIONS = {
         "notif_time_title": "Hora de la presa!",
         "notif_time_body": "És hora de donar menjar al teu nadó.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permisos (Android)",
+        "settings_permissions_title": "Permisos",
         "settings_perm_alarm": "Permís d'alarma"
     },
     "cs": {
@@ -3269,7 +3269,7 @@ const TRANSLATIONS = {
         "notif_time_title": "Čas výstřelu!",
         "notif_time_body": "Je čas nakrmit své dítě.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Oprávnění (Android)",
+        "settings_permissions_title": "Oprávnění",
         "settings_perm_alarm": "Povolení k poplachu"
     },
     "si": {
@@ -3325,7 +3325,7 @@ const TRANSLATIONS = {
         "notif_time_title": "වෙඩි තැබීමේ කාලය!",
         "notif_time_body": "ඔබේ දරුවාට පෝෂණය කිරීමට කාලයයි.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "අවසර (Android)",
+        "settings_permissions_title": "අවසර",
         "settings_perm_alarm": "අනතුරු ඇඟවීමේ අවසරය"
     },
     "hr": {
@@ -3381,7 +3381,7 @@ const TRANSLATIONS = {
         "notif_time_title": "Vrijeme pucanja!",
         "notif_time_body": "Vrijeme je da nahranite svoju bebu.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Dopuštenja (Android)",
+        "settings_permissions_title": "Dopuštenja",
         "settings_perm_alarm": "Dopuštenje za alarm"
     },
     "da": {
@@ -3437,7 +3437,7 @@ const TRANSLATIONS = {
         "notif_time_title": "Skudtid!",
         "notif_time_body": "Det er tid til at fodre din baby.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Tilladelser (Android)",
+        "settings_permissions_title": "Tilladelser",
         "settings_perm_alarm": "Alarmtilladelse"
     },
     "sk": {
@@ -3493,7 +3493,7 @@ const TRANSLATIONS = {
         "notif_time_title": "Čas výstrelu!",
         "notif_time_body": "Je čas nakŕmiť svoje dieťa.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Povolenia (Android)",
+        "settings_permissions_title": "Povolenia",
         "settings_perm_alarm": "Povolenie alarmu"
     },
     "sl": {
@@ -3549,7 +3549,7 @@ const TRANSLATIONS = {
         "notif_time_title": "Čas streljanja!",
         "notif_time_body": "Čas je, da nahranite svojega otroka.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Dovoljenja (Android)",
+        "settings_permissions_title": "Dovoljenja",
         "settings_perm_alarm": "Dovoljenje za alarm"
     },
     "et": {
@@ -3605,7 +3605,7 @@ const TRANSLATIONS = {
         "notif_time_title": "Laskeaeg!",
         "notif_time_body": "On aeg last toita.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Load (Android)",
+        "settings_permissions_title": "Load",
         "settings_perm_alarm": "Häire luba"
     },
     "eu": {
@@ -3661,7 +3661,7 @@ const TRANSLATIONS = {
         "notif_time_title": "Jaurtiketa ordua!",
         "notif_time_body": "Zure haurra elikatzeko garaia da.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Baimenak (Android)",
+        "settings_permissions_title": "Baimenak",
         "settings_perm_alarm": "Alarma Baimena"
     },
     "gl": {
@@ -3717,7 +3717,7 @@ const TRANSLATIONS = {
         "notif_time_title": "Hora do tiro!",
         "notif_time_body": "É hora de alimentar ao teu bebé.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permisos (Android)",
+        "settings_permissions_title": "Permisos",
         "settings_perm_alarm": "Permiso de alarma"
     },
     "ka": {
@@ -3773,7 +3773,7 @@ const TRANSLATIONS = {
         "notif_time_title": "სროლის დრო!",
         "notif_time_body": "დროა ბავშვის კვება.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "ნებართვები (Android)",
+        "settings_permissions_title": "ნებართვები",
         "settings_perm_alarm": "განგაშის ნებართვა"
     },
     "el": {
@@ -3829,7 +3829,7 @@ const TRANSLATIONS = {
         "notif_time_title": "Ώρα βολής!",
         "notif_time_body": "Ήρθε η ώρα να ταΐσετε το μωρό σας.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Άδειες (Android)",
+        "settings_permissions_title": "Άδειες",
         "settings_perm_alarm": "Άδεια συναγερμού"
     },
     "he": {
@@ -3941,7 +3941,7 @@ const TRANSLATIONS = {
         "notif_time_title": "Lövés ideje!",
         "notif_time_body": "Ideje megetetni a babát.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Engedélyek (Android)",
+        "settings_permissions_title": "Engedélyek",
         "settings_perm_alarm": "Riasztási engedély"
     },
     "is": {
@@ -3997,7 +3997,7 @@ const TRANSLATIONS = {
         "notif_time_title": "Skottími!",
         "notif_time_body": "Það er kominn tími til að gefa barninu þínu að borða.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Heimildir (Android)",
+        "settings_permissions_title": "Heimildir",
         "settings_perm_alarm": "Alarm Permission"
     },
     "kk": {
@@ -4053,7 +4053,7 @@ const TRANSLATIONS = {
         "notif_time_title": "Түсіру уақыты!",
         "notif_time_body": "Балаңызды тамақтандыру уақыты келді.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Рұқсаттар (Android)",
+        "settings_permissions_title": "Рұқсаттар",
         "settings_perm_alarm": "Дабыл рұқсаты"
     },
     "ky": {
@@ -4109,7 +4109,7 @@ const TRANSLATIONS = {
         "notif_time_title": "Атуу убактысы!",
         "notif_time_body": "Балаңызды тамактандырууга убакыт келди.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Уруксаттар (Android)",
+        "settings_permissions_title": "Уруксаттар",
         "settings_perm_alarm": "Ойготкучка уруксат"
     },
     "lo": {
@@ -4165,7 +4165,7 @@ const TRANSLATIONS = {
         "notif_time_title": "ເວລາຍິງ!",
         "notif_time_body": "ຮອດເວລາລ້ຽງລູກແລ້ວ.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "ການອະນຸຍາດ (Android)",
+        "settings_permissions_title": "ການອະນຸຍາດ",
         "settings_perm_alarm": "ການອະນຸຍາດປຸກ"
     },
     "lv": {
@@ -4221,7 +4221,7 @@ const TRANSLATIONS = {
         "notif_time_title": "Šaušanas laiks!",
         "notif_time_body": "Ir pienācis laiks pabarot mazuli.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Atļaujas (Android)",
+        "settings_permissions_title": "Atļaujas",
         "settings_perm_alarm": "Signalizācijas atļauja"
     },
     "lt": {
@@ -4389,7 +4389,7 @@ const TRANSLATIONS = {
         "notif_time_title": "Буудлагын цаг!",
         "notif_time_body": "Хүүхдээ хооллох цаг болжээ.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Зөвшөөрөл (Android)",
+        "settings_permissions_title": "Зөвшөөрөл",
         "settings_perm_alarm": "Сэрүүлгийн зөвшөөрөл"
     },
     "no": {
@@ -4445,7 +4445,7 @@ const TRANSLATIONS = {
         "notif_time_title": "Skuddtid!",
         "notif_time_body": "Det er på tide å mate babyen din.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Tillatelser (Android)",
+        "settings_permissions_title": "Tillatelser",
         "settings_perm_alarm": "Alarmtillatelse"
     },
     "rm": {
@@ -4501,7 +4501,7 @@ const TRANSLATIONS = {
         "notif_time_title": "¡Hora de la toma!",
         "notif_time_body": "Es hora de dar de comer a tu bebé.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Permissions (Android)",
+        "settings_permissions_title": "Permissions",
         "settings_perm_alarm": "Alarm Permission"
     },
     "sr": {
@@ -4613,7 +4613,7 @@ const TRANSLATIONS = {
         "notif_time_title": "Isikhathi sokudubula!",
         "notif_time_body": "Sekuyisikhathi sokupha ingane yakho ukudla.",
         "settings_compact_history": "Compact History",
-        "settings_permissions_title": "Izimvume (Android)",
+        "settings_permissions_title": "Izimvume",
         "settings_perm_alarm": "Imvume ye-alamu"
     }
 };

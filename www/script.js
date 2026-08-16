@@ -2462,6 +2462,14 @@ bugModal.addEventListener('click', (e) => {
 
 // Load settings on startup
 window.addEventListener('DOMContentLoaded', () => {
+    const platform = Capacitor.getPlatform();
+    if (platform !== 'android') {
+        const androidPerms = document.getElementById('android-permissions-section');
+        if (androidPerms) {
+            androidPerms.style.display = 'none';
+        }
+    }
+
     setupAllWheelPickers();
     loadSettings();
 });
