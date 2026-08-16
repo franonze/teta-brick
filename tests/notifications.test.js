@@ -64,6 +64,6 @@ describe('Notifications & Permissions', () => {
     expect(nextFeedingTime.textContent).not.toBe('--:--');
 
     btnStopNext.click();
-    expect(nextFeedingTime.textContent).toBe('--:--');
+    expect(nextFeedingTime.textContent).toBe('--:--:--');
   });
 });

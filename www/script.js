@@ -469,9 +469,29 @@ function updateNextFeedingTime() {
             }
         }
 
-        nextFeedingTime.textContent = '--:--';
+        nextFeedingTime.textContent = '--:--:--';
     }
+
+    updatePlayButtonState();
     saveCurrentState();
+}
+
+function updatePlayButtonState() {
+    const btnStartNextEl = document.getElementById('btn-start-next');
+    if (!btnStartNextEl) return;
+    
+    if (appSettings.autoNextFeeding === false) {
+        btnStartNextEl.style.display = 'flex';
+        if (countdownBaseTime) {
+            btnStartNextEl.disabled = true;
+            btnStartNextEl.style.opacity = '0.5';
+        } else {
+            btnStartNextEl.disabled = false;
+            btnStartNextEl.style.opacity = '1';
+        }
+    } else {
+        btnStartNextEl.style.display = 'none';
+    }
 }
 
 function renderCountdown() {
@@ -549,7 +569,7 @@ btnLeft.addEventListener('click', () => {
             hourLeft.textContent = formatHHMM(now);
             if (!lastFeedingStartTime) {
                 lastFeedingStartTime = now;
-                countdownBaseTime = now;
+                if (appSettings.autoNextFeeding !== false) countdownBaseTime = now;
             }
         } else if (leftSeconds <= 0) {
             leftSeconds = getDiffSeconds(hourLeft.textContent);
@@ -559,7 +579,7 @@ btnLeft.addEventListener('click', () => {
                 const manualDate = new Date();
                 manualDate.setHours(parseInt(h, 10), parseInt(m, 10), 0, 0);
                 lastFeedingStartTime = manualDate;
-                countdownBaseTime = manualDate;
+                if (appSettings.autoNextFeeding !== false) countdownBaseTime = manualDate;
             }
         } else {
             if (!lastFeedingStartTime) {
@@ -606,7 +626,7 @@ btnRight.addEventListener('click', () => {
             hourRight.textContent = formatHHMM(now);
             if (!lastFeedingStartTime) {
                 lastFeedingStartTime = now;
-                countdownBaseTime = now;
+                if (appSettings.autoNextFeeding !== false) countdownBaseTime = now;
             }
         } else if (rightSeconds <= 0) {
             rightSeconds = getDiffSeconds(hourRight.textContent);
@@ -616,7 +636,7 @@ btnRight.addEventListener('click', () => {
                 const manualDate = new Date();
                 manualDate.setHours(parseInt(h, 10), parseInt(m, 10), 0, 0);
                 lastFeedingStartTime = manualDate;
-                countdownBaseTime = manualDate;
+                if (appSettings.autoNextFeeding !== false) countdownBaseTime = manualDate;
             }
         } else {
             if (!lastFeedingStartTime) {
@@ -785,7 +805,7 @@ btnBottle.addEventListener('click', () => {
             hourBottle.textContent = formatHHMM(now);
             if (!lastFeedingStartTime) {
                 lastFeedingStartTime = now;
-                countdownBaseTime = now;
+                if (appSettings.autoNextFeeding !== false) countdownBaseTime = now;
             }
         }
 
@@ -794,7 +814,7 @@ btnBottle.addEventListener('click', () => {
             const manualDate = new Date();
             manualDate.setHours(parseInt(h, 10), parseInt(m, 10), 0, 0);
             lastFeedingStartTime = manualDate;
-            countdownBaseTime = manualDate;
+            if (appSettings.autoNextFeeding !== false) countdownBaseTime = manualDate;
         }
 
         updateNextFeedingTime();
@@ -921,20 +941,23 @@ function saveManualMerge(sessionData, merge) {
         const idx = history.findIndex(s => s.date === sessionData.targetSessionId);
         if (idx !== -1) {
             let lastRecord = history[idx];
-            if (sessionData.left && sessionData.left.durationSeconds > 0) {
+            if (sessionData.left) {
                 if (!lastRecord.left) lastRecord.left = {};
-                lastRecord.left.durationSeconds = (lastRecord.left.durationSeconds || 0) + sessionData.left.durationSeconds;
+                lastRecord.left.durationSeconds = (lastRecord.left.durationSeconds || 0) + (sessionData.left.durationSeconds || 0);
                 if (!lastRecord.left.startTime && sessionData.left.startTime) lastRecord.left.startTime = sessionData.left.startTime;
+                if (sessionData.left.note) lastRecord.left.note = sessionData.left.note;
             }
-            if (sessionData.right && sessionData.right.durationSeconds > 0) {
+            if (sessionData.right) {
                 if (!lastRecord.right) lastRecord.right = {};
-                lastRecord.right.durationSeconds = (lastRecord.right.durationSeconds || 0) + sessionData.right.durationSeconds;
+                lastRecord.right.durationSeconds = (lastRecord.right.durationSeconds || 0) + (sessionData.right.durationSeconds || 0);
                 if (!lastRecord.right.startTime && sessionData.right.startTime) lastRecord.right.startTime = sessionData.right.startTime;
+                if (sessionData.right.note) lastRecord.right.note = sessionData.right.note;
             }
-            if (sessionData.bottle && sessionData.bottle.ml > 0) {
+            if (sessionData.bottle) {
                 lastRecord.bottle = lastRecord.bottle || { ml: 0, startTime: null };
-                lastRecord.bottle.ml += sessionData.bottle.ml;
+                lastRecord.bottle.ml += (sessionData.bottle.ml || 0);
                 if (!lastRecord.bottle.startTime && sessionData.bottle.startTime) lastRecord.bottle.startTime = sessionData.bottle.startTime;
+                if (sessionData.bottle.note) lastRecord.bottle.note = sessionData.bottle.note;
             }
             if (sessionData.diapers) lastRecord.diapers = sessionData.diapers;
             history[idx] = lastRecord;
@@ -1126,7 +1149,16 @@ btnRegistrar.addEventListener('click', () => {
         let currEarliestStr = '23:59';
         if (sessionData.left.startTime && sessionData.left.startTime < currEarliestStr) currEarliestStr = sessionData.left.startTime;
         if (sessionData.right.startTime && sessionData.right.startTime < currEarliestStr) currEarliestStr = sessionData.right.startTime;
-        if (sessionData.bottle.startTime && sessionData.bottle.startTime < currEarliestStr) currEarliestStr = sessionData.bottle.startTime;
+        if (sessionData.bottle.startTime && sessionData.bottle.startTime < currEarliestStr) currEarliestStr = sessionData.bottle.startTime;        // Check Overlap first!
+        let hasOverlap = false;
+        if (sessionData.left.startTime) hasOverlap = hasOverlap || checkOverlap(history, null, null, 'left', sessionData.left.startTime, sessionData.left.durationSeconds, sessionData.date);
+        if (sessionData.right.startTime) hasOverlap = hasOverlap || checkOverlap(history, null, null, 'right', sessionData.right.startTime, sessionData.right.durationSeconds, sessionData.date);
+        if (sessionData.bottle.startTime) hasOverlap = hasOverlap || checkOverlap(history, null, null, 'bottle', sessionData.bottle.startTime, 0, sessionData.date);
+        
+        if (hasOverlap) {
+            alert(getTranslation('error_overlap'));
+            return;
+        }
 
         if (lastEarliestStr !== '23:59' && currEarliestStr !== '23:59') {
             const lastDate = new Date(lastRecord.date);
@@ -1137,13 +1169,13 @@ btnRegistrar.addEventListener('click', () => {
             const [ch, cm] = currEarliestStr.split(':');
             currDate.setHours(parseInt(ch, 10), parseInt(cm, 10), 0, 0);
 
-            const diffMinutes = (currDate - lastDate) / (1000 * 60);
+            const diffMinutes = Math.abs(currDate - lastDate) / (1000 * 60);
 
-            if (diffMinutes >= 0 && diffMinutes <= MERGE_WINDOW_MINUTES) {
+            if (diffMinutes <= MERGE_WINDOW_MINUTES) {
                 mergeContext = 'main';
                 pendingSessionData = sessionData;
                 mergeModal.classList.add('active');
-                return; // Wait for user decision
+                return;
             }
         } else {
             // Fallback if no start times are available
@@ -1269,13 +1301,30 @@ function saveAndResetSession(sessionData, merge) {
     }, 2000);
 }
 
-// Reset next feed logic
+// Reset next feed logic (Stop)
+const btnStopNextListener = document.getElementById('btn-stop-next');
+if (btnStopNextListener) {
+    btnStopNextListener.addEventListener('click', () => {
+        countdownBaseTime = null;
+        alarmTriggered = false;
+        stopAlarm();
+        updateNextFeedingTime();
+    });
+}
+
+// Start next feed manually logic
+const btnStartNext = document.getElementById('btn-start-next');
+if (btnStartNext) {
+    btnStartNext.addEventListener('click', () => {
+        countdownBaseTime = new Date();
+        updateNextFeedingTime();
+    });
+}
+
 const btnResetNext = document.getElementById('btn-reset-next');
 if (btnResetNext) {
     btnResetNext.addEventListener('click', () => {
         countdownBaseTime = new Date();
-        alarmTriggered = false;
-        stopAlarm();
         updateNextFeedingTime();
     });
 }
@@ -1292,7 +1341,9 @@ if (btnStopNext) {
             clearInterval(countdownInterval);
             countdownInterval = null;
         }
-        nextFeedingTime.textContent = '--:--';
+        nextFeedingTime.textContent = '--:--:--';
+        
+        updatePlayButtonState();
         saveCurrentState();
     });
 }
@@ -1897,19 +1948,29 @@ btnEditSave.addEventListener('click', () => {
         let minDiff = Infinity;
         for (const session of history) {
             if (excludeSessionId && session.date === excludeSessionId) continue;
-            const sTimeStr = session.left?.startTime || session.right?.startTime || session.bottle?.startTime || (session.diapers && (session.diapers.time || session.diapers));
-            if (sTimeStr && typeof sTimeStr === 'string') {
+            
+            // Collect all possible start times for this session
+            const times = [];
+            if (session.left?.startTime) times.push(session.left.startTime);
+            if (session.right?.startTime) times.push(session.right.startTime);
+            if (session.bottle?.startTime) times.push(session.bottle.startTime);
+            if (session.diapers) {
+                if (typeof session.diapers === 'string') times.push(session.diapers);
+                else if (session.diapers.time) times.push(session.diapers.time);
+            }
+            
+            if (times.length > 0) {
                 const sDate = new Date(session.date);
-                const [sh, sm] = sTimeStr.split(':').map(Number);
-                sDate.setHours(sh, sm, 0, 0);
-                
-                // Since evDate and sDate are complete dates with year, month, day, hour, and minute, 
-                // the absolute difference in minutes naturally accounts for crossing midnight correctly!
-                let diffMins = Math.abs((evDate - sDate) / (1000 * 60));
-                
-                if (diffMins <= CONFIG.app.mergeWindowMinutes && diffMins < minDiff) {
-                    minDiff = diffMins;
-                    targetId = session.date;
+                for (const sTimeStr of times) {
+                    const [sh, sm] = sTimeStr.split(':').map(Number);
+                    sDate.setHours(sh, sm, 0, 0);
+                    
+                    let diffMins = Math.abs((evDate - sDate) / (1000 * 60));
+                    
+                    if (diffMins <= CONFIG.app.mergeWindowMinutes && diffMins < minDiff) {
+                        minDiff = diffMins;
+                        targetId = session.date;
+                    }
                 }
             }
         }
@@ -2178,7 +2239,8 @@ function loadSettings() {
         theme: CONFIG.app.defaultTheme,
         defaultTab: CONFIG.app.defaultTab,
         cloudColor: CONFIG.app.defaultCloudColor,
-        compactHistory: CONFIG.app.defaultCompactHistory !== undefined ? CONFIG.app.defaultCompactHistory : true
+        compactHistory: CONFIG.app.defaultCompactHistory !== undefined ? CONFIG.app.defaultCompactHistory : true,
+        autoNextFeeding: true
     };
     if (saved) {
         try {
@@ -2209,6 +2271,11 @@ function loadSettings() {
 
     document.getElementById('settings-compact-history').checked = settings.compactHistory;
 
+    const autoNextEl = document.getElementById('settings-auto-next');
+    if (autoNextEl) {
+        autoNextEl.checked = settings.autoNextFeeding !== false;
+    }
+    
     appSettings = settings;
 
     // Switch to the default tab on load
@@ -2334,6 +2401,15 @@ document.getElementById('settings-compact-history').addEventListener('change', (
     }
 });
 
+const autoNextElSettings = document.getElementById('settings-auto-next');
+if (autoNextElSettings) {
+    autoNextElSettings.addEventListener('change', (e) => {
+        updateSettingsStorage();
+        // Dynamically update play button visibility
+        updatePlayButtonState();
+    });
+}
+
 // Permission buttons
 const btnPermAlarms = document.getElementById('btn-perm-alarms');
 const btnPermNotif = document.getElementById('btn-perm-notif');
@@ -2389,7 +2465,8 @@ function updateSettingsStorage(overrideColor = null) {
         theme: document.getElementById('settings-theme').checked ? 'light' : 'dark',
         defaultTab: document.getElementById('settings-default-tab').value,
         cloudColor: cloudColor,
-        compactHistory: document.getElementById('settings-compact-history').checked
+        compactHistory: document.getElementById('settings-compact-history').checked,
+        autoNextFeeding: document.getElementById('settings-auto-next') ? document.getElementById('settings-auto-next').checked : true
     };
     appSettings = newSettings;
     saveSettings(newSettings);

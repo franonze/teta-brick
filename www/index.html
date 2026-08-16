@@ -192,12 +192,19 @@
                             </button>
 
                             <span class="value" id="next-feeding-time"
-                                style="font-size: 1.3rem; color: var(--text-secondary);">--:--</span>
+                                style="font-size: 1.3rem; color: var(--text-secondary);">--:--:--</span>
 
                             <button class="control-btn" id="btn-stop-next" style="margin: 0; padding: 4px;"
                                 aria-label="Detener próxima toma">
                                 <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
                                     <path d="M6 6h12v12H6z" />
+                                </svg>
+                            </button>
+
+                            <button class="control-btn" id="btn-start-next" style="margin: 0; padding: 4px; display: none;"
+                                aria-label="Iniciar próxima toma">
+                                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                                    <path d="M8 5v14l11-7z" />
                                 </svg>
                             </button>
                         </div>
@@ -375,9 +382,17 @@
                     </label>
                 </div>
 
+                <div class="settings-row">
+                    <span class="settings-label" data-i18n="settings_auto_next">Inicio automático próxima toma</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="settings-auto-next" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
                 <div id="android-permissions-section" class="settings-row"
-                    style="flex-direction: column; align-items: flex-start; gap: 15px; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 15px; margin-top: 15px;">
-                    <span class="settings-label" data-i18n="settings_permissions_title">Permisos (Android)</span>
+                    style="display: none; flex-direction: column; align-items: flex-start; gap: 15px; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 15px; margin-top: 15px;">
+                    <span class="settings-label" data-i18n="settings_permissions_title">Permisos</span>
                     <div style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
                         <button class="main-action-btn" id="btn-perm-alarms"
                             style="padding: 10px; font-size: 0.9rem; position: relative; width: 100%; display: flex; justify-content: center; align-items: center;">
