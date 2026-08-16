@@ -1421,10 +1421,24 @@ function formatDate(dateString) {
 
 function renderHistory() {
     const history = JSON.parse(localStorage.getItem(CONFIG.storage.historyKey)) || [];
+    
+    // Capture currently open day tabs before clearing
+    let openDayTexts = null;
+    if (historyContainer.children.length > 0) {
+        openDayTexts = [];
+        historyContainer.querySelectorAll('.daily-group').forEach(group => {
+            const headerDiv = group.querySelector('.daily-header div');
+            const contentDiv = group.querySelector('div[id^="day-"]');
+            if (headerDiv && contentDiv && contentDiv.style.display !== 'none') {
+                openDayTexts.push(headerDiv.innerText.trim());
+            }
+        });
+    }
+    
     historyContainer.innerHTML = '';
 
     if (history.length === 0) {
-        historyContainer.innerHTML = `<div class="empty-state">${getTranslation('empty_history')}</div>`;
+        historyContainer.innerHTML = `<div class="empty-state">\${getTranslation('empty_history')}</div>`;
         return;
     }
 
@@ -1473,6 +1487,8 @@ function renderHistory() {
         // Sort sessions inside the day by their actual event times
         dayData.sessions.sort((a, b) => getSessionSortTime(b).localeCompare(getSessionSortTime(a)));
 
+        const isOpen = openDayTexts !== null ? openDayTexts.includes(dateDisplay) : dayIndex === 0;
+
         // Build the HTML for the day
         let dayHtml = `
             <div class="daily-group glass-card" style="padding: 15px;">
@@ -1485,12 +1501,12 @@ function renderHistory() {
                         <div style="display: flex; align-items: center; gap: 5px; color: var(--text-secondary); font-weight: 600;">
                             <span style="font-size: 1.2rem;">💩</span> ${dayData.totalDiapers}
                         </div>
-                        <svg id="icon-day-${dayIndex}" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" style="transition: transform 0.3s; ${dayIndex === 0 ? 'transform: rotate(180deg);' : ''}">
+                        <svg id="icon-day-${dayIndex}" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" style="transition: transform 0.3s; ${isOpen ? 'transform: rotate(180deg);' : ''}">
                             <polyline points="6 9 12 15 18 9"></polyline>
                         </svg>
                     </div>
                 </div>
-                <div id="day-${dayIndex}" style="display: ${dayIndex === 0 ? 'flex' : 'none'}; flex-direction: column; gap: 10px; margin-top: 15px; border-top: 1px solid var(--card-border); padding-top: 15px;">
+                <div id="day-${dayIndex}" style="display: ${isOpen ? 'flex' : 'none'}; flex-direction: column; gap: 10px; margin-top: 15px; border-top: 1px solid var(--card-border); padding-top: 15px;">
         `;
 
         dayData.sessions.forEach(session => {
@@ -2054,44 +2070,105 @@ btnEditSave.addEventListener('click', () => {
     const oldProp = currentEditKey === 'diaper' ? 'diapers' : currentEditKey;
     const newProp = targetKey === 'diaper' ? 'diapers' : targetKey;
     
-    if (targetKey !== currentEditKey) {
-        delete session[oldProp];
+    // Check if the current session has other events
+    const remainingSession = JSON.parse(JSON.stringify(session));
+    delete remainingSession[oldProp];
+    const hasOtherEvents = !!(remainingSession.left || remainingSession.right || remainingSession.bottle || remainingSession.diapers);
+    
+    // Temporarily update history to test merging
+    const oldSessionState = JSON.parse(JSON.stringify(history[index]));
+    if (hasOtherEvents) {
+        history[index] = remainingSession;
+    } else {
+        history.splice(index, 1);
     }
     
-    if (targetKey === 'left') {
-        session.left = { ...session.left, ...eventDataObj.left };
-    } else if (targetKey === 'right') {
-        session.right = { ...session.right, ...eventDataObj.right };
-    } else if (targetKey === 'bottle') {
-        session.bottle = { ...session.bottle, ...eventDataObj.bottle };
-    } else if (targetKey === 'diaper') {
-        let oldObj = typeof session.diapers === 'object' ? session.diapers : {};
-        if (targetKey !== currentEditKey) oldObj = {};
-        session.diapers = { ...oldObj, ...eventDataObj.diapers };
-    }
-
-    const mergeTargetId = findMergeTarget(newTime, currentEditId);
-
+    // Check if the edited event falls into any session's merge window
+    const mergeTargetId = findMergeTarget(newTime, null);
+    
     if (mergeTargetId) {
-        mergeContext = 'edit';
-        pendingSessionData = {
-            ...eventDataObj,
-            isEdit: true,
-            id: currentEditId,
-            editKey: currentEditKey,
-            targetSessionId: mergeTargetId,
-            fullSession: session
-        };
+        if (mergeTargetId === currentEditId && hasOtherEvents) {
+            // It still belongs to the same session!
+            history = JSON.parse(localStorage.getItem(CONFIG.storage.historyKey)) || [];
+            
+            if (targetKey !== currentEditKey) delete session[oldProp];
+            if (targetKey === 'left') session.left = { ...session.left, ...eventDataObj.left };
+            else if (targetKey === 'right') session.right = { ...session.right, ...eventDataObj.right };
+            else if (targetKey === 'bottle') session.bottle = { ...session.bottle, ...eventDataObj.bottle };
+            else if (targetKey === 'diaper') {
+                let oldObj = typeof session.diapers === 'object' ? session.diapers : {};
+                if (targetKey !== currentEditKey) oldObj = {};
+                session.diapers = { ...oldObj, ...eventDataObj.diapers };
+            }
+            
+            history[index] = session;
+            localStorage.setItem(CONFIG.storage.historyKey, JSON.stringify(history));
+            recalculateNextFeedingFromHistory(history);
+            renderHistory();
+            closeEditModal();
+            return;
+        } else {
+            // Overlaps with a DIFFERENT session
+            history = JSON.parse(localStorage.getItem(CONFIG.storage.historyKey)) || [];
+            
+            if (targetKey !== currentEditKey) delete session[oldProp];
+            if (targetKey === 'left') session.left = { ...session.left, ...eventDataObj.left };
+            else if (targetKey === 'right') session.right = { ...session.right, ...eventDataObj.right };
+            else if (targetKey === 'bottle') session.bottle = { ...session.bottle, ...eventDataObj.bottle };
+            else if (targetKey === 'diaper') {
+                let oldObj = typeof session.diapers === 'object' ? session.diapers : {};
+                if (targetKey !== currentEditKey) oldObj = {};
+                session.diapers = { ...oldObj, ...eventDataObj.diapers };
+            }
+            
+            mergeContext = 'edit';
+            pendingSessionData = {
+                ...eventDataObj,
+                isEdit: true,
+                id: currentEditId,
+                editKey: currentEditKey,
+                targetSessionId: mergeTargetId,
+                fullSession: session
+            };
+            closeEditModal();
+            mergeModal.classList.add('active');
+            return;
+        }
+    } else {
+        // Does not overlap with anything, create or update standalone session
+        history = JSON.parse(localStorage.getItem(CONFIG.storage.historyKey)) || [];
+        
+        if (hasOtherEvents) {
+            delete history[index][oldProp];
+            const newSession = {
+                date: d.toISOString(),
+                ...eventDataObj
+            };
+            history.push(newSession);
+        } else {
+            if (targetKey !== currentEditKey) delete history[index][oldProp];
+            if (targetKey === 'left') history[index].left = { ...history[index].left, ...eventDataObj.left };
+            else if (targetKey === 'right') history[index].right = { ...history[index].right, ...eventDataObj.right };
+            else if (targetKey === 'bottle') history[index].bottle = { ...history[index].bottle, ...eventDataObj.bottle };
+            else if (targetKey === 'diaper') {
+                let oldObj = typeof history[index].diapers === 'object' ? history[index].diapers : {};
+                if (targetKey !== currentEditKey) oldObj = {};
+                history[index].diapers = { ...oldObj, ...eventDataObj.diapers };
+            }
+            
+            const newDate = new Date(selectedDate);
+            const [nh, nm] = newTime.split(':').map(Number);
+            newDate.setHours(nh, nm, 0, 0);
+            history[index].date = newDate.toISOString();
+        }
+        
+        history.sort((a, b) => new Date(b.date) - new Date(a.date));
+        localStorage.setItem(CONFIG.storage.historyKey, JSON.stringify(history));
+        recalculateNextFeedingFromHistory(history);
+        renderHistory();
         closeEditModal();
-        mergeModal.classList.add('active');
         return;
     }
-
-    history[index] = session;
-    localStorage.setItem(CONFIG.storage.historyKey, JSON.stringify(history));
-    recalculateNextFeedingFromHistory(history);
-    renderHistory();
-    closeEditModal();
 });
 
 
