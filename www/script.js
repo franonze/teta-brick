@@ -1732,10 +1732,10 @@ function recalculateNextFeedingFromHistory(history) {
             });
         }
         if (foundLastFeedingTime) {
-            countdownBaseTime = foundLastFeedingTime;
+            if (appSettings.autoNextFeeding !== false) countdownBaseTime = foundLastFeedingTime;
             lastFeedingStartTime = foundLastFeedingTime;
         } else {
-            countdownBaseTime = null;
+            if (appSettings.autoNextFeeding !== false) countdownBaseTime = null;
             lastFeedingStartTime = null;
         }
         updateNextFeedingTime();
@@ -2345,7 +2345,7 @@ modalSave.addEventListener('click', () => {
                 }
 
                 lastFeedingStartTime = now;
-                countdownBaseTime = now;
+                if (appSettings.autoNextFeeding !== false) countdownBaseTime = now;
                 updateNextFeedingTime();
             }
         }
