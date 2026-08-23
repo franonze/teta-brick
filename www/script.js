@@ -909,6 +909,7 @@ function checkOverlap(history, ignoreDateStr, ignoreKey, eventType, startStr, du
     const [h1, m1] = startStr.split(':').map(Number);
     s1.setHours(h1, m1, 0, 0);
     const end1 = new Date(s1.getTime() + (durationSeconds || 0) * 1000);
+    end1.setSeconds(0, 0);
 
     for (const session of history) {
         const checkType = (type, data) => {
@@ -921,6 +922,7 @@ function checkOverlap(history, ignoreDateStr, ignoreKey, eventType, startStr, du
             let dur2 = 0;
             if (type === 'left' || type === 'right') dur2 = data.durationSeconds || 0;
             const end2 = new Date(s2.getTime() + dur2 * 1000);
+            end2.setSeconds(0, 0);
 
             if (s1 < end2 && s2 < end1) return true;
             if (s1.getTime() === s2.getTime()) return true;
@@ -1113,11 +1115,13 @@ btnRegistrar.addEventListener('click', () => {
             const [h1, m1] = sessionData.right.startTime.split(':').map(Number);
             s1.setHours(h1, m1, 0, 0);
             const end1 = new Date(s1.getTime() + sessionData.right.durationSeconds * 1000);
+            end1.setSeconds(0, 0);
             
             const s2 = new Date(baseDate);
             const [h2, m2] = sessionData.left.startTime.split(':').map(Number);
             s2.setHours(h2, m2, 0, 0);
             const end2 = new Date(s2.getTime() + sessionData.left.durationSeconds * 1000);
+            end2.setSeconds(0, 0);
             
             if (s1 < end2 && s2 < end1) isOverlap = true;
             if (s1.getTime() === s2.getTime()) isOverlap = true;
