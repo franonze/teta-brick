@@ -98,6 +98,10 @@ const nextFeedingTime = document.getElementById('next-feeding-time');
 const btnDiaper = document.getElementById('btn-diaper');
 const timeDiaper = document.getElementById('time-diaper');
 
+const btnSleep = document.getElementById('btn-sleep');
+const timeSleepStart = document.getElementById('time-sleep-start');
+const timeSleepEnd = document.getElementById('time-sleep-end');
+
 const svgPlay = '<svg viewBox="0 0 24 24" class="icon-play"><path d="M8 5v14l11-7z"/></svg>';
 const svgPause = '<svg viewBox="0 0 24 24" class="icon-play"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
 
@@ -165,6 +169,8 @@ function saveCurrentState() {
         hourLeft: hourLeft.textContent,
         hourRight: hourRight.textContent,
         timeDiaper: timeDiaper.textContent,
+        timeSleepStart: timeSleepStart.textContent,
+        timeSleepEnd: timeSleepEnd.textContent,
         lastFeedingStartTime: lastFeedingStartTime ? lastFeedingStartTime.getTime() : null,
         countdownBaseTime: countdownBaseTime ? countdownBaseTime.getTime() : null,
         currentNotifId: currentNotifId,
@@ -191,6 +197,8 @@ function loadCurrentState() {
         if (state.hourLeft) hourLeft.textContent = state.hourLeft;
         if (state.hourRight) hourRight.textContent = state.hourRight;
         if (state.timeDiaper) timeDiaper.textContent = state.timeDiaper;
+        if (state.timeSleepStart) timeSleepStart.textContent = state.timeSleepStart;
+        if (state.timeSleepEnd) timeSleepEnd.textContent = state.timeSleepEnd;
         if (state.hourBottle) document.getElementById('hour-bottle').textContent = state.hourBottle;
 
         if (state.bottleMl !== undefined && state.bottleMl !== '--') {
@@ -911,12 +919,46 @@ nextFeedingMinutes.addEventListener('input', updateNextFeedingTime);
 nextFeedingHours.addEventListener('focus', function () { this.select(); });
 nextFeedingMinutes.addEventListener('focus', function () { this.select(); });
 
+const durationModal = document.getElementById('duration-modal');
+const durationCancel = document.getElementById('duration-cancel');
+const durationSave = document.getElementById('duration-save');
+
+durationCancel.addEventListener('click', () => {
+    durationModal.classList.remove('active');
+});
+
+durationSave.addEventListener('click', () => {
+    const h = document.getElementById('modal-duration-hour').value.padStart(2, '0');
+    const m = document.getElementById('modal-duration-minute').value.padStart(2, '0');
+    durationSleepDisplay.textContent = `${h}:${m}`;
+    durationModal.classList.remove('active');
+    saveCurrentState();
+});
+
+durationModal.addEventListener('click', (e) => {
+    if (e.target === durationModal) {
+        durationCancel.click();
+    }
+});
+
 const btnRegistrar = document.getElementById('btn-registrar');
 
 // Diaper Action
 btnDiaper.addEventListener('click', () => {
     const now = new Date();
     timeDiaper.textContent = formatHHMM(now);
+    saveCurrentState();
+});
+
+// Sleep Action
+btnSleep.addEventListener('click', () => {
+    const now = new Date();
+    if (timeSleepStart.textContent === '--:--' || (timeSleepStart.textContent !== '--:--' && timeSleepEnd.textContent !== '--:--')) {
+        timeSleepStart.textContent = formatHHMM(now);
+        timeSleepEnd.textContent = '--:--';
+    } else {
+        timeSleepEnd.textContent = formatHHMM(now);
+    }
     saveCurrentState();
 });
 
@@ -969,6 +1011,12 @@ function checkOverlap(history, ignoreDateStr, ignoreKey, eventType, startStr, du
             s2.setHours(h2, m2, 0, 0);
             let dur2 = 0;
             if (type === 'left' || type === 'right') dur2 = data.durationSeconds || 0;
+            if (type === 'sleep') {
+                if (data.durationStr && data.durationStr !== '--:--') {
+                    const [dh, dm] = data.durationStr.split(':').map(Number);
+                    dur2 = (dh * 3600) + (dm * 60);
+                }
+            }
             const end2 = new Date(s2.getTime() + dur2 * 1000);
             end2.setSeconds(0, 0);
 
@@ -980,6 +1028,7 @@ function checkOverlap(history, ignoreDateStr, ignoreKey, eventType, startStr, du
         if (checkType('left', session.left)) return true;
         if (checkType('right', session.right)) return true;
         if (checkType('bottle', session.bottle)) return true;
+        if (checkType('sleep', session.sleep)) return true;
     }
     return false;
 }
@@ -1010,13 +1059,14 @@ function saveManualMerge(sessionData, merge) {
                 if (sessionData.bottle.note) lastRecord.bottle.note = sessionData.bottle.note;
             }
             if (sessionData.diapers) lastRecord.diapers = sessionData.diapers;
+            if (sessionData.sleep) lastRecord.sleep = sessionData.sleep;
             history[idx] = lastRecord;
             
             if (sessionData.isEdit && sessionData.id !== sessionData.targetSessionId) {
                 const oldIdx = history.findIndex(s => s.date === sessionData.id);
                 if (oldIdx !== -1) {
-                    delete history[oldIdx][sessionData.editKey === 'diaper' ? 'diapers' : sessionData.editKey];
-                    if (!history[oldIdx].left?.startTime && !history[oldIdx].right?.startTime && !history[oldIdx].bottle?.startTime && !history[oldIdx].diapers) {
+                    delete history[oldIdx][sessionData.editKey === 'diaper' ? 'diapers' : (sessionData.editKey === 'sleep' ? 'sleep' : sessionData.editKey)];
+                    if (!history[oldIdx].left?.startTime && !history[oldIdx].right?.startTime && !history[oldIdx].bottle?.startTime && !history[oldIdx].diapers && !history[oldIdx].sleep) {
                         history.splice(oldIdx, 1);
                     }
                 }
@@ -1049,6 +1099,7 @@ function performAutoSplit(history) {
         if (session.right && session.right.startTime) events.push({ type: 'right', data: session.right });
         if (session.bottle && session.bottle.startTime) events.push({ type: 'bottle', data: session.bottle });
         if (session.diapers) events.push({ type: 'diaper', data: session.diapers });
+        if (session.sleep && session.sleep.startTime) events.push({ type: 'sleep', data: session.sleep });
 
         if (events.length <= 1) {
             newHistory.push(session);
@@ -1143,7 +1194,8 @@ btnRegistrar.addEventListener('click', () => {
             ml: bottleMl,
             startTime: (isBiberonActive && hourBottle.textContent !== '--:--') ? hourBottle.textContent : null
         },
-        diapers: (isPechoActive && timeDiaper.textContent !== '--:--') ? timeDiaper.textContent : null
+        diapers: (timeDiaper.textContent !== '--:--') ? timeDiaper.textContent : null,
+        sleep: (timeSleepStart.textContent !== '--:--') ? { startTime: timeSleepStart.textContent, endTime: timeSleepEnd.textContent } : null
     };
 
     // Check if there is anything to save
@@ -1151,8 +1203,9 @@ btnRegistrar.addEventListener('click', () => {
     const hasActiveRight = sessionData.right.startTime !== null;
     const hasActiveBottle = sessionData.bottle.startTime !== null;
     const hasActiveDiaper = sessionData.diapers !== null;
+    const hasActiveSleep = sessionData.sleep !== null;
 
-    if (!hasActiveLeft && !hasActiveRight && !hasActiveBottle && !hasActiveDiaper) {
+    if (!hasActiveLeft && !hasActiveRight && !hasActiveBottle && !hasActiveDiaper && !hasActiveSleep) {
         alert(getTranslation('no_active_data'));
         return;
     }
@@ -1180,12 +1233,32 @@ btnRegistrar.addEventListener('click', () => {
             const end2 = new Date(s2.getTime() + sessionData.left.durationSeconds * 1000);
             end2.setSeconds(0, 0);
             
-            if (s1 < end2 && s2 < end1) isOverlap = true;
-            if (s1.getTime() === s2.getTime()) isOverlap = true;
+            if (s1 < end2 && s2 < end1) {
+                alert("Los tiempos del pecho izquierdo y derecho se solapan. Por favor, corrígelos o reinícialos.");
+                return;
+            }
+            if (s1.getTime() === s2.getTime()) {
+                alert("Los tiempos del pecho izquierdo y derecho se solapan. Por favor, corrígelos o reinícialos.");
+                return;
+            }
         }
     }
     if (sessionData.bottle && sessionData.bottle.startTime) {
         if (checkOverlap(history, null, null, 'bottle', sessionData.bottle.startTime, 0, baseDate)) isOverlap = true;
+    }
+    if (sessionData.sleep && sessionData.sleep.startTime) {
+        let sDur = 0;
+        if (sessionData.sleep.endTime && sessionData.sleep.endTime !== '--:--') {
+            const [sh, sm] = sessionData.sleep.startTime.split(':').map(Number);
+            const [eh, em] = sessionData.sleep.endTime.split(':').map(Number);
+            let startMins = sh * 60 + sm;
+            let endMins = eh * 60 + em;
+            if (endMins < startMins) endMins += 24 * 60;
+            sDur = (endMins - startMins) * 60;
+        }
+        let durMins = Math.floor(sDur / 60);
+        sessionData.sleep.durationStr = sDur > 0 ? `${Math.floor(durMins/60).toString().padStart(2,'0')}:${(durMins%60).toString().padStart(2,'0')}` : '--:--';
+        if (checkOverlap(history, null, null, 'sleep', sessionData.sleep.startTime, sDur, baseDate)) isOverlap = true;
     }
     if (isOverlap) {
         alert(getTranslation('error_overlap'));
@@ -1205,16 +1278,35 @@ btnRegistrar.addEventListener('click', () => {
         if (lastRecord.left && lastRecord.left.startTime && lastRecord.left.startTime < lastEarliestStr) lastEarliestStr = lastRecord.left.startTime;
         if (lastRecord.right && lastRecord.right.startTime && lastRecord.right.startTime < lastEarliestStr) lastEarliestStr = lastRecord.right.startTime;
         if (lastRecord.bottle && lastRecord.bottle.startTime && lastRecord.bottle.startTime < lastEarliestStr) lastEarliestStr = lastRecord.bottle.startTime;
+        if (lastRecord.sleep && lastRecord.sleep.startTime && lastRecord.sleep.startTime < lastEarliestStr) lastEarliestStr = lastRecord.sleep.startTime;
 
         // Find earliest start time of current session
         let currEarliestStr = '23:59';
         if (sessionData.left.startTime && sessionData.left.startTime < currEarliestStr) currEarliestStr = sessionData.left.startTime;
         if (sessionData.right.startTime && sessionData.right.startTime < currEarliestStr) currEarliestStr = sessionData.right.startTime;
-        if (sessionData.bottle.startTime && sessionData.bottle.startTime < currEarliestStr) currEarliestStr = sessionData.bottle.startTime;        // Check Overlap first!
+        if (sessionData.bottle.startTime && sessionData.bottle.startTime < currEarliestStr) currEarliestStr = sessionData.bottle.startTime;
+        if (sessionData.sleep && sessionData.sleep.startTime && sessionData.sleep.startTime < currEarliestStr) currEarliestStr = sessionData.sleep.startTime;
+        
+        // Check Overlap first!
         let hasOverlap = false;
         if (sessionData.left.startTime) hasOverlap = hasOverlap || checkOverlap(history, null, null, 'left', sessionData.left.startTime, sessionData.left.durationSeconds, sessionData.date);
         if (sessionData.right.startTime) hasOverlap = hasOverlap || checkOverlap(history, null, null, 'right', sessionData.right.startTime, sessionData.right.durationSeconds, sessionData.date);
         if (sessionData.bottle.startTime) hasOverlap = hasOverlap || checkOverlap(history, null, null, 'bottle', sessionData.bottle.startTime, 0, sessionData.date);
+        
+        if (sessionData.sleep && sessionData.sleep.startTime) {
+            let sDur = 0;
+            if (sessionData.sleep.endTime && sessionData.sleep.endTime !== '--:--') {
+                const [sh, sm] = sessionData.sleep.startTime.split(':').map(Number);
+                const [eh, em] = sessionData.sleep.endTime.split(':').map(Number);
+                let startMins = sh * 60 + sm;
+                let endMins = eh * 60 + em;
+                if (endMins < startMins) endMins += 24 * 60; // crossed midnight
+                sDur = (endMins - startMins) * 60; // in seconds
+            }
+            let durMins = Math.floor(sDur / 60);
+            sessionData.sleep.durationStr = sDur > 0 ? `${Math.floor(durMins/60).toString().padStart(2,'0')}:${(durMins%60).toString().padStart(2,'0')}` : '--:--';
+            hasOverlap = hasOverlap || checkOverlap(history, null, null, 'sleep', sessionData.sleep.startTime, sDur, sessionData.date);
+        }
         
         if (hasOverlap) {
             alert(getTranslation('error_overlap'));
@@ -1291,9 +1383,19 @@ function saveAndResetSession(sessionData, merge) {
             lastRecord.diapers = sessionData.diapers;
         }
 
+        if (sessionData.sleep) {
+            lastRecord.sleep = sessionData.sleep;
+        }
+
         history[history.length - 1] = lastRecord;
     } else {
-        history.push(sessionData);
+        const newSession = { date: sessionData.date };
+        if (sessionData.left && sessionData.left.startTime) newSession.left = sessionData.left;
+        if (sessionData.right && sessionData.right.startTime) newSession.right = sessionData.right;
+        if (sessionData.bottle && sessionData.bottle.startTime) newSession.bottle = sessionData.bottle;
+        if (sessionData.diapers) newSession.diapers = sessionData.diapers;
+        if (sessionData.sleep && sessionData.sleep.startTime) newSession.sleep = sessionData.sleep;
+        history.push(newSession);
     }
 
     localStorage.setItem(CONFIG.storage.historyKey, JSON.stringify(history));
@@ -1334,12 +1436,22 @@ function saveAndResetSession(sessionData, merge) {
 
     timeDiaper.textContent = '--:--';
 
+    if (sessionData.diapers) {
+        timeDiaper.textContent = '--:--';
+    }
+
+    if (sessionData.sleep) {
+        timeSleepStart.textContent = '--:--';
+        timeSleepEnd.textContent = '--:--';
+    }
+
     if (merge && history.length > 0) {
         let lastRecord = history[history.length - 1];
         let earliestTime = '23:59';
         if (lastRecord.left && lastRecord.left.startTime && lastRecord.left.startTime < earliestTime) earliestTime = lastRecord.left.startTime;
         if (lastRecord.right && lastRecord.right.startTime && lastRecord.right.startTime < earliestTime) earliestTime = lastRecord.right.startTime;
         if (lastRecord.bottle && lastRecord.bottle.startTime && lastRecord.bottle.startTime < earliestTime) earliestTime = lastRecord.bottle.startTime;
+        if (lastRecord.sleep && lastRecord.sleep.startTime && lastRecord.sleep.startTime < earliestTime) earliestTime = lastRecord.sleep.startTime;
 
         if (earliestTime !== '23:59') {
             const d = new Date(lastRecord.date);
@@ -1539,6 +1651,7 @@ function renderHistory() {
             let diaperTime = typeof session.diapers === 'string' ? session.diapers : (session.diapers.poop || session.diapers.pee || session.diapers.time);
             if (diaperTime && diaperTime > latestTime) latestTime = diaperTime;
         }
+        if (session.sleep && session.sleep.startTime && session.sleep.startTime > latestTime) latestTime = session.sleep.startTime;
         return latestTime || '00:00';
     }
 
@@ -1599,6 +1712,12 @@ function renderHistory() {
                 if (diaperTime) {
                     sessionEvents.push({ id: sid, key: 'diaper', timeStr: diaperTime, type: getTranslation('diaper_change'), desc: '', icon: '💩', note: diaperNote });
                 }
+            }
+            // Sleep
+            if (session.sleep && session.sleep.startTime) {
+                sessionEvents.push({
+                    id: sid, key: 'sleep', timeStr: session.sleep.startTime, type: getTranslation('sleep'), desc: (session.sleep.durationStr && session.sleep.durationStr !== '--:--') ? session.sleep.durationStr : '', icon: '💤', note: session.sleep.note || ''
+                });
             }
 
             if (sessionEvents.length === 0) return;
@@ -1721,6 +1840,7 @@ function recalculateNextFeedingFromHistory(history) {
             if (s.left && s.left.startTime) times.push(s.left.startTime);
             if (s.right && s.right.startTime) times.push(s.right.startTime);
             if (s.bottle && s.bottle.startTime) times.push(s.bottle.startTime);
+            if (s.sleep && s.sleep.startTime) times.push(s.sleep.startTime);
             
             times.forEach(timeStr => {
                 const d = new Date(s.date);
@@ -1775,20 +1895,19 @@ btnDeleteConfirm.addEventListener('click', () => {
     let history = JSON.parse(localStorage.getItem(CONFIG.storage.historyKey)) || [];
     const index = history.findIndex(s => s.date === currentDeleteId);
     if (index !== -1) {
-        if (currentDeleteKey === 'left') {
-            history[index].left.startTime = null;
-            history[index].left.durationSeconds = 0;
-        } else if (currentDeleteKey === 'right') {
-            history[index].right.startTime = null;
-            history[index].right.durationSeconds = 0;
-        } else if (currentDeleteKey === 'bottle') {
-            history[index].bottle = null;
+        let record = history[index];
+        if (currentDeleteKey === 'bottle') {
+            record.bottle = null;
         } else if (currentDeleteKey === 'diaper') {
-            history[index].diapers = null;
+            record.diapers = null;
+        } else if (currentDeleteKey === 'sleep') {
+            record.sleep = null;
+        } else if (currentDeleteKey === 'left' || currentDeleteKey === 'right') {
+            record[currentDeleteKey] = null;
         }
 
         // If session is completely empty, remove it entirely
-        if (!history[index].left?.startTime && !history[index].right?.startTime && !history[index].bottle?.startTime && !history[index].diapers) {
+        if (!record.left?.startTime && !record.right?.startTime && !record.bottle?.startTime && !record.diapers && !record.sleep) {
             history.splice(index, 1);
         }
 
@@ -1819,7 +1938,7 @@ editMinute.addEventListener('focus', function () { this.select(); });
 editDuration.addEventListener('focus', function () { this.select(); });
 editDuration.addEventListener('input', function () {
     const type = eventType ? eventType.value : null;
-    const max = (type === 'bottle') ? CONFIG.app.maxBottleQuantityMl : CONFIG.app.maxNurseDurationMinutes;
+    const max = (type === 'bottle') ? CONFIG.app.maxBottleQuantityMl : (type === 'sleep' ? 1440 : CONFIG.app.maxNurseDurationMinutes);
     if (this.value !== '' && parseInt(this.value) > max) {
         this.value = max;
     }
@@ -1885,7 +2004,18 @@ function openEventModal(isNew, editId = null, editKey = null) {
                 if (editNote) editNote.value = session.diapers.note || '';
             }
             targetTimeStr = diaperTime;
-            editDurationContainer.style.display = 'none';
+            document.getElementById('edit-duration-container').style.display = 'none';
+        } else if (editKey === 'sleep') {
+            targetTimeStr = session.sleep.startTime;
+            const dur = session.sleep.durationStr || '--:--';
+            if (dur !== '--:--') {
+                const [h, m] = dur.split(':').map(Number);
+                editDuration.value = (h * 60) + m;
+            }
+            editDurationContainer.style.display = 'flex';
+            document.querySelector('#edit-duration-container .sub-label').textContent = 'Duración (minutos)';
+            editDuration.placeholder = 'Min';
+            if (editNote) editNote.value = session.sleep.note || '';
         }
     } else {
         const now = new Date();
@@ -1959,7 +2089,11 @@ if (eventType) {
             document.querySelector('#edit-duration-container .sub-label').textContent = 'Cantidad (mL)';
             editDuration.placeholder = 'mL';
         } else if (val === 'diaper') {
-            editDurationContainer.style.display = 'none';
+            document.getElementById('edit-duration-container').style.display = 'none';
+        } else if (val === 'sleep') {
+            document.getElementById('edit-duration-container').style.display = 'flex';
+            document.querySelector('#edit-duration-container .sub-label').textContent = 'Duración (minutos)';
+            editDuration.placeholder = 'Min';
         }
     });
 }
@@ -1981,6 +2115,8 @@ window.saveInlineNote = function (id, key, newNoteText) {
     } else if (key === 'diaper') {
         let oldObj = typeof session.diapers === 'object' ? session.diapers : { time: session.diapers };
         session.diapers = { ...oldObj, note: noteVal };
+    } else if (key === 'sleep') {
+        session.sleep.note = noteVal;
     }
 
     history[index] = session;
@@ -2031,6 +2167,7 @@ btnEditSave.addEventListener('click', () => {
             if (session.left?.startTime) times.push(session.left.startTime);
             if (session.right?.startTime) times.push(session.right.startTime);
             if (session.bottle?.startTime) times.push(session.bottle.startTime);
+            if (session.sleep?.startTime) times.push(session.sleep.startTime);
             if (session.diapers) {
                 if (typeof session.diapers === 'string') times.push(session.diapers);
                 else if (session.diapers.time) times.push(session.diapers.time);
@@ -2060,14 +2197,19 @@ btnEditSave.addEventListener('click', () => {
         now.setFullYear(selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate());
         let newSession = { date: now.toISOString() };
 
-        let mins = parseInt(editDuration.value) || 0;
-        if (type === 'left') newSession.left = { startTime: newTime, durationSeconds: mins * 60, note: noteVal };
-        else if (type === 'right') newSession.right = { startTime: newTime, durationSeconds: mins * 60, note: noteVal };
-        else if (type === 'bottle') newSession.bottle = { startTime: newTime, ml: mins, note: noteVal };
+        let dur = parseInt(editDuration.value) || 0;
+        if (type === 'left') newSession.left = { startTime: newTime, durationSeconds: dur * 60, note: noteVal };
+        else if (type === 'right') newSession.right = { startTime: newTime, durationSeconds: dur * 60, note: noteVal };
+        else if (type === 'bottle') newSession.bottle = { startTime: newTime, ml: dur, note: noteVal };
         else if (type === 'diaper') newSession.diapers = { time: newTime, note: noteVal };
+        else if (type === 'sleep') {
+            const durH = Math.floor(dur / 60).toString().padStart(2, '0');
+            const durM = (dur % 60).toString().padStart(2, '0');
+            newSession.sleep = { startTime: newTime, durationStr: `${durH}:${durM}`, note: noteVal };
+        }
 
         // Overlap Check
-        if (checkOverlap(history, null, null, type, newTime, (type === 'left' || type === 'right') ? mins * 60 : 0, now)) {
+        if (checkOverlap(history, null, null, type, newTime, (type === 'left' || type === 'right') ? dur * 60 : (type === 'sleep' ? dur * 60 : 0), now)) {
             alert(getTranslation('error_overlap'));
             return;
         }
@@ -2111,8 +2253,8 @@ btnEditSave.addEventListener('click', () => {
     const targetKey = eventType ? eventType.value : currentEditKey;
     
     // Overlap Check
-    let mins = parseInt(editDuration.value) || 0;
-    if (checkOverlap(history, currentEditId, currentEditKey, targetKey, newTime, (targetKey === 'left' || targetKey === 'right') ? mins * 60 : 0, d)) {
+    let dur = parseInt(editDuration.value) || 0;
+    if (checkOverlap(history, currentEditId, currentEditKey, targetKey, newTime, (targetKey === 'left' || targetKey === 'right' || targetKey === 'sleep') ? dur * 60 : 0, d)) {
         alert(getTranslation('error_overlap'));
         return;
     }
@@ -2120,11 +2262,15 @@ btnEditSave.addEventListener('click', () => {
     // Build the isolated event data for potential merging
     let eventDataObj = {};
     if (targetKey === 'left' || targetKey === 'right') {
-        eventDataObj[targetKey] = { startTime: newTime, durationSeconds: Math.max(0, mins) * 60, note: noteVal };
+        eventDataObj[targetKey] = { startTime: newTime, durationSeconds: Math.max(0, dur) * 60, note: noteVal };
     } else if (targetKey === 'bottle') {
-        eventDataObj.bottle = { startTime: newTime, ml: Math.max(0, mins), note: noteVal };
+        eventDataObj.bottle = { startTime: newTime, ml: Math.max(0, dur), note: noteVal };
     } else if (targetKey === 'diaper') {
         eventDataObj.diapers = { time: newTime, note: noteVal };
+    } else if (targetKey === 'sleep') {
+        const durH = Math.floor(dur / 60).toString().padStart(2, '0');
+        const durM = (dur % 60).toString().padStart(2, '0');
+        eventDataObj.sleep = { startTime: newTime, durationStr: `${durH}:${durM}`, note: noteVal };
     }
 
     // Update the session in memory
@@ -2134,10 +2280,9 @@ btnEditSave.addEventListener('click', () => {
     // Check if the current session has other events
     const remainingSession = JSON.parse(JSON.stringify(session));
     delete remainingSession[oldProp];
-    const hasOtherEvents = !!(remainingSession.left || remainingSession.right || remainingSession.bottle || remainingSession.diapers);
+    const hasOtherEvents = !!(remainingSession.left || remainingSession.right || remainingSession.bottle || remainingSession.diapers || remainingSession.sleep);
     
     // Temporarily update history to test merging
-    const oldSessionState = JSON.parse(JSON.stringify(history[index]));
     if (hasOtherEvents) {
         history[index] = remainingSession;
     } else {
@@ -2161,6 +2306,7 @@ btnEditSave.addEventListener('click', () => {
                 if (targetKey !== currentEditKey) oldObj = {};
                 session.diapers = { ...oldObj, ...eventDataObj.diapers };
             }
+            else if (targetKey === 'sleep') session.sleep = { ...session.sleep, ...eventDataObj.sleep };
             
             history[index] = session;
             localStorage.setItem(CONFIG.storage.historyKey, JSON.stringify(history));
@@ -2181,6 +2327,7 @@ btnEditSave.addEventListener('click', () => {
                 if (targetKey !== currentEditKey) oldObj = {};
                 session.diapers = { ...oldObj, ...eventDataObj.diapers };
             }
+            else if (targetKey === 'sleep') session.sleep = { ...session.sleep, ...eventDataObj.sleep };
             
             mergeContext = 'edit';
             pendingSessionData = {
@@ -2216,6 +2363,7 @@ btnEditSave.addEventListener('click', () => {
                 if (targetKey !== currentEditKey) oldObj = {};
                 history[index].diapers = { ...oldObj, ...eventDataObj.diapers };
             }
+            else if (targetKey === 'sleep') history[index].sleep = { ...history[index].sleep, ...eventDataObj.sleep };
             
             const newDate = new Date(selectedDate);
             const [nh, nm] = newTime.split(':').map(Number);
@@ -2370,7 +2518,7 @@ function saveSettings(settings) {
     localStorage.setItem(CONFIG.storage.settingsKey, JSON.stringify(settings));
 }
 
-function loadSettings() {
+function loadSettingsDirect() {
     const saved = localStorage.getItem(CONFIG.storage.settingsKey);
     let settings = {
         trackDurationQuantity: CONFIG.app.trackDurationQuantity !== undefined ? CONFIG.app.trackDurationQuantity : true,
@@ -2379,17 +2527,26 @@ function loadSettings() {
         defaultTab: CONFIG.app.defaultTab,
         cloudColor: CONFIG.app.defaultCloudColor,
         compactHistory: CONFIG.app.defaultCompactHistory !== undefined ? CONFIG.app.defaultCompactHistory : true,
-        autoNextFeeding: true
+        autoNextFeeding: true,
+        showDiaper: true,
+        showSleep: true
     };
     if (saved) {
         try {
             settings = { ...settings, ...JSON.parse(saved) };
         } catch (e) { }
     }
+    return settings;
+}
+
+function loadSettings() {
+    let settings = loadSettingsDirect();
 
     // Apply Settings
     currentLang = settings.lang;
-    document.getElementById('settings-lang').value = currentLang;
+    const settingsLangEl = document.getElementById('settings-lang');
+    if (settingsLangEl) settingsLangEl.value = currentLang;
+    
     const trackDurationEl = document.getElementById('settings-track-duration');
     if (trackDurationEl) trackDurationEl.checked = settings.trackDurationQuantity !== false;
     if (settings.trackDurationQuantity === false) {
@@ -2400,7 +2557,8 @@ function loadSettings() {
     applyLanguage(currentLang);
     sortLanguageOptions();
 
-    document.getElementById('settings-theme').checked = (settings.theme === 'light');
+    const themeEl = document.getElementById('settings-theme');
+    if (themeEl) themeEl.checked = (settings.theme === 'light');
     applyTheme(settings.theme);
 
     const savedColor = settings.cloudColor || CONFIG.app.defaultCloudColor;
@@ -2413,14 +2571,26 @@ function loadSettings() {
     });
     applyCloudColor(savedColor);
 
-    document.getElementById('settings-default-tab').value = settings.defaultTab;
+    const defaultTabEl = document.getElementById('settings-default-tab');
+    if (defaultTabEl) defaultTabEl.value = settings.defaultTab || CONFIG.app.defaultTab;
 
-    document.getElementById('settings-compact-history').checked = settings.compactHistory;
+    const compactHistoryEl = document.getElementById('settings-compact-history');
+    if (compactHistoryEl) compactHistoryEl.checked = settings.compactHistory !== false;
 
     const autoNextEl = document.getElementById('settings-auto-next');
     if (autoNextEl) {
         autoNextEl.checked = settings.autoNextFeeding !== false;
     }
+    
+    const showDiaperEl = document.getElementById('settings-show-diaper');
+    if (showDiaperEl) showDiaperEl.checked = settings.showDiaper !== false;
+    const showSleepEl = document.getElementById('settings-show-sleep');
+    if (showSleepEl) showSleepEl.checked = settings.showSleep !== false;
+
+    const sectionDiaper = document.getElementById('section-diaper');
+    if (sectionDiaper) sectionDiaper.style.display = settings.showDiaper !== false ? 'flex' : 'none';
+    const sectionSleep = document.getElementById('section-sleep');
+    if (sectionSleep) sectionSleep.style.display = settings.showSleep !== false ? 'flex' : 'none';
     
     appSettings = settings;
 
@@ -2567,6 +2737,24 @@ if (autoNextElSettings) {
     });
 }
 
+const showDiaperElSettings = document.getElementById('settings-show-diaper');
+if (showDiaperElSettings) {
+    showDiaperElSettings.addEventListener('change', (e) => {
+        const sectionDiaper = document.getElementById('section-diaper');
+        if (sectionDiaper) sectionDiaper.style.display = e.target.checked ? 'flex' : 'none';
+        updateSettingsStorage();
+    });
+}
+
+const showSleepElSettings = document.getElementById('settings-show-sleep');
+if (showSleepElSettings) {
+    showSleepElSettings.addEventListener('change', (e) => {
+        const sectionSleep = document.getElementById('section-sleep');
+        if (sectionSleep) sectionSleep.style.display = e.target.checked ? 'flex' : 'none';
+        updateSettingsStorage();
+    });
+}
+
 // Permission buttons
 const btnPermAlarms = document.getElementById('btn-perm-alarms');
 const btnPermNotif = document.getElementById('btn-perm-notif');
@@ -2625,7 +2813,9 @@ function updateSettingsStorage(overrideColor = null) {
         defaultTab: document.getElementById('settings-default-tab').value,
         cloudColor: cloudColor,
         compactHistory: document.getElementById('settings-compact-history').checked,
-        autoNextFeeding: document.getElementById('settings-auto-next') ? document.getElementById('settings-auto-next').checked : true
+        autoNextFeeding: document.getElementById('settings-auto-next') ? document.getElementById('settings-auto-next').checked : true,
+        showDiaper: document.getElementById('settings-show-diaper') ? document.getElementById('settings-show-diaper').checked : true,
+        showSleep: document.getElementById('settings-show-sleep') ? document.getElementById('settings-show-sleep').checked : true
     };
     appSettings = newSettings;
     saveSettings(newSettings);

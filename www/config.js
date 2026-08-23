@@ -77,11 +77,17 @@ const TRANSLATIONS = {
         "settings_perm_notif": "Permiso de Notificaciones",
         "notif_time_title": "¡Hora de la toma!",
         "notif_time_body": "Es hora de dar de comer a tu bebé.",
-        "settings_compact_history": "Historial Compacto",
+        "settings_compact_history": "Historial compacto",
         "settings_auto_next": "Inicio automático próxima toma:",
         "settings_permissions_title": "Permisos",
         "settings_perm_alarm": "Permiso de Alarma",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "Registro duración/cantidad",
+        "sleep": "Sueño",
+        "settings_show_diaper": "Mostrar cambio pañal",
+        "settings_show_sleep": "Mostrar sueño",
+        "sleep_duration_title": "Duración del sueño",
+        "sleep_start": "Inicio",
+        "sleep_end": "Fin"
     },
     "en": {
         "error_overlap": "Error: The event overlaps with an existing one.",
@@ -139,7 +145,13 @@ const TRANSLATIONS = {
         "settings_auto_next": "Automatic start next feed:",
         "settings_permissions_title": "Permissions",
         "settings_perm_alarm": "Alarm Permission",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "Track duration/amount",
+        "sleep": "Sleep",
+        "settings_show_diaper": "Show diaper change",
+        "settings_show_sleep": "Show sleep",
+        "sleep_duration_title": "Sleep duration",
+        "sleep_start": "Start",
+        "sleep_end": "End"
     },
     "zh": {
         "error_overlap": "错误：该事件与现有事件重叠。",
@@ -193,11 +205,17 @@ const TRANSLATIONS = {
         "settings_perm_notif": "通知权限",
         "notif_time_title": "射击时间！",
         "notif_time_body": "是时候给宝宝喂奶了。",
-        "settings_compact_history": "Compact History",
+        "settings_compact_history": "紧凑的历史记录",
         "settings_auto_next": "自动启动 下次喂奶:",
         "settings_permissions_title": "权限（安卓）",
         "settings_perm_alarm": "报警权限",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "记录时长/数量",
+        "sleep": "睡眠",
+        "settings_show_diaper": "显示换尿布",
+        "settings_show_sleep": "显示睡眠",
+        "sleep_duration_title": "睡眠时间",
+        "sleep_start": "开始",
+        "sleep_end": "结束"
     },
     "hi": {
         "error_overlap": "त्रुटि: ईवेंट मौजूदा ईवेंट के साथ ओवरलैप होता है।",
@@ -251,11 +269,17 @@ const TRANSLATIONS = {
         "settings_perm_notif": "अधिसूचना अनुमति",
         "notif_time_title": "शॉट का समय!",
         "notif_time_body": "यह आपके बच्चे को दूध पिलाने का समय है।",
-        "settings_compact_history": "Compact History",
+        "settings_compact_history": "संक्षिप्त इतिहास",
         "settings_auto_next": "स्वचालित प्रारंभ अगला आहार:",
         "settings_permissions_title": "अनुमतियाँ (एंड्रॉइड)",
         "settings_perm_alarm": "अलार्म अनुमति",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "अवधि/मात्रा दर्ज करें",
+        "sleep": "नींद",
+        "settings_show_diaper": "डायपर दिखाएं",
+        "settings_show_sleep": "नींद दिखाएं",
+        "sleep_duration_title": "नींद की अवधि",
+        "sleep_start": "शुरू",
+        "sleep_end": "अंत"
     },
     "ar": {
         "error_overlap": "خطأ: يتداخل الحدث مع حدث موجود.",
@@ -309,11 +333,17 @@ const TRANSLATIONS = {
         "settings_perm_notif": "إذن الإخطارات",
         "notif_time_title": "وقت إطلاق النار!",
         "notif_time_body": "حان الوقت لإطعام طفلك.",
-        "settings_compact_history": "Compact History",
+        "settings_compact_history": "سجل مضغوط",
         "settings_auto_next": "بداية تلقائية الرضعة القادمة:",
         "settings_permissions_title": "الأذونات (أندرويد)",
         "settings_perm_alarm": "إذن التنبيه",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "تسجيل المدة/الكمية",
+        "sleep": "نوم",
+        "settings_show_diaper": "إظهار الحفاض",
+        "settings_show_sleep": "إظهار النوم",
+        "sleep_duration_title": "مدة النوم",
+        "sleep_start": "بداية",
+        "sleep_end": "نهاية"
     },
     "fr": {
         "error_overlap": "Erreur : l'événement chevauche un événement existant.",
@@ -367,11 +397,17 @@ const TRANSLATIONS = {
         "settings_perm_notif": "Autorisation des notifications",
         "notif_time_title": "C'est l'heure du tir !",
         "notif_time_body": "Il est temps de nourrir votre bébé.",
-        "settings_compact_history": "Compact History",
+        "settings_compact_history": "Historique compact",
         "settings_auto_next": "Démarrage automatique prochain repas:",
         "settings_permissions_title": "Autorisations",
         "settings_perm_alarm": "Autorisation d'alarme",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "Enregistrer durée/quantité",
+        "sleep": "Sommeil",
+        "settings_show_diaper": "Afficher la couche",
+        "settings_show_sleep": "Afficher le sommeil",
+        "sleep_duration_title": "Durée du sommeil",
+        "sleep_start": "Début",
+        "sleep_end": "Fin"
     },
     "ru": {
         "error_overlap": "Ошибка: событие пересекается с существующим.",
@@ -425,11 +461,17 @@ const TRANSLATIONS = {
         "settings_perm_notif": "Разрешение на уведомления",
         "notif_time_title": "Время выстрела!",
         "notif_time_body": "Пришло время покормить ребенка.",
-        "settings_compact_history": "Compact History",
+        "settings_compact_history": "Компактная история",
         "settings_auto_next": "Автоматический запуск след. кормление:",
         "settings_permissions_title": "Разрешения",
         "settings_perm_alarm": "Разрешение тревоги",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "Запись времени/количества",
+        "sleep": "Сон",
+        "settings_show_diaper": "Показать подгузник",
+        "settings_show_sleep": "Показать сон",
+        "sleep_duration_title": "Продолжительность сна",
+        "sleep_start": "Начало",
+        "sleep_end": "Конец"
     },
     "pt": {
         "error_overlap": "Erro: O evento se sobrepõe a um evento existente.",
@@ -483,11 +525,17 @@ const TRANSLATIONS = {
         "settings_perm_notif": "Permissão de notificações",
         "notif_time_title": "Hora do tiro!",
         "notif_time_body": "É hora de alimentar seu bebê.",
-        "settings_compact_history": "Compact History",
+        "settings_compact_history": "Histórico compacto",
         "settings_auto_next": "Início automático próxima mamada:",
         "settings_permissions_title": "Permissões",
         "settings_perm_alarm": "Permissão de alarme",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "Registrar duração/quantidade",
+        "sleep": "Sono",
+        "settings_show_diaper": "Mostrar fralda",
+        "settings_show_sleep": "Mostrar sono",
+        "sleep_duration_title": "Duração do sono",
+        "sleep_start": "Início",
+        "sleep_end": "Fim"
     },
     "de": {
         "error_overlap": "Fehler: Das Ereignis überschneidet sich mit einem vorhandenen.",
@@ -541,11 +589,17 @@ const TRANSLATIONS = {
         "settings_perm_notif": "Benachrichtigungsberechtigung",
         "notif_time_title": "Schusszeit!",
         "notif_time_body": "Es ist Zeit, Ihr Baby zu füttern.",
-        "settings_compact_history": "Compact History",
+        "settings_compact_history": "Kompakter Verlauf",
         "settings_auto_next": "Automatischer Start nächste Mahlzeit:",
         "settings_permissions_title": "Berechtigungen",
         "settings_perm_alarm": "Alarmberechtigung",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "Dauer/Menge erfassen",
+        "sleep": "Schlaf",
+        "settings_show_diaper": "Windel anzeigen",
+        "settings_show_sleep": "Schlaf anzeigen",
+        "sleep_duration_title": "Schlafdauer",
+        "sleep_start": "Start",
+        "sleep_end": "Ende"
     },
     "ja": {
         "error_overlap": "エラー: イベントは既存のイベントと重複しています。",
@@ -599,11 +653,17 @@ const TRANSLATIONS = {
         "settings_perm_notif": "通知の許可",
         "notif_time_title": "ショットタイム！",
         "notif_time_body": "赤ちゃんに食事を与える時間です。",
-        "settings_compact_history": "Compact History",
+        "settings_compact_history": "コンパクトな履歴",
         "settings_auto_next": "自動起動 次の授乳:",
         "settings_permissions_title": "権限",
         "settings_perm_alarm": "アラーム許可",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "時間/量を記録",
+        "sleep": "睡眠",
+        "settings_show_diaper": "おむつを表示",
+        "settings_show_sleep": "睡眠を表示",
+        "sleep_duration_title": "睡眠時間",
+        "sleep_start": "開始",
+        "sleep_end": "終了"
     },
     "it": {
         "error_overlap": "Errore: l'evento si sovrappone a uno esistente.",
@@ -657,11 +717,17 @@ const TRANSLATIONS = {
         "settings_perm_notif": "Autorizzazione notifiche",
         "notif_time_title": "È ora di sparare!",
         "notif_time_body": "È ora di dare da mangiare al tuo bambino.",
-        "settings_compact_history": "Compact History",
+        "settings_compact_history": "Cronologia compatta",
         "settings_auto_next": "Avvio automatico prossima poppata:",
         "settings_permissions_title": "Autorizzazioni",
         "settings_perm_alarm": "Autorizzazione allarme",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "Registra durata/quantità",
+        "sleep": "Sonno",
+        "settings_show_diaper": "Mostra pannolino",
+        "settings_show_sleep": "Mostra sonno",
+        "sleep_duration_title": "Durata del sonno",
+        "sleep_start": "Inizio",
+        "sleep_end": "Fine"
     },
     "bn": {
         "error_overlap": "ত্রুটি: ইভেন্টটি বিদ্যমান একটির সাথে ওভারল্যাপ করে৷",
@@ -719,7 +785,13 @@ const TRANSLATIONS = {
         "settings_auto_next": "স্বয়ংক্রিয় শুরু পরবর্তী খাওয়ানো:",
         "settings_permissions_title": "অনুমতি",
         "settings_perm_alarm": "অ্যালার্ম অনুমতি",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "Registro duración/cantidad",
+        "sleep": "ঘুম",
+        "settings_show_diaper": "ডায়াপার দেখান",
+        "settings_show_sleep": "ঘুম দেখান",
+        "sleep_duration_title": "ঘুমের সময়কাল",
+        "sleep_start": "শুরু",
+        "sleep_end": "শেষ"
     },
     "ur": {
         "error_overlap": "خرابی: ایونٹ ایک موجودہ کے ساتھ اوورلیپ ہو جاتا ہے۔",
@@ -777,7 +849,13 @@ const TRANSLATIONS = {
         "settings_auto_next": "خودکار آغاز اگلی خوراک:",
         "settings_permissions_title": "اجازتیں",
         "settings_perm_alarm": "الارم کی اجازت",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "Registro duración/cantidad",
+        "sleep": "نیند",
+        "settings_show_diaper": "ڈائپر دکھائیں",
+        "settings_show_sleep": "نیند دکھائیں",
+        "sleep_duration_title": "نیند کا دورانیہ",
+        "sleep_start": "شروع",
+        "sleep_end": "ختم"
     },
     "id": {
         "error_overlap": "Kesalahan: Acara tersebut tumpang tindih dengan acara yang sudah ada.",
@@ -835,7 +913,13 @@ const TRANSLATIONS = {
         "settings_auto_next": "Mulai otomatis makan berikutnya:",
         "settings_permissions_title": "Izin",
         "settings_perm_alarm": "Izin Alarm",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "Registro duración/cantidad",
+        "sleep": "Tidur",
+        "settings_show_diaper": "Tampilkan popok",
+        "settings_show_sleep": "Tampilkan tidur",
+        "sleep_duration_title": "Durasi tidur",
+        "sleep_start": "Mulai",
+        "sleep_end": "Selesai"
     },
     "sw": {
         "error_overlap": "Hitilafu: Tukio linapishana na lililopo.",
