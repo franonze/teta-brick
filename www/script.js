@@ -523,7 +523,7 @@ function pauseLeftTimer(isSwap = false) {
         leftTimerInterval = null;
         btnLeft.innerHTML = svgPlay;
 
-        if (!isSwap && leftSeconds >= 0 && leftSeconds < MIN_SECONDS_TO_KEEP) {
+        if (!isSwap && leftSeconds >= 0 && leftSeconds < MIN_SECONDS_TO_KEEP && appSettings.trackDurationQuantity !== false) {
             leftSeconds = 0;
             timeLeft.textContent = '00:00';
             hourLeft.textContent = '--:--';
@@ -538,7 +538,7 @@ function pauseRightTimer(isSwap = false) {
         rightTimerInterval = null;
         btnRight.innerHTML = svgPlay;
 
-        if (!isSwap && rightSeconds >= 0 && rightSeconds < MIN_SECONDS_TO_KEEP) {
+        if (!isSwap && rightSeconds >= 0 && rightSeconds < MIN_SECONDS_TO_KEEP && appSettings.trackDurationQuantity !== false) {
             rightSeconds = 0;
             timeRight.textContent = '00:00';
             hourRight.textContent = '--:--';
@@ -550,6 +550,22 @@ function pauseRightTimer(isSwap = false) {
 // Left Button Logic
 btnLeft.addEventListener('click', () => {
     btnLeft.classList.remove('highlight-next');
+    if (appSettings.trackDurationQuantity === false) {
+        const now = new Date();
+        hourLeft.textContent = formatHHMM(now);
+        leftStartMillis = now.getTime();
+        leftSeconds = 0;
+        const hr = document.getElementById('hour-right').textContent;
+        const hb = document.getElementById('hour-bottle');
+        const hbText = hb ? hb.textContent : '--:--';
+        if (hr === '--:--' && hbText === '--:--') {
+            lastFeedingStartTime = now;
+            if (appSettings.autoNextFeeding !== false) countdownBaseTime = now;
+            updateNextFeedingTime();
+        }
+        saveCurrentState();
+        return;
+    }
     if (leftTimerInterval) {
         // Is playing, so pause it
         pauseLeftTimer();
@@ -607,6 +623,22 @@ btnLeft.addEventListener('click', () => {
 // Right Button Logic
 btnRight.addEventListener('click', () => {
     btnRight.classList.remove('highlight-next');
+    if (appSettings.trackDurationQuantity === false) {
+        const now = new Date();
+        hourRight.textContent = formatHHMM(now);
+        rightStartMillis = now.getTime();
+        rightSeconds = 0;
+        const hl = document.getElementById('hour-left').textContent;
+        const hb = document.getElementById('hour-bottle');
+        const hbText = hb ? hb.textContent : '--:--';
+        if (hl === '--:--' && hbText === '--:--') {
+            lastFeedingStartTime = now;
+            if (appSettings.autoNextFeeding !== false) countdownBaseTime = now;
+            updateNextFeedingTime();
+        }
+        saveCurrentState();
+        return;
+    }
     if (rightTimerInterval) {
         // Is playing, so pause it
         pauseRightTimer();
@@ -788,6 +820,22 @@ function openMlModal() {
 }
 
 btnBottle.addEventListener('click', () => {
+    if (appSettings.trackDurationQuantity === false) {
+        const now = new Date();
+        const hourBottle = document.getElementById('hour-bottle');
+        hourBottle.textContent = formatHHMM(now);
+        bottleMl = 0;
+        isBottlePlaying = true;
+        const hl = document.getElementById('hour-left').textContent;
+        const hr = document.getElementById('hour-right').textContent;
+        if (hl === '--:--' && hr === '--:--') {
+            lastFeedingStartTime = now;
+            if (appSettings.autoNextFeeding !== false) countdownBaseTime = now;
+            updateNextFeedingTime();
+        }
+        saveCurrentState();
+        return;
+    }
     if (isBottlePlaying) {
         openMlModal();
     } else {
@@ -1095,7 +1143,12 @@ btnRegistrar.addEventListener('click', () => {
     };
 
     // Check if there is anything to save
-    if (leftSeconds === 0 && rightSeconds === 0 && bottleMl === 0 && !sessionData.diapers) {
+    const hasActiveLeft = sessionData.left.startTime !== null;
+    const hasActiveRight = sessionData.right.startTime !== null;
+    const hasActiveBottle = sessionData.bottle.startTime !== null;
+    const hasActiveDiaper = sessionData.diapers !== null;
+
+    if (!hasActiveLeft && !hasActiveRight && !hasActiveBottle && !hasActiveDiaper) {
         alert(getTranslation('no_active_data'));
         return;
     }
@@ -1175,7 +1228,7 @@ btnRegistrar.addEventListener('click', () => {
 
             const diffMinutes = Math.abs(currDate - lastDate) / (1000 * 60);
 
-            if (diffMinutes <= MERGE_WINDOW_MINUTES) {
+            if (diffMinutes <= MERGE_WINDOW_MINUTES && appSettings.trackDurationQuantity !== false) {
                 mergeContext = 'main';
                 pendingSessionData = sessionData;
                 mergeModal.classList.add('active');
@@ -1188,7 +1241,7 @@ btnRegistrar.addEventListener('click', () => {
             const now = new Date();
             const diffMinutes = (now - lastRecordDate) / (1000 * 60);
 
-            if (diffMinutes >= 0 && diffMinutes <= MERGE_WINDOW_MINUTES) {
+            if (diffMinutes >= 0 && diffMinutes <= MERGE_WINDOW_MINUTES && appSettings.trackDurationQuantity !== false) {
                 mergeContext = 'main';
                 pendingSessionData = sessionData;
                 mergeModal.classList.add('active');
@@ -1520,19 +1573,19 @@ function renderHistory() {
             // Left feeding
             if (session.left && session.left.startTime) {
                 sessionEvents.push({
-                    id: sid, key: 'left', timeStr: session.left.startTime, type: `${getTranslation('tab_pecho')} ${getTranslation('breast_left')}`, desc: `${Math.round(session.left.durationSeconds / 60)}min`, icon: '🍼', note: session.left.note || ''
+                    id: sid, key: 'left', timeStr: session.left.startTime, type: `${getTranslation('tab_pecho')} ${getTranslation('breast_left')}`, desc: Math.round(session.left.durationSeconds / 60) > 0 ? `${Math.round(session.left.durationSeconds / 60)}min` : '', icon: '🍼', note: session.left.note || ''
                 });
             }
             // Right feeding
             if (session.right && session.right.startTime) {
                 sessionEvents.push({
-                    id: sid, key: 'right', timeStr: session.right.startTime, type: `${getTranslation('tab_pecho')} ${getTranslation('breast_right')}`, desc: `${Math.round(session.right.durationSeconds / 60)}min`, icon: '🍼', note: session.right.note || ''
+                    id: sid, key: 'right', timeStr: session.right.startTime, type: `${getTranslation('tab_pecho')} ${getTranslation('breast_right')}`, desc: Math.round(session.right.durationSeconds / 60) > 0 ? `${Math.round(session.right.durationSeconds / 60)}min` : '', icon: '🍼', note: session.right.note || ''
                 });
             }
             // Bottle feeding
             if (session.bottle && session.bottle.startTime) {
                 sessionEvents.push({
-                    id: sid, key: 'bottle', timeStr: session.bottle.startTime, type: getTranslation('tab_biberon'), desc: `${session.bottle.ml} mL`, icon: '🍼', note: session.bottle.note || ''
+                    id: sid, key: 'bottle', timeStr: session.bottle.startTime, type: getTranslation('tab_biberon'), desc: session.bottle.ml > 0 ? `${session.bottle.ml} mL` : '', icon: '🍼', note: session.bottle.note || ''
                 });
             }
             // Diaper
@@ -2015,7 +2068,7 @@ btnEditSave.addEventListener('click', () => {
             return;
         }
 
-        const mergeTargetId = findMergeTarget(newTime, null);
+        const mergeTargetId = appSettings.trackDurationQuantity !== false ? findMergeTarget(newTime, null) : null;
         if (mergeTargetId) {
             mergeContext = 'manual';
             pendingSessionData = {
@@ -2088,7 +2141,7 @@ btnEditSave.addEventListener('click', () => {
     }
     
     // Check if the edited event falls into any session's merge window
-    const mergeTargetId = findMergeTarget(newTime, null);
+    const mergeTargetId = appSettings.trackDurationQuantity !== false ? findMergeTarget(newTime, null) : null;
     
     if (mergeTargetId) {
         if (mergeTargetId === currentEditId && hasOtherEvents) {
@@ -2316,6 +2369,7 @@ function saveSettings(settings) {
 function loadSettings() {
     const saved = localStorage.getItem(CONFIG.storage.settingsKey);
     let settings = {
+        trackDurationQuantity: CONFIG.app.trackDurationQuantity !== undefined ? CONFIG.app.trackDurationQuantity : true,
         lang: CONFIG.app.defaultLang,
         theme: CONFIG.app.defaultTheme,
         defaultTab: CONFIG.app.defaultTab,
@@ -2332,6 +2386,13 @@ function loadSettings() {
     // Apply Settings
     currentLang = settings.lang;
     document.getElementById('settings-lang').value = currentLang;
+    const trackDurationEl = document.getElementById('settings-track-duration');
+    if (trackDurationEl) trackDurationEl.checked = settings.trackDurationQuantity !== false;
+    if (settings.trackDurationQuantity === false) {
+        document.body.classList.add('no-duration-tracking');
+    } else {
+        document.body.classList.remove('no-duration-tracking');
+    }
     applyLanguage(currentLang);
     sortLanguageOptions();
 
@@ -2458,6 +2519,17 @@ function sortLanguageOptions() {
 }
 
 // Event Listeners for Settings
+const trackDurationElSettings = document.getElementById('settings-track-duration');
+if (trackDurationElSettings) {
+    trackDurationElSettings.addEventListener('change', (e) => {
+        updateSettingsStorage();
+        if (!e.target.checked) {
+            document.body.classList.add('no-duration-tracking');
+        } else {
+            document.body.classList.remove('no-duration-tracking');
+        }
+    });
+}
 document.getElementById('settings-lang').addEventListener('change', (e) => {
     currentLang = e.target.value;
     applyLanguage(currentLang);
@@ -2541,7 +2613,9 @@ function updateSettingsStorage(overrideColor = null) {
         cloudColor = activeBtn ? activeBtn.getAttribute('data-color') : CONFIG.app.defaultCloudColor;
     }
 
+    const trackDurationEl = document.getElementById('settings-track-duration');
     const newSettings = {
+        trackDurationQuantity: trackDurationEl ? trackDurationEl.checked : true,
         lang: document.getElementById('settings-lang').value,
         theme: document.getElementById('settings-theme').checked ? 'light' : 'dark',
         defaultTab: document.getElementById('settings-default-tab').value,

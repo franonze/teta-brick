@@ -46,7 +46,7 @@
                                 </svg>
                             </button>
                             <div class="stats">
-                                <div class="stat-row">
+                                <div class="stat-row hide-on-no-duration">
                                     <span class="label tag" data-i18n="time">Tiempo</span>
                                     <span class="value" id="time-left">00:00</span>
                                 </div>
@@ -62,7 +62,7 @@
                                     <span class="value time-display" id="hour-left">--:--</span>
                                 </div>
                             </div>
-                            <button class="control-btn" id="btn-reset-left" style="margin-top: 2px; padding: 4px 8px;">
+                            <button class="control-btn hide-on-no-duration" id="btn-reset-left" style="margin-top: 2px; padding: 4px 8px;">
                                 <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
                                     <path
                                         d="M17.65 6.35A7.95 7.95 0 0012 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0112 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z" />
@@ -91,7 +91,7 @@
                                 </svg>
                             </button>
                             <div class="stats">
-                                <div class="stat-row">
+                                <div class="stat-row hide-on-no-duration">
                                     <span class="label tag" data-i18n="time">Tiempo</span>
                                     <span class="value" id="time-right">00:00</span>
                                 </div>
@@ -107,7 +107,7 @@
                                     <span class="value time-display" id="hour-right">--:--</span>
                                 </div>
                             </div>
-                            <button class="control-btn" id="btn-reset-right" style="margin-top: 2px; padding: 4px 8px;">
+                            <button class="control-btn hide-on-no-duration" id="btn-reset-right" style="margin-top: 2px; padding: 4px 8px;">
                                 <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
                                     <path
                                         d="M17.65 6.35A7.95 7.95 0 0012 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0112 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z" />
@@ -133,7 +133,7 @@
                         </button>
 
                         <div style="display: flex; align-items: center; gap: 15px;">
-                            <div class="stat-row time-clickable" data-target="ml-bottle"
+                            <div class="stat-row time-clickable hide-on-no-duration" data-target="ml-bottle"
                                 style="align-items: center; min-width: 50px;">
                                 <span class="label tag"
                                     style="color: var(--accent-primary); font-size: 0.7rem; padding: 2px 6px;"
@@ -145,7 +145,7 @@
                                 </div>
                             </div>
 
-                            <div class="divider"
+                            <div class="divider hide-on-no-duration"
                                 style="width: 1px; height: 40px; background: var(--card-border); margin: 0;"></div>
 
                             <div class="stat-row time-clickable" data-target="hour-bottle"
@@ -378,6 +378,14 @@
                     <span class="settings-label" data-i18n="settings_compact_history">Historial Compacto</span>
                     <label class="toggle-switch">
                         <input type="checkbox" id="settings-compact-history">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="settings-row">
+                    <span class="settings-label" data-i18n="settings_track_duration">Registro duración/cantidad</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="settings-track-duration" checked>
                         <span class="slider"></span>
                     </label>
                 </div>

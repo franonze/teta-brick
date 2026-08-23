@@ -905,3 +905,5 @@ input:checked + .slider:before {
     height: 40px;
     font-size: 1.2rem;
 }
+
+.no-duration-tracking .hide-on-no-duration { display: none !important; }

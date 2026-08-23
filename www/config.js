@@ -10,6 +10,7 @@ const CONFIG = {
         defaultLang: 'es',
         defaultCloudColor: '#D6EAF8',
         defaultCompactHistory: false,
+        trackDurationQuantity: true,
         highlightNextBreast: false
     },
     alarm: {
@@ -79,7 +80,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Historial Compacto",
         "settings_auto_next": "Inicio automático próxima toma:",
         "settings_permissions_title": "Permisos",
-        "settings_perm_alarm": "Permiso de Alarma"
+        "settings_perm_alarm": "Permiso de Alarma",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "en": {
         "error_overlap": "Error: The event overlaps with an existing one.",
@@ -136,7 +138,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "Automatic start next feed:",
         "settings_permissions_title": "Permissions",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_perm_alarm": "Alarm Permission",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "zh": {
         "error_overlap": "错误：该事件与现有事件重叠。",
@@ -193,7 +196,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "自动启动 下次喂奶:",
         "settings_permissions_title": "权限（安卓）",
-        "settings_perm_alarm": "报警权限"
+        "settings_perm_alarm": "报警权限",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "hi": {
         "error_overlap": "त्रुटि: ईवेंट मौजूदा ईवेंट के साथ ओवरलैप होता है।",
@@ -250,7 +254,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "स्वचालित प्रारंभ अगला आहार:",
         "settings_permissions_title": "अनुमतियाँ (एंड्रॉइड)",
-        "settings_perm_alarm": "अलार्म अनुमति"
+        "settings_perm_alarm": "अलार्म अनुमति",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "ar": {
         "error_overlap": "خطأ: يتداخل الحدث مع حدث موجود.",
@@ -307,7 +312,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "بداية تلقائية الرضعة القادمة:",
         "settings_permissions_title": "الأذونات (أندرويد)",
-        "settings_perm_alarm": "إذن التنبيه"
+        "settings_perm_alarm": "إذن التنبيه",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "fr": {
         "error_overlap": "Erreur : l'événement chevauche un événement existant.",
@@ -364,7 +370,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "Démarrage automatique prochain repas:",
         "settings_permissions_title": "Autorisations",
-        "settings_perm_alarm": "Autorisation d'alarme"
+        "settings_perm_alarm": "Autorisation d'alarme",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "ru": {
         "error_overlap": "Ошибка: событие пересекается с существующим.",
@@ -421,7 +428,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "Автоматический запуск след. кормление:",
         "settings_permissions_title": "Разрешения",
-        "settings_perm_alarm": "Разрешение тревоги"
+        "settings_perm_alarm": "Разрешение тревоги",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "pt": {
         "error_overlap": "Erro: O evento se sobrepõe a um evento existente.",
@@ -478,7 +486,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "Início automático próxima mamada:",
         "settings_permissions_title": "Permissões",
-        "settings_perm_alarm": "Permissão de alarme"
+        "settings_perm_alarm": "Permissão de alarme",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "de": {
         "error_overlap": "Fehler: Das Ereignis überschneidet sich mit einem vorhandenen.",
@@ -535,7 +544,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "Automatischer Start nächste Mahlzeit:",
         "settings_permissions_title": "Berechtigungen",
-        "settings_perm_alarm": "Alarmberechtigung"
+        "settings_perm_alarm": "Alarmberechtigung",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "ja": {
         "error_overlap": "エラー: イベントは既存のイベントと重複しています。",
@@ -592,7 +602,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "自動起動 次の授乳:",
         "settings_permissions_title": "権限",
-        "settings_perm_alarm": "アラーム許可"
+        "settings_perm_alarm": "アラーム許可",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "it": {
         "error_overlap": "Errore: l'evento si sovrappone a uno esistente.",
@@ -649,7 +660,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "Avvio automatico prossima poppata:",
         "settings_permissions_title": "Autorizzazioni",
-        "settings_perm_alarm": "Autorizzazione allarme"
+        "settings_perm_alarm": "Autorizzazione allarme",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "bn": {
         "error_overlap": "ত্রুটি: ইভেন্টটি বিদ্যমান একটির সাথে ওভারল্যাপ করে৷",
@@ -706,7 +718,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "স্বয়ংক্রিয় শুরু পরবর্তী খাওয়ানো:",
         "settings_permissions_title": "অনুমতি",
-        "settings_perm_alarm": "অ্যালার্ম অনুমতি"
+        "settings_perm_alarm": "অ্যালার্ম অনুমতি",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "ur": {
         "error_overlap": "خرابی: ایونٹ ایک موجودہ کے ساتھ اوورلیپ ہو جاتا ہے۔",
@@ -763,7 +776,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "خودکار آغاز اگلی خوراک:",
         "settings_permissions_title": "اجازتیں",
-        "settings_perm_alarm": "الارم کی اجازت"
+        "settings_perm_alarm": "الارم کی اجازت",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "id": {
         "error_overlap": "Kesalahan: Acara tersebut tumpang tindih dengan acara yang sudah ada.",
@@ -820,7 +834,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "Mulai otomatis makan berikutnya:",
         "settings_permissions_title": "Izin",
-        "settings_perm_alarm": "Izin Alarm"
+        "settings_perm_alarm": "Izin Alarm",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "sw": {
         "error_overlap": "Hitilafu: Tukio linapishana na lililopo.",
@@ -877,7 +892,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "Kuanza moja kwa moja mlisho ujao:",
         "settings_permissions_title": "Ruhusa",
-        "settings_perm_alarm": "Ruhusa ya Kengele"
+        "settings_perm_alarm": "Ruhusa ya Kengele",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "mr": {
         "error_overlap": "त्रुटी: इव्हेंट विद्यमान इव्हेंटसह ओव्हरलॅप होतो.",
@@ -934,7 +950,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "स्वयंचलित प्रारंभ पुढील आहार:",
         "settings_permissions_title": "परवानग्या",
-        "settings_perm_alarm": "अलार्म परवानगी"
+        "settings_perm_alarm": "अलार्म परवानगी",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "te": {
         "error_overlap": "లోపం: ఈవెంట్ ఇప్పటికే ఉన్న దానితో అతివ్యాప్తి చెందుతుంది.",
@@ -991,7 +1008,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "స్వయంచాలక ప్రారంభం తదుపరి ఆహారం:",
         "settings_permissions_title": "అనుమతులు",
-        "settings_perm_alarm": "అలారం అనుమతి"
+        "settings_perm_alarm": "అలారం అనుమతి",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "tr": {
         "error_overlap": "Hata: Etkinlik mevcut bir etkinlikle çakışıyor.",
@@ -1048,7 +1066,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "Otomatik başlatma sonraki beslenme:",
         "settings_permissions_title": "İzinler",
-        "settings_perm_alarm": "Alarm İzni"
+        "settings_perm_alarm": "Alarm İzni",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "ta": {
         "error_overlap": "பிழை: நிகழ்வு ஏற்கனவே உள்ளவற்றுடன் மேலெழுகிறது.",
@@ -1105,7 +1124,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "தானியங்கி தொடக்கம் அடுத்த உணவு:",
         "settings_permissions_title": "அனுமதிகள்",
-        "settings_perm_alarm": "அலாரம் அனுமதி"
+        "settings_perm_alarm": "அலாரம் அனுமதி",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "vi": {
         "error_overlap": "Lỗi: Sự kiện trùng lặp với sự kiện hiện có.",
@@ -1162,7 +1182,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "Tự động khởi động lần bú tới:",
         "settings_permissions_title": "Quyền",
-        "settings_perm_alarm": "Quyền báo động"
+        "settings_perm_alarm": "Quyền báo động",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "ko": {
         "error_overlap": "오류: 이벤트가 기존 이벤트와 겹칩니다.",
@@ -1219,7 +1240,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "자동 시작 다음 수유:",
         "settings_permissions_title": "권한(안드로이드)",
-        "settings_perm_alarm": "알람 권한"
+        "settings_perm_alarm": "알람 권한",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "fa": {
         "error_overlap": "خطا: رویداد با رویداد موجود همپوشانی دارد.",
@@ -1276,7 +1298,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "شروع خودکار وعده بعدی:",
         "settings_permissions_title": "مجوزها (اندروید)",
-        "settings_perm_alarm": "مجوز هشدار"
+        "settings_perm_alarm": "مجوز هشدار",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "ha": {
         "error_overlap": "Kuskure: Lamarin ya zo tare da wanda yake.",
@@ -1333,7 +1356,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "farawa ta atomatik ciyarwa na gaba:",
         "settings_permissions_title": "Izini",
-        "settings_perm_alarm": "Izinin ƙararrawa"
+        "settings_perm_alarm": "Izinin ƙararrawa",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "jv": {
         "error_overlap": "Error: Acara tumpang tindih karo sing wis ana.",
@@ -1390,7 +1414,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "Wiwiti otomatis mangan sabanjure:",
         "settings_permissions_title": "Izin",
-        "settings_perm_alarm": "Izin Weker"
+        "settings_perm_alarm": "Izin Weker",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "pa": {
         "error_overlap": "ਤਰੁੱਟੀ: ਇਵੈਂਟ ਮੌਜੂਦਾ ਇੱਕ ਨਾਲ ਓਵਰਲੈਪ ਹੁੰਦਾ ਹੈ।",
@@ -1447,7 +1472,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "ਆਟੋਮੈਟਿਕ ਸ਼ੁਰੂ ਅਗਲੀ ਖੁਰਾਕ:",
         "settings_permissions_title": "ਅਨੁਮਤੀਆਂ",
-        "settings_perm_alarm": "ਅਲਾਰਮ ਦੀ ਇਜਾਜ਼ਤ"
+        "settings_perm_alarm": "ਅਲਾਰਮ ਦੀ ਇਜਾਜ਼ਤ",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "gu": {
         "error_overlap": "ભૂલ: ઇવેન્ટ અસ્તિત્વમાં છે તે સાથે ઓવરલેપ થાય છે.",
@@ -1504,7 +1530,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "આપોઆપ શરૂઆત આગળનો ખોરાક:",
         "settings_permissions_title": "પરવાનગીઓ",
-        "settings_perm_alarm": "એલાર્મ પરવાનગી"
+        "settings_perm_alarm": "એલાર્મ પરવાનગી",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "th": {
         "error_overlap": "ข้อผิดพลาด: เหตุการณ์ซ้อนทับกับเหตุการณ์ที่มีอยู่",
@@ -1561,7 +1588,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "เริ่มต้นอัตโนมัติ ให้อาหารครั้งต่อไป:",
         "settings_permissions_title": "สิทธิ์",
-        "settings_perm_alarm": "การอนุญาตปลุก"
+        "settings_perm_alarm": "การอนุญาตปลุก",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "am": {
         "error_overlap": "ስህተት፡ ክስተቱ ከነባሩ ጋር ይደራረባል።",
@@ -1618,7 +1646,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "ራስ-ሰር ጅምር ቀጣይ ምግብ:",
         "settings_permissions_title": "ፈቃዶች (አንድሮይድ)",
-        "settings_perm_alarm": "የማንቂያ ፍቃድ"
+        "settings_perm_alarm": "የማንቂያ ፍቃድ",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "kn": {
         "error_overlap": "ದೋಷ: ಈವೆಂಟ್ ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ಒಂದರೊಂದಿಗೆ ಅತಿಕ್ರಮಿಸುತ್ತದೆ.",
@@ -1675,7 +1704,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "ಸ್ವಯಂಚಾಲಿತ ಪ್ರಾರಂಭ ಮುಂದಿನ ಆಹಾರ:",
         "settings_permissions_title": "ಅನುಮತಿಗಳು (ಆಂಡ್ರಾಯ್ಡ್)",
-        "settings_perm_alarm": "ಅಲಾರಾಂ ಅನುಮತಿ"
+        "settings_perm_alarm": "ಅಲಾರಾಂ ಅನುಮತಿ",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "or": {
         "error_overlap": "ତ୍ରୁଟି: ଏକ ବିଦ୍ୟମାନ ସହିତ ଇଭେଣ୍ଟଟି ଅଲଗା ହୋଇଯାଏ |",
@@ -1732,7 +1762,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "ସ୍ୱୟଂଚାଳିତ ଆରମ୍ଭ ପରବର୍ତ୍ତୀ ଖାଦ୍ୟ:",
         "settings_permissions_title": "ଅନୁମତି (ଆଣ୍ଡ୍ରଏଡ୍)",
-        "settings_perm_alarm": "ଆଲାର୍ମ ଅନୁମତି"
+        "settings_perm_alarm": "ଆଲାର୍ମ ଅନୁମତି",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "bho": {
         "reset": "Reset",
@@ -1789,7 +1820,8 @@ const TRANSLATIONS = {
         "settings_permissions_title": "अनुमति (एंड्रॉयड) के बा।",
         "settings_perm_alarm": "अलार्म के अनुमति दिहल गइल बा",
         "error_overlap": "त्रुटि: घटना मौजूदा के साथ ओवरलैप हो जाला।",
-        "settings_auto_next": "स्वचालित रूप से शुरू हो जाला अगला आहार:"
+        "settings_auto_next": "स्वचालित रूप से शुरू हो जाला अगला आहार:",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "su": {
         "error_overlap": "Kasalahan: Acara tumpang tindih sareng anu tos aya.",
@@ -1846,7 +1878,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "Mimitian otomatis tuang salajengna:",
         "settings_permissions_title": "Idin",
-        "settings_perm_alarm": "Idin Alarm"
+        "settings_perm_alarm": "Idin Alarm",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "ro": {
         "error_overlap": "Eroare: evenimentul se suprapune cu unul existent.",
@@ -1903,7 +1936,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "Pornire automată următoarea masă:",
         "settings_permissions_title": "Permisiuni",
-        "settings_perm_alarm": "Permisiune de alarmă"
+        "settings_perm_alarm": "Permisiune de alarmă",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "nl": {
         "error_overlap": "Fout: de gebeurtenis overlapt met een bestaande gebeurtenis.",
@@ -1960,7 +1994,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "Automatische start volgende voeding:",
         "settings_permissions_title": "Machtigingen",
-        "settings_perm_alarm": "Alarmtoestemming"
+        "settings_perm_alarm": "Alarmtoestemming",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "km": {
         "error_overlap": "កំហុស៖ ព្រឹត្តិការណ៍នេះត្រួតលើគ្នាជាមួយព្រឹត្តិការណ៍ដែលមានស្រាប់។",
@@ -2017,7 +2052,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "ការចាប់ផ្តើមដោយស្វ័យប្រវត្តិ ការបំបៅបន្ទាប់:",
         "settings_permissions_title": "ការអនុញ្ញាត",
-        "settings_perm_alarm": "ការអនុញ្ញាតសំឡេងរោទិ៍"
+        "settings_perm_alarm": "ការអនុញ្ញាតសំឡេងរោទិ៍",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "uz": {
         "error_overlap": "Xato: Hodisa mavjud voqea bilan bir-biriga mos tushdi.",
@@ -2074,7 +2110,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "Avtomatik boshlash keyingi ovqat:",
         "settings_permissions_title": "Ruxsatlar",
-        "settings_perm_alarm": "Signal ruxsati"
+        "settings_perm_alarm": "Signal ruxsati",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "sd": {
         "error_overlap": "نقص: واقعو موجوده ھڪڙي سان اوورليپ ٿئي ٿو.",
@@ -2131,7 +2168,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "خودڪار شروع ايندڙ خوراڪ:",
         "settings_permissions_title": "اجازتون",
-        "settings_perm_alarm": "الارم جي اجازت"
+        "settings_perm_alarm": "الارم جي اجازت",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "my": {
         "error_overlap": "အမှား- ဖြစ်ရပ်သည် ရှိပြီးသားတစ်ခုနှင့် ထပ်နေပါသည်။",
@@ -2188,7 +2226,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "အလိုအလျောက်စတင်သည်။ နောက်တစ်ကြိမ် အစာကျွေးရန်:",
         "settings_permissions_title": "ခွင့်ပြုချက်များ",
-        "settings_perm_alarm": "နှိုးစက်ခွင့်ပြုချက်"
+        "settings_perm_alarm": "နှိုးစက်ခွင့်ပြုချက်",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "yo": {
         "error_overlap": "Aṣiṣe: Iṣẹlẹ naa ṣakojọpọ pẹlu eyi ti o wa tẹlẹ.",
@@ -2245,7 +2284,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "Ibẹrẹ aifọwọyi oúnjẹ tó kàn:",
         "settings_permissions_title": "Awọn igbanilaaye",
-        "settings_perm_alarm": "Gbigbanilaaye Itaniji"
+        "settings_perm_alarm": "Gbigbanilaaye Itaniji",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "ig": {
         "error_overlap": "Njehie: Ihe omume a dakọtara na nke dị.",
@@ -2302,7 +2342,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "Mmalite akpaaka nri ọzọ:",
         "settings_permissions_title": "Ikikere",
-        "settings_perm_alarm": "Ikike mkpu"
+        "settings_perm_alarm": "Ikike mkpu",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "ms": {
         "error_overlap": "Ralat: Acara bertindih dengan yang sedia ada.",
@@ -2359,7 +2400,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "Permulaan automatik sesi seterusnya:",
         "settings_permissions_title": "Kebenaran",
-        "settings_perm_alarm": "Kebenaran Penggera"
+        "settings_perm_alarm": "Kebenaran Penggera",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "ne": {
         "error_overlap": "त्रुटि: घटना अवस्थित एउटासँग ओभरल्याप हुन्छ।",
@@ -2416,7 +2458,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "स्वचालित सुरुवात अर्को खुवाउने:",
         "settings_permissions_title": "अनुमतिहरू (एन्ड्रोइड)",
-        "settings_perm_alarm": "अलार्म अनुमति"
+        "settings_perm_alarm": "अलार्म अनुमति",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "uk": {
         "error_overlap": "Помилка: подія збігається з існуючою.",
@@ -2473,7 +2516,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "Автоматичний запуск наступне годування:",
         "settings_permissions_title": "Дозволи",
-        "settings_perm_alarm": "Дозвіл на будильник"
+        "settings_perm_alarm": "Дозвіл на будильник",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "ceb": {
         "reset": "Reset",
@@ -2530,7 +2574,8 @@ const TRANSLATIONS = {
         "settings_permissions_title": "Mga Permiso",
         "settings_perm_alarm": "Pagtugot sa Alarm",
         "error_overlap": "Sayop: Ang panghitabo nagsapaw sa usa nga anaa na.",
-        "settings_auto_next": "Awtomatikong pagsugod sunod nga pagpakaon:"
+        "settings_auto_next": "Awtomatikong pagsugod sunod nga pagpakaon:",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "ku": {
         "error_overlap": "Çewtî: Bûyer bi ya heyî re li hev dikeve.",
@@ -2587,7 +2632,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "Destpêka otomatîk xwarina din:",
         "settings_permissions_title": "Destûr",
-        "settings_perm_alarm": "Destûra Alarm"
+        "settings_perm_alarm": "Destûra Alarm",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "sv": {
         "error_overlap": "Fel: Händelsen överlappar en befintlig.",
@@ -2644,7 +2690,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "Automatisk start nästa matning:",
         "settings_permissions_title": "Behörigheter",
-        "settings_perm_alarm": "Larmtillstånd"
+        "settings_perm_alarm": "Larmtillstånd",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "pl": {
         "error_overlap": "Błąd: wydarzenie pokrywa się z istniejącym.",
@@ -2701,7 +2748,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "Automatyczny start następne karmienie:",
         "settings_permissions_title": "Uprawnienia",
-        "settings_perm_alarm": "Zezwolenie na alarm"
+        "settings_perm_alarm": "Zezwolenie na alarm",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "tl": {
         "error_overlap": "Error: Ang kaganapan ay nag-o-overlap sa isang umiiral na.",
@@ -2758,7 +2806,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "Awtomatikong pagsisimula susunod na pakain:",
         "settings_permissions_title": "Mga Pahintulot",
-        "settings_perm_alarm": "Pahintulot sa Alarm"
+        "settings_perm_alarm": "Pahintulot sa Alarm",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "ml": {
         "error_overlap": "പിശക്: ഇവൻ്റ് നിലവിലുള്ള ഒന്നുമായി ഓവർലാപ്പ് ചെയ്യുന്നു.",
@@ -2815,7 +2864,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "യാന്ത്രിക ആരംഭം അടുത്ത ഭക്ഷണം:",
         "settings_permissions_title": "അനുമതികൾ",
-        "settings_perm_alarm": "അലാറം അനുമതി"
+        "settings_perm_alarm": "അലാറം അനുമതി",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "fi": {
         "error_overlap": "Virhe: Tapahtuma on päällekkäinen olemassa olevan tapahtuman kanssa.",
@@ -2872,7 +2922,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "Automaattinen käynnistys seuraava ruokinta:",
         "settings_permissions_title": "Käyttöoikeudet",
-        "settings_perm_alarm": "Hälytyslupa"
+        "settings_perm_alarm": "Hälytyslupa",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "af": {
         "error_overlap": "Fout: Die gebeurtenis oorvleuel met 'n bestaande een.",
@@ -2929,7 +2980,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Kompakte Rekord",
         "settings_auto_next": "Outomatiese begin volgende neem:",
         "settings_permissions_title": "Toestemmings",
-        "settings_perm_alarm": "Alarm Toestemming"
+        "settings_perm_alarm": "Alarm Toestemming",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "sq": {
         "error_overlap": "Gabim: Ngjarja mbivendoset me një ekzistuese.",
@@ -2986,7 +3038,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "Fillimi automatik marrja e radhës:",
         "settings_permissions_title": "Lejet",
-        "settings_perm_alarm": "Leja e alarmit"
+        "settings_perm_alarm": "Leja e alarmit",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "hy": {
         "error_overlap": "Սխալ․ իրադարձությունը համընկնում է գոյություն ունեցողի հետ։",
@@ -3043,7 +3096,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "Ավտոմատ մեկնարկ հաջորդ ընդունումը.",
         "settings_permissions_title": "Թույլտվություններ",
-        "settings_perm_alarm": "Տագնապային թույլտվություն"
+        "settings_perm_alarm": "Տագնապային թույլտվություն",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "az": {
         "error_overlap": "Xəta: Tədbir mövcud hadisə ilə üst-üstə düşür.",
@@ -3100,7 +3154,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "Avtomatik başlanğıc növbəti çəkiliş:",
         "settings_permissions_title": "İcazələr",
-        "settings_perm_alarm": "Siqnal icazəsi"
+        "settings_perm_alarm": "Siqnal icazəsi",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "be": {
         "error_overlap": "Памылка: падзея накладваецца на існуючую.",
@@ -3157,7 +3212,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "Аўтаматычны запуск наступны дубль:",
         "settings_permissions_title": "Дазволы",
-        "settings_perm_alarm": "Дазвол будзільніка"
+        "settings_perm_alarm": "Дазвол будзільніка",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "bg": {
         "error_overlap": "Грешка: Събитието се припокрива със съществуващо.",
@@ -3214,7 +3270,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "Автоматичен старт следваща снимка:",
         "settings_permissions_title": "Разрешения",
-        "settings_perm_alarm": "Разрешение за аларма"
+        "settings_perm_alarm": "Разрешение за аларма",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "ca": {
         "error_overlap": "Error: l'esdeveniment se solapa amb un d'existent.",
@@ -3271,7 +3328,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "Engegada automàtica propera presa:",
         "settings_permissions_title": "Permisos",
-        "settings_perm_alarm": "Permís d'alarma"
+        "settings_perm_alarm": "Permís d'alarma",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "cs": {
         "error_overlap": "Chyba: Událost se překrývá s již existující.",
@@ -3328,7 +3386,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "Automatický start další odběr:",
         "settings_permissions_title": "Oprávnění",
-        "settings_perm_alarm": "Povolení k poplachu"
+        "settings_perm_alarm": "Povolení k poplachu",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "si": {
         "error_overlap": "දෝෂය: සිදුවීම පවතින එකක් සමඟ අතිච්ඡාදනය වේ.",
@@ -3385,7 +3444,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "ස්වයංක්‍රීය ආරම්භය ඊළඟට ගන්න:",
         "settings_permissions_title": "අවසර",
-        "settings_perm_alarm": "අනතුරු ඇඟවීමේ අවසරය"
+        "settings_perm_alarm": "අනතුරු ඇඟවීමේ අවසරය",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "hr": {
         "error_overlap": "Pogreška: događaj se preklapa s postojećim.",
@@ -3442,7 +3502,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "Automatski start sljedeći snimak:",
         "settings_permissions_title": "Dopuštenja",
-        "settings_perm_alarm": "Dopuštenje za alarm"
+        "settings_perm_alarm": "Dopuštenje za alarm",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "da": {
         "error_overlap": "Fejl: Hændelsen overlapper med en eksisterende.",
@@ -3499,7 +3560,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "Automatisk start næste tag:",
         "settings_permissions_title": "Tilladelser",
-        "settings_perm_alarm": "Alarmtilladelse"
+        "settings_perm_alarm": "Alarmtilladelse",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "sk": {
         "error_overlap": "Chyba: Udalosť sa prekrýva s existujúcou udalosťou.",
@@ -3556,7 +3618,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "Automatický štart ďalší odber:",
         "settings_permissions_title": "Povolenia",
-        "settings_perm_alarm": "Povolenie alarmu"
+        "settings_perm_alarm": "Povolenie alarmu",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "sl": {
         "error_overlap": "Napaka: dogodek se prekriva z obstoječim.",
@@ -3613,7 +3676,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "Samodejni zagon naslednji posnetek:",
         "settings_permissions_title": "Dovoljenja",
-        "settings_perm_alarm": "Dovoljenje za alarm"
+        "settings_perm_alarm": "Dovoljenje za alarm",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "et": {
         "error_overlap": "Viga: sündmus kattub olemasolevaga.",
@@ -3670,7 +3734,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "Automaatne käivitamine järgmine võte:",
         "settings_permissions_title": "Load",
-        "settings_perm_alarm": "Häire luba"
+        "settings_perm_alarm": "Häire luba",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "eu": {
         "error_overlap": "Errorea: gertaera lehendik dagoen batekin gainjartzen da.",
@@ -3727,7 +3792,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "Hasiera automatikoa hurrengo hartua:",
         "settings_permissions_title": "Baimenak",
-        "settings_perm_alarm": "Alarma Baimena"
+        "settings_perm_alarm": "Alarma Baimena",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "gl": {
         "error_overlap": "Erro: o evento se solapa cun existente.",
@@ -3784,7 +3850,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "Arranque automático próxima toma:",
         "settings_permissions_title": "Permisos",
-        "settings_perm_alarm": "Permiso de alarma"
+        "settings_perm_alarm": "Permiso de alarma",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "ka": {
         "error_overlap": "შეცდომა: მოვლენა გადაფარავს არსებულს.",
@@ -3841,7 +3908,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "ავტომატური დაწყება შემდეგი მიღება:",
         "settings_permissions_title": "ნებართვები",
-        "settings_perm_alarm": "განგაშის ნებართვა"
+        "settings_perm_alarm": "განგაშის ნებართვა",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "el": {
         "error_overlap": "Σφάλμα: Το συμβάν επικαλύπτεται με ένα υπάρχον.",
@@ -3898,7 +3966,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "Αυτόματη εκκίνηση επόμενη λήψη:",
         "settings_permissions_title": "Άδειες",
-        "settings_perm_alarm": "Άδεια συναγερμού"
+        "settings_perm_alarm": "Άδεια συναγερμού",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "he": {
         "error_overlap": "שגיאה: האירוע חופף לאירוע קיים.",
@@ -3955,7 +4024,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "התחלה אוטומטית הצילום הבא:",
         "settings_permissions_title": "הרשאות (אנדרואיד)",
-        "settings_perm_alarm": "הרשאת אזעקה"
+        "settings_perm_alarm": "הרשאת אזעקה",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "hu": {
         "error_overlap": "Hiba: Az esemény átfedésben van egy meglévővel.",
@@ -4012,7 +4082,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "Automatikus indítás következő felvétel:",
         "settings_permissions_title": "Engedélyek",
-        "settings_perm_alarm": "Riasztási engedély"
+        "settings_perm_alarm": "Riasztási engedély",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "is": {
         "error_overlap": "Villa: Atburðurinn skarast við þann sem fyrir er.",
@@ -4069,7 +4140,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "Sjálfvirk ræsing næsta töku:",
         "settings_permissions_title": "Heimildir",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_perm_alarm": "Alarm Permission",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "kk": {
         "error_overlap": "Қате: оқиға бұрыннан бар оқиғамен қабаттасады.",
@@ -4126,7 +4198,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "Автоматты іске қосу келесі қабылдау:",
         "settings_permissions_title": "Рұқсаттар",
-        "settings_perm_alarm": "Дабыл рұқсаты"
+        "settings_perm_alarm": "Дабыл рұқсаты",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "ky": {
         "error_overlap": "Ката: Окуя учурдагы менен дал келет.",
@@ -4183,7 +4256,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "Автоматтык баштоо кийинки тартуу:",
         "settings_permissions_title": "Уруксаттар",
-        "settings_perm_alarm": "Ойготкучка уруксат"
+        "settings_perm_alarm": "Ойготкучка уруксат",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "lo": {
         "error_overlap": "ຜິດພາດ: ເຫດການທັບຊ້ອນກັບອັນທີ່ມີຢູ່ແລ້ວ.",
@@ -4240,7 +4314,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "ເລີ່ມອັດຕະໂນມັດ ເອົາຕໍ່ໄປ:",
         "settings_permissions_title": "ການອະນຸຍາດ",
-        "settings_perm_alarm": "ການອະນຸຍາດປຸກ"
+        "settings_perm_alarm": "ການອະນຸຍາດປຸກ",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "lv": {
         "error_overlap": "Kļūda: notikums pārklājas ar esošu.",
@@ -4297,7 +4372,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "Automātiska palaišana nākamais uzņemšana:",
         "settings_permissions_title": "Atļaujas",
-        "settings_perm_alarm": "Signalizācijas atļauja"
+        "settings_perm_alarm": "Signalizācijas atļauja",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "lt": {
         "error_overlap": "Klaida: įvykis sutampa su esamu.",
@@ -4354,7 +4430,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "Automatinis paleidimas kitas veiksmas:",
         "settings_permissions_title": "Leidimai („Android“)",
-        "settings_perm_alarm": "Signalizacijos leidimas"
+        "settings_perm_alarm": "Signalizacijos leidimas",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "mk": {
         "error_overlap": "Грешка: настанот се преклопува со постоечки.",
@@ -4411,7 +4488,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "Автоматско стартување следно преземање:",
         "settings_permissions_title": "Дозволи (Андроид)",
-        "settings_perm_alarm": "Дозвола за аларм"
+        "settings_perm_alarm": "Дозвола за аларм",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "mn": {
         "error_overlap": "Алдаа: Үйл явдал одоо байгаа үйл явдалтай давхцаж байна.",
@@ -4468,7 +4546,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "Автомат эхлэх дараагийн зураг авалт:",
         "settings_permissions_title": "Зөвшөөрөл",
-        "settings_perm_alarm": "Сэрүүлгийн зөвшөөрөл"
+        "settings_perm_alarm": "Сэрүүлгийн зөвшөөрөл",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "no": {
         "error_overlap": "Feil: Hendelsen overlapper med en eksisterende.",
@@ -4525,7 +4604,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "Automatisk start neste opptak:",
         "settings_permissions_title": "Tillatelser",
-        "settings_perm_alarm": "Alarmtillatelse"
+        "settings_perm_alarm": "Alarmtillatelse",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "rm": {
         "error_overlap": "Error: The event overlaps with an existing one.",
@@ -4582,7 +4662,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "Zard autumatic próxima toma:",
         "settings_permissions_title": "Permissions",
-        "settings_perm_alarm": "Alarm Permission"
+        "settings_perm_alarm": "Alarm Permission",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "sr": {
         "error_overlap": "Грешка: Догађај се преклапа са постојећим.",
@@ -4639,7 +4720,8 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_auto_next": "Аутоматски старт следећи снимак:",
         "settings_permissions_title": "Дозволе (Андроид)",
-        "settings_perm_alarm": "Дозвола за аларм"
+        "settings_perm_alarm": "Дозвола за аларм",
+        "settings_track_duration": "Registro duración/cantidad"
     },
     "zu": {
         "error_overlap": "Iphutha: Umcimbi ugqagqene nesivele sikhona.",
@@ -4696,6 +4778,7 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_permissions_title": "Izimvume",
         "settings_perm_alarm": "Imvume ye-alamu",
-        "settings_auto_next": "Ukuqala okuzenzakalelayo thatha okulandelayo:"
+        "settings_auto_next": "Ukuqala okuzenzakalelayo thatha okulandelayo:",
+        "settings_track_duration": "Registro duración/cantidad"
     }
 };
