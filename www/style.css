@@ -515,6 +515,9 @@ input[type="number"]:focus {
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.2s, background-color 0.3s;
     box-shadow: 0 8px 24px rgba(255, 255, 255, 0.15);
+    white-space: normal;
+    word-break: break-word;
+    line-height: 1.2;
 }
 
 .main-action-btn:hover {
@@ -731,6 +734,8 @@ body.light-theme .time-popup-box.glass-card {
     align-items: center;
     padding: 15px 0;
     border-bottom: 1px solid var(--card-border);
+    gap: 15px;
+    flex-wrap: wrap;
 }
 .settings-row:last-child {
     border-bottom: none;
