@@ -1124,22 +1124,26 @@ btnRegistrar.addEventListener('click', () => {
         }
     }
 
-    // 1. Gather current state
+    // Only capture data for the active tab to prevent hidden field overlap bugs
+    const activeViewId = document.querySelector('.view.active') ? document.querySelector('.view.active').id : 'view-pecho';
+    const isPechoActive = activeViewId === 'view-pecho';
+    const isBiberonActive = activeViewId === 'view-biberon';
+
     const sessionData = {
         date: baseDate.toISOString(),
         left: {
             durationSeconds: leftSeconds,
-            startTime: hourLeft.textContent !== '--:--' ? hourLeft.textContent : null
+            startTime: (isPechoActive && hourLeft.textContent !== '--:--') ? hourLeft.textContent : null
         },
         right: {
             durationSeconds: rightSeconds,
-            startTime: hourRight.textContent !== '--:--' ? hourRight.textContent : null
+            startTime: (isPechoActive && hourRight.textContent !== '--:--') ? hourRight.textContent : null
         },
         bottle: {
             ml: bottleMl,
-            startTime: hourBottle.textContent !== '--:--' ? hourBottle.textContent : null
+            startTime: (isBiberonActive && hourBottle.textContent !== '--:--') ? hourBottle.textContent : null
         },
-        diapers: timeDiaper.textContent !== '--:--' ? timeDiaper.textContent : null
+        diapers: (isPechoActive && timeDiaper.textContent !== '--:--') ? timeDiaper.textContent : null
     };
 
     // Check if there is anything to save
