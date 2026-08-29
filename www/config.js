@@ -974,10 +974,16 @@ const TRANSLATIONS = {
         "notif_time_title": "Muda wa risasi!",
         "notif_time_body": "Ni wakati wa kulisha mtoto wako.",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "Kuanza moja kwa moja mlisho ujao:",
+        "settings_auto_next": "Anzisha mlisho unaofuata kiotomatiki:",
         "settings_permissions_title": "Ruhusa",
         "settings_perm_alarm": "Ruhusa ya Kengele",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "Muda wa kufuatilia/kiasi",
+        "sleep": "Kulala",
+        "settings_show_diaper": "Onyesha mabadiliko ya diaper",
+        "settings_show_sleep": "Onyesha usingizi",
+        "sleep_duration_title": "Muda wa kulala",
+        "sleep_start": "Anza",
+        "sleep_end": "Mwisho"
     },
     "mr": {
         "error_overlap": "त्रुटी: इव्हेंट विद्यमान इव्हेंटसह ओव्हरलॅप होतो.",
@@ -1032,10 +1038,16 @@ const TRANSLATIONS = {
         "notif_time_title": "शॉट वेळ!",
         "notif_time_body": "आपल्या बाळाला खायला देण्याची वेळ आली आहे.",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "स्वयंचलित प्रारंभ पुढील आहार:",
+        "settings_auto_next": "पुढील फीड स्वयंचलितपणे प्रारंभ करा:",
         "settings_permissions_title": "परवानग्या",
         "settings_perm_alarm": "अलार्म परवानगी",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "ट्रॅक कालावधी/रक्कम",
+        "sleep": "झोप",
+        "settings_show_diaper": "डायपर बदल दर्शवा",
+        "settings_show_sleep": "झोप दाखवा",
+        "sleep_duration_title": "झोपेचा कालावधी",
+        "sleep_start": "सुरू करा",
+        "sleep_end": "शेवट"
     },
     "te": {
         "error_overlap": "లోపం: ఈవెంట్ ఇప్పటికే ఉన్న దానితో అతివ్యాప్తి చెందుతుంది.",
@@ -1090,10 +1102,16 @@ const TRANSLATIONS = {
         "notif_time_title": "షాట్ టైమ్!",
         "notif_time_body": "ఇది మీ బిడ్డకు ఆహారం ఇవ్వడానికి సమయం.",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "స్వయంచాలక ప్రారంభం తదుపరి ఆహారం:",
+        "settings_auto_next": "తదుపరి ఫీడ్ స్వయంచాలకంగా ప్రారంభం:",
         "settings_permissions_title": "అనుమతులు",
         "settings_perm_alarm": "అలారం అనుమతి",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "ట్రాక్ వ్యవధి/మొత్తం",
+        "sleep": "నిద్రించు",
+        "settings_show_diaper": "డైపర్ మార్పు చూపించు",
+        "settings_show_sleep": "నిద్ర చూపించు",
+        "sleep_duration_title": "నిద్ర వ్యవధి",
+        "sleep_start": "ప్రారంభించండి",
+        "sleep_end": "ముగింపు"
     },
     "tr": {
         "error_overlap": "Hata: Etkinlik mevcut bir etkinlikle çakışıyor.",
@@ -1148,10 +1166,16 @@ const TRANSLATIONS = {
         "notif_time_title": "Vuruş zamanı!",
         "notif_time_body": "Bebeğinizi beslemenin zamanı geldi.",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "Otomatik başlatma sonraki beslenme:",
+        "settings_auto_next": "Sonraki beslemeyi otomatik başlat:",
         "settings_permissions_title": "İzinler",
         "settings_perm_alarm": "Alarm İzni",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "Süreyi/tutarını takip et",
+        "sleep": "Uyumak",
+        "settings_show_diaper": "Bebek bezi değişimini göster",
+        "settings_show_sleep": "Uykuyu göster",
+        "sleep_duration_title": "Uyku süresi",
+        "sleep_start": "Başlangıç",
+        "sleep_end": "Son"
     },
     "ta": {
         "error_overlap": "பிழை: நிகழ்வு ஏற்கனவே உள்ளவற்றுடன் மேலெழுகிறது.",
@@ -1206,10 +1230,16 @@ const TRANSLATIONS = {
         "notif_time_title": "ஷாட் நேரம்!",
         "notif_time_body": "உங்கள் குழந்தைக்கு உணவளிக்கும் நேரம் இது.",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "தானியங்கி தொடக்கம் அடுத்த உணவு:",
+        "settings_auto_next": "அடுத்த ஊட்டத்தைத் தானாகவே தொடங்கவும்:",
         "settings_permissions_title": "அனுமதிகள்",
         "settings_perm_alarm": "அலாரம் அனுமதி",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "ட்ராக் காலம்/தொகை",
+        "sleep": "தூங்கு",
+        "settings_show_diaper": "டயபர் மாற்றத்தைக் காட்டு",
+        "settings_show_sleep": "தூக்கத்தைக் காட்டு",
+        "sleep_duration_title": "தூக்கத்தின் காலம்",
+        "sleep_start": "தொடங்கு",
+        "sleep_end": "முடிவு"
     },
     "vi": {
         "error_overlap": "Lỗi: Sự kiện trùng lặp với sự kiện hiện có.",
@@ -1264,10 +1294,16 @@ const TRANSLATIONS = {
         "notif_time_title": "Đã đến lúc bắn!",
         "notif_time_body": "Đã đến lúc cho bé ăn.",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "Tự động khởi động lần bú tới:",
+        "settings_auto_next": "Tự động bắt đầu nguồn cấp dữ liệu tiếp theo:",
         "settings_permissions_title": "Quyền",
         "settings_perm_alarm": "Quyền báo động",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "Theo dõi thời lượng/số lượng",
+        "sleep": "Ngủ",
+        "settings_show_diaper": "Hiển thị thay tã",
+        "settings_show_sleep": "Hiển thị giấc ngủ",
+        "sleep_duration_title": "Thời lượng ngủ",
+        "sleep_start": "Bắt đầu",
+        "sleep_end": "Kết thúc"
     },
     "ko": {
         "error_overlap": "오류: 이벤트가 기존 이벤트와 겹칩니다.",
@@ -1322,10 +1358,16 @@ const TRANSLATIONS = {
         "notif_time_title": "촬영 시간!",
         "notif_time_body": "이제 아기에게 젖을 먹일 시간입니다.",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "자동 시작 다음 수유:",
+        "settings_auto_next": "다음 피드 자동 시작:",
         "settings_permissions_title": "권한(안드로이드)",
         "settings_perm_alarm": "알람 권한",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "추적 기간/금액",
+        "sleep": "잠",
+        "settings_show_diaper": "기저귀 교환 표시",
+        "settings_show_sleep": "수면 표시",
+        "sleep_duration_title": "수면 시간",
+        "sleep_start": "시작",
+        "sleep_end": "끝"
     },
     "fa": {
         "error_overlap": "خطا: رویداد با رویداد موجود همپوشانی دارد.",
@@ -1380,10 +1422,16 @@ const TRANSLATIONS = {
         "notif_time_title": "زمان شلیک!",
         "notif_time_body": "وقت آن است که به کودک خود غذا دهید.",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "شروع خودکار وعده بعدی:",
+        "settings_auto_next": "شروع خودکار فید بعدی:",
         "settings_permissions_title": "مجوزها (اندروید)",
         "settings_perm_alarm": "مجوز هشدار",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "مدت/مقدار آهنگ",
+        "sleep": "بخواب",
+        "settings_show_diaper": "نمایش تعویض پوشک",
+        "settings_show_sleep": "نشان دادن خواب",
+        "sleep_duration_title": "مدت زمان خواب",
+        "sleep_start": "شروع کنید",
+        "sleep_end": "پایان"
     },
     "ha": {
         "error_overlap": "Kuskure: Lamarin ya zo tare da wanda yake.",
@@ -1438,10 +1486,16 @@ const TRANSLATIONS = {
         "notif_time_title": "Lokacin harbi!",
         "notif_time_body": "Lokaci ya yi da za ku ciyar da jaririnku.",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "farawa ta atomatik ciyarwa na gaba:",
+        "settings_auto_next": "Farawa ta atomatik abinci na gaba:",
         "settings_permissions_title": "Izini",
         "settings_perm_alarm": "Izinin ƙararrawa",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "Bibiyar tsawon lokaci / adadin",
+        "sleep": "Barci",
+        "settings_show_diaper": "Nuna canjin diaper",
+        "settings_show_sleep": "Nuna barci",
+        "sleep_duration_title": "Tsawon barci",
+        "sleep_start": "Fara",
+        "sleep_end": "Ƙarshe"
     },
     "jv": {
         "error_overlap": "Error: Acara tumpang tindih karo sing wis ana.",
@@ -1496,10 +1550,16 @@ const TRANSLATIONS = {
         "notif_time_title": "wektu dijupuk!",
         "notif_time_body": "Iku wektu kanggo Feed bayi.",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "Wiwiti otomatis mangan sabanjure:",
+        "settings_auto_next": "Miwiti feed sabanjure kanthi otomatis:",
         "settings_permissions_title": "Izin",
         "settings_perm_alarm": "Izin Weker",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "Durasi trek / jumlah",
+        "sleep": "Turu",
+        "settings_show_diaper": "Tampilake ganti popok",
+        "settings_show_sleep": "Tampilake turu",
+        "sleep_duration_title": "Suwene turu",
+        "sleep_start": "Miwiti",
+        "sleep_end": "Pungkasan"
     },
     "pa": {
         "error_overlap": "ਤਰੁੱਟੀ: ਇਵੈਂਟ ਮੌਜੂਦਾ ਇੱਕ ਨਾਲ ਓਵਰਲੈਪ ਹੁੰਦਾ ਹੈ।",
@@ -1554,10 +1614,16 @@ const TRANSLATIONS = {
         "notif_time_title": "ਗੋਲੀ ਦਾ ਸਮਾਂ!",
         "notif_time_body": "ਇਹ ਤੁਹਾਡੇ ਬੱਚੇ ਨੂੰ ਦੁੱਧ ਪਿਲਾਉਣ ਦਾ ਸਮਾਂ ਹੈ।",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "ਆਟੋਮੈਟਿਕ ਸ਼ੁਰੂ ਅਗਲੀ ਖੁਰਾਕ:",
+        "settings_auto_next": "ਅਗਲੀ ਫੀਡ ਨੂੰ ਆਟੋਮੈਟਿਕ ਸ਼ੁਰੂ ਕਰੋ:",
         "settings_permissions_title": "ਅਨੁਮਤੀਆਂ",
         "settings_perm_alarm": "ਅਲਾਰਮ ਦੀ ਇਜਾਜ਼ਤ",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "ਟ੍ਰੈਕ ਦੀ ਮਿਆਦ/ਰਾਸ਼ੀ",
+        "sleep": "ਸਲੀਪ",
+        "settings_show_diaper": "ਡਾਇਪਰ ਤਬਦੀਲੀ ਦਿਖਾਓ",
+        "settings_show_sleep": "ਨੀਂਦ ਦਿਖਾਓ",
+        "sleep_duration_title": "ਨੀਂਦ ਦੀ ਮਿਆਦ",
+        "sleep_start": "ਸ਼ੁਰੂ ਕਰੋ",
+        "sleep_end": "ਅੰਤ"
     },
     "gu": {
         "error_overlap": "ભૂલ: ઇવેન્ટ અસ્તિત્વમાં છે તે સાથે ઓવરલેપ થાય છે.",
@@ -1612,10 +1678,16 @@ const TRANSLATIONS = {
         "notif_time_title": "શોટ સમય!",
         "notif_time_body": "તમારા બાળકને ખવડાવવાનો સમય છે.",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "આપોઆપ શરૂઆત આગળનો ખોરાક:",
+        "settings_auto_next": "આગલી ફીડને આપમેળે શરૂ કરો:",
         "settings_permissions_title": "પરવાનગીઓ",
         "settings_perm_alarm": "એલાર્મ પરવાનગી",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "ટ્રૅક અવધિ/ રકમ",
+        "sleep": "ઊંઘ",
+        "settings_show_diaper": "ડાયપર ફેરફાર બતાવો",
+        "settings_show_sleep": "ઊંઘ બતાવો",
+        "sleep_duration_title": "ઊંઘની અવધિ",
+        "sleep_start": "શરૂ કરો",
+        "sleep_end": "અંત"
     },
     "th": {
         "error_overlap": "ข้อผิดพลาด: เหตุการณ์ซ้อนทับกับเหตุการณ์ที่มีอยู่",
@@ -1670,10 +1742,16 @@ const TRANSLATIONS = {
         "notif_time_title": "ถึงเวลายิง!",
         "notif_time_body": "ถึงเวลาให้อาหารลูกน้อยของคุณแล้ว",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "เริ่มต้นอัตโนมัติ ให้อาหารครั้งต่อไป:",
+        "settings_auto_next": "เริ่มฟีดถัดไปอัตโนมัติ:",
         "settings_permissions_title": "สิทธิ์",
         "settings_perm_alarm": "การอนุญาตปลุก",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "ติดตามระยะเวลา/จำนวน",
+        "sleep": "นอน",
+        "settings_show_diaper": "แสดงการเปลี่ยนผ้าอ้อม",
+        "settings_show_sleep": "แสดงการนอนหลับ",
+        "sleep_duration_title": "ระยะเวลาการนอนหลับ",
+        "sleep_start": "เริ่ม",
+        "sleep_end": "จบ"
     },
     "am": {
         "error_overlap": "ስህተት፡ ክስተቱ ከነባሩ ጋር ይደራረባል።",
@@ -1728,10 +1806,16 @@ const TRANSLATIONS = {
         "notif_time_title": "የተኩስ ጊዜ!",
         "notif_time_body": "ልጅዎን ለመመገብ ጊዜው አሁን ነው.",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "ራስ-ሰር ጅምር ቀጣይ ምግብ:",
+        "settings_auto_next": "የሚቀጥለውን ምግብ በራስ ሰር ጀምር፡",
         "settings_permissions_title": "ፈቃዶች (አንድሮይድ)",
         "settings_perm_alarm": "የማንቂያ ፍቃድ",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "የክትትል ቆይታ/መጠን",
+        "sleep": "እንቅልፍ",
+        "settings_show_diaper": "የዳይፐር ለውጥ አሳይ",
+        "settings_show_sleep": "እንቅልፍ አሳይ",
+        "sleep_duration_title": "የእንቅልፍ ቆይታ",
+        "sleep_start": "ጀምር",
+        "sleep_end": "መጨረሻ"
     },
     "kn": {
         "error_overlap": "ದೋಷ: ಈವೆಂಟ್ ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ಒಂದರೊಂದಿಗೆ ಅತಿಕ್ರಮಿಸುತ್ತದೆ.",
@@ -1786,10 +1870,16 @@ const TRANSLATIONS = {
         "notif_time_title": "ಹೊಡೆದ ಸಮಯ!",
         "notif_time_body": "ನಿಮ್ಮ ಮಗುವಿಗೆ ಆಹಾರ ನೀಡುವ ಸಮಯ ಇದು.",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "ಸ್ವಯಂಚಾಲಿತ ಪ್ರಾರಂಭ ಮುಂದಿನ ಆಹಾರ:",
+        "settings_auto_next": "ಮುಂದಿನ ಫೀಡ್ ಅನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಪ್ರಾರಂಭಿಸಿ:",
         "settings_permissions_title": "ಅನುಮತಿಗಳು (ಆಂಡ್ರಾಯ್ಡ್)",
         "settings_perm_alarm": "ಅಲಾರಾಂ ಅನುಮತಿ",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "ಟ್ರ್ಯಾಕ್ ಅವಧಿ/ಮೊತ್ತ",
+        "sleep": "ನಿದ್ರೆ",
+        "settings_show_diaper": "ಡಯಾಪರ್ ಬದಲಾವಣೆಯನ್ನು ತೋರಿಸಿ",
+        "settings_show_sleep": "ನಿದ್ರೆ ತೋರಿಸು",
+        "sleep_duration_title": "ನಿದ್ರೆಯ ಅವಧಿ",
+        "sleep_start": "ಪ್ರಾರಂಭಿಸಿ",
+        "sleep_end": "ಅಂತ್ಯ"
     },
     "or": {
         "error_overlap": "ତ୍ରୁଟି: ଏକ ବିଦ୍ୟମାନ ସହିତ ଇଭେଣ୍ଟଟି ଅଲଗା ହୋଇଯାଏ |",
@@ -1844,10 +1934,16 @@ const TRANSLATIONS = {
         "notif_time_title": "ଗୁଳି ସମୟ!",
         "notif_time_body": "ତୁମ ଛୁଆକୁ ଖାଇବାକୁ ଦେବାର ସମୟ ଆସିଛି |",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "ସ୍ୱୟଂଚାଳିତ ଆରମ୍ଭ ପରବର୍ତ୍ତୀ ଖାଦ୍ୟ:",
+        "settings_auto_next": "ପରବର୍ତ୍ତୀ ଫିଡ୍ ସ୍ୱୟଂଚାଳିତ ଆରମ୍ଭ:",
         "settings_permissions_title": "ଅନୁମତି (ଆଣ୍ଡ୍ରଏଡ୍)",
         "settings_perm_alarm": "ଆଲାର୍ମ ଅନୁମତି",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "ସମୟ ଅବଧି / ପରିମାଣ ଟ୍ରାକ୍ କରନ୍ତୁ |",
+        "sleep": "ଶୋଇବା |",
+        "settings_show_diaper": "ଡାଏପର ପରିବର୍ତ୍ତନ ଦେଖାନ୍ତୁ |",
+        "settings_show_sleep": "ନିଦ ଦେଖାନ୍ତୁ |",
+        "sleep_duration_title": "ଶୋଇବା ଅବଧି |",
+        "sleep_start": "ଆରମ୍ଭ କରନ୍ତୁ |",
+        "sleep_end": "ଶେଷ"
     },
     "bho": {
         "reset": "Reset",
@@ -1904,8 +2000,14 @@ const TRANSLATIONS = {
         "settings_permissions_title": "अनुमति (एंड्रॉयड) के बा।",
         "settings_perm_alarm": "अलार्म के अनुमति दिहल गइल बा",
         "error_overlap": "त्रुटि: घटना मौजूदा के साथ ओवरलैप हो जाला।",
-        "settings_auto_next": "स्वचालित रूप से शुरू हो जाला अगला आहार:",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_auto_next": "Automatic start next feed:",
+        "settings_track_duration": "Track duration/amount",
+        "sleep": "Sleep",
+        "settings_show_diaper": "Show diaper change",
+        "settings_show_sleep": "Show sleep",
+        "sleep_duration_title": "Sleep duration",
+        "sleep_start": "Start",
+        "sleep_end": "End"
     },
     "su": {
         "error_overlap": "Kasalahan: Acara tumpang tindih sareng anu tos aya.",
@@ -1960,10 +2062,16 @@ const TRANSLATIONS = {
         "notif_time_title": "waktos shot!",
         "notif_time_body": "Geus waktuna pikeun nyoco orok anjeun.",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "Mimitian otomatis tuang salajengna:",
+        "settings_auto_next": "Otomatis ngamimitian feed salajengna:",
         "settings_permissions_title": "Idin",
         "settings_perm_alarm": "Idin Alarm",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "Durasi lagu / jumlah",
+        "sleep": "Saré",
+        "settings_show_diaper": "Témbongkeun parobahan popok",
+        "settings_show_sleep": "Témbongkeun saré",
+        "sleep_duration_title": "Durasi saré",
+        "sleep_start": "Mimitian",
+        "sleep_end": "Tungtung"
     },
     "ro": {
         "error_overlap": "Eroare: evenimentul se suprapune cu unul existent.",
@@ -2018,10 +2126,16 @@ const TRANSLATIONS = {
         "notif_time_title": "Timp de filmare!",
         "notif_time_body": "Este timpul să-ți hrănești copilul.",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "Pornire automată următoarea masă:",
+        "settings_auto_next": "Începe automat următorul feed:",
         "settings_permissions_title": "Permisiuni",
         "settings_perm_alarm": "Permisiune de alarmă",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "Durata/suma urmăririi",
+        "sleep": "Dormi",
+        "settings_show_diaper": "Arată schimbarea scutecului",
+        "settings_show_sleep": "Arată somnul",
+        "sleep_duration_title": "Durata somnului",
+        "sleep_start": "Început",
+        "sleep_end": "Sfârşit"
     },
     "nl": {
         "error_overlap": "Fout: de gebeurtenis overlapt met een bestaande gebeurtenis.",
@@ -2076,10 +2190,16 @@ const TRANSLATIONS = {
         "notif_time_title": "Schot tijd!",
         "notif_time_body": "Het is tijd om je baby te voeden.",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "Automatische start volgende voeding:",
+        "settings_auto_next": "Automatische start volgende feed:",
         "settings_permissions_title": "Machtigingen",
         "settings_perm_alarm": "Alarmtoestemming",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "Duur/bedrag bijhouden",
+        "sleep": "Slaap",
+        "settings_show_diaper": "Toon luierwissel",
+        "settings_show_sleep": "Laat slaap zien",
+        "sleep_duration_title": "Slaapduur",
+        "sleep_start": "Begin",
+        "sleep_end": "Einde"
     },
     "km": {
         "error_overlap": "កំហុស៖ ព្រឹត្តិការណ៍នេះត្រួតលើគ្នាជាមួយព្រឹត្តិការណ៍ដែលមានស្រាប់។",
@@ -2134,10 +2254,16 @@ const TRANSLATIONS = {
         "notif_time_title": "ដល់ម៉ោងបាញ់ហើយ!",
         "notif_time_body": "ដល់ពេលចិញ្ចឹមកូនហើយ។",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "ការចាប់ផ្តើមដោយស្វ័យប្រវត្តិ ការបំបៅបន្ទាប់:",
+        "settings_auto_next": "ចាប់ផ្តើមដោយស្វ័យប្រវត្តិនូវមតិព័ត៌មានបន្ទាប់៖",
         "settings_permissions_title": "ការអនុញ្ញាត",
         "settings_perm_alarm": "ការអនុញ្ញាតសំឡេងរោទិ៍",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "តាមដានរយៈពេល / ចំនួន",
+        "sleep": "គេង",
+        "settings_show_diaper": "បង្ហាញការផ្លាស់ប្តូរកន្ទប",
+        "settings_show_sleep": "បង្ហាញការគេង",
+        "sleep_duration_title": "រយៈពេលនៃការគេង",
+        "sleep_start": "ចាប់ផ្តើម",
+        "sleep_end": "ចប់"
     },
     "uz": {
         "error_overlap": "Xato: Hodisa mavjud voqea bilan bir-biriga mos tushdi.",
@@ -2192,10 +2318,16 @@ const TRANSLATIONS = {
         "notif_time_title": "Otish vaqti!",
         "notif_time_body": "Farzandingizni ovqatlantirish vaqti keldi.",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "Avtomatik boshlash keyingi ovqat:",
+        "settings_auto_next": "Keyingi tasmani avtomatik boshlash:",
         "settings_permissions_title": "Ruxsatlar",
         "settings_perm_alarm": "Signal ruxsati",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "Kuzatuv davomiyligi/miqdori",
+        "sleep": "Uxlash",
+        "settings_show_diaper": "Bezi o'zgarishini ko'rsating",
+        "settings_show_sleep": "Uyquni ko'rsatish",
+        "sleep_duration_title": "Uyqu davomiyligi",
+        "sleep_start": "Boshlash",
+        "sleep_end": "Oxiri"
     },
     "sd": {
         "error_overlap": "نقص: واقعو موجوده ھڪڙي سان اوورليپ ٿئي ٿو.",
@@ -2250,10 +2382,16 @@ const TRANSLATIONS = {
         "notif_time_title": "شاٽ وقت!",
         "notif_time_body": "اهو توهان جي ٻار کي کارائڻ جو وقت آهي.",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "خودڪار شروع ايندڙ خوراڪ:",
+        "settings_auto_next": "خودڪار شروع ايندڙ فيڊ:",
         "settings_permissions_title": "اجازتون",
         "settings_perm_alarm": "الارم جي اجازت",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "ٽريڪ جي مدت / رقم",
+        "sleep": "سمهڻ",
+        "settings_show_diaper": "ڊائپر جي تبديلي ڏيکاريو",
+        "settings_show_sleep": "ننڊ ڏيکاريو",
+        "sleep_duration_title": "سمهڻ جو عرصو",
+        "sleep_start": "شروع",
+        "sleep_end": "پڄاڻي"
     },
     "my": {
         "error_overlap": "အမှား- ဖြစ်ရပ်သည် ရှိပြီးသားတစ်ခုနှင့် ထပ်နေပါသည်။",
@@ -2308,10 +2446,16 @@ const TRANSLATIONS = {
         "notif_time_title": "ပစ်ချိန်။",
         "notif_time_body": "သင့်ကလေးကို အစာကျွေးဖို့ အချိန်ရောက်ပါပြီ။",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "အလိုအလျောက်စတင်သည်။ နောက်တစ်ကြိမ် အစာကျွေးရန်:",
+        "settings_auto_next": "နောက်ဖိဒ်ကို အလိုအလျောက် စတင်သည်-",
         "settings_permissions_title": "ခွင့်ပြုချက်များ",
         "settings_perm_alarm": "နှိုးစက်ခွင့်ပြုချက်",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "ကြာချိန်/ပမာဏကို ခြေရာခံပါ။",
+        "sleep": "အိပ်ပါ။",
+        "settings_show_diaper": "အနှီးပြောင်းပြပါ။",
+        "settings_show_sleep": "အိပ်ပြပါ။",
+        "sleep_duration_title": "အိပ်ချိန်",
+        "sleep_start": "စတင်ပါ။",
+        "sleep_end": "အဆုံး"
     },
     "yo": {
         "error_overlap": "Aṣiṣe: Iṣẹlẹ naa ṣakojọpọ pẹlu eyi ti o wa tẹlẹ.",
@@ -2366,10 +2510,16 @@ const TRANSLATIONS = {
         "notif_time_title": "Akoko shot!",
         "notif_time_body": "O to akoko lati fun ọmọ rẹ jẹ.",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "Ibẹrẹ aifọwọyi oúnjẹ tó kàn:",
+        "settings_auto_next": "Ibẹrẹ kikọ sii atẹle ni aifọwọyi:",
         "settings_permissions_title": "Awọn igbanilaaye",
         "settings_perm_alarm": "Gbigbanilaaye Itaniji",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "Iye akoko orin / iye",
+        "sleep": "Orun",
+        "settings_show_diaper": "Ṣe afihan iyipada iledìí",
+        "settings_show_sleep": "Fi oorun han",
+        "sleep_duration_title": "Iye akoko orun",
+        "sleep_start": "Bẹrẹ",
+        "sleep_end": "Ipari"
     },
     "ig": {
         "error_overlap": "Njehie: Ihe omume a dakọtara na nke dị.",
@@ -2424,10 +2574,16 @@ const TRANSLATIONS = {
         "notif_time_title": "Oge agba!",
         "notif_time_body": "Oge erugo inye nwa gi nri.",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "Mmalite akpaaka nri ọzọ:",
+        "settings_auto_next": "ndepụta na-amalite na akpaghị aka:",
         "settings_permissions_title": "Ikikere",
         "settings_perm_alarm": "Ikike mkpu",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "Sochie oge/ego",
+        "sleep": "Ụra",
+        "settings_show_diaper": "Gosi mgbanwe diaper",
+        "settings_show_sleep": "Gosi ụra",
+        "sleep_duration_title": "Ogologo oge ihi ụra",
+        "sleep_start": "Malite",
+        "sleep_end": "Ọgwụgwụ"
     },
     "ms": {
         "error_overlap": "Ralat: Acara bertindih dengan yang sedia ada.",
@@ -2482,10 +2638,16 @@ const TRANSLATIONS = {
         "notif_time_title": "masa syot!",
         "notif_time_body": "Sudah tiba masanya untuk menyusukan bayi anda.",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "Permulaan automatik sesi seterusnya:",
+        "settings_auto_next": "Mulakan suapan seterusnya secara automatik:",
         "settings_permissions_title": "Kebenaran",
         "settings_perm_alarm": "Kebenaran Penggera",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "Tempoh/jumlah jejak",
+        "sleep": "tidur",
+        "settings_show_diaper": "Tunjukkan perubahan lampin",
+        "settings_show_sleep": "Tunjukkan tidur",
+        "sleep_duration_title": "Tempoh tidur",
+        "sleep_start": "Mulakan",
+        "sleep_end": "tamat"
     },
     "ne": {
         "error_overlap": "त्रुटि: घटना अवस्थित एउटासँग ओभरल्याप हुन्छ।",
@@ -2540,10 +2702,16 @@ const TRANSLATIONS = {
         "notif_time_title": "शट समय!",
         "notif_time_body": "यो तपाईंको बच्चालाई खुवाउने समय हो।",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "स्वचालित सुरुवात अर्को खुवाउने:",
+        "settings_auto_next": "स्वचालित सुरु अर्को फिड:",
         "settings_permissions_title": "अनुमतिहरू (एन्ड्रोइड)",
         "settings_perm_alarm": "अलार्म अनुमति",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "ट्र्याक अवधि / रकम",
+        "sleep": "सुत्नुहोस्",
+        "settings_show_diaper": "डायपर परिवर्तन देखाउनुहोस्",
+        "settings_show_sleep": "निद्रा देखाउनुहोस्",
+        "sleep_duration_title": "सुत्ने अवधि",
+        "sleep_start": "सुरु गर्नुहोस्",
+        "sleep_end": "अन्त्य"
     },
     "uk": {
         "error_overlap": "Помилка: подія збігається з існуючою.",
@@ -2598,10 +2766,16 @@ const TRANSLATIONS = {
         "notif_time_title": "Час стрільби!",
         "notif_time_body": "Пора годувати дитину.",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "Автоматичний запуск наступне годування:",
+        "settings_auto_next": "Автоматичний запуск наступної стрічки:",
         "settings_permissions_title": "Дозволи",
         "settings_perm_alarm": "Дозвіл на будильник",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "Тривалість/сума треку",
+        "sleep": "сон",
+        "settings_show_diaper": "Показати зміну підгузників",
+        "settings_show_sleep": "Показати сон",
+        "sleep_duration_title": "Тривалість сну",
+        "sleep_start": "старт",
+        "sleep_end": "Кінець"
     },
     "ceb": {
         "reset": "Reset",
@@ -2658,8 +2832,14 @@ const TRANSLATIONS = {
         "settings_permissions_title": "Mga Permiso",
         "settings_perm_alarm": "Pagtugot sa Alarm",
         "error_overlap": "Sayop: Ang panghitabo nagsapaw sa usa nga anaa na.",
-        "settings_auto_next": "Awtomatikong pagsugod sunod nga pagpakaon:",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_auto_next": "Automatic start next feed:",
+        "settings_track_duration": "Track duration/amount",
+        "sleep": "Sleep",
+        "settings_show_diaper": "Show diaper change",
+        "settings_show_sleep": "Show sleep",
+        "sleep_duration_title": "Sleep duration",
+        "sleep_start": "Start",
+        "sleep_end": "End"
     },
     "ku": {
         "error_overlap": "Çewtî: Bûyer bi ya heyî re li hev dikeve.",
@@ -2714,10 +2894,16 @@ const TRANSLATIONS = {
         "notif_time_title": "Dema gulebaranê!",
         "notif_time_body": "Wext e ku hûn zarokê xwe bixwin.",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "Destpêka otomatîk xwarina din:",
+        "settings_auto_next": "Destpêkirina otomatîkî ya paşîn:",
         "settings_permissions_title": "Destûr",
         "settings_perm_alarm": "Destûra Alarm",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "Demjimêr / mîqdara şopê",
+        "sleep": "Xew",
+        "settings_show_diaper": "Guhertina pelikê nîşan bide",
+        "settings_show_sleep": "Xew nîşan bide",
+        "sleep_duration_title": "Demjimêra xewê",
+        "sleep_start": "Destpêkirin",
+        "sleep_end": "Dawî"
     },
     "sv": {
         "error_overlap": "Fel: Händelsen överlappar en befintlig.",
@@ -2772,10 +2958,16 @@ const TRANSLATIONS = {
         "notif_time_title": "Skotttid!",
         "notif_time_body": "Det är dags att mata ditt barn.",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "Automatisk start nästa matning:",
+        "settings_auto_next": "Starta automatiskt nästa flöde:",
         "settings_permissions_title": "Behörigheter",
         "settings_perm_alarm": "Larmtillstånd",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "Spårlängd/mängd",
+        "sleep": "Sova",
+        "settings_show_diaper": "Visa blöjbyte",
+        "settings_show_sleep": "Visa sömn",
+        "sleep_duration_title": "Sömnlängd",
+        "sleep_start": "Start",
+        "sleep_end": "Avsluta"
     },
     "pl": {
         "error_overlap": "Błąd: wydarzenie pokrywa się z istniejącym.",
@@ -2830,10 +3022,16 @@ const TRANSLATIONS = {
         "notif_time_title": "Czas na strzał!",
         "notif_time_body": "Nadszedł czas, aby nakarmić dziecko.",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "Automatyczny start następne karmienie:",
+        "settings_auto_next": "Automatyczne rozpoczęcie następnego kanału:",
         "settings_permissions_title": "Uprawnienia",
         "settings_perm_alarm": "Zezwolenie na alarm",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "Czas trwania/ilość utworu",
+        "sleep": "Spać",
+        "settings_show_diaper": "Pokaż zmianę pieluchy",
+        "settings_show_sleep": "Pokaż sen",
+        "sleep_duration_title": "Czas snu",
+        "sleep_start": "Start",
+        "sleep_end": "Koniec"
     },
     "tl": {
         "error_overlap": "Error: Ang kaganapan ay nag-o-overlap sa isang umiiral na.",
@@ -2888,10 +3086,16 @@ const TRANSLATIONS = {
         "notif_time_title": "Oras ng pagbaril!",
         "notif_time_body": "Oras na para pakainin ang iyong sanggol.",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "Awtomatikong pagsisimula susunod na pakain:",
+        "settings_auto_next": "Awtomatikong simulan ang susunod na feed:",
         "settings_permissions_title": "Mga Pahintulot",
         "settings_perm_alarm": "Pahintulot sa Alarm",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "Tagal/dami ng pagsubaybay",
+        "sleep": "Matulog",
+        "settings_show_diaper": "Ipakita ang pagpapalit ng lampin",
+        "settings_show_sleep": "Ipakita ang pagtulog",
+        "sleep_duration_title": "Ang tagal ng tulog",
+        "sleep_start": "Magsimula",
+        "sleep_end": "Tapusin"
     },
     "ml": {
         "error_overlap": "പിശക്: ഇവൻ്റ് നിലവിലുള്ള ഒന്നുമായി ഓവർലാപ്പ് ചെയ്യുന്നു.",
@@ -2946,10 +3150,16 @@ const TRANSLATIONS = {
         "notif_time_title": "ഷോട്ട് സമയം!",
         "notif_time_body": "നിങ്ങളുടെ കുഞ്ഞിന് ഭക്ഷണം നൽകാനുള്ള സമയമാണിത്.",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "യാന്ത്രിക ആരംഭം അടുത്ത ഭക്ഷണം:",
+        "settings_auto_next": "അടുത്ത ഫീഡ് സ്വയമേവ ആരംഭിക്കുക:",
         "settings_permissions_title": "അനുമതികൾ",
         "settings_perm_alarm": "അലാറം അനുമതി",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "ട്രാക്ക് ദൈർഘ്യം/തുക",
+        "sleep": "ഉറങ്ങുക",
+        "settings_show_diaper": "ഡയപ്പർ മാറ്റം കാണിക്കുക",
+        "settings_show_sleep": "ഉറക്കം കാണിക്കുക",
+        "sleep_duration_title": "ഉറക്കത്തിൻ്റെ ദൈർഘ്യം",
+        "sleep_start": "ആരംഭിക്കുക",
+        "sleep_end": "അവസാനിക്കുന്നു"
     },
     "fi": {
         "error_overlap": "Virhe: Tapahtuma on päällekkäinen olemassa olevan tapahtuman kanssa.",
@@ -3004,10 +3214,16 @@ const TRANSLATIONS = {
         "notif_time_title": "Laukausaika!",
         "notif_time_body": "On aika ruokkia vauvasi.",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "Automaattinen käynnistys seuraava ruokinta:",
+        "settings_auto_next": "Automaattinen aloita seuraava syöte:",
         "settings_permissions_title": "Käyttöoikeudet",
         "settings_perm_alarm": "Hälytyslupa",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "Kappaleen kesto/määrä",
+        "sleep": "Nukkua",
+        "settings_show_diaper": "Näytä vaipan vaihto",
+        "settings_show_sleep": "Näytä uni",
+        "sleep_duration_title": "Unen kesto",
+        "sleep_start": "Aloita",
+        "sleep_end": "Loppu"
     },
     "af": {
         "error_overlap": "Fout: Die gebeurtenis oorvleuel met 'n bestaande een.",
@@ -3065,7 +3281,13 @@ const TRANSLATIONS = {
         "settings_auto_next": "Outomatiese begin volgende neem:",
         "settings_permissions_title": "Toestemmings",
         "settings_perm_alarm": "Alarm Toestemming",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "Registro duración/cantidad",
+        "sleep": "Slaap",
+        "settings_show_diaper": "Wys doek ruil",
+        "settings_show_sleep": "Wys slaap",
+        "sleep_duration_title": "Slaap duur",
+        "sleep_start": "Begin",
+        "sleep_end": "Einde"
     },
     "sq": {
         "error_overlap": "Gabim: Ngjarja mbivendoset me një ekzistuese.",
@@ -3120,10 +3342,16 @@ const TRANSLATIONS = {
         "notif_time_title": "Koha e gjuajtjes!",
         "notif_time_body": "Është koha për të ushqyer fëmijën tuaj.",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "Fillimi automatik marrja e radhës:",
+        "settings_auto_next": "Fillimi automatik i furnizimit tjetër:",
         "settings_permissions_title": "Lejet",
         "settings_perm_alarm": "Leja e alarmit",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "Kohëzgjatja/shuma e pjesës",
+        "sleep": "Flini",
+        "settings_show_diaper": "Trego ndryshimin e pelenave",
+        "settings_show_sleep": "Trego gjumin",
+        "sleep_duration_title": "Kohëzgjatja e gjumit",
+        "sleep_start": "Filloni",
+        "sleep_end": "fund"
     },
     "hy": {
         "error_overlap": "Սխալ․ իրադարձությունը համընկնում է գոյություն ունեցողի հետ։",
@@ -3178,10 +3406,16 @@ const TRANSLATIONS = {
         "notif_time_title": "Նկարահանումների ժամանակ!",
         "notif_time_body": "Ժամանակն է կերակրել ձեր երեխային:",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "Ավտոմատ մեկնարկ հաջորդ ընդունումը.",
+        "settings_auto_next": "Հաջորդ հոսքի ավտոմատ մեկնարկը.",
         "settings_permissions_title": "Թույլտվություններ",
         "settings_perm_alarm": "Տագնապային թույլտվություն",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "Հետևման տևողությունը/գումարը",
+        "sleep": "Քնել",
+        "settings_show_diaper": "Ցույց տալ տակդիրի փոփոխությունը",
+        "settings_show_sleep": "Ցույց տալ քունը",
+        "sleep_duration_title": "Քնի տևողությունը",
+        "sleep_start": "Սկսել",
+        "sleep_end": "Վերջ"
     },
     "az": {
         "error_overlap": "Xəta: Tədbir mövcud hadisə ilə üst-üstə düşür.",
@@ -3236,10 +3470,16 @@ const TRANSLATIONS = {
         "notif_time_title": "Atış vaxtı!",
         "notif_time_body": "Körpənizi qidalandırmaq vaxtıdır.",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "Avtomatik başlanğıc növbəti çəkiliş:",
+        "settings_auto_next": "Növbəti lentin avtomatik başlaması:",
         "settings_permissions_title": "İcazələr",
         "settings_perm_alarm": "Siqnal icazəsi",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "Müddəti/miqdarı izləyin",
+        "sleep": "yatmaq",
+        "settings_show_diaper": "Bezi dəyişikliyini göstərin",
+        "settings_show_sleep": "Yuxunu göstər",
+        "sleep_duration_title": "Yuxu müddəti",
+        "sleep_start": "Başlayın",
+        "sleep_end": "Son"
     },
     "be": {
         "error_overlap": "Памылка: падзея накладваецца на існуючую.",
@@ -3294,10 +3534,16 @@ const TRANSLATIONS = {
         "notif_time_title": "Час страляць!",
         "notif_time_body": "Прыйшоў час карміць дзіця.",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "Аўтаматычны запуск наступны дубль:",
+        "settings_auto_next": "Аўтаматычны запуск наступнай стужкі:",
         "settings_permissions_title": "Дазволы",
         "settings_perm_alarm": "Дазвол будзільніка",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "Працягласць/сума трэка",
+        "sleep": "спаць",
+        "settings_show_diaper": "Паказаць змену падгузнікаў",
+        "settings_show_sleep": "Паказаць сон",
+        "sleep_duration_title": "Працягласць сну",
+        "sleep_start": "Пачаць",
+        "sleep_end": "Канец"
     },
     "bg": {
         "error_overlap": "Грешка: Събитието се припокрива със съществуващо.",
@@ -3352,10 +3598,16 @@ const TRANSLATIONS = {
         "notif_time_title": "Време за изстрел!",
         "notif_time_body": "Време е да нахраните бебето си.",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "Автоматичен старт следваща снимка:",
+        "settings_auto_next": "Автоматично стартиране на следващата емисия:",
         "settings_permissions_title": "Разрешения",
         "settings_perm_alarm": "Разрешение за аларма",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "Продължителност/количество на песента",
+        "sleep": "сън",
+        "settings_show_diaper": "Покажи смяна на памперси",
+        "settings_show_sleep": "Покажи съня",
+        "sleep_duration_title": "Продължителност на съня",
+        "sleep_start": "Започнете",
+        "sleep_end": "Край"
     },
     "ca": {
         "error_overlap": "Error: l'esdeveniment se solapa amb un d'existent.",
@@ -3410,10 +3662,16 @@ const TRANSLATIONS = {
         "notif_time_title": "Hora de la presa!",
         "notif_time_body": "És hora de donar menjar al teu nadó.",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "Engegada automàtica propera presa:",
+        "settings_auto_next": "Inici automàtic següent feed:",
         "settings_permissions_title": "Permisos",
         "settings_perm_alarm": "Permís d'alarma",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "Durada/import del seguiment",
+        "sleep": "Dormir",
+        "settings_show_diaper": "Mostra el canvi de bolquers",
+        "settings_show_sleep": "Mostra el son",
+        "sleep_duration_title": "Durada del son",
+        "sleep_start": "Comença",
+        "sleep_end": "Final"
     },
     "cs": {
         "error_overlap": "Chyba: Událost se překrývá s již existující.",
@@ -3468,10 +3726,16 @@ const TRANSLATIONS = {
         "notif_time_title": "Čas výstřelu!",
         "notif_time_body": "Je čas nakrmit své dítě.",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "Automatický start další odběr:",
+        "settings_auto_next": "Automatické spuštění dalšího podávání:",
         "settings_permissions_title": "Oprávnění",
         "settings_perm_alarm": "Povolení k poplachu",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "Trvání/množství stopy",
+        "sleep": "Spát",
+        "settings_show_diaper": "Ukázat výměnu plenky",
+        "settings_show_sleep": "Ukaž spánek",
+        "sleep_duration_title": "Délka spánku",
+        "sleep_start": "Start",
+        "sleep_end": "Konec"
     },
     "si": {
         "error_overlap": "දෝෂය: සිදුවීම පවතින එකක් සමඟ අතිච්ඡාදනය වේ.",
@@ -3526,10 +3790,16 @@ const TRANSLATIONS = {
         "notif_time_title": "වෙඩි තැබීමේ කාලය!",
         "notif_time_body": "ඔබේ දරුවාට පෝෂණය කිරීමට කාලයයි.",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "ස්වයංක්‍රීය ආරම්භය ඊළඟට ගන්න:",
+        "settings_auto_next": "ස්වයංක්‍රීය ආරම්භය මීළඟ සංග්‍රහය:",
         "settings_permissions_title": "අවසර",
         "settings_perm_alarm": "අනතුරු ඇඟවීමේ අවසරය",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "ධාවන කාලය/මුදල",
+        "sleep": "නිදාගන්න",
+        "settings_show_diaper": "ඩයපර් වෙනස් කිරීම පෙන්වන්න",
+        "settings_show_sleep": "නින්ද පෙන්වන්න",
+        "sleep_duration_title": "නින්දේ කාලසීමාව",
+        "sleep_start": "ආරම්භ කරන්න",
+        "sleep_end": "අවසානය"
     },
     "hr": {
         "error_overlap": "Pogreška: događaj se preklapa s postojećim.",
@@ -3584,10 +3854,16 @@ const TRANSLATIONS = {
         "notif_time_title": "Vrijeme pucanja!",
         "notif_time_body": "Vrijeme je da nahranite svoju bebu.",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "Automatski start sljedeći snimak:",
+        "settings_auto_next": "Automatski početak sljedećeg feeda:",
         "settings_permissions_title": "Dopuštenja",
         "settings_perm_alarm": "Dopuštenje za alarm",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "Trajanje/količina zapisa",
+        "sleep": "Spavati",
+        "settings_show_diaper": "Pokažite promjenu pelena",
+        "settings_show_sleep": "Prikaži san",
+        "sleep_duration_title": "Trajanje sna",
+        "sleep_start": "Start",
+        "sleep_end": "Kraj"
     },
     "da": {
         "error_overlap": "Fejl: Hændelsen overlapper med en eksisterende.",
@@ -3642,10 +3918,16 @@ const TRANSLATIONS = {
         "notif_time_title": "Skudtid!",
         "notif_time_body": "Det er tid til at fodre din baby.",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "Automatisk start næste tag:",
+        "settings_auto_next": "Automatisk start næste feed:",
         "settings_permissions_title": "Tilladelser",
         "settings_perm_alarm": "Alarmtilladelse",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "Spors varighed/beløb",
+        "sleep": "Sove",
+        "settings_show_diaper": "Vis bleskift",
+        "settings_show_sleep": "Vis søvn",
+        "sleep_duration_title": "Søvnvarighed",
+        "sleep_start": "Starte",
+        "sleep_end": "Ende"
     },
     "sk": {
         "error_overlap": "Chyba: Udalosť sa prekrýva s existujúcou udalosťou.",
@@ -3700,10 +3982,16 @@ const TRANSLATIONS = {
         "notif_time_title": "Čas výstrelu!",
         "notif_time_body": "Je čas nakŕmiť svoje dieťa.",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "Automatický štart ďalší odber:",
+        "settings_auto_next": "Automatické spustenie ďalšieho informačného kanála:",
         "settings_permissions_title": "Povolenia",
         "settings_perm_alarm": "Povolenie alarmu",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "Dĺžka sledovania/množstvo",
+        "sleep": "Spánok",
+        "settings_show_diaper": "Ukážte výmenu plienky",
+        "settings_show_sleep": "Ukážte spánok",
+        "sleep_duration_title": "Trvanie spánku",
+        "sleep_start": "Štart",
+        "sleep_end": "Koniec"
     },
     "sl": {
         "error_overlap": "Napaka: dogodek se prekriva z obstoječim.",
@@ -3758,10 +4046,16 @@ const TRANSLATIONS = {
         "notif_time_title": "Čas streljanja!",
         "notif_time_body": "Čas je, da nahranite svojega otroka.",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "Samodejni zagon naslednji posnetek:",
+        "settings_auto_next": "Samodejni zagon naslednjega vira:",
         "settings_permissions_title": "Dovoljenja",
         "settings_perm_alarm": "Dovoljenje za alarm",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "Trajanje/količina skladbe",
+        "sleep": "spi",
+        "settings_show_diaper": "Pokaži menjavo plenic",
+        "settings_show_sleep": "Prikaži spanje",
+        "sleep_duration_title": "Trajanje spanja",
+        "sleep_start": "Začetek",
+        "sleep_end": "Konec"
     },
     "et": {
         "error_overlap": "Viga: sündmus kattub olemasolevaga.",
@@ -3816,10 +4110,16 @@ const TRANSLATIONS = {
         "notif_time_title": "Laskeaeg!",
         "notif_time_body": "On aeg last toita.",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "Automaatne käivitamine järgmine võte:",
+        "settings_auto_next": "Järgmise voo automaatne käivitamine:",
         "settings_permissions_title": "Load",
         "settings_perm_alarm": "Häire luba",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "Loo kestus/summa",
+        "sleep": "Magama",
+        "settings_show_diaper": "Näita mähkmevahetust",
+        "settings_show_sleep": "Näita und",
+        "sleep_duration_title": "Une kestus",
+        "sleep_start": "Alusta",
+        "sleep_end": "Lõpp"
     },
     "eu": {
         "error_overlap": "Errorea: gertaera lehendik dagoen batekin gainjartzen da.",
@@ -3874,10 +4174,16 @@ const TRANSLATIONS = {
         "notif_time_title": "Jaurtiketa ordua!",
         "notif_time_body": "Zure haurra elikatzeko garaia da.",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "Hasiera automatikoa hurrengo hartua:",
+        "settings_auto_next": "Abiarazi automatikoki hurrengo jarioa:",
         "settings_permissions_title": "Baimenak",
         "settings_perm_alarm": "Alarma Baimena",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "Jarraipenaren iraupena/kopurua",
+        "sleep": "Lo egin",
+        "settings_show_diaper": "Erakutsi pixoihal aldaketa",
+        "settings_show_sleep": "Erakutsi loa",
+        "sleep_duration_title": "Loaren iraupena",
+        "sleep_start": "Hasi",
+        "sleep_end": "Amaiera"
     },
     "gl": {
         "error_overlap": "Erro: o evento se solapa cun existente.",
@@ -3932,10 +4238,16 @@ const TRANSLATIONS = {
         "notif_time_title": "Hora do tiro!",
         "notif_time_body": "É hora de alimentar ao teu bebé.",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "Arranque automático próxima toma:",
+        "settings_auto_next": "Inicio automático seguinte feed:",
         "settings_permissions_title": "Permisos",
         "settings_perm_alarm": "Permiso de alarma",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "Duración/cantidade da pista",
+        "sleep": "Durmir",
+        "settings_show_diaper": "Mostra o cambio de cueiros",
+        "settings_show_sleep": "Mostra o sono",
+        "sleep_duration_title": "Duración do sono",
+        "sleep_start": "Comeza",
+        "sleep_end": "Fin"
     },
     "ka": {
         "error_overlap": "შეცდომა: მოვლენა გადაფარავს არსებულს.",
@@ -3990,10 +4302,16 @@ const TRANSLATIONS = {
         "notif_time_title": "სროლის დრო!",
         "notif_time_body": "დროა ბავშვის კვება.",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "ავტომატური დაწყება შემდეგი მიღება:",
+        "settings_auto_next": "შემდეგი არხის ავტომატური დაწყება:",
         "settings_permissions_title": "ნებართვები",
         "settings_perm_alarm": "განგაშის ნებართვა",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "ტრეკის ხანგრძლივობა/ოდენობა",
+        "sleep": "დაიძინე",
+        "settings_show_diaper": "საფენის გამოცვლის ჩვენება",
+        "settings_show_sleep": "ძილის ჩვენება",
+        "sleep_duration_title": "ძილის ხანგრძლივობა",
+        "sleep_start": "დაწყება",
+        "sleep_end": "დასასრული"
     },
     "el": {
         "error_overlap": "Σφάλμα: Το συμβάν επικαλύπτεται με ένα υπάρχον.",
@@ -4048,10 +4366,16 @@ const TRANSLATIONS = {
         "notif_time_title": "Ώρα βολής!",
         "notif_time_body": "Ήρθε η ώρα να ταΐσετε το μωρό σας.",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "Αυτόματη εκκίνηση επόμενη λήψη:",
+        "settings_auto_next": "Αυτόματη έναρξη επόμενης ροής:",
         "settings_permissions_title": "Άδειες",
         "settings_perm_alarm": "Άδεια συναγερμού",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "Διάρκεια κομματιού/ποσό",
+        "sleep": "Υπνος",
+        "settings_show_diaper": "Εμφάνιση αλλαγής πάνας",
+        "settings_show_sleep": "Εμφάνιση ύπνου",
+        "sleep_duration_title": "Διάρκεια ύπνου",
+        "sleep_start": "Αρχή",
+        "sleep_end": "Τέλος"
     },
     "he": {
         "error_overlap": "שגיאה: האירוע חופף לאירוע קיים.",
@@ -4106,10 +4430,16 @@ const TRANSLATIONS = {
         "notif_time_title": "זמן זריקה!",
         "notif_time_body": "זה הזמן להאכיל את התינוק שלך.",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "התחלה אוטומטית הצילום הבא:",
+        "settings_auto_next": "התחלה אוטומטית של העדכון הבא:",
         "settings_permissions_title": "הרשאות (אנדרואיד)",
         "settings_perm_alarm": "הרשאת אזעקה",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "משך/כמות המסלול",
+        "sleep": "לִישׁוֹן",
+        "settings_show_diaper": "הצג החלפת חיתול",
+        "settings_show_sleep": "הראה שינה",
+        "sleep_duration_title": "משך השינה",
+        "sleep_start": "הַתחָלָה",
+        "sleep_end": "סוֹף"
     },
     "hu": {
         "error_overlap": "Hiba: Az esemény átfedésben van egy meglévővel.",
@@ -4164,10 +4494,16 @@ const TRANSLATIONS = {
         "notif_time_title": "Lövés ideje!",
         "notif_time_body": "Ideje megetetni a babát.",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "Automatikus indítás következő felvétel:",
+        "settings_auto_next": "A következő hírcsatorna automatikus indítása:",
         "settings_permissions_title": "Engedélyek",
         "settings_perm_alarm": "Riasztási engedély",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "A szám időtartama/mennyisége",
+        "sleep": "Alvás",
+        "settings_show_diaper": "Mutasd a pelenkacserét",
+        "settings_show_sleep": "Alvás megjelenítése",
+        "sleep_duration_title": "Az alvás időtartama",
+        "sleep_start": "Indul",
+        "sleep_end": "Vége"
     },
     "is": {
         "error_overlap": "Villa: Atburðurinn skarast við þann sem fyrir er.",
@@ -4222,10 +4558,16 @@ const TRANSLATIONS = {
         "notif_time_title": "Skottími!",
         "notif_time_body": "Það er kominn tími til að gefa barninu þínu að borða.",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "Sjálfvirk ræsing næsta töku:",
+        "settings_auto_next": "Sjálfvirk byrjun á næsta straumi:",
         "settings_permissions_title": "Heimildir",
         "settings_perm_alarm": "Alarm Permission",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "Lengd/magn laganna",
+        "sleep": "Sofðu",
+        "settings_show_diaper": "Sýndu bleiuskipti",
+        "settings_show_sleep": "Sýndu svefn",
+        "sleep_duration_title": "Lengd svefns",
+        "sleep_start": "Byrjaðu",
+        "sleep_end": "Enda"
     },
     "kk": {
         "error_overlap": "Қате: оқиға бұрыннан бар оқиғамен қабаттасады.",
@@ -4280,10 +4622,16 @@ const TRANSLATIONS = {
         "notif_time_title": "Түсіру уақыты!",
         "notif_time_body": "Балаңызды тамақтандыру уақыты келді.",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "Автоматты іске қосу келесі қабылдау:",
+        "settings_auto_next": "Келесі арнаны автоматты түрде бастау:",
         "settings_permissions_title": "Рұқсаттар",
         "settings_perm_alarm": "Дабыл рұқсаты",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "Бақылау ұзақтығы/сомасы",
+        "sleep": "Ұйқы",
+        "settings_show_diaper": "Жөргектің өзгеруін көрсетіңіз",
+        "settings_show_sleep": "Ұйқыны көрсетіңіз",
+        "sleep_duration_title": "Ұйқы ұзақтығы",
+        "sleep_start": "Бастау",
+        "sleep_end": "Соңы"
     },
     "ky": {
         "error_overlap": "Ката: Окуя учурдагы менен дал келет.",
@@ -4338,10 +4686,16 @@ const TRANSLATIONS = {
         "notif_time_title": "Атуу убактысы!",
         "notif_time_body": "Балаңызды тамактандырууга убакыт келди.",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "Автоматтык баштоо кийинки тартуу:",
+        "settings_auto_next": "Кийинки түрмөктү автоматтык түрдө баштоо:",
         "settings_permissions_title": "Уруксаттар",
         "settings_perm_alarm": "Ойготкучка уруксат",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "Узактыгы/суммасы",
+        "sleep": "Уйку",
+        "settings_show_diaper": "Жалаяк алмаштырууну көрсөтүү",
+        "settings_show_sleep": "Уйкуну көрсөт",
+        "sleep_duration_title": "Уйкунун узактыгы",
+        "sleep_start": "Баштоо",
+        "sleep_end": "Аягы"
     },
     "lo": {
         "error_overlap": "ຜິດພາດ: ເຫດການທັບຊ້ອນກັບອັນທີ່ມີຢູ່ແລ້ວ.",
@@ -4396,10 +4750,16 @@ const TRANSLATIONS = {
         "notif_time_title": "ເວລາຍິງ!",
         "notif_time_body": "ຮອດເວລາລ້ຽງລູກແລ້ວ.",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "ເລີ່ມອັດຕະໂນມັດ ເອົາຕໍ່ໄປ:",
+        "settings_auto_next": "ເລີ່ມຟີດຕໍ່ໄປໂດຍອັດຕະໂນມັດ:",
         "settings_permissions_title": "ການອະນຸຍາດ",
         "settings_perm_alarm": "ການອະນຸຍາດປຸກ",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "ຕິດຕາມໄລຍະເວລາ / ຈໍານວນ",
+        "sleep": "ນອນ",
+        "settings_show_diaper": "ສະແດງການປ່ຽນຜ້າອ້ອມ",
+        "settings_show_sleep": "ສະແດງການນອນ",
+        "sleep_duration_title": "ໄລຍະເວລານອນ",
+        "sleep_start": "ເລີ່ມ",
+        "sleep_end": "ຈົບ"
     },
     "lv": {
         "error_overlap": "Kļūda: notikums pārklājas ar esošu.",
@@ -4454,10 +4814,16 @@ const TRANSLATIONS = {
         "notif_time_title": "Šaušanas laiks!",
         "notif_time_body": "Ir pienācis laiks pabarot mazuli.",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "Automātiska palaišana nākamais uzņemšana:",
+        "settings_auto_next": "Automātiski sākt nākamo plūsmu:",
         "settings_permissions_title": "Atļaujas",
         "settings_perm_alarm": "Signalizācijas atļauja",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "Dziesmas ilgums/summa",
+        "sleep": "Gulēt",
+        "settings_show_diaper": "Parādīt autiņbiksīšu maiņu",
+        "settings_show_sleep": "Rādīt miegu",
+        "sleep_duration_title": "Miega ilgums",
+        "sleep_start": "Sākt",
+        "sleep_end": "Beigas"
     },
     "lt": {
         "error_overlap": "Klaida: įvykis sutampa su esamu.",
@@ -4512,10 +4878,16 @@ const TRANSLATIONS = {
         "notif_time_title": "Šaudymo laikas!",
         "notif_time_body": "Atėjo laikas maitinti kūdikį.",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "Automatinis paleidimas kitas veiksmas:",
+        "settings_auto_next": "Automatiškai paleisti kitą kanalą:",
         "settings_permissions_title": "Leidimai („Android“)",
         "settings_perm_alarm": "Signalizacijos leidimas",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "Kūrinio trukmė/kiekis",
+        "sleep": "Miegoti",
+        "settings_show_diaper": "Rodyti vystyklų keitimą",
+        "settings_show_sleep": "Rodyti miegą",
+        "sleep_duration_title": "Miego trukmė",
+        "sleep_start": "Pradėti",
+        "sleep_end": "Pabaiga"
     },
     "mk": {
         "error_overlap": "Грешка: настанот се преклопува со постоечки.",
@@ -4570,10 +4942,16 @@ const TRANSLATIONS = {
         "notif_time_title": "Застрелан време!",
         "notif_time_body": "Време е да го нахраните вашето бебе.",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "Автоматско стартување следно преземање:",
+        "settings_auto_next": "Автоматско стартување на следното снабдување:",
         "settings_permissions_title": "Дозволи (Андроид)",
         "settings_perm_alarm": "Дозвола за аларм",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "Времетраење/количество на песна",
+        "sleep": "Спиј",
+        "settings_show_diaper": "Прикажи промена на пелена",
+        "settings_show_sleep": "Покажи спиење",
+        "sleep_duration_title": "Времетраење на спиењето",
+        "sleep_start": "Започнете",
+        "sleep_end": "Крај"
     },
     "mn": {
         "error_overlap": "Алдаа: Үйл явдал одоо байгаа үйл явдалтай давхцаж байна.",
@@ -4628,10 +5006,16 @@ const TRANSLATIONS = {
         "notif_time_title": "Буудлагын цаг!",
         "notif_time_body": "Хүүхдээ хооллох цаг болжээ.",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "Автомат эхлэх дараагийн зураг авалт:",
+        "settings_auto_next": "Дараагийн хангамжийг автоматаар эхлүүлэх:",
         "settings_permissions_title": "Зөвшөөрөл",
         "settings_perm_alarm": "Сэрүүлгийн зөвшөөрөл",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "Үргэлжлэх хугацаа/хэмжээг хянах",
+        "sleep": "Унтах",
+        "settings_show_diaper": "Живхний өөрчлөлтийг харуул",
+        "settings_show_sleep": "Унтлаа харуул",
+        "sleep_duration_title": "Унтах хугацаа",
+        "sleep_start": "Эхлэх",
+        "sleep_end": "Төгсгөл"
     },
     "no": {
         "error_overlap": "Feil: Hendelsen overlapper med en eksisterende.",
@@ -4686,10 +5070,16 @@ const TRANSLATIONS = {
         "notif_time_title": "Skuddtid!",
         "notif_time_body": "Det er på tide å mate babyen din.",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "Automatisk start neste opptak:",
+        "settings_auto_next": "Automatisk start neste feed:",
         "settings_permissions_title": "Tillatelser",
         "settings_perm_alarm": "Alarmtillatelse",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "Spor varighet/mengde",
+        "sleep": "Sove",
+        "settings_show_diaper": "Vis bleieskift",
+        "settings_show_sleep": "Vis søvn",
+        "sleep_duration_title": "Søvnvarighet",
+        "sleep_start": "Start",
+        "sleep_end": "Slutt"
     },
     "rm": {
         "error_overlap": "Error: The event overlaps with an existing one.",
@@ -4744,10 +5134,16 @@ const TRANSLATIONS = {
         "notif_time_title": "¡Hora de la toma!",
         "notif_time_body": "Es hora de dar de comer a tu bebé.",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "Zard autumatic próxima toma:",
+        "settings_auto_next": "Automatic start next feed:",
         "settings_permissions_title": "Permissions",
         "settings_perm_alarm": "Alarm Permission",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "Track duration/amount",
+        "sleep": "Sleep",
+        "settings_show_diaper": "Show diaper change",
+        "settings_show_sleep": "Show sleep",
+        "sleep_duration_title": "Sleep duration",
+        "sleep_start": "Start",
+        "sleep_end": "End"
     },
     "sr": {
         "error_overlap": "Грешка: Догађај се преклапа са постојећим.",
@@ -4802,10 +5198,16 @@ const TRANSLATIONS = {
         "notif_time_title": "Схот тиме!",
         "notif_time_body": "Време је да нахраните бебу.",
         "settings_compact_history": "Compact History",
-        "settings_auto_next": "Аутоматски старт следећи снимак:",
+        "settings_auto_next": "Аутоматско покретање следећег фида:",
         "settings_permissions_title": "Дозволе (Андроид)",
         "settings_perm_alarm": "Дозвола за аларм",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_track_duration": "Трајање/износ",
+        "sleep": "Спавај",
+        "settings_show_diaper": "Покажите промену пелена",
+        "settings_show_sleep": "Покажи сан",
+        "sleep_duration_title": "Трајање сна",
+        "sleep_start": "Почни",
+        "sleep_end": "Крај"
     },
     "zu": {
         "error_overlap": "Iphutha: Umcimbi ugqagqene nesivele sikhona.",
@@ -4862,7 +5264,13 @@ const TRANSLATIONS = {
         "settings_compact_history": "Compact History",
         "settings_permissions_title": "Izimvume",
         "settings_perm_alarm": "Imvume ye-alamu",
-        "settings_auto_next": "Ukuqala okuzenzakalelayo thatha okulandelayo:",
-        "settings_track_duration": "Registro duración/cantidad"
+        "settings_auto_next": "Qala ngokuzenzakalelayo okuphakelayo okulandelayo:",
+        "settings_track_duration": "Landelela ubude besikhathi/inani",
+        "sleep": "Lala",
+        "settings_show_diaper": "Bonisa ushintsho lwenabukeni",
+        "settings_show_sleep": "Bonisa ukulala",
+        "sleep_duration_title": "Ubude besikhathi sokulala",
+        "sleep_start": "Qala",
+        "sleep_end": "Qeda"
     }
 };
