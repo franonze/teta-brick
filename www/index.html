@@ -157,7 +157,7 @@
                             <div class="stat-row time-clickable hide-on-no-duration" data-target="ml-bottle"
                                 style="align-items: center; min-width: 50px;">
                                 <span class="label tag"
-                                    style="color: var(--accent-primary); font-size: 0.7rem; padding: 2px 6px;"
+                                    style="color: var(--accent-primary);"
                                     data-i18n="amount">Cantidad</span>
                                 <div style="display: flex; align-items: baseline; gap: 3px;">
                                     <span class="value" id="ml-bottle" style="font-size: 1.4rem;">--</span>
@@ -170,7 +170,7 @@
                                 style="width: 1px; height: 40px; background: var(--card-border); margin: 0;"></div>
 
                             <div class="stat-row time-clickable" data-target="hour-bottle" style="align-items: center; min-width: 50px;">
-                                <span class="label tag" style="display: flex; align-items: center; gap: 4px; color: var(--accent-primary); font-size: 0.7rem; padding: 2px 6px;">
+                                <span class="label tag" style="display: flex; align-items: center; gap: 4px; color: var(--accent-primary);">
                                     <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
                                         <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" />
                                     </svg>
@@ -235,7 +235,7 @@
 
                 <!-- Bottom Section (Diaper) -->
                 <section class="glass-card diaper-section" id="section-diaper" style="padding: 0.5rem 0.8rem;">
-                    <div class="diaper-row" style="justify-content: center; gap: 15px;">
+                    <div class="diaper-row" style="justify-content: center; gap: 30px;">
                         <div style="position: relative; display: inline-flex; align-items: center;">
                             <button class="diaper-btn poop-btn" id="btn-diaper">
                                 <span class="emoji">💩</span>
@@ -263,7 +263,7 @@
 
                 <!-- Bottom Section (Sleep) -->
                 <section class="glass-card diaper-section" id="section-sleep" style="padding: 0.5rem 0.8rem;">
-                    <div class="diaper-row" style="justify-content: center; gap: 15px;">
+                    <div class="diaper-row" style="justify-content: center; gap: 30px;">
                         <div style="position: relative; display: inline-flex; align-items: center;">
                             <button class="diaper-btn" id="btn-sleep" style="padding: 6px 10px;">
                                 <span class="emoji">💤</span>
@@ -276,28 +276,30 @@
                             </button>
                         </div>
                         
-                        <!-- Start Time section -->
-                        <div class="time-label time-clickable" data-target="time-sleep-start" style="align-items: center; min-width: 50px;">
-                            <span class="label tag" style="display: flex; align-items: center; gap: 4px; color: var(--accent-primary); font-size: 0.7rem; padding: 2px 6px;">
-                                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
-                                    <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" />
-                                </svg>
-                                <span data-i18n="sleep_start">Inicio</span>
-                            </span>
-                            <span class="value time-display" id="time-sleep-start">--:--</span>
-                        </div>
+                        <div style="display: flex; gap: 8px; align-items: center;">
+                            <!-- Start Time section -->
+                            <div class="time-label time-clickable" data-target="time-sleep-start" style="align-items: center; min-width: 50px;">
+                                <span class="label tag" style="display: flex; align-items: center; gap: 4px; color: var(--accent-primary);">
+                                    <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                                        <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" />
+                                    </svg>
+                                    <span data-i18n="sleep_start">Inicio</span>
+                                </span>
+                                <span class="value time-display" id="time-sleep-start">--:--</span>
+                            </div>
 
-                        <div class="divider" style="width: 1px; height: 30px; background: var(--card-border); margin: 0;"></div>
+                            <div class="divider" style="width: 1px; height: 30px; background: var(--card-border); margin: 0;"></div>
 
-                        <!-- End Time section -->
-                        <div class="time-label time-clickable" data-target="time-sleep-end" style="align-items: center; min-width: 50px;">
-                            <span class="label tag" style="display: flex; align-items: center; gap: 4px; color: var(--accent-primary); font-size: 0.7rem; padding: 2px 6px;">
-                                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
-                                    <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" />
-                                </svg>
-                                <span data-i18n="sleep_end">Fin</span>
-                            </span>
-                            <span class="value time-display" id="time-sleep-end">--:--</span>
+                            <!-- End Time section -->
+                            <div class="time-label time-clickable" data-target="time-sleep-end" style="align-items: center; min-width: 50px;">
+                                <span class="label tag" style="display: flex; align-items: center; gap: 4px; color: var(--accent-primary);">
+                                    <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                                        <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" />
+                                    </svg>
+                                    <span data-i18n="sleep_end">Fin</span>
+                                </span>
+                                <span class="value time-display" id="time-sleep-end">--:--</span>
+                            </div>
                         </div>
                     </div>
                 </section>
