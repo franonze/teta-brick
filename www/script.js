@@ -2575,6 +2575,12 @@ function loadSettings() {
     } else {
         document.body.classList.remove('no-duration-tracking');
     }
+    
+    if (CONFIG.app.enableInlineNotes === false) {
+        document.body.classList.add('notes-disabled');
+    } else {
+        document.body.classList.remove('notes-disabled');
+    }
     applyLanguage(currentLang);
     sortLanguageOptions();
 

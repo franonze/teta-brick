@@ -939,3 +939,6 @@ input:checked + .slider:before {
     right: 5px;
 }
 
+
+.notes-disabled .inline-note-btn { display: none !important; }
+
