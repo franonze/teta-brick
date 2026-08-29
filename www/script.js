@@ -1179,23 +1179,25 @@ btnRegistrar.addEventListener('click', () => {
     const activeViewId = document.querySelector('.view.active') ? document.querySelector('.view.active').id : 'view-pecho';
     const isPechoActive = activeViewId === 'view-pecho';
     const isBiberonActive = activeViewId === 'view-biberon';
-
     const sessionData = {
         date: baseDate.toISOString(),
         left: {
             durationSeconds: leftSeconds,
-            startTime: (isPechoActive && hourLeft.textContent !== '--:--') ? hourLeft.textContent : null
+            startTime: (isPechoActive && hourLeft.textContent !== '--:--') ? hourLeft.textContent : null,
+            note: (isPechoActive && pendingNotes.breast_left) ? pendingNotes.breast_left : ''
         },
         right: {
             durationSeconds: rightSeconds,
-            startTime: (isPechoActive && hourRight.textContent !== '--:--') ? hourRight.textContent : null
+            startTime: (isPechoActive && hourRight.textContent !== '--:--') ? hourRight.textContent : null,
+            note: (isPechoActive && pendingNotes.breast_right) ? pendingNotes.breast_right : ''
         },
         bottle: {
             ml: bottleMl,
-            startTime: (isBiberonActive && hourBottle.textContent !== '--:--') ? hourBottle.textContent : null
+            startTime: (isBiberonActive && hourBottle.textContent !== '--:--') ? hourBottle.textContent : null,
+            note: (isBiberonActive && pendingNotes.bottle) ? pendingNotes.bottle : ''
         },
-        diapers: (timeDiaper.textContent !== '--:--') ? timeDiaper.textContent : null,
-        sleep: (timeSleepStart.textContent !== '--:--') ? { startTime: timeSleepStart.textContent, endTime: timeSleepEnd.textContent } : null
+        diapers: (timeDiaper.textContent !== '--:--') ? { time: timeDiaper.textContent, note: pendingNotes.diaper || '' } : null,
+        sleep: (timeSleepStart.textContent !== '--:--') ? { startTime: timeSleepStart.textContent, endTime: timeSleepEnd.textContent, note: pendingNotes.sleep || '' } : null
     };
 
     // Check if there is anything to save
@@ -1397,6 +1399,20 @@ function saveAndResetSession(sessionData, merge) {
         if (sessionData.sleep && sessionData.sleep.startTime) newSession.sleep = sessionData.sleep;
         history.push(newSession);
     }
+
+    // Clear pending notes after successful save
+    const hasActiveLeft = sessionData.left && sessionData.left.startTime !== null;
+    const hasActiveRight = sessionData.right && sessionData.right.startTime !== null;
+    const hasActiveBottle = sessionData.bottle && sessionData.bottle.startTime !== null;
+    const hasActiveDiaper = sessionData.diapers !== null;
+    const hasActiveSleep = sessionData.sleep && sessionData.sleep.startTime !== null;
+    
+    if (hasActiveLeft) pendingNotes.breast_left = '';
+    if (hasActiveRight) pendingNotes.breast_right = '';
+    if (hasActiveBottle) pendingNotes.bottle = '';
+    if (hasActiveDiaper) pendingNotes.diaper = '';
+    if (hasActiveSleep) pendingNotes.sleep = '';
+    if (typeof savePendingNotes === 'function') savePendingNotes();
 
     localStorage.setItem(CONFIG.storage.historyKey, JSON.stringify(history));
 
@@ -1990,14 +2006,14 @@ function openEventModal(isNew, editId = null, editKey = null) {
             targetTimeStr = data.startTime;
             editDuration.value = Math.round(data.durationSeconds / 60);
             editDurationContainer.style.display = 'flex';
-            document.querySelector('#edit-duration-container .sub-label').textContent = 'Duración (minutos)';
-            editDuration.placeholder = 'Min';
+            document.querySelector('#edit-duration-container .sub-label').textContent = getTranslation('duration_mins');
+            editDuration.placeholder = getTranslation('min_placeholder') || 'Min';
             if (editNote) editNote.value = data.note || '';
         } else if (editKey === 'bottle') {
             targetTimeStr = session.bottle.startTime;
             editDuration.value = session.bottle.ml;
             editDurationContainer.style.display = 'flex';
-            document.querySelector('#edit-duration-container .sub-label').textContent = 'Cantidad (mL)';
+            document.querySelector('#edit-duration-container .sub-label').textContent = getTranslation('amount') + ' (mL)';
             editDuration.placeholder = 'mL';
             if (editNote) editNote.value = session.bottle.note || '';
         } else if (editKey === 'diaper') {
@@ -2018,8 +2034,8 @@ function openEventModal(isNew, editId = null, editKey = null) {
                 editDuration.value = (h * 60) + m;
             }
             editDurationContainer.style.display = 'flex';
-            document.querySelector('#edit-duration-container .sub-label').textContent = 'Duración (minutos)';
-            editDuration.placeholder = 'Min';
+            document.querySelector('#edit-duration-container .sub-label').textContent = getTranslation('duration_mins');
+            editDuration.placeholder = getTranslation('min_placeholder') || 'Min';
             if (editNote) editNote.value = session.sleep.note || '';
         }
     } else {
@@ -2087,18 +2103,18 @@ if (eventType) {
         const val = eventType.value;
         if (val === 'left' || val === 'right') {
             editDurationContainer.style.display = 'flex';
-            document.querySelector('#edit-duration-container .sub-label').textContent = 'Duración (minutos)';
-            editDuration.placeholder = 'Min';
+            document.querySelector('#edit-duration-container .sub-label').textContent = getTranslation('duration_mins');
+            editDuration.placeholder = getTranslation('min_placeholder') || 'Min';
         } else if (val === 'bottle') {
             editDurationContainer.style.display = 'flex';
-            document.querySelector('#edit-duration-container .sub-label').textContent = 'Cantidad (mL)';
+            document.querySelector('#edit-duration-container .sub-label').textContent = getTranslation('amount') + ' (mL)';
             editDuration.placeholder = 'mL';
         } else if (val === 'diaper') {
             document.getElementById('edit-duration-container').style.display = 'none';
         } else if (val === 'sleep') {
             document.getElementById('edit-duration-container').style.display = 'flex';
-            document.querySelector('#edit-duration-container .sub-label').textContent = 'Duración (minutos)';
-            editDuration.placeholder = 'Min';
+            document.querySelector('#edit-duration-container .sub-label').textContent = getTranslation('duration_mins');
+            editDuration.placeholder = getTranslation('min_placeholder') || 'Min';
         }
     });
 }
@@ -3044,3 +3060,81 @@ function setupAllWheelPickers() {
         observer.observe(pickerEl);
     });
 }
+
+
+
+// --- Inline Note Logic ---
+let activeNoteType = null;
+let pendingNotes = JSON.parse(localStorage.getItem('babyLogPendingNotes')) || { breast: '', bottle: '', diaper: '', sleep: '' };
+
+function savePendingNotes() {
+    localStorage.setItem('babyLogPendingNotes', JSON.stringify(pendingNotes));
+}
+
+window.openNoteModal = function(type) {
+    activeNoteType = type;
+    const textInput = document.getElementById('modal-note-text');
+    let realType = type;
+    textInput.value = pendingNotes[realType] || '';
+    document.getElementById('modal-note').classList.add('active');
+    textInput.focus();
+}
+
+window.closeNoteModal = function() {
+    document.getElementById('modal-note').classList.remove('active');
+    activeNoteType = null;
+}
+
+window.saveInlineNote = function() {
+    const textInput = document.getElementById('modal-note-text');
+    if (!textInput) return;
+    const text = textInput.value.trim();
+    const type = activeNoteType;
+    if (!type) return;
+
+    let realType = type;
+    pendingNotes[realType] = text;
+    savePendingNotes();
+    window.closeNoteModal();
+
+    if (type === 'diaper') {
+        const timeDiaper = document.getElementById('time-diaper');
+        if (timeDiaper && timeDiaper.textContent === '--:--') {
+            document.getElementById('btn-diaper').click();
+        }
+    } else if (type === 'sleep') {
+        const timeSleepStart = document.getElementById('time-sleep-start');
+        if (timeSleepStart && timeSleepStart.textContent === '--:--') {
+            document.getElementById('btn-sleep').click();
+        }
+    } else if (type === 'bottle') {
+        const hourBottle = document.getElementById('hour-bottle');
+        if (hourBottle && hourBottle.textContent === '--:--') {
+            document.getElementById('btn-bottle').click();
+        }
+    } else if (type === 'breast_left') {
+        const hourLeft = document.getElementById('hour-left');
+        if (hourLeft && hourLeft.textContent === '--:--') {
+            document.getElementById('btn-left').click();
+        }
+    } else if (type === 'breast_right') {
+        const hourRight = document.getElementById('hour-right');
+        if (hourRight && hourRight.textContent === '--:--') {
+            document.getElementById('btn-right').click();
+        }
+    }
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+    const noteLeft = document.getElementById('btn-note-left');
+    const noteRight = document.getElementById('btn-note-right');
+    const noteBottle = document.getElementById('btn-note-bottle');
+    const noteDiaper = document.getElementById('btn-note-diaper');
+    const noteSleep = document.getElementById('btn-note-sleep');
+
+    if (noteLeft) noteLeft.addEventListener('click', () => window.openNoteModal('breast_left'));
+    if (noteRight) noteRight.addEventListener('click', () => window.openNoteModal('breast_right'));
+    if (noteBottle) noteBottle.addEventListener('click', () => window.openNoteModal('bottle'));
+    if (noteDiaper) noteDiaper.addEventListener('click', () => window.openNoteModal('diaper'));
+    if (noteSleep) noteSleep.addEventListener('click', () => window.openNoteModal('sleep'));
+});

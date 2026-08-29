@@ -907,3 +907,35 @@ input:checked + .slider:before {
 }
 
 .no-duration-tracking .hide-on-no-duration { display: none !important; }
+
+/* Inline Note Buttons */
+.inline-note-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+.inline-note-btn:hover, .inline-note-btn:active {
+    background: rgba(0,0,0,0.05);
+    color: var(--text-primary);
+}
+.note-corner {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: var(--bg-main);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    z-index: 10;
+}
+.note-corner-card {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+

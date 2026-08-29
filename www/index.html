@@ -40,11 +40,18 @@
                         <!-- Left Column -->
                         <div class="column left-col">
                             <h2 class="col-title" style="font-size: 1.3rem;" data-i18n="breast_left">Izquierdo</h2>
-                            <button class="play-btn" id="btn-left" aria-label="Iniciar pecho izquierdo">
-                                <svg viewBox="0 0 24 24" class="icon-play">
-                                    <path d="M8 5v14l11-7z" />
-                                </svg>
-                            </button>
+                            <div style="position: relative; display: inline-block;">
+                                <button class="play-btn" id="btn-left" aria-label="Iniciar pecho izquierdo">
+                                    <svg viewBox="0 0 24 24" class="icon-play">
+                                        <path d="M8 5v14l11-7z" />
+                                    </svg>
+                                </button>
+                                <button class="inline-note-btn note-corner" id="btn-note-left" aria-label="Añadir nota">
+                                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                                    </svg>
+                                </button>
+                            </div>
                             <div class="stats">
                                 <div class="stat-row hide-on-no-duration">
                                     <span class="label tag" data-i18n="time">Tiempo</span>
@@ -85,11 +92,18 @@
                         <!-- Right Column -->
                         <div class="column right-col">
                             <h2 class="col-title" style="font-size: 1.3rem;" data-i18n="breast_right">Derecho</h2>
-                            <button class="play-btn" id="btn-right" aria-label="Iniciar pecho derecho">
-                                <svg viewBox="0 0 24 24" class="icon-play">
-                                    <path d="M8 5v14l11-7z" />
-                                </svg>
-                            </button>
+                            <div style="position: relative; display: inline-block;">
+                                <button class="play-btn" id="btn-right" aria-label="Iniciar pecho derecho">
+                                    <svg viewBox="0 0 24 24" class="icon-play">
+                                        <path d="M8 5v14l11-7z" />
+                                    </svg>
+                                </button>
+                                <button class="inline-note-btn note-corner" id="btn-note-right" aria-label="Añadir nota">
+                                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                                    </svg>
+                                </button>
+                            </div>
                             <div class="stats">
                                 <div class="stat-row hide-on-no-duration">
                                     <span class="label tag" data-i18n="time">Tiempo</span>
@@ -125,12 +139,19 @@
                     <h2 class="view-title" style="margin-bottom: 15px;" data-i18n="tab_biberon">Biberón</h2>
                     <div class="biberon-row"
                         style="display: flex; justify-content: center; align-items: center; gap: 40px; padding: 15px 5px;">
-                        <button class="play-btn" id="btn-bottle" aria-label="Iniciar biberón"
-                            style="width: 60px; height: 60px; flex-shrink: 0;">
-                            <svg viewBox="0 0 24 24" class="icon-play">
-                                <path d="M8 5v14l11-7z" />
-                            </svg>
-                        </button>
+                        <div style="position: relative; display: inline-block;">
+                            <button class="play-btn" id="btn-bottle" aria-label="Iniciar biberón"
+                                style="width: 60px; height: 60px; flex-shrink: 0;">
+                                <svg viewBox="0 0 24 24" class="icon-play">
+                                    <path d="M8 5v14l11-7z" />
+                                </svg>
+                            </button>
+                            <button class="inline-note-btn note-corner" id="btn-note-bottle" aria-label="Añadir nota">
+                                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                                </svg>
+                            </button>
+                        </div>
 
                         <div style="display: flex; align-items: center; gap: 15px;">
                             <div class="stat-row time-clickable hide-on-no-duration" data-target="ml-bottle"
@@ -215,10 +236,17 @@
                 <!-- Bottom Section (Diaper) -->
                 <section class="glass-card diaper-section" id="section-diaper" style="padding: 0.5rem 0.8rem;">
                     <div class="diaper-row" style="justify-content: center; gap: 15px;">
-                        <button class="diaper-btn poop-btn" id="btn-diaper">
-                            <span class="emoji">💩</span>
-                            <span class="btn-text" data-i18n="diaper_change">Cambio de pañal</span>
-                        </button>
+                        <div style="position: relative; display: inline-flex; align-items: center;">
+                            <button class="diaper-btn poop-btn" id="btn-diaper">
+                                <span class="emoji">💩</span>
+                                <span class="btn-text" data-i18n="diaper_change">Cambio de pañal</span>
+                            </button>
+                            <button class="inline-note-btn note-corner" id="btn-note-diaper" aria-label="Añadir nota">
+                                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                                </svg>
+                            </button>
+                        </div>
                         <div class="time-label time-clickable" data-target="time-diaper">
                             <span class="label tag"
                                 style="display: flex; align-items: center; gap: 4px; color: var(--accent-primary);">
@@ -236,10 +264,17 @@
                 <!-- Bottom Section (Sleep) -->
                 <section class="glass-card diaper-section" id="section-sleep" style="padding: 0.5rem 0.8rem;">
                     <div class="diaper-row" style="justify-content: center; gap: 15px;">
-                        <button class="diaper-btn" id="btn-sleep" style="padding: 6px 10px;">
-                            <span class="emoji">💤</span>
-                            <span class="btn-text" data-i18n="sleep">Sueño</span>
-                        </button>
+                        <div style="position: relative; display: inline-flex; align-items: center;">
+                            <button class="diaper-btn" id="btn-sleep" style="padding: 6px 10px;">
+                                <span class="emoji">💤</span>
+                                <span class="btn-text" data-i18n="sleep">Sueño</span>
+                            </button>
+                            <button class="inline-note-btn note-corner" id="btn-note-sleep" aria-label="Añadir nota">
+                                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                                </svg>
+                            </button>
+                        </div>
                         
                         <!-- Start Time section -->
                         <div class="time-label time-clickable" data-target="time-sleep-start" style="align-items: center; min-width: 50px;">
@@ -693,6 +728,19 @@
     <script src="capacitor-local-notifications.js"></script>
     <script src="config.js"></script>
     <script src="script.js"></script>
+
+    <!-- Note Add/Edit Modal -->
+    <div id="modal-note" class="time-popup-overlay">
+        <div class="time-popup-box glass-card">
+            <h3 style="text-align: center; margin-bottom: 10px;" data-i18n="note_optional">Nota (opcional)</h3>
+            <textarea id="modal-note-text" rows="3" data-i18n-placeholder="add_note_placeholder" placeholder="Añadir una nota..." style="width: 100%; border-radius: 8px; padding: 10px; background: rgba(0,0,0,0.1); color: var(--text-primary); border: 1px solid var(--card-border); outline: none; margin-bottom: 15px; font-family: inherit; font-size: 1rem; resize: vertical; min-height: 80px; box-sizing: border-box;"></textarea>
+            <div class="popup-actions">
+                <button class="btn-secondary" onclick="closeNoteModal()" data-i18n="cancel" style="flex: 1;">Cancelar</button>
+                <button class="main-action-btn" onclick="saveInlineNote()" data-i18n="save" style="padding: 12px; width: auto; flex: 1; border-radius: 12px; font-size: 1rem;">Guardar</button>
+            </div>
+        </div>
+    </div>
+
 </body>
 
 </html>
