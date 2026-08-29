@@ -1625,7 +1625,8 @@ function renderHistory() {
                 date: session.date, // keep one for sorting
                 sessions: [],
                 totalFeedings: 0,
-                totalDiapers: 0
+                totalDiapers: 0,
+                totalSleeps: 0
             };
         }
         daysMap[dayKey].sessions.push(session);
@@ -1638,6 +1639,7 @@ function renderHistory() {
         if (isFeeding) daysMap[dayKey].totalFeedings++;
 
         if (session.diapers) daysMap[dayKey].totalDiapers++;
+        if (session.sleep) daysMap[dayKey].totalSleeps++;
     });
 
     const sortedDays = Object.values(daysMap).sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -1674,6 +1676,9 @@ function renderHistory() {
                         </div>
                         <div style="display: flex; align-items: center; gap: 5px; color: var(--text-secondary); font-weight: 600;">
                             <span style="font-size: 1.2rem;">💩</span> ${dayData.totalDiapers}
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 5px; color: var(--text-secondary); font-weight: 600;">
+                            <span style="font-size: 1.2rem;">💤</span> ${dayData.totalSleeps}
                         </div>
                         <svg id="icon-day-${dayIndex}" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" style="transition: transform 0.3s; ${isOpen ? 'transform: rotate(180deg);' : ''}">
                             <polyline points="6 9 12 15 18 9"></polyline>
