@@ -33,6 +33,16 @@ if ($BuildApkSuccess -and $BuildBundleSuccess) {
     $ApkPath = Join-Path (Get-Location) "android\app\build\outputs\apk\release"
     $AabPath = Join-Path (Get-Location) "android\app\build\outputs\bundle\release"
     
+    $Version = (Get-Content package.json | ConvertFrom-Json).version
+    $ReleaseFolder = Join-Path (Get-Location) "releases"
+    if (-not (Test-Path $ReleaseFolder)) { New-Item -ItemType Directory -Force -Path $ReleaseFolder | Out-Null }
+    
+    $DestApk = Join-Path $ReleaseFolder "teta-brick-v${Version}.apk"
+    $DestAab = Join-Path $ReleaseFolder "teta-brick-v${Version}.aab"
+    
+    Copy-Item (Join-Path $ApkPath "app-release.apk") $DestApk -Force
+    Copy-Item (Join-Path $AabPath "app-release.aab") $DestAab -Force
+
     Write-Host "`n========================================================" -ForegroundColor Green
     Write-Host " Compilación de Release completada con éxito." -ForegroundColor Green
     Write-Host " Los archivos generados se encuentran en las siguientes rutas:" -ForegroundColor Green
@@ -55,3 +65,4 @@ if ($BuildApkSuccess -and $BuildBundleSuccess) {
 } else {
     Write-Host "`nHubo un error durante la compilación de Release con Gradle." -ForegroundColor Red
 }
+
