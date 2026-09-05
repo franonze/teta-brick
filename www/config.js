@@ -89,7 +89,10 @@ const TRANSLATIONS = {
         "settings_show_sleep": "Mostrar sueño",
         "sleep_duration_title": "Duración del sueño",
         "sleep_start": "Inicio",
-        "sleep_end": "Fin"
+        "sleep_end": "Fin",
+        "sleep_missing_title": "Sin inicio de sueño",
+        "sleep_missing_desc": "No hay un evento de inicio de sueño reciente al que unir esta hora de fin. ¿Crear un evento nuevo?",
+        "sleep_end_only": "Solo fin"
     },
     "en": {
         "error_overlap": "Error: The event overlaps with an existing one.",
@@ -155,7 +158,10 @@ const TRANSLATIONS = {
         "sleep_start": "Start",
         "sleep_end": "End",
         "min_placeholder": "min",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "zh": {
         "error_overlap": "错误：该事件与现有事件重叠。",
@@ -221,7 +227,10 @@ const TRANSLATIONS = {
         "sleep_start": "开始",
         "sleep_end": "结束",
         "min_placeholder": "分钟",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "无睡眠开始时间",
+        "sleep_missing_desc": "找不到睡眠开始记录。创建新记录？",
+        "sleep_end_only": "仅结束"
     },
     "hi": {
         "error_overlap": "त्रुटि: ईवेंट मौजूदा ईवेंट के साथ ओवरलैप होता है।",
@@ -287,7 +296,10 @@ const TRANSLATIONS = {
         "sleep_start": "शुरू",
         "sleep_end": "अंत",
         "min_placeholder": "मिन",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "ar": {
         "error_overlap": "خطأ: يتداخل الحدث مع حدث موجود.",
@@ -353,7 +365,10 @@ const TRANSLATIONS = {
         "sleep_start": "بداية",
         "sleep_end": "نهاية",
         "min_placeholder": "دقيقة",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "fr": {
         "error_overlap": "Erreur : l'événement chevauche un événement existant.",
@@ -419,7 +434,10 @@ const TRANSLATIONS = {
         "sleep_start": "Début",
         "sleep_end": "Fin",
         "min_placeholder": "min",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "Pas de début de sommeil",
+        "sleep_missing_desc": "Aucun début de sommeil trouvé pour fusionner. Créer un nouvel événement ?",
+        "sleep_end_only": "Fin uniquement"
     },
     "ru": {
         "error_overlap": "Ошибка: событие пересекается с существующим.",
@@ -485,7 +503,10 @@ const TRANSLATIONS = {
         "sleep_start": "Начало",
         "sleep_end": "Конец",
         "min_placeholder": "мин",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "Нет начала сна",
+        "sleep_missing_desc": "Не найдено событие начала сна. Создать новое событие?",
+        "sleep_end_only": "Только конец"
     },
     "pt": {
         "error_overlap": "Erro: O evento se sobrepõe a um evento existente.",
@@ -551,7 +572,10 @@ const TRANSLATIONS = {
         "sleep_start": "Início",
         "sleep_end": "Fim",
         "min_placeholder": "min",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "Sem início de sono",
+        "sleep_missing_desc": "Nenhum evento de início de sono encontrado. Criar novo evento?",
+        "sleep_end_only": "Apenas fim"
     },
     "de": {
         "error_overlap": "Fehler: Das Ereignis überschneidet sich mit einem vorhandenen.",
@@ -617,7 +641,10 @@ const TRANSLATIONS = {
         "sleep_start": "Start",
         "sleep_end": "Ende",
         "min_placeholder": "min",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "Kein Schlafbeginn",
+        "sleep_missing_desc": "Kein aktuelles Schlafbeginn-Ereignis gefunden. Neues Ereignis erstellen?",
+        "sleep_end_only": "Nur Ende"
     },
     "ja": {
         "error_overlap": "エラー: イベントは既存のイベントと重複しています。",
@@ -683,7 +710,10 @@ const TRANSLATIONS = {
         "sleep_start": "開始",
         "sleep_end": "終了",
         "min_placeholder": "分",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "睡眠開始なし",
+        "sleep_missing_desc": "睡眠開始記録がありません。新しい記録を作成しますか？",
+        "sleep_end_only": "終了のみ"
     },
     "it": {
         "error_overlap": "Errore: l'evento si sovrappone a uno esistente.",
@@ -749,7 +779,10 @@ const TRANSLATIONS = {
         "sleep_start": "Inizio",
         "sleep_end": "Fine",
         "min_placeholder": "min",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "Nessun inizio sonno",
+        "sleep_missing_desc": "Nessun evento di inizio sonno trovato. Creare un nuovo evento?",
+        "sleep_end_only": "Solo fine"
     },
     "bn": {
         "error_overlap": "ত্রুটি: ইভেন্টটি বিদ্যমান একটির সাথে ওভারল্যাপ করে৷",
@@ -815,7 +848,10 @@ const TRANSLATIONS = {
         "sleep_start": "শুরু",
         "sleep_end": "শেষ",
         "min_placeholder": "মিনিট",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "ur": {
         "error_overlap": "خرابی: ایونٹ ایک موجودہ کے ساتھ اوورلیپ ہو جاتا ہے۔",
@@ -881,7 +917,10 @@ const TRANSLATIONS = {
         "sleep_start": "شروع",
         "sleep_end": "ختم",
         "min_placeholder": "منٹ",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "id": {
         "error_overlap": "Kesalahan: Acara tersebut tumpang tindih dengan acara yang sudah ada.",
@@ -947,7 +986,10 @@ const TRANSLATIONS = {
         "sleep_start": "Mulai",
         "sleep_end": "Selesai",
         "min_placeholder": "menit",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "sw": {
         "error_overlap": "Hitilafu: Tukio linapishana na lililopo.",
@@ -1013,7 +1055,10 @@ const TRANSLATIONS = {
         "sleep_start": "Anza",
         "sleep_end": "Mwisho",
         "min_placeholder": "min",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "mr": {
         "error_overlap": "त्रुटी: इव्हेंट विद्यमान इव्हेंटसह ओव्हरलॅप होतो.",
@@ -1079,7 +1124,10 @@ const TRANSLATIONS = {
         "sleep_start": "सुरू करा",
         "sleep_end": "शेवट",
         "min_placeholder": "मि",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "te": {
         "error_overlap": "లోపం: ఈవెంట్ ఇప్పటికే ఉన్న దానితో అతివ్యాప్తి చెందుతుంది.",
@@ -1145,7 +1193,10 @@ const TRANSLATIONS = {
         "sleep_start": "ప్రారంభించండి",
         "sleep_end": "ముగింపు",
         "min_placeholder": "నిమి",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "tr": {
         "error_overlap": "Hata: Etkinlik mevcut bir etkinlikle çakışıyor.",
@@ -1211,7 +1262,10 @@ const TRANSLATIONS = {
         "sleep_start": "Başlangıç",
         "sleep_end": "Son",
         "min_placeholder": "dk.",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "ta": {
         "error_overlap": "பிழை: நிகழ்வு ஏற்கனவே உள்ளவற்றுடன் மேலெழுகிறது.",
@@ -1277,7 +1331,10 @@ const TRANSLATIONS = {
         "sleep_start": "தொடங்கு",
         "sleep_end": "முடிவு",
         "min_placeholder": "நிமிடம்",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "vi": {
         "error_overlap": "Lỗi: Sự kiện trùng lặp với sự kiện hiện có.",
@@ -1343,7 +1400,10 @@ const TRANSLATIONS = {
         "sleep_start": "Bắt đầu",
         "sleep_end": "Kết thúc",
         "min_placeholder": "phút",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "ko": {
         "error_overlap": "오류: 이벤트가 기존 이벤트와 겹칩니다.",
@@ -1409,7 +1469,10 @@ const TRANSLATIONS = {
         "sleep_start": "시작",
         "sleep_end": "끝",
         "min_placeholder": "분",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "fa": {
         "error_overlap": "خطا: رویداد با رویداد موجود همپوشانی دارد.",
@@ -1475,7 +1538,10 @@ const TRANSLATIONS = {
         "sleep_start": "شروع کنید",
         "sleep_end": "پایان",
         "min_placeholder": "دقیقه",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "ha": {
         "error_overlap": "Kuskure: Lamarin ya zo tare da wanda yake.",
@@ -1541,7 +1607,10 @@ const TRANSLATIONS = {
         "sleep_start": "Fara",
         "sleep_end": "Ƙarshe",
         "min_placeholder": "min",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "jv": {
         "error_overlap": "Error: Acara tumpang tindih karo sing wis ana.",
@@ -1607,7 +1676,10 @@ const TRANSLATIONS = {
         "sleep_start": "Miwiti",
         "sleep_end": "Pungkasan",
         "min_placeholder": "min",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "pa": {
         "error_overlap": "ਤਰੁੱਟੀ: ਇਵੈਂਟ ਮੌਜੂਦਾ ਇੱਕ ਨਾਲ ਓਵਰਲੈਪ ਹੁੰਦਾ ਹੈ।",
@@ -1673,7 +1745,10 @@ const TRANSLATIONS = {
         "sleep_start": "ਸ਼ੁਰੂ ਕਰੋ",
         "sleep_end": "ਅੰਤ",
         "min_placeholder": "ਮਿੰਟ",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "gu": {
         "error_overlap": "ભૂલ: ઇવેન્ટ અસ્તિત્વમાં છે તે સાથે ઓવરલેપ થાય છે.",
@@ -1739,7 +1814,10 @@ const TRANSLATIONS = {
         "sleep_start": "શરૂ કરો",
         "sleep_end": "અંત",
         "min_placeholder": "મિનિટ",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "th": {
         "error_overlap": "ข้อผิดพลาด: เหตุการณ์ซ้อนทับกับเหตุการณ์ที่มีอยู่",
@@ -1805,7 +1883,10 @@ const TRANSLATIONS = {
         "sleep_start": "เริ่ม",
         "sleep_end": "จบ",
         "min_placeholder": "นาที",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "am": {
         "error_overlap": "ስህተት፡ ክስተቱ ከነባሩ ጋር ይደራረባል።",
@@ -1871,7 +1952,10 @@ const TRANSLATIONS = {
         "sleep_start": "ጀምር",
         "sleep_end": "መጨረሻ",
         "min_placeholder": "ደቂቃ",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "kn": {
         "error_overlap": "ದೋಷ: ಈವೆಂಟ್ ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ಒಂದರೊಂದಿಗೆ ಅತಿಕ್ರಮಿಸುತ್ತದೆ.",
@@ -1937,7 +2021,10 @@ const TRANSLATIONS = {
         "sleep_start": "ಪ್ರಾರಂಭಿಸಿ",
         "sleep_end": "ಅಂತ್ಯ",
         "min_placeholder": "ನಿಮಿಷ",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "or": {
         "error_overlap": "ତ୍ରୁଟି: ଏକ ବିଦ୍ୟମାନ ସହିତ ଇଭେଣ୍ଟଟି ଅଲଗା ହୋଇଯାଏ |",
@@ -2003,7 +2090,10 @@ const TRANSLATIONS = {
         "sleep_start": "ଆରମ୍ଭ କରନ୍ତୁ |",
         "sleep_end": "ଶେଷ",
         "min_placeholder": "ମିନିଟ୍",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "bho": {
         "reset": "Reset",
@@ -2069,7 +2159,10 @@ const TRANSLATIONS = {
         "sleep_start": "Start",
         "sleep_end": "End",
         "min_placeholder": "min",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "su": {
         "error_overlap": "Kasalahan: Acara tumpang tindih sareng anu tos aya.",
@@ -2135,7 +2228,10 @@ const TRANSLATIONS = {
         "sleep_start": "Mimitian",
         "sleep_end": "Tungtung",
         "min_placeholder": "min",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "ro": {
         "error_overlap": "Eroare: evenimentul se suprapune cu unul existent.",
@@ -2201,7 +2297,10 @@ const TRANSLATIONS = {
         "sleep_start": "Început",
         "sleep_end": "Sfârşit",
         "min_placeholder": "min",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "nl": {
         "error_overlap": "Fout: de gebeurtenis overlapt met een bestaande gebeurtenis.",
@@ -2267,7 +2366,10 @@ const TRANSLATIONS = {
         "sleep_start": "Begin",
         "sleep_end": "Einde",
         "min_placeholder": "min",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "km": {
         "error_overlap": "កំហុស៖ ព្រឹត្តិការណ៍នេះត្រួតលើគ្នាជាមួយព្រឹត្តិការណ៍ដែលមានស្រាប់។",
@@ -2333,7 +2435,10 @@ const TRANSLATIONS = {
         "sleep_start": "ចាប់ផ្តើម",
         "sleep_end": "ចប់",
         "min_placeholder": "នាទី",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "uz": {
         "error_overlap": "Xato: Hodisa mavjud voqea bilan bir-biriga mos tushdi.",
@@ -2399,7 +2504,10 @@ const TRANSLATIONS = {
         "sleep_start": "Boshlash",
         "sleep_end": "Oxiri",
         "min_placeholder": "min",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "sd": {
         "error_overlap": "نقص: واقعو موجوده ھڪڙي سان اوورليپ ٿئي ٿو.",
@@ -2465,7 +2573,10 @@ const TRANSLATIONS = {
         "sleep_start": "شروع",
         "sleep_end": "پڄاڻي",
         "min_placeholder": "منٽ",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "my": {
         "error_overlap": "အမှား- ဖြစ်ရပ်သည် ရှိပြီးသားတစ်ခုနှင့် ထပ်နေပါသည်။",
@@ -2531,7 +2642,10 @@ const TRANSLATIONS = {
         "sleep_start": "စတင်ပါ။",
         "sleep_end": "အဆုံး",
         "min_placeholder": "မိ",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "yo": {
         "error_overlap": "Aṣiṣe: Iṣẹlẹ naa ṣakojọpọ pẹlu eyi ti o wa tẹlẹ.",
@@ -2597,7 +2711,10 @@ const TRANSLATIONS = {
         "sleep_start": "Bẹrẹ",
         "sleep_end": "Ipari",
         "min_placeholder": "min",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "ig": {
         "error_overlap": "Njehie: Ihe omume a dakọtara na nke dị.",
@@ -2663,7 +2780,10 @@ const TRANSLATIONS = {
         "sleep_start": "Malite",
         "sleep_end": "Ọgwụgwụ",
         "min_placeholder": "min",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "ms": {
         "error_overlap": "Ralat: Acara bertindih dengan yang sedia ada.",
@@ -2729,7 +2849,10 @@ const TRANSLATIONS = {
         "sleep_start": "Mulakan",
         "sleep_end": "tamat",
         "min_placeholder": "min",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "ne": {
         "error_overlap": "त्रुटि: घटना अवस्थित एउटासँग ओभरल्याप हुन्छ।",
@@ -2795,7 +2918,10 @@ const TRANSLATIONS = {
         "sleep_start": "सुरु गर्नुहोस्",
         "sleep_end": "अन्त्य",
         "min_placeholder": "मिनेट",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "uk": {
         "error_overlap": "Помилка: подія збігається з існуючою.",
@@ -2861,7 +2987,10 @@ const TRANSLATIONS = {
         "sleep_start": "старт",
         "sleep_end": "Кінець",
         "min_placeholder": "хв",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "ceb": {
         "reset": "Reset",
@@ -2927,7 +3056,10 @@ const TRANSLATIONS = {
         "sleep_start": "Start",
         "sleep_end": "End",
         "min_placeholder": "min",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "ku": {
         "error_overlap": "Çewtî: Bûyer bi ya heyî re li hev dikeve.",
@@ -2993,7 +3125,10 @@ const TRANSLATIONS = {
         "sleep_start": "Destpêkirin",
         "sleep_end": "Dawî",
         "min_placeholder": "min",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "sv": {
         "error_overlap": "Fel: Händelsen överlappar en befintlig.",
@@ -3059,7 +3194,10 @@ const TRANSLATIONS = {
         "sleep_start": "Start",
         "sleep_end": "Avsluta",
         "min_placeholder": "min",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "pl": {
         "error_overlap": "Błąd: wydarzenie pokrywa się z istniejącym.",
@@ -3125,7 +3263,10 @@ const TRANSLATIONS = {
         "sleep_start": "Start",
         "sleep_end": "Koniec",
         "min_placeholder": "min",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "tl": {
         "error_overlap": "Error: Ang kaganapan ay nag-o-overlap sa isang umiiral na.",
@@ -3191,7 +3332,10 @@ const TRANSLATIONS = {
         "sleep_start": "Magsimula",
         "sleep_end": "Tapusin",
         "min_placeholder": "min",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "ml": {
         "error_overlap": "പിശക്: ഇവൻ്റ് നിലവിലുള്ള ഒന്നുമായി ഓവർലാപ്പ് ചെയ്യുന്നു.",
@@ -3257,7 +3401,10 @@ const TRANSLATIONS = {
         "sleep_start": "ആരംഭിക്കുക",
         "sleep_end": "അവസാനിക്കുന്നു",
         "min_placeholder": "മിനിറ്റ്",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "fi": {
         "error_overlap": "Virhe: Tapahtuma on päällekkäinen olemassa olevan tapahtuman kanssa.",
@@ -3323,7 +3470,10 @@ const TRANSLATIONS = {
         "sleep_start": "Aloita",
         "sleep_end": "Loppu",
         "min_placeholder": "min",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "af": {
         "error_overlap": "Fout: Die gebeurtenis oorvleuel met 'n bestaande een.",
@@ -3389,7 +3539,10 @@ const TRANSLATIONS = {
         "sleep_start": "Begin",
         "sleep_end": "Einde",
         "min_placeholder": "min",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "sq": {
         "error_overlap": "Gabim: Ngjarja mbivendoset me një ekzistuese.",
@@ -3455,7 +3608,10 @@ const TRANSLATIONS = {
         "sleep_start": "Filloni",
         "sleep_end": "fund",
         "min_placeholder": "min",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "hy": {
         "error_overlap": "Սխալ․ իրադարձությունը համընկնում է գոյություն ունեցողի հետ։",
@@ -3521,7 +3677,10 @@ const TRANSLATIONS = {
         "sleep_start": "Սկսել",
         "sleep_end": "Վերջ",
         "min_placeholder": "ր",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "az": {
         "error_overlap": "Xəta: Tədbir mövcud hadisə ilə üst-üstə düşür.",
@@ -3587,7 +3746,10 @@ const TRANSLATIONS = {
         "sleep_start": "Başlayın",
         "sleep_end": "Son",
         "min_placeholder": "min",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "be": {
         "error_overlap": "Памылка: падзея накладваецца на існуючую.",
@@ -3653,7 +3815,10 @@ const TRANSLATIONS = {
         "sleep_start": "Пачаць",
         "sleep_end": "Канец",
         "min_placeholder": "мін",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "bg": {
         "error_overlap": "Грешка: Събитието се припокрива със съществуващо.",
@@ -3719,7 +3884,10 @@ const TRANSLATIONS = {
         "sleep_start": "Започнете",
         "sleep_end": "Край",
         "min_placeholder": "мин",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "ca": {
         "error_overlap": "Error: l'esdeveniment se solapa amb un d'existent.",
@@ -3785,7 +3953,10 @@ const TRANSLATIONS = {
         "sleep_start": "Comença",
         "sleep_end": "Final",
         "min_placeholder": "Min",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "cs": {
         "error_overlap": "Chyba: Událost se překrývá s již existující.",
@@ -3851,7 +4022,10 @@ const TRANSLATIONS = {
         "sleep_start": "Start",
         "sleep_end": "Konec",
         "min_placeholder": "min",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "si": {
         "error_overlap": "දෝෂය: සිදුවීම පවතින එකක් සමඟ අතිච්ඡාදනය වේ.",
@@ -3917,7 +4091,10 @@ const TRANSLATIONS = {
         "sleep_start": "ආරම්භ කරන්න",
         "sleep_end": "අවසානය",
         "min_placeholder": "මිනි",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "hr": {
         "error_overlap": "Pogreška: događaj se preklapa s postojećim.",
@@ -3983,7 +4160,10 @@ const TRANSLATIONS = {
         "sleep_start": "Start",
         "sleep_end": "Kraj",
         "min_placeholder": "min",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "da": {
         "error_overlap": "Fejl: Hændelsen overlapper med en eksisterende.",
@@ -4049,7 +4229,10 @@ const TRANSLATIONS = {
         "sleep_start": "Starte",
         "sleep_end": "Ende",
         "min_placeholder": "min",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "sk": {
         "error_overlap": "Chyba: Udalosť sa prekrýva s existujúcou udalosťou.",
@@ -4115,7 +4298,10 @@ const TRANSLATIONS = {
         "sleep_start": "Štart",
         "sleep_end": "Koniec",
         "min_placeholder": "min",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "sl": {
         "error_overlap": "Napaka: dogodek se prekriva z obstoječim.",
@@ -4181,7 +4367,10 @@ const TRANSLATIONS = {
         "sleep_start": "Začetek",
         "sleep_end": "Konec",
         "min_placeholder": "min",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "et": {
         "error_overlap": "Viga: sündmus kattub olemasolevaga.",
@@ -4247,7 +4436,10 @@ const TRANSLATIONS = {
         "sleep_start": "Alusta",
         "sleep_end": "Lõpp",
         "min_placeholder": "min",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "eu": {
         "error_overlap": "Errorea: gertaera lehendik dagoen batekin gainjartzen da.",
@@ -4313,7 +4505,10 @@ const TRANSLATIONS = {
         "sleep_start": "Hasi",
         "sleep_end": "Amaiera",
         "min_placeholder": "min",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "gl": {
         "error_overlap": "Erro: o evento se solapa cun existente.",
@@ -4379,7 +4574,10 @@ const TRANSLATIONS = {
         "sleep_start": "Comeza",
         "sleep_end": "Fin",
         "min_placeholder": "min",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "ka": {
         "error_overlap": "შეცდომა: მოვლენა გადაფარავს არსებულს.",
@@ -4445,7 +4643,10 @@ const TRANSLATIONS = {
         "sleep_start": "დაწყება",
         "sleep_end": "დასასრული",
         "min_placeholder": "წთ",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "el": {
         "error_overlap": "Σφάλμα: Το συμβάν επικαλύπτεται με ένα υπάρχον.",
@@ -4511,7 +4712,10 @@ const TRANSLATIONS = {
         "sleep_start": "Αρχή",
         "sleep_end": "Τέλος",
         "min_placeholder": "ελάχ",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "he": {
         "error_overlap": "שגיאה: האירוע חופף לאירוע קיים.",
@@ -4577,7 +4781,10 @@ const TRANSLATIONS = {
         "sleep_start": "הַתחָלָה",
         "sleep_end": "סוֹף",
         "min_placeholder": "דקה",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "hu": {
         "error_overlap": "Hiba: Az esemény átfedésben van egy meglévővel.",
@@ -4643,7 +4850,10 @@ const TRANSLATIONS = {
         "sleep_start": "Indul",
         "sleep_end": "Vége",
         "min_placeholder": "min",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "is": {
         "error_overlap": "Villa: Atburðurinn skarast við þann sem fyrir er.",
@@ -4709,7 +4919,10 @@ const TRANSLATIONS = {
         "sleep_start": "Byrjaðu",
         "sleep_end": "Enda",
         "min_placeholder": "mín",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "kk": {
         "error_overlap": "Қате: оқиға бұрыннан бар оқиғамен қабаттасады.",
@@ -4775,7 +4988,10 @@ const TRANSLATIONS = {
         "sleep_start": "Бастау",
         "sleep_end": "Соңы",
         "min_placeholder": "мин",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "ky": {
         "error_overlap": "Ката: Окуя учурдагы менен дал келет.",
@@ -4841,7 +5057,10 @@ const TRANSLATIONS = {
         "sleep_start": "Баштоо",
         "sleep_end": "Аягы",
         "min_placeholder": "мин",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "lo": {
         "error_overlap": "ຜິດພາດ: ເຫດການທັບຊ້ອນກັບອັນທີ່ມີຢູ່ແລ້ວ.",
@@ -4907,7 +5126,10 @@ const TRANSLATIONS = {
         "sleep_start": "ເລີ່ມ",
         "sleep_end": "ຈົບ",
         "min_placeholder": "ນາທີ",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "lv": {
         "error_overlap": "Kļūda: notikums pārklājas ar esošu.",
@@ -4973,7 +5195,10 @@ const TRANSLATIONS = {
         "sleep_start": "Sākt",
         "sleep_end": "Beigas",
         "min_placeholder": "min",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "lt": {
         "error_overlap": "Klaida: įvykis sutampa su esamu.",
@@ -5039,7 +5264,10 @@ const TRANSLATIONS = {
         "sleep_start": "Pradėti",
         "sleep_end": "Pabaiga",
         "min_placeholder": "min",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "mk": {
         "error_overlap": "Грешка: настанот се преклопува со постоечки.",
@@ -5105,7 +5333,10 @@ const TRANSLATIONS = {
         "sleep_start": "Започнете",
         "sleep_end": "Крај",
         "min_placeholder": "мин",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "mn": {
         "error_overlap": "Алдаа: Үйл явдал одоо байгаа үйл явдалтай давхцаж байна.",
@@ -5171,7 +5402,10 @@ const TRANSLATIONS = {
         "sleep_start": "Эхлэх",
         "sleep_end": "Төгсгөл",
         "min_placeholder": "мин",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "no": {
         "error_overlap": "Feil: Hendelsen overlapper med en eksisterende.",
@@ -5237,7 +5471,10 @@ const TRANSLATIONS = {
         "sleep_start": "Start",
         "sleep_end": "Slutt",
         "min_placeholder": "min",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "rm": {
         "error_overlap": "Error: The event overlaps with an existing one.",
@@ -5303,7 +5540,10 @@ const TRANSLATIONS = {
         "sleep_start": "Start",
         "sleep_end": "End",
         "min_placeholder": "min",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "sr": {
         "error_overlap": "Грешка: Догађај се преклапа са постојећим.",
@@ -5369,7 +5609,10 @@ const TRANSLATIONS = {
         "sleep_start": "Почни",
         "sleep_end": "Крај",
         "min_placeholder": "мин",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     },
     "zu": {
         "error_overlap": "Iphutha: Umcimbi ugqagqene nesivele sikhona.",
@@ -5435,6 +5678,9 @@ const TRANSLATIONS = {
         "sleep_start": "Qala",
         "sleep_end": "Qeda",
         "min_placeholder": "imiz",
-        "settings_enable_notes": "Habilitar notas en botones"
+        "settings_enable_notes": "Habilitar notas en botones",
+        "sleep_missing_title": "No Sleep Start",
+        "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
+        "sleep_end_only": "End only"
     }
 };

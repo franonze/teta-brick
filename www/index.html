@@ -39,16 +39,18 @@
                     <div class="grid-container">
                         <!-- Left Column -->
                         <div class="column left-col">
-                            <h2 class="col-title" style="font-size: 1.3rem;" data-i18n="breast_left">Izquierdo</h2>
-                            <div style="position: relative; display: inline-block;">
+                            <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+                                <h2 class="col-title" style="font-size: 1.3rem; margin: 0;" data-i18n="breast_left">Izquierdo</h2>
+                                <button class="inline-note-btn" id="btn-note-left" aria-label="Añadir nota">
+                                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div style="display: inline-block;">
                                 <button class="play-btn" id="btn-left" aria-label="Iniciar pecho izquierdo">
                                     <svg viewBox="0 0 24 24" class="icon-play">
                                         <path d="M8 5v14l11-7z" />
-                                    </svg>
-                                </button>
-                                <button class="inline-note-btn note-corner" id="btn-note-left" aria-label="Añadir nota">
-                                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
                                     </svg>
                                 </button>
                             </div>
@@ -91,16 +93,18 @@
 
                         <!-- Right Column -->
                         <div class="column right-col">
-                            <h2 class="col-title" style="font-size: 1.3rem;" data-i18n="breast_right">Derecho</h2>
-                            <div style="position: relative; display: inline-block;">
+                            <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+                                <h2 class="col-title" style="font-size: 1.3rem; margin: 0;" data-i18n="breast_right">Derecho</h2>
+                                <button class="inline-note-btn" id="btn-note-right" aria-label="Añadir nota">
+                                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div style="display: inline-block;">
                                 <button class="play-btn" id="btn-right" aria-label="Iniciar pecho derecho">
                                     <svg viewBox="0 0 24 24" class="icon-play">
                                         <path d="M8 5v14l11-7z" />
-                                    </svg>
-                                </button>
-                                <button class="inline-note-btn note-corner" id="btn-note-right" aria-label="Añadir nota">
-                                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
                                     </svg>
                                 </button>
                             </div>
@@ -136,19 +140,21 @@
             <!-- MAIN VIEW: BIBERON -->
             <main id="view-biberon" class="view">
                 <section class="glass-card nursing-section">
-                    <h2 class="view-title" style="margin-bottom: 15px;" data-i18n="tab_biberon">Biberón</h2>
+                    <div style="display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 15px;">
+                        <h2 class="view-title" style="margin: 0;" data-i18n="tab_biberon">Biberón</h2>
+                        <button class="inline-note-btn" id="btn-note-bottle" aria-label="Añadir nota">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                            </svg>
+                        </button>
+                    </div>
                     <div class="biberon-row"
                         style="display: flex; justify-content: center; align-items: center; gap: 40px; padding: 15px 5px;">
-                        <div style="position: relative; display: inline-block;">
+                        <div style="display: inline-block;">
                             <button class="play-btn" id="btn-bottle" aria-label="Iniciar biberón"
                                 style="width: 60px; height: 60px; flex-shrink: 0;">
                                 <svg viewBox="0 0 24 24" class="icon-play">
                                     <path d="M8 5v14l11-7z" />
-                                </svg>
-                            </button>
-                            <button class="inline-note-btn note-corner" id="btn-note-bottle" aria-label="Añadir nota">
-                                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
                                 </svg>
                             </button>
                         </div>
@@ -609,6 +615,19 @@
             <div class="popup-actions">
                 <button id="duration-cancel" class="btn-secondary" style="flex: 1;" data-i18n="cancel">Cancelar</button>
                 <button id="duration-save" class="main-action-btn"
+                    style="padding: 12px; width: auto; flex: 1; border-radius: 12px; font-size: 1rem;" data-i18n="save">Guardar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sleep Missing Start Popup -->
+    <div id="sleep-missing-modal" class="time-popup-overlay">
+        <div class="time-popup-box glass-card">
+            <h3 style="text-align: center; margin-bottom: 10px;" data-i18n="sleep_missing_title">Sin inicio de sueño</h3>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 10px; font-size: 0.9rem;" data-i18n="sleep_missing_desc">No hay un evento de inicio de sueño reciente al que unir esta hora de fin. ¿Crear un evento nuevo?</p>
+            <div class="popup-actions" style="flex-direction: row;">
+                <button id="sleep-missing-cancel" class="btn-secondary" style="flex: 1;" data-i18n="cancel">Cancelar</button>
+                <button id="sleep-missing-save" class="main-action-btn"
                     style="padding: 12px; width: auto; flex: 1; border-radius: 12px; font-size: 1rem;" data-i18n="save">Guardar</button>
             </div>
         </div>

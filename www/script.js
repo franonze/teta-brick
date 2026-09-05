@@ -994,7 +994,7 @@ btnMergeConfirm.addEventListener('click', () => {
 
 
 function checkOverlap(history, ignoreDateStr, ignoreKey, eventType, startStr, durationSeconds, compareDate) {
-    if (!startStr || eventType === 'diaper') return false;
+    if (!startStr) return false;
     const s1 = new Date(compareDate || new Date());
     const [h1, m1] = startStr.split(':').map(Number);
     s1.setHours(h1, m1, 0, 0);
@@ -1003,9 +1003,31 @@ function checkOverlap(history, ignoreDateStr, ignoreKey, eventType, startStr, du
 
     for (const session of history) {
         const checkType = (type, data) => {
+            // ONLY check against conflicting types
+            if (eventType === 'left' || eventType === 'right') {
+                if (type !== 'left' && type !== 'right') return false;
+            } else if (eventType === 'bottle') {
+                if (type !== 'bottle') return false;
+            } else if (eventType === 'sleep') {
+                if (type !== 'sleep') return false;
+            } else if (eventType === 'diaper') {
+                if (type !== 'diaper') return false;
+            }
+
             if (ignoreDateStr && session.date === ignoreDateStr && type === ignoreKey) return false;
             
-            if (!data || !data.startTime || type === 'diaper') return false;
+            if (type === 'diaper') {
+                if (!data) return false;
+                let tStr = typeof data === 'string' ? data : (data.time || data.poop || data.pee);
+                if (!tStr) return false;
+                const s2 = new Date(session.date);
+                const [h2, m2] = tStr.split(':').map(Number);
+                s2.setHours(h2, m2, 0, 0);
+                if (s1.getTime() === s2.getTime()) return true;
+                return false;
+            }
+
+            if (!data || !data.startTime) return false;
             const s2 = new Date(session.date);
             const [h2, m2] = data.startTime.split(':').map(Number);
             s2.setHours(h2, m2, 0, 0);
@@ -1025,10 +1047,10 @@ function checkOverlap(history, ignoreDateStr, ignoreKey, eventType, startStr, du
             return false;
         };
 
-        if (checkType('left', session.left)) return true;
-        if (checkType('right', session.right)) return true;
-        if (checkType('bottle', session.bottle)) return true;
-        if (checkType('sleep', session.sleep)) return true;
+        if ((eventType === 'left' || eventType === 'right') && (checkType('left', session.left) || checkType('right', session.right))) return true;
+        if (eventType === 'bottle' && checkType('bottle', session.bottle)) return true;
+        if (eventType === 'sleep' && checkType('sleep', session.sleep)) return true;
+        if (eventType === 'diaper' && checkType('diaper', session.diapers)) return true;
     }
     return false;
 }
@@ -1248,6 +1270,9 @@ btnRegistrar.addEventListener('click', () => {
     if (sessionData.bottle && sessionData.bottle.startTime) {
         if (checkOverlap(history, null, null, 'bottle', sessionData.bottle.startTime, 0, baseDate)) isOverlap = true;
     }
+    if (sessionData.diapers && sessionData.diapers.time) {
+        if (checkOverlap(history, null, null, 'diaper', sessionData.diapers.time, 0, baseDate)) isOverlap = true;
+    }
     if (sessionData.sleep && sessionData.sleep.startTime) {
         let sDur = 0;
         if (sessionData.sleep.endTime && sessionData.sleep.endTime !== '--:--') {
@@ -1289,31 +1314,7 @@ btnRegistrar.addEventListener('click', () => {
         if (sessionData.bottle.startTime && sessionData.bottle.startTime < currEarliestStr) currEarliestStr = sessionData.bottle.startTime;
         if (sessionData.sleep && sessionData.sleep.startTime && sessionData.sleep.startTime < currEarliestStr) currEarliestStr = sessionData.sleep.startTime;
         
-        // Check Overlap first!
-        let hasOverlap = false;
-        if (sessionData.left.startTime) hasOverlap = hasOverlap || checkOverlap(history, null, null, 'left', sessionData.left.startTime, sessionData.left.durationSeconds, sessionData.date);
-        if (sessionData.right.startTime) hasOverlap = hasOverlap || checkOverlap(history, null, null, 'right', sessionData.right.startTime, sessionData.right.durationSeconds, sessionData.date);
-        if (sessionData.bottle.startTime) hasOverlap = hasOverlap || checkOverlap(history, null, null, 'bottle', sessionData.bottle.startTime, 0, sessionData.date);
-        
-        if (sessionData.sleep && sessionData.sleep.startTime) {
-            let sDur = 0;
-            if (sessionData.sleep.endTime && sessionData.sleep.endTime !== '--:--') {
-                const [sh, sm] = sessionData.sleep.startTime.split(':').map(Number);
-                const [eh, em] = sessionData.sleep.endTime.split(':').map(Number);
-                let startMins = sh * 60 + sm;
-                let endMins = eh * 60 + em;
-                if (endMins < startMins) endMins += 24 * 60; // crossed midnight
-                sDur = (endMins - startMins) * 60; // in seconds
-            }
-            let durMins = Math.floor(sDur / 60);
-            sessionData.sleep.durationStr = sDur > 0 ? `${Math.floor(durMins/60).toString().padStart(2,'0')}:${(durMins%60).toString().padStart(2,'0')}` : '--:--';
-            hasOverlap = hasOverlap || checkOverlap(history, null, null, 'sleep', sessionData.sleep.startTime, sDur, sessionData.date);
-        }
-        
-        if (hasOverlap) {
-            alert(getTranslation('error_overlap'));
-            return;
-        }
+
 
         if (lastEarliestStr !== '23:59' && currEarliestStr !== '23:59') {
             const lastDate = new Date(lastRecord.date);
