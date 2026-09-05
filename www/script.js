@@ -2570,6 +2570,7 @@ function loadSettingsDirect() {
         trackDurationQuantity: CONFIG.app.trackDurationQuantity !== undefined ? CONFIG.app.trackDurationQuantity : true,
         lang: CONFIG.app.defaultLang,
         theme: CONFIG.app.defaultTheme,
+        fontSize: CONFIG.app.defaultFontSize,
         defaultTab: CONFIG.app.defaultTab,
         cloudColor: CONFIG.app.defaultCloudColor,
         compactHistory: CONFIG.app.defaultCompactHistory !== undefined ? CONFIG.app.defaultCompactHistory : true,
@@ -2619,6 +2620,11 @@ function loadSettings() {
     if (themeEl) themeEl.checked = (settings.theme === 'light');
     applyTheme(settings.theme);
 
+    const fontSizeEl = document.getElementById('settings-font-size');
+    if (fontSizeEl) fontSizeEl.value = settings.fontSize || 'medium';
+    applyFontSize(settings.fontSize || 'medium');
+
+
     const savedColor = settings.cloudColor || CONFIG.app.defaultCloudColor;
     document.querySelectorAll('.color-circle').forEach(btn => {
         if (btn.getAttribute('data-color').toUpperCase() === savedColor.toUpperCase()) {
@@ -2657,6 +2663,14 @@ function loadSettings() {
     if (targetBtn && !targetBtn.classList.contains('active')) {
         targetBtn.click();
     }
+}
+
+
+function applyFontSize(size) {
+    document.documentElement.classList.remove('font-small', 'font-medium', 'font-large');
+    if (size === 'small') document.documentElement.classList.add('font-small');
+    else if (size === 'large') document.documentElement.classList.add('font-large');
+    else document.documentElement.classList.add('font-medium');
 }
 
 function applyTheme(theme) {
@@ -2779,6 +2793,12 @@ document.getElementById('settings-inline-notes').addEventListener('change', (e) 
     }
 });
 
+
+document.getElementById('settings-font-size').addEventListener('change', (e) => {
+    applyFontSize(e.target.value);
+    updateSettingsStorage();
+});
+
 document.getElementById('settings-theme').addEventListener('change', (e) => {
     const theme = e.target.checked ? 'light' : 'dark';
     applyTheme(theme);
@@ -2879,6 +2899,7 @@ function updateSettingsStorage(overrideColor = null) {
         enableInlineNotes: document.getElementById('settings-inline-notes') ? document.getElementById('settings-inline-notes').checked : true,
         lang: document.getElementById('settings-lang').value,
         theme: document.getElementById('settings-theme').checked ? 'light' : 'dark',
+        fontSize: document.getElementById('settings-font-size') ? document.getElementById('settings-font-size').value : 'medium',
         defaultTab: document.getElementById('settings-default-tab').value,
         cloudColor: cloudColor,
         compactHistory: document.getElementById('settings-compact-history').checked,

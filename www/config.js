@@ -96,7 +96,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "Sin inicio de sueño",
         "sleep_missing_desc": "No hay un evento de inicio de sueño reciente al que unir esta hora de fin. ¿Crear un evento nuevo?",
         "sleep_end_only": "Solo fin",
-        "daily_note_placeholder": "Añadir nota para el día..."
+        "daily_note_placeholder": "Añadir nota para el día...",
+        "settings_font_size": "Tamaño de texto",
+        "font_size_small": "Pequeño",
+        "font_size_medium": "Medio",
+        "font_size_large": "Grande"
     },
     "en": {
         "error_overlap": "Error: The event overlaps with an existing one.",
@@ -169,7 +173,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "No Sleep Start",
         "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
         "sleep_end_only": "End only",
-        "daily_note_placeholder": "Add note for the day..."
+        "daily_note_placeholder": "Add note for the day...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "zh": {
         "error_overlap": "错误：该事件与现有事件重叠。",

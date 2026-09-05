@@ -1,3 +1,7 @@
+
+html.font-small { font-size: 14px; }
+html.font-medium { font-size: 16px; }
+html.font-large { font-size: 18px; }
 :root {
     --bg-color-dark: #121214;
     --bg-color: var(--bg-color-dark);
@@ -742,7 +746,7 @@ body.light-theme .time-popup-box.glass-card {
     border-bottom: none;
 }
 .settings-label {
-    font-size: 1.1rem;
+    font-size:  0.95rem;
     font-weight: 500;
 }
 .settings-select {
