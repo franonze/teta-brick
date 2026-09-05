@@ -702,8 +702,8 @@ btnRight.addEventListener('click', () => {
 });
 
 // Reset logic
-const btnResetLeft = document.getElementById('btn-reset-left');
-btnResetLeft.addEventListener('click', () => {
+window.resetLeft = function(e) {
+    if (e) e.stopPropagation();
     pauseLeftTimer();
     leftSeconds = 0;
     timeLeft.textContent = '00:00';
@@ -717,10 +717,10 @@ btnResetLeft.addEventListener('click', () => {
     }
 
     saveCurrentState();
-});
+};
 
-const btnResetRight = document.getElementById('btn-reset-right');
-btnResetRight.addEventListener('click', () => {
+window.resetRight = function(e) {
+    if (e) e.stopPropagation();
     pauseRightTimer();
     rightSeconds = 0;
     timeRight.textContent = '00:00';
@@ -734,7 +734,7 @@ btnResetRight.addEventListener('click', () => {
     }
 
     saveCurrentState();
-});
+};
 
 // Swap logic
 const btnSwap = document.getElementById('btn-swap');
@@ -3145,3 +3145,28 @@ document.addEventListener('DOMContentLoaded', () => {
     if (noteDiaper) noteDiaper.addEventListener('click', () => window.openNoteModal('diaper'));
     if (noteSleep) noteSleep.addEventListener('click', () => window.openNoteModal('sleep'));
 });
+
+window.resetBottleHour = function(e) {
+    if (e) e.stopPropagation();
+    
+    document.getElementById('hour-bottle').textContent = '--:--';
+    saveCurrentState();
+};
+window.resetDiaperTime = function(e) {
+    if (e) e.stopPropagation();
+    
+    document.getElementById('time-diaper').textContent = '--:--';
+    saveCurrentState();
+};
+window.resetSleepStart = function(e) {
+    if (e) e.stopPropagation();
+    
+    document.getElementById('time-sleep-start').textContent = '--:--';
+    saveCurrentState();
+};
+window.resetSleepEnd = function(e) {
+    if (e) e.stopPropagation();
+    
+    document.getElementById('time-sleep-end').textContent = '--:--';
+    saveCurrentState();
+};

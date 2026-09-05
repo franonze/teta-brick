@@ -338,6 +338,7 @@ h2 {
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
+    align-items: center;
 }
 
 .stat-row {
@@ -942,3 +943,35 @@ input:checked + .slider:before {
 
 .notes-disabled .inline-note-btn { display: none !important; }
 
+
+.time-box {
+    position: relative;
+    padding: 6px 12px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: max-content;
+    
+}
+.inline-reset-time {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--text-secondary);
+    padding: 0;
+    z-index: 10;
+}
+.inline-reset-time:hover {
+    color: var(--text-primary);
+    background: var(--inner-bg-hover);
+}
