@@ -1676,6 +1676,8 @@ function renderHistory() {
 
     sortedDays.forEach((dayData, dayIndex) => {
         const dateDisplay = formatDate(dayData.date);
+        const d = new Date(dayData.date);
+        const dayKey = d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate();
 
         // Sort sessions inside the day by their actual event times
         dayData.sessions.sort((a, b) => getSessionSortTime(b).localeCompare(getSessionSortTime(a)));
@@ -1686,7 +1688,14 @@ function renderHistory() {
         let dayHtml = `
             <div class="daily-group glass-card" style="padding: 15px;">
                 <div class="daily-header" style="display: flex; justify-content: space-between; align-items: center; cursor: pointer;" onclick="toggleDay('day-${dayIndex}')">
-                    <div style="font-size: 1.1rem; font-weight: 600;">${dateDisplay}</div>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <div style="font-size: 1.1rem; font-weight: 600;">${dateDisplay}</div>
+                        <button class="daily-note-btn" style="position: static; padding: 4px; margin-left: 5px; background: none; border: none; color: var(--text-secondary); cursor: pointer;" onclick="openDailyNoteModal('${dayKey}', event)" aria-label="Añadir nota diaria">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                            </svg>
+                        </button>
+                    </div>
                     <div style="display: flex; align-items: center; gap: 15px;">
                         <div style="display: flex; align-items: center; gap: 5px; color: var(--text-secondary); font-weight: 600;">
                             <span style="font-size: 1.2rem;">🍼</span> ${dayData.totalFeedings}
@@ -1826,7 +1835,22 @@ function renderHistory() {
             dayHtml += sessionHtml;
         });
 
-        dayHtml += `</div></div>`;
+        
+        const dailyNotes = JSON.parse(localStorage.getItem('babyLogDailyNotes')) || {};
+        const dailyNoteText = dailyNotes[dayKey] || '';
+        let dailyNoteHTML = '';
+        if (dailyNoteText) {
+            dailyNoteHTML = `
+                <div class="history-item glass-card" style="margin-top: 10px; padding: 10px; background: rgba(255,255,255,0.4); border-left: 3px solid var(--accent-primary);">
+                    <div style="font-size: 0.95rem; font-style: italic; color: var(--text-primary); white-space: pre-wrap;">${dailyNoteText}</div>
+                </div>
+            `;
+        }
+        dayHtml += dailyNoteHTML + `
+                </div>
+            </div>
+        `;
+
         historyContainer.insertAdjacentHTML('beforeend', dayHtml);
     });
 }
@@ -2577,13 +2601,19 @@ function loadSettings() {
         document.body.classList.remove('no-duration-tracking');
     }
     
-    if (CONFIG.app.enableInlineNotes === false) {
+    const inlineNotesEl = document.getElementById('settings-inline-notes');
+    if (inlineNotesEl) inlineNotesEl.checked = settings.enableInlineNotes !== false;
+    
+    if (settings.enableInlineNotes === false) {
         document.body.classList.add('notes-disabled');
     } else {
         document.body.classList.remove('notes-disabled');
     }
     applyLanguage(currentLang);
     sortLanguageOptions();
+
+    
+
 
     const themeEl = document.getElementById('settings-theme');
     if (themeEl) themeEl.checked = (settings.theme === 'light');
@@ -2739,6 +2769,16 @@ document.getElementById('settings-lang').addEventListener('change', (e) => {
     updateNextFeedingTime();
 });
 
+
+document.getElementById('settings-inline-notes').addEventListener('change', (e) => {
+    updateSettingsStorage();
+    if (e.target.checked) {
+        document.body.classList.remove('notes-disabled');
+    } else {
+        document.body.classList.add('notes-disabled');
+    }
+});
+
 document.getElementById('settings-theme').addEventListener('change', (e) => {
     const theme = e.target.checked ? 'light' : 'dark';
     applyTheme(theme);
@@ -2836,6 +2876,7 @@ function updateSettingsStorage(overrideColor = null) {
     const trackDurationEl = document.getElementById('settings-track-duration');
     const newSettings = {
         trackDurationQuantity: trackDurationEl ? trackDurationEl.checked : true,
+        enableInlineNotes: document.getElementById('settings-inline-notes') ? document.getElementById('settings-inline-notes').checked : true,
         lang: document.getElementById('settings-lang').value,
         theme: document.getElementById('settings-theme').checked ? 'light' : 'dark',
         defaultTab: document.getElementById('settings-default-tab').value,
@@ -3169,4 +3210,28 @@ window.resetSleepEnd = function(e) {
     
     document.getElementById('time-sleep-end').textContent = '--:--';
     saveCurrentState();
+};
+
+
+window.openDailyNoteModal = function(dayKey, event) {
+    if (event) event.stopPropagation();
+    const dailyNotes = JSON.parse(localStorage.getItem('babyLogDailyNotes')) || {};
+    document.getElementById('modal-daily-note-text').value = dailyNotes[dayKey] || '';
+    document.getElementById('modal-daily-note-day').value = dayKey;
+    document.getElementById('modal-daily-note').classList.add('active');
+    document.getElementById('modal-daily-note-text').focus();
+};
+
+window.saveDailyNote = function() {
+    const dayKey = document.getElementById('modal-daily-note-day').value;
+    const text = document.getElementById('modal-daily-note-text').value.trim();
+    const dailyNotes = JSON.parse(localStorage.getItem('babyLogDailyNotes')) || {};
+    if (text === '') {
+        delete dailyNotes[dayKey];
+    } else {
+        dailyNotes[dayKey] = text;
+    }
+    localStorage.setItem('babyLogDailyNotes', JSON.stringify(dailyNotes));
+    document.getElementById('modal-daily-note').classList.remove('active');
+    renderHistory();
 };

@@ -467,7 +467,7 @@
                     </label>
                 </div>
 
-                <div class="settings-row">
+                                <div class="settings-row">
                     <span class="settings-label" data-i18n="settings_default_tab">Pestaña inicial</span>
                     <select id="settings-default-tab" class="settings-select">
                         <option value="view-pecho" data-i18n="tab_pecho">Pecho</option>
@@ -488,6 +488,14 @@
                     <span class="settings-label" data-i18n="settings_show_sleep">Mostrar sueño</span>
                     <label class="toggle-switch">
                         <input type="checkbox" id="settings-show-sleep" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="settings-row">
+                    <span class="settings-label" data-i18n="settings_inline_notes">Editar notas en panel principal</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="settings-inline-notes" checked>
                         <span class="slider"></span>
                     </label>
                 </div>
@@ -775,6 +783,19 @@
     <script src="capacitor-local-notifications.js"></script>
     <script src="config.js"></script>
     <script src="script.js"></script>
+
+    <!-- Daily Note Modal -->
+    <div id="modal-daily-note" class="time-popup-overlay">
+        <div class="time-popup-box glass-card">
+            <h3 style="text-align: center; margin-bottom: 10px;" data-i18n="daily_note_modal_title">Nota del día</h3>
+            <textarea id="modal-daily-note-text" rows="3" data-i18n-placeholder="daily_note_placeholder" placeholder="Añadir nota para el día..." style="width: 100%; border-radius: 8px; padding: 10px; background: rgba(0,0,0,0.1); color: var(--text-primary); border: 1px solid var(--card-border); outline: none; margin-bottom: 15px; font-family: inherit; font-size: 1rem; resize: vertical; min-height: 80px; box-sizing: border-box;"></textarea>
+            <input type="hidden" id="modal-daily-note-day">
+            <div class="popup-actions">
+                <button class="btn-secondary" onclick="document.getElementById('modal-daily-note').classList.remove('active')" data-i18n="cancel" style="flex: 1;">Cancelar</button>
+                <button class="main-action-btn" onclick="saveDailyNote()" data-i18n="save" style="padding: 12px; width: auto; flex: 1; border-radius: 12px; font-size: 1rem;">Guardar</button>
+            </div>
+        </div>
+    </div>
 
     <!-- Note Add/Edit Modal -->
     <div id="modal-note" class="time-popup-overlay">
