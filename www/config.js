@@ -6,6 +6,7 @@ const CONFIG = {
         minSecondsToKeepTimer: 10,
         defaultNextFeedingHours: 4,
         defaultTheme: 'light',
+        defaultFontSize: 'medium',
         defaultTab: 'view-pecho',
         defaultLang: 'es',
         defaultCloudColor: '#D6EAF8',
@@ -250,7 +251,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "无睡眠开始时间",
         "sleep_missing_desc": "找不到睡眠开始记录。创建新记录？",
         "sleep_end_only": "仅结束",
-        "daily_note_placeholder": "Add note for the day..."
+        "daily_note_placeholder": "Add note for the day...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "hi": {
         "error_overlap": "त्रुटि: ईवेंट मौजूदा ईवेंट के साथ ओवरलैप होता है।",
@@ -323,7 +328,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "नींद नहीं आने लगी",
         "sleep_missing_desc": "इस समाप्ति समय को जोड़ने के लिए हाल ही में नींद शुरू होने की कोई घटना नहीं है। एक नया ईवेंट बनाएं?",
         "sleep_end_only": "बस ख़त्म",
-        "daily_note_placeholder": "दिन के लिए नोट जोड़ें..."
+        "daily_note_placeholder": "दिन के लिए नोट जोड़ें...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "ar": {
         "error_overlap": "خطأ: يتداخل الحدث مع حدث موجود.",
@@ -396,7 +405,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "لا بداية النوم",
         "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
         "sleep_end_only": "نهاية فقط",
-        "daily_note_placeholder": "إضافة ملاحظة لليوم..."
+        "daily_note_placeholder": "إضافة ملاحظة لليوم...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "fr": {
         "error_overlap": "Erreur : l'événement chevauche un événement existant.",
@@ -469,7 +482,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "Pas de début de sommeil",
         "sleep_missing_desc": "Aucun début de sommeil trouvé pour fusionner. Créer un nouvel événement ?",
         "sleep_end_only": "Fin uniquement",
-        "daily_note_placeholder": "Add note for the day..."
+        "daily_note_placeholder": "Add note for the day...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "ru": {
         "error_overlap": "Ошибка: событие пересекается с существующим.",
@@ -542,7 +559,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "Нет начала сна",
         "sleep_missing_desc": "Не найдено событие начала сна. Создать новое событие?",
         "sleep_end_only": "Только конец",
-        "daily_note_placeholder": "Добавить заметку на день..."
+        "daily_note_placeholder": "Добавить заметку на день...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "pt": {
         "error_overlap": "Erro: O evento se sobrepõe a um evento existente.",
@@ -615,7 +636,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "Sem início de sono",
         "sleep_missing_desc": "Nenhum evento de início de sono encontrado. Criar novo evento?",
         "sleep_end_only": "Apenas fim",
-        "daily_note_placeholder": "Add note for the day..."
+        "daily_note_placeholder": "Add note for the day...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "de": {
         "error_overlap": "Fehler: Das Ereignis überschneidet sich mit einem vorhandenen.",
@@ -688,7 +713,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "Kein Schlafbeginn",
         "sleep_missing_desc": "Kein aktuelles Schlafbeginn-Ereignis gefunden. Neues Ereignis erstellen?",
         "sleep_end_only": "Nur Ende",
-        "daily_note_placeholder": "Add note for the day..."
+        "daily_note_placeholder": "Add note for the day...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "ja": {
         "error_overlap": "エラー: イベントは既存のイベントと重複しています。",
@@ -761,7 +790,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "睡眠開始なし",
         "sleep_missing_desc": "睡眠開始記録がありません。新しい記録を作成しますか？",
         "sleep_end_only": "終了のみ",
-        "daily_note_placeholder": "Add note for the day..."
+        "daily_note_placeholder": "Add note for the day...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "it": {
         "error_overlap": "Errore: l'evento si sovrappone a uno esistente.",
@@ -834,7 +867,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "Nessun inizio sonno",
         "sleep_missing_desc": "Nessun evento di inizio sonno trovato. Creare un nuovo evento?",
         "sleep_end_only": "Solo fine",
-        "daily_note_placeholder": "Add note for the day..."
+        "daily_note_placeholder": "Add note for the day...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "bn": {
         "error_overlap": "ত্রুটি: ইভেন্টটি বিদ্যমান একটির সাথে ওভারল্যাপ করে৷",
@@ -907,7 +944,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "No Sleep Start",
         "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
         "sleep_end_only": "End only",
-        "daily_note_placeholder": "Add note for the day..."
+        "daily_note_placeholder": "Add note for the day...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "ur": {
         "error_overlap": "خرابی: ایونٹ ایک موجودہ کے ساتھ اوورلیپ ہو جاتا ہے۔",
@@ -980,7 +1021,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "No Sleep Start",
         "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
         "sleep_end_only": "End only",
-        "daily_note_placeholder": "Add note for the day..."
+        "daily_note_placeholder": "Add note for the day...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "id": {
         "error_overlap": "Kesalahan: Acara tersebut tumpang tindih dengan acara yang sudah ada.",
@@ -1053,7 +1098,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "No Sleep Start",
         "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
         "sleep_end_only": "End only",
-        "daily_note_placeholder": "Add note for the day..."
+        "daily_note_placeholder": "Add note for the day...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "sw": {
         "error_overlap": "Hitilafu: Tukio linapishana na lililopo.",
@@ -1126,7 +1175,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "No Sleep Start",
         "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
         "sleep_end_only": "End only",
-        "daily_note_placeholder": "Add note for the day..."
+        "daily_note_placeholder": "Add note for the day...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "mr": {
         "error_overlap": "त्रुटी: इव्हेंट विद्यमान इव्हेंटसह ओव्हरलॅप होतो.",
@@ -1199,7 +1252,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "No Sleep Start",
         "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
         "sleep_end_only": "End only",
-        "daily_note_placeholder": "Add note for the day..."
+        "daily_note_placeholder": "Add note for the day...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "te": {
         "error_overlap": "లోపం: ఈవెంట్ ఇప్పటికే ఉన్న దానితో అతివ్యాప్తి చెందుతుంది.",
@@ -1272,7 +1329,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "No Sleep Start",
         "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
         "sleep_end_only": "End only",
-        "daily_note_placeholder": "Add note for the day..."
+        "daily_note_placeholder": "Add note for the day...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "tr": {
         "error_overlap": "Hata: Etkinlik mevcut bir etkinlikle çakışıyor.",
@@ -1345,7 +1406,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "No Sleep Start",
         "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
         "sleep_end_only": "End only",
-        "daily_note_placeholder": "Add note for the day..."
+        "daily_note_placeholder": "Add note for the day...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "ta": {
         "error_overlap": "பிழை: நிகழ்வு ஏற்கனவே உள்ளவற்றுடன் மேலெழுகிறது.",
@@ -1418,7 +1483,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "No Sleep Start",
         "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
         "sleep_end_only": "End only",
-        "daily_note_placeholder": "Add note for the day..."
+        "daily_note_placeholder": "Add note for the day...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "vi": {
         "error_overlap": "Lỗi: Sự kiện trùng lặp với sự kiện hiện có.",
@@ -1491,7 +1560,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "Không khởi phát giấc ngủ",
         "sleep_missing_desc": "Không có sự kiện bắt đầu giấc ngủ gần đây liên quan đến thời gian kết thúc này. Tạo sự kiện mới?",
         "sleep_end_only": "Chỉ cần kết thúc",
-        "daily_note_placeholder": "Thêm ghi chú trong ngày..."
+        "daily_note_placeholder": "Thêm ghi chú trong ngày...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "ko": {
         "error_overlap": "오류: 이벤트가 기존 이벤트와 겹칩니다.",
@@ -1564,7 +1637,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "수면 개시 없음",
         "sleep_missing_desc": "이 종료 시간을 연결할 최근 절전 시작 이벤트가 없습니다. 새 이벤트를 만드시겠습니까?",
         "sleep_end_only": "그냥 끝내세요",
-        "daily_note_placeholder": "오늘의 메모 추가..."
+        "daily_note_placeholder": "오늘의 메모 추가...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "fa": {
         "error_overlap": "خطا: رویداد با رویداد موجود همپوشانی دارد.",
@@ -1637,7 +1714,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "بدون شروع خواب",
         "sleep_missing_desc": "اخیراً رویدادی برای شروع خواب وجود ندارد که این زمان پایان را به آن گره بزند. یک رویداد جدید ایجاد کنید؟",
         "sleep_end_only": "فقط تموم کن",
-        "daily_note_placeholder": "اضافه کردن یادداشت برای روز ..."
+        "daily_note_placeholder": "اضافه کردن یادداشت برای روز ...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "ha": {
         "error_overlap": "Kuskure: Lamarin ya zo tare da wanda yake.",
@@ -1710,7 +1791,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "Babu fara bacci",
         "sleep_missing_desc": "Babu wani taron fara bacci na kwanan nan da zai ɗaure wannan ƙarshen lokacin da. Ƙirƙiri sabon taron?",
         "sleep_end_only": "Karshe kawai",
-        "daily_note_placeholder": "Ƙara bayanin kula don ranar..."
+        "daily_note_placeholder": "Ƙara bayanin kula don ranar...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "jv": {
         "error_overlap": "Error: Acara tumpang tindih karo sing wis ana.",
@@ -1783,7 +1868,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "Ora ana wiwitan turu",
         "sleep_missing_desc": "Ora ana acara wiwitan turu sing pungkasan kanggo nyambungake wektu pungkasan iki. Nggawe acara anyar?",
         "sleep_end_only": "Mung mungkasi",
-        "daily_note_placeholder": "Tambah cathetan kanggo dina ..."
+        "daily_note_placeholder": "Tambah cathetan kanggo dina ...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "pa": {
         "error_overlap": "ਤਰੁੱਟੀ: ਇਵੈਂਟ ਮੌਜੂਦਾ ਇੱਕ ਨਾਲ ਓਵਰਲੈਪ ਹੁੰਦਾ ਹੈ।",
@@ -1856,7 +1945,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "ਨੀਂਦ ਦੀ ਸ਼ੁਰੂਆਤ ਨਹੀਂ ਹੋਈ",
         "sleep_missing_desc": "ਇਸ ਸਮਾਪਤੀ ਸਮੇਂ ਨੂੰ ਜੋੜਨ ਲਈ ਕੋਈ ਹਾਲੀਆ ਸਲੀਪ ਸਟਾਰਟ ਇਵੈਂਟ ਨਹੀਂ ਹੈ। ਇੱਕ ਨਵਾਂ ਇਵੈਂਟ ਬਣਾਉਣਾ ਹੈ?",
         "sleep_end_only": "ਬਸ ਅੰਤ",
-        "daily_note_placeholder": "ਦਿਨ ਲਈ ਨੋਟ ਸ਼ਾਮਲ ਕਰੋ..."
+        "daily_note_placeholder": "ਦਿਨ ਲਈ ਨੋਟ ਸ਼ਾਮਲ ਕਰੋ...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "gu": {
         "error_overlap": "ભૂલ: ઇવેન્ટ અસ્તિત્વમાં છે તે સાથે ઓવરલેપ થાય છે.",
@@ -1929,7 +2022,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "ઊંઘની શરૂઆત નથી",
         "sleep_missing_desc": "આ અંતિમ સમયને જોડવા માટે કોઈ તાજેતરની સ્લીપ સ્ટાર્ટ ઇવેન્ટ નથી. નવી ઇવેન્ટ બનાવીએ?",
         "sleep_end_only": "જસ્ટ અંત",
-        "daily_note_placeholder": "દિવસ માટે નોંધ ઉમેરો..."
+        "daily_note_placeholder": "દિવસ માટે નોંધ ઉમેરો...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "th": {
         "error_overlap": "ข้อผิดพลาด: เหตุการณ์ซ้อนทับกับเหตุการณ์ที่มีอยู่",
@@ -2002,7 +2099,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "ไม่มีอาการนอนไม่หลับ",
         "sleep_missing_desc": "ไม่มีเหตุการณ์การเริ่มต้นโหมดสลีปล่าสุดที่จะเชื่อมโยงกับเวลาสิ้นสุดนี้ สร้างกิจกรรมใหม่ใช่ไหม?",
         "sleep_end_only": "เพียงแค่จบ",
-        "daily_note_placeholder": "เพิ่มบันทึกประจำวัน..."
+        "daily_note_placeholder": "เพิ่มบันทึกประจำวัน...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "am": {
         "error_overlap": "ስህተት፡ ክስተቱ ከነባሩ ጋር ይደራረባል።",
@@ -2075,7 +2176,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "No Sleep Start",
         "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
         "sleep_end_only": "End only",
-        "daily_note_placeholder": "Add note for the day..."
+        "daily_note_placeholder": "Add note for the day...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "kn": {
         "error_overlap": "ದೋಷ: ಈವೆಂಟ್ ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ಒಂದರೊಂದಿಗೆ ಅತಿಕ್ರಮಿಸುತ್ತದೆ.",
@@ -2148,7 +2253,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "No Sleep Start",
         "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
         "sleep_end_only": "ಕೇವಲ ಅಂತ್ಯ",
-        "daily_note_placeholder": "Add note for the day..."
+        "daily_note_placeholder": "Add note for the day...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "or": {
         "error_overlap": "ତ୍ରୁଟି: ଏକ ବିଦ୍ୟମାନ ସହିତ ଇଭେଣ୍ଟଟି ଅଲଗା ହୋଇଯାଏ |",
@@ -2221,7 +2330,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "ଶୋଇବା ଆରମ୍ଭ ନାହିଁ |",
         "sleep_missing_desc": "ଏହି ଶେଷ ସମୟକୁ ବାନ୍ଧିବା ପାଇଁ ନିକଟରେ କ sleep ଣସି ନିଦ ଆରମ୍ଭ ଇଭେଣ୍ଟ ନାହିଁ | ଏକ ନୂତନ ଇଭେଣ୍ଟ ସୃଷ୍ଟି କରିବେ?",
         "sleep_end_only": "କେବଳ ଶେଷ କର |",
-        "daily_note_placeholder": "ଦିନ ପାଇଁ ନୋଟ୍ ଯୋଡନ୍ତୁ ..."
+        "daily_note_placeholder": "ଦିନ ପାଇଁ ନୋଟ୍ ଯୋଡନ୍ତୁ ...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "bho": {
         "reset": "रिबूट करीं",
@@ -2294,7 +2407,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "नींद के शुरुआत ना होखे",
         "sleep_missing_desc": "हाल के कवनो नींद शुरू होखे वाला घटना नइखे जवना से एह अंत समय के बान्हल जा सके. कवनो नया आयोजन बनावल जाव?",
         "sleep_end_only": "बस खतम हो जाव",
-        "daily_note_placeholder": "दिन खातिर नोट जोड़ल जाव..."
+        "daily_note_placeholder": "दिन खातिर नोट जोड़ल जाव...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "su": {
         "error_overlap": "Kasalahan: Acara tumpang tindih sareng anu tos aya.",
@@ -2367,7 +2484,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "No Sleep Start",
         "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
         "sleep_end_only": "End only",
-        "daily_note_placeholder": "Add note for the day..."
+        "daily_note_placeholder": "Add note for the day...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "ro": {
         "error_overlap": "Eroare: evenimentul se suprapune cu unul existent.",
@@ -2440,7 +2561,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "No Sleep Start",
         "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
         "sleep_end_only": "Doar sfârșește",
-        "daily_note_placeholder": "Adăugați o notă pentru ziua..."
+        "daily_note_placeholder": "Adăugați o notă pentru ziua...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "nl": {
         "error_overlap": "Fout: de gebeurtenis overlapt met een bestaande gebeurtenis.",
@@ -2513,7 +2638,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "No Sleep Start",
         "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
         "sleep_end_only": "End only",
-        "daily_note_placeholder": "Add note for the day..."
+        "daily_note_placeholder": "Add note for the day...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "km": {
         "error_overlap": "កំហុស៖ ព្រឹត្តិការណ៍នេះត្រួតលើគ្នាជាមួយព្រឹត្តិការណ៍ដែលមានស្រាប់។",
@@ -2586,7 +2715,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "No Sleep Start",
         "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
         "sleep_end_only": "End only",
-        "daily_note_placeholder": "Add note for the day..."
+        "daily_note_placeholder": "Add note for the day...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "uz": {
         "error_overlap": "Xato: Hodisa mavjud voqea bilan bir-biriga mos tushdi.",
@@ -2659,7 +2792,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "No Sleep Start",
         "sleep_missing_desc": "Bu tugash vaqtini bogʻlash uchun yaqinda uyqu boshlanishi hodisasi yoʻq. Yangi tadbir yaratilsinmi?",
         "sleep_end_only": "Faqat tuga",
-        "daily_note_placeholder": "Kun uchun eslatma qo'shing..."
+        "daily_note_placeholder": "Kun uchun eslatma qo'shing...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "sd": {
         "error_overlap": "نقص: واقعو موجوده ھڪڙي سان اوورليپ ٿئي ٿو.",
@@ -2732,7 +2869,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "ننڊ نه اچڻ",
         "sleep_missing_desc": "هن آخري وقت کي ڳنڍڻ لاءِ ڪو تازو ننڊ جي شروعات وارو واقعو ناهي. ھڪڙو نئون واقعو ٺاھيو؟",
         "sleep_end_only": "بس ختم",
-        "daily_note_placeholder": "ڏينهن لاء نوٽ شامل ڪريو ..."
+        "daily_note_placeholder": "ڏينهن لاء نوٽ شامل ڪريو ...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "my": {
         "error_overlap": "အမှား- ဖြစ်ရပ်သည် ရှိပြီးသားတစ်ခုနှင့် ထပ်နေပါသည်။",
@@ -2805,7 +2946,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "အိပ်စက်ခြင်း စတင်ခြင်းမရှိပါ။",
         "sleep_missing_desc": "ဤအဆုံးသတ်အချိန်ကို ချိတ်ဆက်ရန် မကြာသေးမီက အိပ်စက်ခြင်းစတင်သည့်ဖြစ်ရပ် မရှိပါ။ အစီအစဉ်အသစ်တစ်ခု ဖန်တီးမလား။",
         "sleep_end_only": "အဆုံးသတ်လိုက်ရုံပါပဲ။",
-        "daily_note_placeholder": "နေ့အတွက်မှတ်စုထည့်ပါ..."
+        "daily_note_placeholder": "နေ့အတွက်မှတ်စုထည့်ပါ...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "yo": {
         "error_overlap": "Aṣiṣe: Iṣẹlẹ naa ṣakojọpọ pẹlu eyi ti o wa tẹlẹ.",
@@ -2878,7 +3023,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "No Sleep Start",
         "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
         "sleep_end_only": "End only",
-        "daily_note_placeholder": "Add note for the day..."
+        "daily_note_placeholder": "Add note for the day...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "ig": {
         "error_overlap": "Njehie: Ihe omume a dakọtara na nke dị.",
@@ -2951,7 +3100,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "No Sleep Start",
         "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
         "sleep_end_only": "End only",
-        "daily_note_placeholder": "Add note for the day..."
+        "daily_note_placeholder": "Add note for the day...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "ms": {
         "error_overlap": "Ralat: Acara bertindih dengan yang sedia ada.",
@@ -3024,7 +3177,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "No Sleep Start",
         "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
         "sleep_end_only": "End only",
-        "daily_note_placeholder": "Add note for the day..."
+        "daily_note_placeholder": "Add note for the day...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "ne": {
         "error_overlap": "त्रुटि: घटना अवस्थित एउटासँग ओभरल्याप हुन्छ।",
@@ -3097,7 +3254,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "No Sleep Start",
         "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
         "sleep_end_only": "End only",
-        "daily_note_placeholder": "Add note for the day..."
+        "daily_note_placeholder": "Add note for the day...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "uk": {
         "error_overlap": "Помилка: подія збігається з існуючою.",
@@ -3170,7 +3331,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "No Sleep Start",
         "sleep_missing_desc": "Немає нещодавньої події початку сну, з якою можна було б прив’язати цей час завершення. Створити нову подію?",
         "sleep_end_only": "End only",
-        "daily_note_placeholder": "Додати замітку на день..."
+        "daily_note_placeholder": "Додати замітку на день...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "ceb": {
         "reset": "Pag-reboot",
@@ -3243,7 +3408,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "Walay pagsugod sa pagkatulog",
         "sleep_missing_desc": "Wala'y bag-o nga panghitabo sa pagsugod sa pagkatulog aron ihigot kini nga oras sa pagtapos. Paghimo og bag-ong panghitabo?",
         "sleep_end_only": "Tapuson na lang",
-        "daily_note_placeholder": "Idugang ang nota para sa adlaw..."
+        "daily_note_placeholder": "Idugang ang nota para sa adlaw...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "ku": {
         "error_overlap": "Çewtî: Bûyer bi ya heyî re li hev dikeve.",
@@ -3316,7 +3485,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "Xew dest pê nake",
         "sleep_missing_desc": "Bûyerek destpêka xewê ya vê dawîyê tune ku vê dema dawî pê ve girêbide. Bûyerek nû biafirîne?",
         "sleep_end_only": "Tenê bi dawî bibe",
-        "daily_note_placeholder": "Têbînî ji bo rojê zêde bikin..."
+        "daily_note_placeholder": "Têbînî ji bo rojê zêde bikin...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "sv": {
         "error_overlap": "Fel: Händelsen överlappar en befintlig.",
@@ -3389,7 +3562,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "Ingen sömnstart",
         "sleep_missing_desc": "Det finns ingen nyligen sömnstarthändelse att koppla denna sluttid till. Skapa ett nytt event?",
         "sleep_end_only": "Sluta bara",
-        "daily_note_placeholder": "Lägg till en kommentar för dagen..."
+        "daily_note_placeholder": "Lägg till en kommentar för dagen...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "pl": {
         "error_overlap": "Błąd: wydarzenie pokrywa się z istniejącym.",
@@ -3462,7 +3639,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "No Sleep Start",
         "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
         "sleep_end_only": "End only",
-        "daily_note_placeholder": "Add note for the day..."
+        "daily_note_placeholder": "Add note for the day...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "tl": {
         "error_overlap": "Error: Ang kaganapan ay nag-o-overlap sa isang umiiral na.",
@@ -3535,7 +3716,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "No Sleep Start",
         "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
         "sleep_end_only": "End only",
-        "daily_note_placeholder": "Add note for the day..."
+        "daily_note_placeholder": "Add note for the day...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "ml": {
         "error_overlap": "പിശക്: ഇവൻ്റ് നിലവിലുള്ള ഒന്നുമായി ഓവർലാപ്പ് ചെയ്യുന്നു.",
@@ -3608,7 +3793,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "No Sleep Start",
         "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
         "sleep_end_only": "End only",
-        "daily_note_placeholder": "Add note for the day..."
+        "daily_note_placeholder": "Add note for the day...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "fi": {
         "error_overlap": "Virhe: Tapahtuma on päällekkäinen olemassa olevan tapahtuman kanssa.",
@@ -3681,7 +3870,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "Ei nukahtamista",
         "sleep_missing_desc": "Ei ole äskettäistä nukkumisen alkamistapahtumaa, johon tämä päättymisaika olisi sidottu. Luodaanko uusi tapahtuma?",
         "sleep_end_only": "Lopeta vain",
-        "daily_note_placeholder": "Lisää muistiinpano päivälle..."
+        "daily_note_placeholder": "Lisää muistiinpano päivälle...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "af": {
         "error_overlap": "Fout: Die gebeurtenis oorvleuel met 'n bestaande een.",
@@ -3754,7 +3947,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "Geen slaap begin nie",
         "sleep_missing_desc": "Daar is geen onlangse slaapbegingeleentheid om hierdie eindtyd aan te koppel nie. Skep 'n nuwe geleentheid?",
         "sleep_end_only": "Eindig net",
-        "daily_note_placeholder": "Voeg nota vir die dag by..."
+        "daily_note_placeholder": "Voeg nota vir die dag by...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "sq": {
         "error_overlap": "Gabim: Ngjarja mbivendoset me një ekzistuese.",
@@ -3827,7 +4024,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "Nuk ka fillim të gjumit",
         "sleep_missing_desc": "Nuk ka asnjë ngjarje të fundit të fillimit të gjumit për të lidhur këtë kohë përfundimi. Të krijosh një ngjarje të re?",
         "sleep_end_only": "Vetëm fund",
-        "daily_note_placeholder": "Shto shënim për ditën..."
+        "daily_note_placeholder": "Shto shënim për ditën...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "hy": {
         "error_overlap": "Սխալ․ իրադարձությունը համընկնում է գոյություն ունեցողի հետ։",
@@ -3900,7 +4101,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "Քնի սկիզբ չկա",
         "sleep_missing_desc": "Քնի մեկնարկի վերջին իրադարձություն չկա, որի հետ կապելու այս ավարտի ժամանակը: Ստեղծե՞լ նոր իրադարձություն:",
         "sleep_end_only": "Պարզապես վերջ",
-        "daily_note_placeholder": "Ավելացրեք նշում օրվա համար..."
+        "daily_note_placeholder": "Ավելացրեք նշում օրվա համար...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "az": {
         "error_overlap": "Xəta: Tədbir mövcud hadisə ilə üst-üstə düşür.",
@@ -3973,7 +4178,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "Yuxu başlamaz",
         "sleep_missing_desc": "Bu bitmə vaxtını bağlamaq üçün son yuxu başlama hadisəsi yoxdur. Yeni tədbir yaradılsın?",
         "sleep_end_only": "Sadəcə bitir",
-        "daily_note_placeholder": "Gün üçün qeyd əlavə edin..."
+        "daily_note_placeholder": "Gün üçün qeyd əlavə edin...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "be": {
         "error_overlap": "Памылка: падзея накладваецца на існуючую.",
@@ -4046,7 +4255,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "Няма наступлення сну",
         "sleep_missing_desc": "Няма нядаўняй падзеі пачатку сну, з якой можна было б прывязаць гэты час заканчэння. Стварыць новую падзею?",
         "sleep_end_only": "Проста канец",
-        "daily_note_placeholder": "Дадаць нататку на дзень..."
+        "daily_note_placeholder": "Дадаць нататку на дзень...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "bg": {
         "error_overlap": "Грешка: Събитието се припокрива със съществуващо.",
@@ -4119,7 +4332,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "Без начало на съня",
         "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
         "sleep_end_only": "Просто край",
-        "daily_note_placeholder": "Add note for the day..."
+        "daily_note_placeholder": "Add note for the day...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "ca": {
         "error_overlap": "Error: l'esdeveniment se solapa amb un d'existent.",
@@ -4192,7 +4409,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "Sense inici de son",
         "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
         "sleep_end_only": "End only",
-        "daily_note_placeholder": "Add note for the day..."
+        "daily_note_placeholder": "Add note for the day...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "cs": {
         "error_overlap": "Chyba: Událost se překrývá s již existující.",
@@ -4265,7 +4486,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "No Sleep Start",
         "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
         "sleep_end_only": "End only",
-        "daily_note_placeholder": "Add note for the day..."
+        "daily_note_placeholder": "Add note for the day...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "si": {
         "error_overlap": "දෝෂය: සිදුවීම පවතින එකක් සමඟ අතිච්ඡාදනය වේ.",
@@ -4338,7 +4563,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "No Sleep Start",
         "sleep_missing_desc": "මෙම අවසන් වේලාවට සම්බන්ධ කිරීමට මෑත නින්ද ආරම්භ කිරීමේ සිදුවීමක් නොමැත. නව සිදුවීමක් සාදන්නද?",
         "sleep_end_only": "End only",
-        "daily_note_placeholder": "Add note for the day..."
+        "daily_note_placeholder": "Add note for the day...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "hr": {
         "error_overlap": "Pogreška: događaj se preklapa s postojećim.",
@@ -4411,7 +4640,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "No Sleep Start",
         "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
         "sleep_end_only": "End only",
-        "daily_note_placeholder": "Add note for the day..."
+        "daily_note_placeholder": "Add note for the day...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "da": {
         "error_overlap": "Fejl: Hændelsen overlapper med en eksisterende.",
@@ -4484,7 +4717,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "Ingen søvnstart",
         "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
         "sleep_end_only": "End only",
-        "daily_note_placeholder": "Tilføj note for dagen..."
+        "daily_note_placeholder": "Tilføj note for dagen...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "sk": {
         "error_overlap": "Chyba: Udalosť sa prekrýva s existujúcou udalosťou.",
@@ -4557,7 +4794,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "Žiadny nástup spánku",
         "sleep_missing_desc": "Neexistuje žiadna nedávna udalosť začiatku spánku, s ktorou by sa dal tento čas ukončenia spojiť. Vytvoriť novú udalosť?",
         "sleep_end_only": "Len koniec",
-        "daily_note_placeholder": "Pridať poznámku dňa..."
+        "daily_note_placeholder": "Pridať poznámku dňa...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "sl": {
         "error_overlap": "Napaka: dogodek se prekriva z obstoječim.",
@@ -4630,7 +4871,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "Ni začetka spanja",
         "sleep_missing_desc": "Ni nedavnega dogodka začetka spanja, s katerim bi lahko povezali ta končni čas. Ustvariti nov dogodek?",
         "sleep_end_only": "Samo konec",
-        "daily_note_placeholder": "Dodajte opombo za ta dan ..."
+        "daily_note_placeholder": "Dodajte opombo za ta dan ...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "et": {
         "error_overlap": "Viga: sündmus kattub olemasolevaga.",
@@ -4703,7 +4948,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "Und ei teki",
         "sleep_missing_desc": "Selle lõpuaja sidumiseks pole hiljutisi une alguse sündmusi. Kas luua uus sündmus?",
         "sleep_end_only": "Lihtsalt lõpp",
-        "daily_note_placeholder": "Lisa päeva märkus..."
+        "daily_note_placeholder": "Lisa päeva märkus...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "eu": {
         "error_overlap": "Errorea: gertaera lehendik dagoen batekin gainjartzen da.",
@@ -4776,7 +5025,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "Lorik ez",
         "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
         "sleep_end_only": "End only",
-        "daily_note_placeholder": "Add note for the day..."
+        "daily_note_placeholder": "Add note for the day...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "gl": {
         "error_overlap": "Erro: o evento se solapa cun existente.",
@@ -4849,7 +5102,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "No Sleep Start",
         "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
         "sleep_end_only": "End only",
-        "daily_note_placeholder": "Add note for the day..."
+        "daily_note_placeholder": "Add note for the day...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "ka": {
         "error_overlap": "შეცდომა: მოვლენა გადაფარავს არსებულს.",
@@ -4922,7 +5179,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "No Sleep Start",
         "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
         "sleep_end_only": "End only",
-        "daily_note_placeholder": "Add note for the day..."
+        "daily_note_placeholder": "Add note for the day...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "el": {
         "error_overlap": "Σφάλμα: Το συμβάν επικαλύπτεται με ένα υπάρχον.",
@@ -4995,7 +5256,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "No Sleep Start",
         "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
         "sleep_end_only": "End only",
-        "daily_note_placeholder": "Add note for the day..."
+        "daily_note_placeholder": "Add note for the day...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "he": {
         "error_overlap": "שגיאה: האירוע חופף לאירוע קיים.",
@@ -5068,7 +5333,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "No Sleep Start",
         "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
         "sleep_end_only": "End only",
-        "daily_note_placeholder": "Add note for the day..."
+        "daily_note_placeholder": "Add note for the day...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "hu": {
         "error_overlap": "Hiba: Az esemény átfedésben van egy meglévővel.",
@@ -5141,7 +5410,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "No Sleep Start",
         "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
         "sleep_end_only": "End only",
-        "daily_note_placeholder": "Add note for the day..."
+        "daily_note_placeholder": "Add note for the day...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "is": {
         "error_overlap": "Villa: Atburðurinn skarast við þann sem fyrir er.",
@@ -5214,7 +5487,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "No Sleep Start",
         "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
         "sleep_end_only": "End only",
-        "daily_note_placeholder": "Add note for the day..."
+        "daily_note_placeholder": "Add note for the day...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "kk": {
         "error_overlap": "Қате: оқиға бұрыннан бар оқиғамен қабаттасады.",
@@ -5287,7 +5564,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "No Sleep Start",
         "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
         "sleep_end_only": "End only",
-        "daily_note_placeholder": "Add note for the day..."
+        "daily_note_placeholder": "Add note for the day...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "ky": {
         "error_overlap": "Ката: Окуя учурдагы менен дал келет.",
@@ -5360,7 +5641,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "No Sleep Start",
         "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
         "sleep_end_only": "End only",
-        "daily_note_placeholder": "Add note for the day..."
+        "daily_note_placeholder": "Add note for the day...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "lo": {
         "error_overlap": "ຜິດພາດ: ເຫດການທັບຊ້ອນກັບອັນທີ່ມີຢູ່ແລ້ວ.",
@@ -5433,7 +5718,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "No Sleep Start",
         "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
         "sleep_end_only": "End only",
-        "daily_note_placeholder": "Add note for the day..."
+        "daily_note_placeholder": "Add note for the day...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "lv": {
         "error_overlap": "Kļūda: notikums pārklājas ar esošu.",
@@ -5506,7 +5795,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "No Sleep Start",
         "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
         "sleep_end_only": "End only",
-        "daily_note_placeholder": "Add note for the day..."
+        "daily_note_placeholder": "Add note for the day...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "lt": {
         "error_overlap": "Klaida: įvykis sutampa su esamu.",
@@ -5579,7 +5872,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "No Sleep Start",
         "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
         "sleep_end_only": "End only",
-        "daily_note_placeholder": "Add note for the day..."
+        "daily_note_placeholder": "Add note for the day...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "mk": {
         "error_overlap": "Грешка: настанот се преклопува со постоечки.",
@@ -5652,7 +5949,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "No Sleep Start",
         "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
         "sleep_end_only": "End only",
-        "daily_note_placeholder": "Add note for the day..."
+        "daily_note_placeholder": "Add note for the day...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "mn": {
         "error_overlap": "Алдаа: Үйл явдал одоо байгаа үйл явдалтай давхцаж байна.",
@@ -5725,7 +6026,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "No Sleep Start",
         "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
         "sleep_end_only": "End only",
-        "daily_note_placeholder": "Add note for the day..."
+        "daily_note_placeholder": "Add note for the day...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "no": {
         "error_overlap": "Feil: Hendelsen overlapper med en eksisterende.",
@@ -5798,7 +6103,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "No Sleep Start",
         "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
         "sleep_end_only": "End only",
-        "daily_note_placeholder": "Add note for the day..."
+        "daily_note_placeholder": "Add note for the day...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "rm": {
         "error_overlap": "Error: The event overlaps with an existing one.",
@@ -5871,7 +6180,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "No Sleep Start",
         "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
         "sleep_end_only": "End only",
-        "daily_note_placeholder": "Add note for the day..."
+        "daily_note_placeholder": "Add note for the day...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "sr": {
         "error_overlap": "Грешка: Догађај се преклапа са постојећим.",
@@ -5944,7 +6257,11 @@ const TRANSLATIONS = {
         "sleep_missing_title": "No Sleep Start",
         "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
         "sleep_end_only": "End only",
-        "daily_note_placeholder": "Add note for the day..."
+        "daily_note_placeholder": "Add note for the day...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     },
     "zu": {
         "error_overlap": "Iphutha: Umcimbi ugqagqene nesivele sikhona.",
@@ -6017,6 +6334,10 @@ const TRANSLATIONS = {
         "sleep_missing_title": "No Sleep Start",
         "sleep_missing_desc": "No recent sleep start event found to merge this end time. Create a new event?",
         "sleep_end_only": "End only",
-        "daily_note_placeholder": "Add note for the day..."
+        "daily_note_placeholder": "Add note for the day...",
+        "settings_font_size": "Text size",
+        "font_size_small": "Small",
+        "font_size_medium": "Medium",
+        "font_size_large": "Large"
     }
 };
