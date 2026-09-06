@@ -43,7 +43,7 @@ describe('Timers & Controls', () => {
   test('reset button clears timer', () => {
     const btnLeft = document.getElementById('btn-left');
     const hourLeft = document.getElementById('hour-left');
-    const btnResetLeft = document.getElementById('btn-reset-left');
+    const btnResetLeft = document.querySelector('button[onclick="resetLeft(event)"]');
 
     btnLeft.click();
     expect(hourLeft.textContent).not.toBe('--:--');

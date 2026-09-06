@@ -41,10 +41,11 @@ describe('History & Persistance', () => {
     expect(history[0].diapers).toBeTruthy();
 
     // SECOND SESSION
+    jest.advanceTimersByTime(60000); // Advance 1 minute to avoid diaper overlap
     btnDiaper.click(); 
     btnRegistrar.click(); 
     
-    // Merge modal should be active (since they are within 30 mins, effectively 0 time passed)
+    // Merge modal should be active (since they are within 30 mins)
     expect(mergeModal.classList.contains('active')).toBe(true);
     
     // Click confirm
