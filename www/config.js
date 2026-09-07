@@ -2,6 +2,7 @@ const CONFIG = {
     app: {
         maxNurseDurationMinutes: 59,
         maxBottleQuantityMl: 999,
+        maxSleepDurationHours: 12,
         mergeWindowMinutes: 30,
         minSecondsToKeepTimer: 10,
         defaultNextFeedingHours: 4,
@@ -101,7 +102,11 @@ const TRANSLATIONS = {
         "settings_font_size": "Tamaño de texto",
         "font_size_small": "Pequeño",
         "font_size_medium": "Medio",
-        "font_size_large": "Grande"
+        "font_size_large": "Grande",
+        "sleep_update_title": "Actualizar sueño",
+        "sleep_update_desc": "El último evento de sueño ya tiene una hora de fin. ¿Deseas sobrescribirla?",
+        "sleep_update_confirm": "Sobrescribir",
+        "sleep_update_cancel": "Cancelar"
     },
     "en": {
         "error_overlap": "Error: The event overlaps with an existing one.",
@@ -332,7 +337,11 @@ const TRANSLATIONS = {
         "settings_font_size": "पाठ का आकार",
         "font_size_small": "छोटा",
         "font_size_medium": "मध्यम",
-        "font_size_large": "बड़ा"
+        "font_size_large": "बड़ा",
+        "sleep_update_title": "सपना अद्यतन करें",
+        "sleep_update_desc": "अंतिम नींद की घटना का अंत समय पहले ही आ चुका है। क्या आप इसे अधिलेखित करना चाहते हैं?",
+        "sleep_update_confirm": "अधिलेखित करें",
+        "sleep_update_cancel": "रद्द करें"
     },
     "ar": {
         "error_overlap": "خطأ: يتداخل الحدث مع حدث موجود.",
@@ -409,7 +418,11 @@ const TRANSLATIONS = {
         "settings_font_size": "حجم النص",
         "font_size_small": "صغير",
         "font_size_medium": "متوسط",
-        "font_size_large": "كبير"
+        "font_size_large": "كبير",
+        "sleep_update_title": "تحديث الحلم",
+        "sleep_update_desc": "حدث النوم الأخير له وقت انتهاء بالفعل. هل تريد الكتابة فوقه؟",
+        "sleep_update_confirm": "الكتابة فوق",
+        "sleep_update_cancel": "إلغاء"
     },
     "fr": {
         "error_overlap": "Erreur : l'événement chevauche un événement existant.",
@@ -486,7 +499,11 @@ const TRANSLATIONS = {
         "settings_font_size": "Taille du texte",
         "font_size_small": "Petit",
         "font_size_medium": "Moyen",
-        "font_size_large": "grand"
+        "font_size_large": "grand",
+        "sleep_update_title": "Mettre à jour le rêve",
+        "sleep_update_desc": "Le dernier événement de veille a déjà une heure de fin. Voulez-vous l'écraser ?",
+        "sleep_update_confirm": "Écraser",
+        "sleep_update_cancel": "Annuler"
     },
     "ru": {
         "error_overlap": "Ошибка: событие пересекается с существующим.",
@@ -563,7 +580,11 @@ const TRANSLATIONS = {
         "settings_font_size": "Размер текста",
         "font_size_small": "Маленький",
         "font_size_medium": "Средний",
-        "font_size_large": "большой"
+        "font_size_large": "большой",
+        "sleep_update_title": "Обновить мечту",
+        "sleep_update_desc": "Последнее событие сна уже имеет время окончания. Вы хотите перезаписать его?",
+        "sleep_update_confirm": "Перезаписать",
+        "sleep_update_cancel": "Отмена"
     },
     "pt": {
         "error_overlap": "Erro: O evento se sobrepõe a um evento existente.",
@@ -640,7 +661,11 @@ const TRANSLATIONS = {
         "settings_font_size": "Tamanho do texto",
         "font_size_small": "Pequeno",
         "font_size_medium": "Médio",
-        "font_size_large": "grande"
+        "font_size_large": "grande",
+        "sleep_update_title": "Atualizar sonho",
+        "sleep_update_desc": "O último evento de sono já tem hora de término. Você quer sobrescrevê-lo?",
+        "sleep_update_confirm": "Substituir",
+        "sleep_update_cancel": "Cancelar"
     },
     "de": {
         "error_overlap": "Fehler: Das Ereignis überschneidet sich mit einem vorhandenen.",
@@ -717,7 +742,11 @@ const TRANSLATIONS = {
         "settings_font_size": "Textgröße",
         "font_size_small": "Klein",
         "font_size_medium": "Mittel",
-        "font_size_large": "groß"
+        "font_size_large": "groß",
+        "sleep_update_title": "Traum aktualisieren",
+        "sleep_update_desc": "Das letzte Schlafereignis hat bereits eine Endzeit. Möchten Sie es überschreiben?",
+        "sleep_update_confirm": "Überschreiben",
+        "sleep_update_cancel": "Abbrechen"
     },
     "ja": {
         "error_overlap": "エラー: イベントは既存のイベントと重複しています。",
@@ -794,7 +823,11 @@ const TRANSLATIONS = {
         "settings_font_size": "文字サイズ",
         "font_size_small": "小",
         "font_size_medium": "中",
-        "font_size_large": "大きい"
+        "font_size_large": "大きい",
+        "sleep_update_title": "夢を更新する",
+        "sleep_update_desc": "最後の睡眠イベントにはすでに終了時間が設定されています。 上書きしますか?",
+        "sleep_update_confirm": "上書き",
+        "sleep_update_cancel": "キャンセル"
     },
     "it": {
         "error_overlap": "Errore: l'evento si sovrappone a uno esistente.",
@@ -871,7 +904,11 @@ const TRANSLATIONS = {
         "settings_font_size": "Dimensione del testo",
         "font_size_small": "Piccolo",
         "font_size_medium": "Medio",
-        "font_size_large": "grande"
+        "font_size_large": "grande",
+        "sleep_update_title": "Aggiorna il sogno",
+        "sleep_update_desc": "L'ultimo evento di sonno ha già un'ora di fine. Vuoi sovrascriverlo?",
+        "sleep_update_confirm": "Sovrascrivi",
+        "sleep_update_cancel": "Annulla"
     },
     "bn": {
         "error_overlap": "ত্রুটি: ইভেন্টটি বিদ্যমান একটির সাথে ওভারল্যাপ করে৷",
@@ -948,7 +985,11 @@ const TRANSLATIONS = {
         "settings_font_size": "পাঠ্যের আকার",
         "font_size_small": "ছোট",
         "font_size_medium": "মাঝারি",
-        "font_size_large": "বড়"
+        "font_size_large": "বড়",
+        "sleep_update_title": "স্বপ্ন আপডেট করুন",
+        "sleep_update_desc": "শেষ ঘুম ইভেন্ট ইতিমধ্যে একটি শেষ সময় আছে. আপনি এটা ওভাররাইট করতে চান?",
+        "sleep_update_confirm": "ওভাররাইট করুন",
+        "sleep_update_cancel": "বাতিল করুন"
     },
     "ur": {
         "error_overlap": "خرابی: ایونٹ ایک موجودہ کے ساتھ اوورلیپ ہو جاتا ہے۔",
@@ -1025,7 +1066,11 @@ const TRANSLATIONS = {
         "settings_font_size": "متن کا سائز",
         "font_size_small": "چھوٹا",
         "font_size_medium": "درمیانہ",
-        "font_size_large": "بڑا"
+        "font_size_large": "بڑا",
+        "sleep_update_title": "خواب کو اپ ڈیٹ کریں۔",
+        "sleep_update_desc": "آخری نیند کے ایونٹ کا پہلے ہی اختتامی وقت ہے۔ کیا آپ اسے اوور رائٹ کرنا چاہتے ہیں؟",
+        "sleep_update_confirm": "اوور رائٹ کریں۔",
+        "sleep_update_cancel": "منسوخ کریں۔"
     },
     "id": {
         "error_overlap": "Kesalahan: Acara tersebut tumpang tindih dengan acara yang sudah ada.",
@@ -1102,7 +1147,11 @@ const TRANSLATIONS = {
         "settings_font_size": "Ukuran teks",
         "font_size_small": "Kecil",
         "font_size_medium": "Sedang",
-        "font_size_large": "besar"
+        "font_size_large": "besar",
+        "sleep_update_title": "Perbarui mimpi",
+        "sleep_update_desc": "Acara tidur terakhir sudah memiliki waktu berakhir. Do you want to overwrite it?",
+        "sleep_update_confirm": "Timpa",
+        "sleep_update_cancel": "Batalkan"
     },
     "sw": {
         "error_overlap": "Hitilafu: Tukio linapishana na lililopo.",
@@ -1179,7 +1228,11 @@ const TRANSLATIONS = {
         "settings_font_size": "Ukubwa wa maandishi",
         "font_size_small": "Ndogo",
         "font_size_medium": "Kati",
-        "font_size_large": "kubwa"
+        "font_size_large": "kubwa",
+        "sleep_update_title": "Sasisha ndoto",
+        "sleep_update_desc": "Tukio la mwisho la usingizi tayari lina wakati wa mwisho. Je, ungependa kuibatilisha?",
+        "sleep_update_confirm": "Batilisha",
+        "sleep_update_cancel": "Ghairi"
     },
     "mr": {
         "error_overlap": "त्रुटी: इव्हेंट विद्यमान इव्हेंटसह ओव्हरलॅप होतो.",
@@ -1256,7 +1309,11 @@ const TRANSLATIONS = {
         "settings_font_size": "मजकूर आकार",
         "font_size_small": "लहान",
         "font_size_medium": "मध्यम",
-        "font_size_large": "मोठा"
+        "font_size_large": "मोठा",
+        "sleep_update_title": "स्वप्न अद्यतनित करा",
+        "sleep_update_desc": "शेवटच्या स्लीप इव्हेंटची आधीच समाप्ती वेळ आहे. तुम्हाला ते ओव्हरराईट करायचे आहे का?",
+        "sleep_update_confirm": "ओव्हरराइट करा",
+        "sleep_update_cancel": "रद्द करा"
     },
     "te": {
         "error_overlap": "లోపం: ఈవెంట్ ఇప్పటికే ఉన్న దానితో అతివ్యాప్తి చెందుతుంది.",
@@ -1333,7 +1390,11 @@ const TRANSLATIONS = {
         "settings_font_size": "వచన పరిమాణం",
         "font_size_small": "చిన్నది",
         "font_size_medium": "మధ్యస్థం",
-        "font_size_large": "పెద్ద"
+        "font_size_large": "పెద్ద",
+        "sleep_update_title": "కలను నవీకరించండి",
+        "sleep_update_desc": "చివరి నిద్ర ఈవెంట్‌కు ఇప్పటికే ముగింపు సమయం ఉంది. మీరు దానిని ఓవర్రైట్ చేయాలనుకుంటున్నారా?",
+        "sleep_update_confirm": "ఓవర్రైట్",
+        "sleep_update_cancel": "రద్దు చేయి"
     },
     "tr": {
         "error_overlap": "Hata: Etkinlik mevcut bir etkinlikle çakışıyor.",
@@ -1410,7 +1471,11 @@ const TRANSLATIONS = {
         "settings_font_size": "Metin boyutu",
         "font_size_small": "Küçük",
         "font_size_medium": "Orta",
-        "font_size_large": "büyük"
+        "font_size_large": "büyük",
+        "sleep_update_title": "Rüyayı güncelle",
+        "sleep_update_desc": "Son uyku olayının zaten bir bitiş zamanı var. Üzerine yazmak istiyor musunuz?",
+        "sleep_update_confirm": "Üzerine yaz",
+        "sleep_update_cancel": "İptal"
     },
     "ta": {
         "error_overlap": "பிழை: நிகழ்வு ஏற்கனவே உள்ளவற்றுடன் மேலெழுகிறது.",
@@ -1487,7 +1552,11 @@ const TRANSLATIONS = {
         "settings_font_size": "உரை அளவு",
         "font_size_small": "சிறியது",
         "font_size_medium": "நடுத்தர",
-        "font_size_large": "பெரிய"
+        "font_size_large": "பெரிய",
+        "sleep_update_title": "கனவைப் புதுப்பிக்கவும்",
+        "sleep_update_desc": "கடைசி உறக்க நிகழ்வுக்கு ஏற்கனவே முடிவு நேரம் உள்ளது. நீங்கள் அதை மேலெழுத விரும்புகிறீர்களா?",
+        "sleep_update_confirm": "மேலெழுதவும்",
+        "sleep_update_cancel": "ரத்து செய்"
     },
     "vi": {
         "error_overlap": "Lỗi: Sự kiện trùng lặp với sự kiện hiện có.",
@@ -1564,7 +1633,11 @@ const TRANSLATIONS = {
         "settings_font_size": "Kích thước văn bản",
         "font_size_small": "nhỏ",
         "font_size_medium": "Trung bình",
-        "font_size_large": "lớn"
+        "font_size_large": "lớn",
+        "sleep_update_title": "Cập nhật giấc mơ",
+        "sleep_update_desc": "Sự kiện ngủ cuối cùng đã có thời gian kết thúc. Bạn có muốn ghi đè lên nó không?",
+        "sleep_update_confirm": "Ghi đè",
+        "sleep_update_cancel": "Hủy bỏ"
     },
     "ko": {
         "error_overlap": "오류: 이벤트가 기존 이벤트와 겹칩니다.",
@@ -1641,7 +1714,11 @@ const TRANSLATIONS = {
         "settings_font_size": "텍스트 크기",
         "font_size_small": "작은",
         "font_size_medium": "중간",
-        "font_size_large": "큰"
+        "font_size_large": "큰",
+        "sleep_update_title": "꿈 업데이트",
+        "sleep_update_desc": "마지막 수면 이벤트에 이미 종료 시간이 있습니다. 덮어쓰시겠습니까?",
+        "sleep_update_confirm": "덮어쓰기",
+        "sleep_update_cancel": "취소"
     },
     "fa": {
         "error_overlap": "خطا: رویداد با رویداد موجود همپوشانی دارد.",
@@ -1718,7 +1795,11 @@ const TRANSLATIONS = {
         "settings_font_size": "اندازه متن",
         "font_size_small": "کوچک",
         "font_size_medium": "متوسط",
-        "font_size_large": "بزرگ"
+        "font_size_large": "بزرگ",
+        "sleep_update_title": "رویا را به روز کنید",
+        "sleep_update_desc": "آخرین رویداد خواب از قبل دارای زمان پایان است. آیا می خواهید آن را بازنویسی کنید؟",
+        "sleep_update_confirm": "رونویسی کنید",
+        "sleep_update_cancel": "لغو کنید"
     },
     "ha": {
         "error_overlap": "Kuskure: Lamarin ya zo tare da wanda yake.",
@@ -1795,7 +1876,11 @@ const TRANSLATIONS = {
         "settings_font_size": "Girman rubutu",
         "font_size_small": "Karami",
         "font_size_medium": "Matsakaici",
-        "font_size_large": "babba"
+        "font_size_large": "babba",
+        "sleep_update_title": "Sabunta mafarki",
+        "sleep_update_desc": "Lamarin bacci na ƙarshe yana da ƙarshen lokacin. Kuna so ku sake rubutawa?",
+        "sleep_update_confirm": "Rubutu",
+        "sleep_update_cancel": "Soke"
     },
     "jv": {
         "error_overlap": "Error: Acara tumpang tindih karo sing wis ana.",
@@ -1872,7 +1957,11 @@ const TRANSLATIONS = {
         "settings_font_size": "Ukuran teks",
         "font_size_small": "Cilik",
         "font_size_medium": "Sedheng",
-        "font_size_large": "gedhe"
+        "font_size_large": "gedhe",
+        "sleep_update_title": "Nganyari ngimpi",
+        "sleep_update_desc": "Acara turu pungkasan wis ana wektu pungkasan. Apa sampeyan pengin nimpa?",
+        "sleep_update_confirm": "Nimpa",
+        "sleep_update_cancel": "Batal"
     },
     "pa": {
         "error_overlap": "ਤਰੁੱਟੀ: ਇਵੈਂਟ ਮੌਜੂਦਾ ਇੱਕ ਨਾਲ ਓਵਰਲੈਪ ਹੁੰਦਾ ਹੈ।",
@@ -1949,7 +2038,11 @@ const TRANSLATIONS = {
         "settings_font_size": "ਟੈਕਸਟ ਦਾ ਆਕਾਰ",
         "font_size_small": "ਛੋਟਾ",
         "font_size_medium": "ਦਰਮਿਆਨਾ",
-        "font_size_large": "ਵੱਡਾ"
+        "font_size_large": "ਵੱਡਾ",
+        "sleep_update_title": "ਸੁਪਨੇ ਨੂੰ ਅਪਡੇਟ ਕਰੋ",
+        "sleep_update_desc": "ਆਖਰੀ ਸਲੀਪ ਇਵੈਂਟ ਦਾ ਪਹਿਲਾਂ ਹੀ ਸਮਾਪਤੀ ਸਮਾਂ ਹੈ। ਕੀ ਤੁਸੀਂ ਇਸਨੂੰ ਓਵਰਰਾਈਟ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?",
+        "sleep_update_confirm": "ਓਵਰਰਾਈਟ ਕਰੋ",
+        "sleep_update_cancel": "ਰੱਦ ਕਰੋ"
     },
     "gu": {
         "error_overlap": "ભૂલ: ઇવેન્ટ અસ્તિત્વમાં છે તે સાથે ઓવરલેપ થાય છે.",
@@ -2026,7 +2119,11 @@ const TRANSLATIONS = {
         "settings_font_size": "ટેક્સ્ટનું કદ",
         "font_size_small": "નાના",
         "font_size_medium": "મધ્યમ",
-        "font_size_large": "મોટું"
+        "font_size_large": "મોટું",
+        "sleep_update_title": "સ્વપ્ન અપડેટ કરો",
+        "sleep_update_desc": "છેલ્લી સ્લીપ ઇવેન્ટનો પહેલાથી જ સમાપ્તિ સમય છે. શું તમે તેને ફરીથી લખવા માંગો છો?",
+        "sleep_update_confirm": "ઓવરરાઇટ કરો",
+        "sleep_update_cancel": "રદ કરો"
     },
     "th": {
         "error_overlap": "ข้อผิดพลาด: เหตุการณ์ซ้อนทับกับเหตุการณ์ที่มีอยู่",
@@ -2103,7 +2200,11 @@ const TRANSLATIONS = {
         "settings_font_size": "ขนาดข้อความ",
         "font_size_small": "เล็ก",
         "font_size_medium": "ปานกลาง",
-        "font_size_large": "ใหญ่"
+        "font_size_large": "ใหญ่",
+        "sleep_update_title": "อัพเดทความฝัน.",
+        "sleep_update_desc": "กิจกรรมสลีปสุดท้ายมีเวลาสิ้นสุดแล้ว คุณต้องการเขียนทับมันหรือไม่?",
+        "sleep_update_confirm": "เขียนทับ",
+        "sleep_update_cancel": "ยกเลิก"
     },
     "am": {
         "error_overlap": "ስህተት፡ ክስተቱ ከነባሩ ጋር ይደራረባል።",
@@ -2180,7 +2281,11 @@ const TRANSLATIONS = {
         "settings_font_size": "የጽሑፍ መጠን",
         "font_size_small": "ትንሽ",
         "font_size_medium": "መካከለኛ",
-        "font_size_large": "ትልቅ"
+        "font_size_large": "ትልቅ",
+        "sleep_update_title": "ህልም አዘምን",
+        "sleep_update_desc": "የመጨረሻው የእንቅልፍ ክስተት አስቀድሞ የማለቂያ ጊዜ አለው። እንደገና መፃፍ ይፈልጋሉ?",
+        "sleep_update_confirm": "ጻፍ",
+        "sleep_update_cancel": "ሰርዝ"
     },
     "kn": {
         "error_overlap": "ದೋಷ: ಈವೆಂಟ್ ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ಒಂದರೊಂದಿಗೆ ಅತಿಕ್ರಮಿಸುತ್ತದೆ.",
@@ -2257,7 +2362,11 @@ const TRANSLATIONS = {
         "settings_font_size": "ಪಠ್ಯದ ಗಾತ್ರ",
         "font_size_small": "ಚಿಕ್ಕದು",
         "font_size_medium": "ಮಧ್ಯಮ",
-        "font_size_large": "ದೊಡ್ಡದು"
+        "font_size_large": "ದೊಡ್ಡದು",
+        "sleep_update_title": "ಕನಸನ್ನು ನವೀಕರಿಸಿ",
+        "sleep_update_desc": "ಕೊನೆಯ ನಿದ್ರೆಯ ಈವೆಂಟ್ ಈಗಾಗಲೇ ಅಂತಿಮ ಸಮಯವನ್ನು ಹೊಂದಿದೆ. ನೀವು ಅದನ್ನು ತಿದ್ದಿ ಬರೆಯಲು ಬಯಸುವಿರಾ?",
+        "sleep_update_confirm": "ತಿದ್ದಿ ಬರೆಯಿರಿ",
+        "sleep_update_cancel": "ರದ್ದುಮಾಡು"
     },
     "or": {
         "error_overlap": "ତ୍ରୁଟି: ଏକ ବିଦ୍ୟମାନ ସହିତ ଇଭେଣ୍ଟଟି ଅଲଗା ହୋଇଯାଏ |",
@@ -2334,7 +2443,11 @@ const TRANSLATIONS = {
         "settings_font_size": "ପାଠ୍ୟ ଆକାର |",
         "font_size_small": "ଛୋଟ",
         "font_size_medium": "ମଧ୍ୟମ",
-        "font_size_large": "ବଡ"
+        "font_size_large": "ବଡ",
+        "sleep_update_title": "ସ୍ୱପ୍ନ ଅଦ୍ୟତନ କରନ୍ତୁ |",
+        "sleep_update_desc": "ଶେଷ ଶୋଇବା ଘଟଣାର ଏକ ଶେଷ ସମୟ ଅଛି | ଆପଣ ଏହାକୁ ଓଭର୍ ରାଇଟ୍ କରିବାକୁ ଚାହୁଁଛନ୍ତି କି?",
+        "sleep_update_confirm": "ଓଭର୍ ରାଇଟ୍ କରନ୍ତୁ |",
+        "sleep_update_cancel": "ବାତିଲ୍ କରନ୍ତୁ |"
     },
     "bho": {
         "reset": "रिबूट करीं",
@@ -2411,7 +2524,11 @@ const TRANSLATIONS = {
         "settings_font_size": "पाठ के आकार के बा",
         "font_size_small": "छोट-छोट बा",
         "font_size_medium": "मध्यम के बा",
-        "font_size_large": "बड़का के बा"
+        "font_size_large": "बड़का के बा",
+        "sleep_update_title": "सपना के अपडेट करीं",
+        "sleep_update_desc": "आखिरी नींद के घटना के पहिलही से अंत के समय बा। का रउरा एकरा के ओवरराइट कइल चाहत बानी?",
+        "sleep_update_confirm": "ओवरराइट कर दिहल जाव",
+        "sleep_update_cancel": "रद्द कर दिहल जाव"
     },
     "su": {
         "error_overlap": "Kasalahan: Acara tumpang tindih sareng anu tos aya.",
@@ -2488,7 +2605,11 @@ const TRANSLATIONS = {
         "settings_font_size": "Ukuran téks",
         "font_size_small": "Leutik",
         "font_size_medium": "Sedeng",
-        "font_size_large": "badag"
+        "font_size_large": "badag",
+        "sleep_update_title": "Apdet ngimpi",
+        "sleep_update_desc": "Acara sare panungtungan geus boga waktu tungtung. Naha anjeun badé nimpa?",
+        "sleep_update_confirm": "Nimpa",
+        "sleep_update_cancel": "Ngabolaykeun"
     },
     "ro": {
         "error_overlap": "Eroare: evenimentul se suprapune cu unul existent.",
@@ -2565,7 +2686,11 @@ const TRANSLATIONS = {
         "settings_font_size": "Dimensiunea textului",
         "font_size_small": "Mic",
         "font_size_medium": "Mediu",
-        "font_size_large": "mare"
+        "font_size_large": "mare",
+        "sleep_update_title": "Actualizați visul",
+        "sleep_update_desc": "Ultimul eveniment de somn are deja o oră de încheiere. Doriți să o suprascrieți?",
+        "sleep_update_confirm": "Suprascrie",
+        "sleep_update_cancel": "Anulează"
     },
     "nl": {
         "error_overlap": "Fout: de gebeurtenis overlapt met een bestaande gebeurtenis.",
@@ -2642,7 +2767,11 @@ const TRANSLATIONS = {
         "settings_font_size": "Tekstgrootte",
         "font_size_small": "Klein",
         "font_size_medium": "Middelmatig",
-        "font_size_large": "groot"
+        "font_size_large": "groot",
+        "sleep_update_title": "Droom bijwerken",
+        "sleep_update_desc": "De laatste slaapgebeurtenis heeft al een eindtijd. Wilt u het overschrijven?",
+        "sleep_update_confirm": "Overschrijven",
+        "sleep_update_cancel": "Annuleer"
     },
     "km": {
         "error_overlap": "កំហុស៖ ព្រឹត្តិការណ៍នេះត្រួតលើគ្នាជាមួយព្រឹត្តិការណ៍ដែលមានស្រាប់។",
@@ -2719,7 +2848,11 @@ const TRANSLATIONS = {
         "settings_font_size": "ទំហំអត្ថបទ",
         "font_size_small": "តូច",
         "font_size_medium": "មធ្យម",
-        "font_size_large": "ធំ"
+        "font_size_large": "ធំ",
+        "sleep_update_title": "ធ្វើឱ្យទាន់សម័យសុបិន្ត",
+        "sleep_update_desc": "ព្រឹត្តិការណ៍នៃការគេងចុងក្រោយមានពេលបញ្ចប់ហើយ។ តើអ្នកចង់សរសេរជាន់លើវាទេ?",
+        "sleep_update_confirm": "សរសេរជាន់លើ",
+        "sleep_update_cancel": "បោះបង់"
     },
     "uz": {
         "error_overlap": "Xato: Hodisa mavjud voqea bilan bir-biriga mos tushdi.",
@@ -2796,7 +2929,11 @@ const TRANSLATIONS = {
         "settings_font_size": "Matn hajmi",
         "font_size_small": "Kichik",
         "font_size_medium": "O'rta",
-        "font_size_large": "katta"
+        "font_size_large": "katta",
+        "sleep_update_title": "Orzuni yangilang",
+        "sleep_update_desc": "Oxirgi uyqu hodisasi allaqachon tugash vaqtiga ega. Uni qayta yozmoqchimisiz?",
+        "sleep_update_confirm": "Ustiga yozish",
+        "sleep_update_cancel": "Bekor qilish"
     },
     "sd": {
         "error_overlap": "نقص: واقعو موجوده ھڪڙي سان اوورليپ ٿئي ٿو.",
@@ -2873,7 +3010,11 @@ const TRANSLATIONS = {
         "settings_font_size": "متن جي ماپ",
         "font_size_small": "ننڍو",
         "font_size_medium": "وچولي",
-        "font_size_large": "وڏو"
+        "font_size_large": "وڏو",
+        "sleep_update_title": "خواب کي اپڊيٽ ڪريو",
+        "sleep_update_desc": "آخري ننڊ واري واقعي جو اڳ ۾ ئي ختم ٿيڻ جو وقت آهي. ڇا توھان ان کي ختم ڪرڻ چاھيو ٿا؟",
+        "sleep_update_confirm": "مٿان لکجي",
+        "sleep_update_cancel": "منسوخ ڪريو"
     },
     "my": {
         "error_overlap": "အမှား- ဖြစ်ရပ်သည် ရှိပြီးသားတစ်ခုနှင့် ထပ်နေပါသည်။",
@@ -2950,7 +3091,11 @@ const TRANSLATIONS = {
         "settings_font_size": "စာသားအရွယ်အစား",
         "font_size_small": "သေးငယ်သည်။",
         "font_size_medium": "လတ်",
-        "font_size_large": "ကြီးတယ်။"
+        "font_size_large": "ကြီးတယ်။",
+        "sleep_update_title": "ဒိတ်အိပ်မက်",
+        "sleep_update_desc": "နောက်ဆုံး အိပ်စက်ခြင်းကိစ္စသည် ပြီးဆုံးချိန်ရှိနေပြီဖြစ်သည်။ ၎င်းကို ထပ်ရေးလိုပါသလား။",
+        "sleep_update_confirm": "ထပ်ရေးပါ။",
+        "sleep_update_cancel": "မလုပ်တော့"
     },
     "yo": {
         "error_overlap": "Aṣiṣe: Iṣẹlẹ naa ṣakojọpọ pẹlu eyi ti o wa tẹlẹ.",
@@ -3027,7 +3172,11 @@ const TRANSLATIONS = {
         "settings_font_size": "Iwọn ọrọ",
         "font_size_small": "Kekere",
         "font_size_medium": "Alabọde",
-        "font_size_large": "nla"
+        "font_size_large": "nla",
+        "sleep_update_title": "Update ala",
+        "sleep_update_desc": "Iṣẹlẹ oorun ti o kẹhin ti ni akoko ipari. Ṣe o fẹ lati tunkọ rẹ?",
+        "sleep_update_confirm": "Kọ silẹ",
+        "sleep_update_cancel": "Fagilee"
     },
     "ig": {
         "error_overlap": "Njehie: Ihe omume a dakọtara na nke dị.",
@@ -3104,7 +3253,11 @@ const TRANSLATIONS = {
         "settings_font_size": "Ogo ederede",
         "font_size_small": "Obere",
         "font_size_medium": "Ọkara",
-        "font_size_large": "nnukwu"
+        "font_size_large": "nnukwu",
+        "sleep_update_title": "Melite nrọ",
+        "sleep_update_desc": "Ihe omume ụra ikpeazụ enweelarị oge ngwụcha. Ị chọrọ idegharị ya?",
+        "sleep_update_confirm": "Degharịa",
+        "sleep_update_cancel": "Kagbuo"
     },
     "ms": {
         "error_overlap": "Ralat: Acara bertindih dengan yang sedia ada.",
@@ -3181,7 +3334,11 @@ const TRANSLATIONS = {
         "settings_font_size": "Saiz teks",
         "font_size_small": "Kecil",
         "font_size_medium": "Sederhana",
-        "font_size_large": "besar"
+        "font_size_large": "besar",
+        "sleep_update_title": "Kemas kini impian",
+        "sleep_update_desc": "Acara tidur terakhir sudah mempunyai masa tamat. Adakah anda mahu menulis gantinya?",
+        "sleep_update_confirm": "Tulis ganti",
+        "sleep_update_cancel": "Batal"
     },
     "ne": {
         "error_overlap": "त्रुटि: घटना अवस्थित एउटासँग ओभरल्याप हुन्छ।",
@@ -3258,7 +3415,11 @@ const TRANSLATIONS = {
         "settings_font_size": "पाठ आकार",
         "font_size_small": "सानो",
         "font_size_medium": "मध्यम",
-        "font_size_large": "ठूलो"
+        "font_size_large": "ठूलो",
+        "sleep_update_title": "सपना अपडेट गर्नुहोस्",
+        "sleep_update_desc": "अन्तिम निद्रा घटनाको पहिले नै अन्त्य समय छ। के तपाइँ यसलाई अधिलेखन गर्न चाहनुहुन्छ?",
+        "sleep_update_confirm": "अधिलेखन गर्नुहोस्",
+        "sleep_update_cancel": "रद्द गर्नुहोस्"
     },
     "uk": {
         "error_overlap": "Помилка: подія збігається з існуючою.",
@@ -3335,7 +3496,11 @@ const TRANSLATIONS = {
         "settings_font_size": "Розмір тексту",
         "font_size_small": "Маленький",
         "font_size_medium": "Середній",
-        "font_size_large": "великий"
+        "font_size_large": "великий",
+        "sleep_update_title": "Оновити мрію",
+        "sleep_update_desc": "Остання подія сну вже має час завершення. Ви хочете перезаписати його?",
+        "sleep_update_confirm": "Перезаписати",
+        "sleep_update_cancel": "Скасувати"
     },
     "ceb": {
         "reset": "Pag-reboot",
@@ -3412,7 +3577,11 @@ const TRANSLATIONS = {
         "settings_font_size": "Gidak-on sa teksto",
         "font_size_small": "Gamay",
         "font_size_medium": "Medium",
-        "font_size_large": "dako"
+        "font_size_large": "dako",
+        "sleep_update_title": "Pag-update sa damgo",
+        "sleep_update_desc": "Ang katapusan nga kalihokan sa pagkatulog adunay katapusan nga oras. Gusto ba nimong i-overwrite kini?",
+        "sleep_update_confirm": "I-overwrite",
+        "sleep_update_cancel": "Pagkanselar"
     },
     "ku": {
         "error_overlap": "Çewtî: Bûyer bi ya heyî re li hev dikeve.",
@@ -3489,7 +3658,11 @@ const TRANSLATIONS = {
         "settings_font_size": "Mezinahiya nivîsê",
         "font_size_small": "Small",
         "font_size_medium": "Medium",
-        "font_size_large": "mezin"
+        "font_size_large": "mezin",
+        "sleep_update_title": "Xewna xwe nûve bikin",
+        "sleep_update_desc": "Bûyera xewê ya paşîn jixwe demeka dawî heye. Ma hûn dixwazin wê binivîsin?",
+        "sleep_update_confirm": "Zêde binivîsin",
+        "sleep_update_cancel": "Betal bike"
     },
     "sv": {
         "error_overlap": "Fel: Händelsen överlappar en befintlig.",
@@ -3566,7 +3739,11 @@ const TRANSLATIONS = {
         "settings_font_size": "Textstorlek",
         "font_size_small": "Liten",
         "font_size_medium": "Medium",
-        "font_size_large": "stor"
+        "font_size_large": "stor",
+        "sleep_update_title": "Uppdatera dröm",
+        "sleep_update_desc": "Den sista sömnhändelsen har redan en sluttid. Vill du skriva över det?",
+        "sleep_update_confirm": "Skriv över",
+        "sleep_update_cancel": "Avbryt"
     },
     "pl": {
         "error_overlap": "Błąd: wydarzenie pokrywa się z istniejącym.",
@@ -3643,7 +3820,11 @@ const TRANSLATIONS = {
         "settings_font_size": "Rozmiar tekstu",
         "font_size_small": "Mały",
         "font_size_medium": "Średni",
-        "font_size_large": "duży"
+        "font_size_large": "duży",
+        "sleep_update_title": "Aktualizacja snu",
+        "sleep_update_desc": "Ostatnie zdarzenie uśpienia ma już godzinę zakończenia. Czy chcesz go zastąpić?",
+        "sleep_update_confirm": "Zastąp",
+        "sleep_update_cancel": "Anuluj"
     },
     "tl": {
         "error_overlap": "Error: Ang kaganapan ay nag-o-overlap sa isang umiiral na.",
@@ -3720,7 +3901,11 @@ const TRANSLATIONS = {
         "settings_font_size": "Laki ng text",
         "font_size_small": "Maliit",
         "font_size_medium": "Katamtaman",
-        "font_size_large": "malaki"
+        "font_size_large": "malaki",
+        "sleep_update_title": "I-update ang pangarap",
+        "sleep_update_desc": "Ang huling kaganapan sa pagtulog ay mayroon nang oras ng pagtatapos. Gusto mo bang i-overwrite ito?",
+        "sleep_update_confirm": "I-overwrite",
+        "sleep_update_cancel": "Kanselahin"
     },
     "ml": {
         "error_overlap": "പിശക്: ഇവൻ്റ് നിലവിലുള്ള ഒന്നുമായി ഓവർലാപ്പ് ചെയ്യുന്നു.",
@@ -3797,7 +3982,11 @@ const TRANSLATIONS = {
         "settings_font_size": "വാചക വലുപ്പം",
         "font_size_small": "ചെറുത്",
         "font_size_medium": "ഇടത്തരം",
-        "font_size_large": "വലിയ"
+        "font_size_large": "വലിയ",
+        "sleep_update_title": "സ്വപ്നം അപ്ഡേറ്റ് ചെയ്യുക",
+        "sleep_update_desc": "അവസാന ഉറക്ക പരിപാടിക്ക് ഇതിനകം അവസാന സമയമുണ്ട്. നിങ്ങൾക്ക് അത് തിരുത്തിയെഴുതണോ?",
+        "sleep_update_confirm": "തിരുത്തിയെഴുതുക",
+        "sleep_update_cancel": "റദ്ദാക്കുക"
     },
     "fi": {
         "error_overlap": "Virhe: Tapahtuma on päällekkäinen olemassa olevan tapahtuman kanssa.",
@@ -3874,7 +4063,11 @@ const TRANSLATIONS = {
         "settings_font_size": "Tekstin koko",
         "font_size_small": "Pieni",
         "font_size_medium": "Keskikokoinen",
-        "font_size_large": "iso"
+        "font_size_large": "iso",
+        "sleep_update_title": "Päivitä unelma",
+        "sleep_update_desc": "Viimeisellä unitapahtumalla on jo päättymisaika. Haluatko korvata sen?",
+        "sleep_update_confirm": "Korvaa",
+        "sleep_update_cancel": "Peruuta"
     },
     "af": {
         "error_overlap": "Fout: Die gebeurtenis oorvleuel met 'n bestaande een.",
@@ -3951,7 +4144,11 @@ const TRANSLATIONS = {
         "settings_font_size": "Teks grootte",
         "font_size_small": "Klein",
         "font_size_medium": "Medium",
-        "font_size_large": "groot"
+        "font_size_large": "groot",
+        "sleep_update_title": "Dateer droom op",
+        "sleep_update_desc": "Die laaste slaapgeleentheid het reeds 'n eindtyd. Wil jy dit oorskryf?",
+        "sleep_update_confirm": "Oorskryf",
+        "sleep_update_cancel": "Kanselleer"
     },
     "sq": {
         "error_overlap": "Gabim: Ngjarja mbivendoset me një ekzistuese.",
@@ -4028,7 +4225,11 @@ const TRANSLATIONS = {
         "settings_font_size": "Madhësia e tekstit",
         "font_size_small": "I vogël",
         "font_size_medium": "E mesme",
-        "font_size_large": "i madh"
+        "font_size_large": "i madh",
+        "sleep_update_title": "Përditëso ëndrrën",
+        "sleep_update_desc": "Ngjarja e fundit e gjumit tashmë ka një kohë përfundimi. Dëshironi ta mbishkruani atë?",
+        "sleep_update_confirm": "Mbishkruani",
+        "sleep_update_cancel": "Anulo"
     },
     "hy": {
         "error_overlap": "Սխալ․ իրադարձությունը համընկնում է գոյություն ունեցողի հետ։",
@@ -4105,7 +4306,11 @@ const TRANSLATIONS = {
         "settings_font_size": "Տեքստի չափը",
         "font_size_small": "Փոքրիկ",
         "font_size_medium": "Միջին",
-        "font_size_large": "մեծ"
+        "font_size_large": "մեծ",
+        "sleep_update_title": "Թարմացրեք երազանքը",
+        "sleep_update_desc": "Քնի վերջին իրադարձությունն արդեն ավարտման ժամ ունի: Ցանկանու՞մ եք այն վերագրել:",
+        "sleep_update_confirm": "Վերագրել",
+        "sleep_update_cancel": "Չեղարկել"
     },
     "az": {
         "error_overlap": "Xəta: Tədbir mövcud hadisə ilə üst-üstə düşür.",
@@ -4182,7 +4387,11 @@ const TRANSLATIONS = {
         "settings_font_size": "Mətn ölçüsü",
         "font_size_small": "Kiçik",
         "font_size_medium": "Orta",
-        "font_size_large": "böyük"
+        "font_size_large": "böyük",
+        "sleep_update_title": "Xəyalını yeniləyin",
+        "sleep_update_desc": "Son yuxu hadisəsinin artıq bitmə vaxtı var. Bunun üzərinə yazmaq istəyirsiniz?",
+        "sleep_update_confirm": "Üzərinə yaz",
+        "sleep_update_cancel": "Ləğv et"
     },
     "be": {
         "error_overlap": "Памылка: падзея накладваецца на існуючую.",
@@ -4259,7 +4468,11 @@ const TRANSLATIONS = {
         "settings_font_size": "Памер тэксту",
         "font_size_small": "Маленькі",
         "font_size_medium": "Сярэдні",
-        "font_size_large": "вялікі"
+        "font_size_large": "вялікі",
+        "sleep_update_title": "Абнавіць мару",
+        "sleep_update_desc": "Апошняя падзея сну ўжо мае час заканчэння. Вы хочаце перазапісаць яго?",
+        "sleep_update_confirm": "Перазапісаць",
+        "sleep_update_cancel": "Адмяніць"
     },
     "bg": {
         "error_overlap": "Грешка: Събитието се припокрива със съществуващо.",
@@ -4336,7 +4549,11 @@ const TRANSLATIONS = {
         "settings_font_size": "Размер на текста",
         "font_size_small": "малък",
         "font_size_medium": "Среден",
-        "font_size_large": "голям"
+        "font_size_large": "голям",
+        "sleep_update_title": "Актуализирайте мечтата",
+        "sleep_update_desc": "Последното събитие за заспиване вече има крайно време. Искате ли да го презапишете?",
+        "sleep_update_confirm": "Презаписване",
+        "sleep_update_cancel": "Отказ"
     },
     "ca": {
         "error_overlap": "Error: l'esdeveniment se solapa amb un d'existent.",
@@ -4413,7 +4630,11 @@ const TRANSLATIONS = {
         "settings_font_size": "Grandària de text",
         "font_size_small": "Petit",
         "font_size_medium": "Mitjà",
-        "font_size_large": "Gran"
+        "font_size_large": "Gran",
+        "sleep_update_title": "Actualitzar somni",
+        "sleep_update_desc": "El darrer esdeveniment de son ja té una hora de fi. Vols sobreescriure-la?",
+        "sleep_update_confirm": "Sobreescriure",
+        "sleep_update_cancel": "Cancel·la"
     },
     "cs": {
         "error_overlap": "Chyba: Událost se překrývá s již existující.",
@@ -4490,7 +4711,11 @@ const TRANSLATIONS = {
         "settings_font_size": "Velikost textu",
         "font_size_small": "Malý",
         "font_size_medium": "Střední",
-        "font_size_large": "velký"
+        "font_size_large": "velký",
+        "sleep_update_title": "Aktualizovat sen",
+        "sleep_update_desc": "Poslední událost spánku již má čas ukončení. Chcete jej přepsat?",
+        "sleep_update_confirm": "Přepsat",
+        "sleep_update_cancel": "Zrušit"
     },
     "si": {
         "error_overlap": "දෝෂය: සිදුවීම පවතින එකක් සමඟ අතිච්ඡාදනය වේ.",
@@ -4567,7 +4792,11 @@ const TRANSLATIONS = {
         "settings_font_size": "පෙළ ප්රමාණය",
         "font_size_small": "කුඩා",
         "font_size_medium": "මධ්යම",
-        "font_size_large": "විශාල"
+        "font_size_large": "විශාල",
+        "sleep_update_title": "සිහිනය යාවත්කාලීන කරන්න",
+        "sleep_update_desc": "අවසන් නින්ද සිදුවීමට දැනටමත් අවසන් වේලාවක් ඇත. ඔබට එය උඩින් ලිවීමට අවශ්‍යද?",
+        "sleep_update_confirm": "උඩින් ලියන්න",
+        "sleep_update_cancel": "අවලංගු කරන්න"
     },
     "hr": {
         "error_overlap": "Pogreška: događaj se preklapa s postojećim.",
@@ -4644,7 +4873,11 @@ const TRANSLATIONS = {
         "settings_font_size": "Veličina teksta",
         "font_size_small": "mala",
         "font_size_medium": "srednje",
-        "font_size_large": "velika"
+        "font_size_large": "velika",
+        "sleep_update_title": "Ažuriraj san",
+        "sleep_update_desc": "Posljednji događaj mirovanja već ima vrijeme završetka. Želite li ga prebrisati?",
+        "sleep_update_confirm": "Prebrisati",
+        "sleep_update_cancel": "Odustani"
     },
     "da": {
         "error_overlap": "Fejl: Hændelsen overlapper med en eksisterende.",
@@ -4721,7 +4954,11 @@ const TRANSLATIONS = {
         "settings_font_size": "Tekststørrelse",
         "font_size_small": "Lille",
         "font_size_medium": "Medium",
-        "font_size_large": "store"
+        "font_size_large": "store",
+        "sleep_update_title": "Opdater drøm",
+        "sleep_update_desc": "Den sidste søvnbegivenhed har allerede et sluttidspunkt. Vil du overskrive det?",
+        "sleep_update_confirm": "Overskriv",
+        "sleep_update_cancel": "Annuller"
     },
     "sk": {
         "error_overlap": "Chyba: Udalosť sa prekrýva s existujúcou udalosťou.",
@@ -4798,7 +5035,11 @@ const TRANSLATIONS = {
         "settings_font_size": "Veľkosť textu",
         "font_size_small": "Malý",
         "font_size_medium": "Stredná",
-        "font_size_large": "veľký"
+        "font_size_large": "veľký",
+        "sleep_update_title": "Aktualizujte sen",
+        "sleep_update_desc": "Posledná udalosť spánku už má čas ukončenia. Chcete ho prepísať?",
+        "sleep_update_confirm": "Prepísať",
+        "sleep_update_cancel": "Zrušiť"
     },
     "sl": {
         "error_overlap": "Napaka: dogodek se prekriva z obstoječim.",
@@ -4875,7 +5116,11 @@ const TRANSLATIONS = {
         "settings_font_size": "Velikost besedila",
         "font_size_small": "majhna",
         "font_size_medium": "Srednje",
-        "font_size_large": "velik"
+        "font_size_large": "velik",
+        "sleep_update_title": "Posodobite sanje",
+        "sleep_update_desc": "Zadnji dogodek spanja že ima končni čas. Ali ga želite prepisati?",
+        "sleep_update_confirm": "Prepisati",
+        "sleep_update_cancel": "Prekliči"
     },
     "et": {
         "error_overlap": "Viga: sündmus kattub olemasolevaga.",
@@ -4952,7 +5197,11 @@ const TRANSLATIONS = {
         "settings_font_size": "Teksti suurus",
         "font_size_small": "Väike",
         "font_size_medium": "Keskmine",
-        "font_size_large": "suur"
+        "font_size_large": "suur",
+        "sleep_update_title": "Uuenda unistust",
+        "sleep_update_desc": "Viimasel unesündmusel on juba lõpuaeg. Kas soovite selle üle kirjutada?",
+        "sleep_update_confirm": "Üle kirjutada",
+        "sleep_update_cancel": "Tühista"
     },
     "eu": {
         "error_overlap": "Errorea: gertaera lehendik dagoen batekin gainjartzen da.",
@@ -5029,7 +5278,11 @@ const TRANSLATIONS = {
         "settings_font_size": "Testuaren tamaina",
         "font_size_small": "Txikia",
         "font_size_medium": "Ertaina",
-        "font_size_large": "handia"
+        "font_size_large": "handia",
+        "sleep_update_title": "Eguneratu ametsa",
+        "sleep_update_desc": "Lo egiteko azken gertaerak amaiera-ordua du dagoeneko. Gainidatzi nahi al duzu?",
+        "sleep_update_confirm": "Gainidatzi",
+        "sleep_update_cancel": "Utzi"
     },
     "gl": {
         "error_overlap": "Erro: o evento se solapa cun existente.",
@@ -5106,7 +5359,11 @@ const TRANSLATIONS = {
         "settings_font_size": "Tamaño do texto",
         "font_size_small": "Pequeno",
         "font_size_medium": "Medio",
-        "font_size_large": "grande"
+        "font_size_large": "grande",
+        "sleep_update_title": "Actualiza o soño",
+        "sleep_update_desc": "O último evento de sono xa ten unha hora de finalización. Queres sobreescribilo?",
+        "sleep_update_confirm": "Sobrescribir",
+        "sleep_update_cancel": "Cancelar"
     },
     "ka": {
         "error_overlap": "შეცდომა: მოვლენა გადაფარავს არსებულს.",
@@ -5183,7 +5440,11 @@ const TRANSLATIONS = {
         "settings_font_size": "ტექსტის ზომა",
         "font_size_small": "პატარა",
         "font_size_medium": "საშუალო",
-        "font_size_large": "დიდი"
+        "font_size_large": "დიდი",
+        "sleep_update_title": "ოცნების განახლება",
+        "sleep_update_desc": "ძილის ბოლო მოვლენას უკვე აქვს დასრულების დრო. გსურთ მისი გადაწერა?",
+        "sleep_update_confirm": "გადაწერა",
+        "sleep_update_cancel": "გაუქმება"
     },
     "el": {
         "error_overlap": "Σφάλμα: Το συμβάν επικαλύπτεται με ένα υπάρχον.",
@@ -5260,7 +5521,11 @@ const TRANSLATIONS = {
         "settings_font_size": "Μέγεθος κειμένου",
         "font_size_small": "Μικρό",
         "font_size_medium": "Μεσαίο",
-        "font_size_large": "μεγάλος"
+        "font_size_large": "μεγάλος",
+        "sleep_update_title": "Ενημέρωση ονείρου",
+        "sleep_update_desc": "Το τελευταίο συμβάν ύπνου έχει ήδη ώρα λήξης. Θέλετε να το αντικαταστήσετε;",
+        "sleep_update_confirm": "Αντικατάσταση",
+        "sleep_update_cancel": "Ακύρωση"
     },
     "he": {
         "error_overlap": "שגיאה: האירוע חופף לאירוע קיים.",
@@ -5337,7 +5602,11 @@ const TRANSLATIONS = {
         "settings_font_size": "גודל טקסט",
         "font_size_small": "קטן",
         "font_size_medium": "בינוני",
-        "font_size_large": "גדול"
+        "font_size_large": "גדול",
+        "sleep_update_title": "עדכון חלום",
+        "sleep_update_desc": "לאירוע השינה האחרון יש כבר שעת סיום. האם אתה רוצה להחליף אותו?",
+        "sleep_update_confirm": "החלף",
+        "sleep_update_cancel": "בטל"
     },
     "hu": {
         "error_overlap": "Hiba: Az esemény átfedésben van egy meglévővel.",
@@ -5414,7 +5683,11 @@ const TRANSLATIONS = {
         "settings_font_size": "Szöveg mérete",
         "font_size_small": "Kicsi",
         "font_size_medium": "Közepes",
-        "font_size_large": "nagy"
+        "font_size_large": "nagy",
+        "sleep_update_title": "Frissítse álmát",
+        "sleep_update_desc": "Az utolsó alváseseménynek már megvan a befejezési ideje. Felül akarod írni?",
+        "sleep_update_confirm": "Felülírás",
+        "sleep_update_cancel": "Mégse"
     },
     "is": {
         "error_overlap": "Villa: Atburðurinn skarast við þann sem fyrir er.",
@@ -5491,7 +5764,11 @@ const TRANSLATIONS = {
         "settings_font_size": "Textastærð",
         "font_size_small": "Lítil",
         "font_size_medium": "Miðlungs",
-        "font_size_large": "stór"
+        "font_size_large": "stór",
+        "sleep_update_title": "Uppfærðu draum",
+        "sleep_update_desc": "Síðasti svefnatburður hefur þegar lokatíma. Viltu skrifa yfir það?",
+        "sleep_update_confirm": "Skrifa yfir",
+        "sleep_update_cancel": "Hætta við"
     },
     "kk": {
         "error_overlap": "Қате: оқиға бұрыннан бар оқиғамен қабаттасады.",
@@ -5568,7 +5845,11 @@ const TRANSLATIONS = {
         "settings_font_size": "Мәтін өлшемі",
         "font_size_small": "Кішкентай",
         "font_size_medium": "Орташа",
-        "font_size_large": "үлкен"
+        "font_size_large": "үлкен",
+        "sleep_update_title": "Арманды жаңартыңыз",
+        "sleep_update_desc": "Соңғы ұйқы оқиғасының аяқталу уақыты әлдеқашан бар. Оны қайта жазғыңыз келе ме?",
+        "sleep_update_confirm": "Үстіне жазу",
+        "sleep_update_cancel": "Болдырмау"
     },
     "ky": {
         "error_overlap": "Ката: Окуя учурдагы менен дал келет.",
@@ -5643,9 +5924,13 @@ const TRANSLATIONS = {
         "sleep_end_only": "Жөн эле бүт",
         "daily_note_placeholder": "Күн үчүн эскертүү кошуу...",
         "settings_font_size": "Тексттин өлчөмү",
-        "font_size_small": "Small",
+        "font_size_small": "Кичине",
         "font_size_medium": "Орто",
-        "font_size_large": "чоң"
+        "font_size_large": "чоң",
+        "sleep_update_title": "Кыялды жаңыртуу",
+        "sleep_update_desc": "Акыркы уйку окуясынын аяктоо убактысы мурунтан эле бар. Анын үстүнө жазгыңыз келеби?",
+        "sleep_update_confirm": "Үстүнө жазуу",
+        "sleep_update_cancel": "Жокко чыгаруу"
     },
     "lo": {
         "error_overlap": "ຜິດພາດ: ເຫດການທັບຊ້ອນກັບອັນທີ່ມີຢູ່ແລ້ວ.",
@@ -5722,7 +6007,11 @@ const TRANSLATIONS = {
         "settings_font_size": "ຂະໜາດຕົວໜັງສື",
         "font_size_small": "ຂະຫນາດນ້ອຍ",
         "font_size_medium": "ຂະຫນາດກາງ",
-        "font_size_large": "ໃຫຍ່"
+        "font_size_large": "ໃຫຍ່",
+        "sleep_update_title": "ອັບເດດຄວາມຝັນ",
+        "sleep_update_desc": "ເຫດການນອນສຸດທ້າຍມີເວລາສິ້ນສຸດແລ້ວ. ທ່ານຕ້ອງການຂຽນທັບມັນບໍ?",
+        "sleep_update_confirm": "ຂຽນທັບ",
+        "sleep_update_cancel": "ຍົກເລີກ"
     },
     "lv": {
         "error_overlap": "Kļūda: notikums pārklājas ar esošu.",
@@ -5799,7 +6088,11 @@ const TRANSLATIONS = {
         "settings_font_size": "Teksta lielums",
         "font_size_small": "Mazs",
         "font_size_medium": "Vidēja",
-        "font_size_large": "liels"
+        "font_size_large": "liels",
+        "sleep_update_title": "Atjauniniet sapni",
+        "sleep_update_desc": "Pēdējam miega notikumam jau ir beigu laiks. Vai vēlaties to pārrakstīt?",
+        "sleep_update_confirm": "Pārrakstīt",
+        "sleep_update_cancel": "Atcelt"
     },
     "lt": {
         "error_overlap": "Klaida: įvykis sutampa su esamu.",
@@ -5876,7 +6169,11 @@ const TRANSLATIONS = {
         "settings_font_size": "Teksto dydis",
         "font_size_small": "Mažas",
         "font_size_medium": "Vidutinis",
-        "font_size_large": "didelis"
+        "font_size_large": "didelis",
+        "sleep_update_title": "Atnaujinkite svajonę",
+        "sleep_update_desc": "Paskutinis miego įvykis jau turi pabaigos laiką. Ar norite jį perrašyti?",
+        "sleep_update_confirm": "Perrašyti",
+        "sleep_update_cancel": "Atšaukti"
     },
     "mk": {
         "error_overlap": "Грешка: настанот се преклопува со постоечки.",
@@ -5953,7 +6250,11 @@ const TRANSLATIONS = {
         "settings_font_size": "Големина на текстот",
         "font_size_small": "Мали",
         "font_size_medium": "Средно",
-        "font_size_large": "голема"
+        "font_size_large": "голема",
+        "sleep_update_title": "Ажурирајте го сонот",
+        "sleep_update_desc": "Последниот настан за спиење веќе има крајно време. Дали сакате да го презапишете?",
+        "sleep_update_confirm": "Презапишете",
+        "sleep_update_cancel": "Откажи"
     },
     "mn": {
         "error_overlap": "Алдаа: Үйл явдал одоо байгаа үйл явдалтай давхцаж байна.",
@@ -6030,7 +6331,11 @@ const TRANSLATIONS = {
         "settings_font_size": "Текстийн хэмжээ",
         "font_size_small": "Жижиг",
         "font_size_medium": "Дунд зэрэг",
-        "font_size_large": "том"
+        "font_size_large": "том",
+        "sleep_update_title": "Мөрөөдлөө шинэчлэх",
+        "sleep_update_desc": "Сүүлчийн унтах үйл явдал аль хэдийн дуусах цагтай байна. Та үүнийг дарж бичихийг хүсч байна уу?",
+        "sleep_update_confirm": "Дарж бичих",
+        "sleep_update_cancel": "Цуцлах"
     },
     "no": {
         "error_overlap": "Feil: Hendelsen overlapper med en eksisterende.",
@@ -6107,7 +6412,11 @@ const TRANSLATIONS = {
         "settings_font_size": "Tekststørrelse",
         "font_size_small": "Liten",
         "font_size_medium": "Middels",
-        "font_size_large": "stor"
+        "font_size_large": "stor",
+        "sleep_update_title": "Oppdater drømmen",
+        "sleep_update_desc": "Den siste søvnhendelsen har allerede en sluttid. Vil du overskrive den?",
+        "sleep_update_confirm": "Overskriv",
+        "sleep_update_cancel": "Avbryt"
     },
     "rm": {
         "error_overlap": "Error: The event overlaps with an existing one.",
@@ -6261,7 +6570,11 @@ const TRANSLATIONS = {
         "settings_font_size": "Величина текста",
         "font_size_small": "Мала",
         "font_size_medium": "Средње",
-        "font_size_large": "велики"
+        "font_size_large": "велики",
+        "sleep_update_title": "Ажурирајте сан",
+        "sleep_update_desc": "Последњи догађај спавања већ има време завршетка. Да ли желите да га препишете?",
+        "sleep_update_confirm": "Оверврите",
+        "sleep_update_cancel": "Откажи"
     },
     "zu": {
         "error_overlap": "Iphutha: Umcimbi ugqagqene nesivele sikhona.",
@@ -6338,6 +6651,10 @@ const TRANSLATIONS = {
         "settings_font_size": "Usayizi wombhalo",
         "font_size_small": "Encane",
         "font_size_medium": "Maphakathi",
-        "font_size_large": "enkulu"
+        "font_size_large": "enkulu",
+        "sleep_update_title": "Buyekeza iphupho",
+        "sleep_update_desc": "Umcimbi wokugcina wokulala usuvele unesikhathi sokuphela. Ingabe ufuna ukulibhala phezu kwalo?",
+        "sleep_update_confirm": "Bhala phezu",
+        "sleep_update_cancel": "Khansela"
     }
 };

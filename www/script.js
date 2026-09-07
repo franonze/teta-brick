@@ -977,8 +977,15 @@ function closeMergeModal() {
 btnMergeCancel.addEventListener('click', () => {
     if (pendingSessionData) {
         if (mergeContext === 'manual' || mergeContext === 'edit') saveManualMerge(pendingSessionData, false);
-        else saveAndResetSession(pendingSessionData, false);
-        pendingSessionData = null;
+        else if (mergeContext === 'main') {
+            pipelineStateCache.mergeBreastEvents = false;
+            const state = pipelineStateCache;
+            const sess = pendingSessionData;
+            pipelineStateCache = null;
+            pendingSessionData = null;
+            proceedToStep3(state, sess);
+        } else saveAndResetSession(pendingSessionData, false);
+        if (mergeContext !== 'main') pendingSessionData = null;
     }
     closeMergeModal();
 });
@@ -986,11 +993,19 @@ btnMergeCancel.addEventListener('click', () => {
 btnMergeConfirm.addEventListener('click', () => {
     if (pendingSessionData) {
         if (mergeContext === 'manual' || mergeContext === 'edit') saveManualMerge(pendingSessionData, true);
-        else saveAndResetSession(pendingSessionData, true);
-        pendingSessionData = null;
+        else if (mergeContext === 'main') {
+            pipelineStateCache.mergeBreastEvents = true;
+            const state = pipelineStateCache;
+            const sess = pendingSessionData;
+            pipelineStateCache = null;
+            pendingSessionData = null;
+            proceedToStep3(state, sess);
+        } else saveAndResetSession(pendingSessionData, true);
+        if (mergeContext !== 'main') pendingSessionData = null;
     }
     closeMergeModal();
 });
+
 
 
 function checkOverlap(history, ignoreDateStr, ignoreKey, eventType, startStr, durationSeconds, compareDate) {
@@ -1177,11 +1192,127 @@ function performAutoSplit(history) {
     return newHistory;
 }
 
+
+// Cache temporal para pasar variables de estado del pipeline entre event listeners
+let pipelineStateCache = null;
+
+// Botones del sleep-missing-modal
+document.getElementById('sleep-missing-save').addEventListener('click', () => {
+    document.getElementById('sleep-missing-modal').classList.remove('active');
+    pipelineStateCache.createNewSleepEvent = true;
+    const oldCache = pipelineStateCache;
+    const sess = pendingSessionData;
+    pipelineStateCache = null;
+    pendingSessionData = null;
+    proceedToStep3(oldCache, sess);
+});
+
+document.getElementById('sleep-missing-cancel').addEventListener('click', () => {
+    document.getElementById('sleep-missing-modal').classList.remove('active');
+    pipelineStateCache = null;
+    pendingSessionData = null;
+});
+
+// Botones del sleep-update-modal
+const btnSleepUpdateSave = document.getElementById('sleep-update-save');
+if (btnSleepUpdateSave) {
+    btnSleepUpdateSave.addEventListener('click', () => {
+        document.getElementById('sleep-update-modal').classList.remove('active');
+        const history = JSON.parse(localStorage.getItem(CONFIG.storage.historyKey)) || [];
+        for (let i = history.length - 1; i >= 0; i--) {
+            if (history[i].sleep) {
+                pipelineStateCache.mergeSleepEventIndex = i;
+                break;
+            }
+        }
+        
+        const oldCache = pipelineStateCache;
+        const sess = pendingSessionData;
+        pipelineStateCache = null;
+        pendingSessionData = null;
+        proceedToStep3(oldCache, sess);
+    });
+}
+const btnSleepUpdateCancel = document.getElementById('sleep-update-cancel');
+if (btnSleepUpdateCancel) {
+    btnSleepUpdateCancel.addEventListener('click', () => {
+        document.getElementById('sleep-update-modal').classList.remove('active');
+        pipelineStateCache = null;
+        pendingSessionData = null;
+    });
+}
+
+// Paso 3 del Pipeline: Evaluar solapamientos y guardar
+function proceedToStep3(state, sessionDataOverride = null) {
+    const sessionData = sessionDataOverride || pendingSessionData;
+    const history = JSON.parse(localStorage.getItem(CONFIG.storage.historyKey)) || [];
+    const baseDate = new Date(sessionData.date);
+
+    let overlapErrors = state.overlapErrors || [];
+    
+    // Tratamiento de sueño para guardado
+    if (sessionData.sleep) {
+        let sleepStartTime = sessionData.sleep.startTime;
+        let sDur = 0;
+        
+        if (state.mergeSleepEventIndex !== -1 && history[state.mergeSleepEventIndex]) {
+            sleepStartTime = history[state.mergeSleepEventIndex].sleep.startTime || null;
+        }
+        
+        if (sleepStartTime) {
+            if (sessionData.sleep.endTime && sessionData.sleep.endTime !== '--:--') {
+                const [sh, sm] = sleepStartTime.split(':').map(Number);
+                const [eh, em] = sessionData.sleep.endTime.split(':').map(Number);
+                let startMins = sh * 60 + sm;
+                let endMins = eh * 60 + em;
+                if (endMins < startMins) endMins += 24 * 60;
+                sDur = (endMins - startMins) * 60;
+            }
+            let durMins = Math.floor(sDur / 60);
+            sessionData.sleep.durationStr = sDur > 0 ? `${Math.floor(durMins/60).toString().padStart(2,'0')}:${(durMins%60).toString().padStart(2,'0')}` : '--:--';
+            
+            let ignoreDate = null;
+            if (state.mergeSleepEventIndex !== -1 && history[state.mergeSleepEventIndex]) {
+                ignoreDate = history[state.mergeSleepEventIndex].date;
+            }
+            if (checkOverlap(history, ignoreDate, 'sleep', 'sleep', sleepStartTime, sDur, baseDate)) {
+                overlapErrors.push('sleep');
+                sessionData.sleep = null;
+            }
+        }
+    }
+
+    const hasActiveLeft = sessionData.left && sessionData.left.startTime !== null;
+    const hasActiveRight = sessionData.right && sessionData.right.startTime !== null;
+    const hasActiveBottle = sessionData.bottle && sessionData.bottle.startTime !== null;
+    const hasActiveDiaper = sessionData.diapers !== null;
+    const hasActiveSleep = sessionData.sleep !== null;
+
+    if (!hasActiveLeft && !hasActiveRight && !hasActiveBottle && !hasActiveDiaper && !hasActiveSleep) {
+        if (overlapErrors.length > 0) {
+            alert(getTranslation('error_overlap'));
+        } else {
+            alert(getTranslation('no_active_data'));
+        }
+        return;
+    }
+    
+    // Update sleep if needed
+    if (sessionData.sleep && state.mergeSleepEventIndex !== -1 && history[state.mergeSleepEventIndex]) {
+        history[state.mergeSleepEventIndex].sleep.endTime = sessionData.sleep.endTime;
+        history[state.mergeSleepEventIndex].sleep.durationStr = sessionData.sleep.durationStr || '--:--';
+        sessionData.sleep = null; 
+        localStorage.setItem(CONFIG.storage.historyKey, JSON.stringify(history));
+    } else if (sessionData.sleep && sessionData.sleep.startTime === null && !state.createNewSleepEvent) {
+        sessionData.sleep = null;
+    }
+
+    saveAndResetSession(sessionData, state.mergeBreastEvents, overlapErrors);
+}
 // Registrar Session
 btnRegistrar.addEventListener('click', () => {
     let baseDate = new Date();
     
-    // Find the earliest start time among active timers to correctly determine the session date
     let earliestTimeStr = '23:59';
     if (hourLeft.textContent !== '--:--' && hourLeft.textContent < earliestTimeStr) earliestTimeStr = hourLeft.textContent;
     if (hourRight.textContent !== '--:--' && hourRight.textContent < earliestTimeStr) earliestTimeStr = hourRight.textContent;
@@ -1191,17 +1322,27 @@ btnRegistrar.addEventListener('click', () => {
     if (earliestTimeStr !== '23:59') {
         const [eh] = earliestTimeStr.split(':').map(Number);
         const currH = baseDate.getHours();
-        // If the earliest start time is > 12 hours ahead of the current time (e.g. 23 > 0 + 12), it started yesterday
         if (eh > currH + 12) {
             baseDate.setDate(baseDate.getDate() - 1);
         }
     }
 
-    // Only capture data for the active tab to prevent hidden field overlap bugs
     const activeViewId = document.querySelector('.view.active') ? document.querySelector('.view.active').id : 'view-pecho';
     const isPechoActive = activeViewId === 'view-pecho';
     const isBiberonActive = activeViewId === 'view-biberon';
-    const sessionData = {
+    
+    const sleepStartText = timeSleepStart.textContent !== '--:--' ? timeSleepStart.textContent : null;
+    const sleepEndText = timeSleepEnd.textContent !== '--:--' ? timeSleepEnd.textContent : null;
+    let sleepObj = null;
+    if (sleepStartText !== null || sleepEndText !== null) {
+        sleepObj = {
+            startTime: sleepStartText,
+            endTime: sleepEndText,
+            note: pendingNotes.sleep || ''
+        };
+    }
+
+    let sessionData = {
         date: baseDate.toISOString(),
         left: {
             durationSeconds: leftSeconds,
@@ -1219,10 +1360,9 @@ btnRegistrar.addEventListener('click', () => {
             note: (isBiberonActive && pendingNotes.bottle) ? pendingNotes.bottle : ''
         },
         diapers: (timeDiaper.textContent !== '--:--') ? { time: timeDiaper.textContent, note: pendingNotes.diaper || '' } : null,
-        sleep: (timeSleepStart.textContent !== '--:--') ? { startTime: timeSleepStart.textContent, endTime: timeSleepEnd.textContent, note: pendingNotes.sleep || '' } : null
+        sleep: sleepObj
     };
 
-    // Check if there is anything to save
     const hasActiveLeft = sessionData.left.startTime !== null;
     const hasActiveRight = sessionData.right.startTime !== null;
     const hasActiveBottle = sessionData.bottle.startTime !== null;
@@ -1234,16 +1374,19 @@ btnRegistrar.addEventListener('click', () => {
         return;
     }
 
-    
     const history = JSON.parse(localStorage.getItem(CONFIG.storage.historyKey)) || [];
 
-    let isOverlap = false;
+    // Early overlap check to filter out conflicting events
+    let overlapErrors = [];
     if (sessionData.left && sessionData.left.startTime) {
-        if (checkOverlap(history, null, null, 'left', sessionData.left.startTime, sessionData.left.durationSeconds, baseDate)) isOverlap = true;
+        if (checkOverlap(history, null, null, 'left', sessionData.left.startTime, sessionData.left.durationSeconds, baseDate)) {
+            overlapErrors.push('left');
+            sessionData.left.startTime = null;
+        }
     }
     if (sessionData.right && sessionData.right.startTime) {
+        let isOverlap = false;
         if (checkOverlap(history, null, null, 'right', sessionData.right.startTime, sessionData.right.durationSeconds, baseDate)) isOverlap = true;
-        // Also check against left inside the same session being created!
         if (sessionData.left && sessionData.left.startTime) {
             const s1 = new Date(baseDate);
             const [h1, m1] = sessionData.right.startTime.split(':').map(Number);
@@ -1258,20 +1401,25 @@ btnRegistrar.addEventListener('click', () => {
             end2.setSeconds(0, 0);
             
             if (s1 < end2 && s2 < end1) {
-                alert("Los tiempos del pecho izquierdo y derecho se solapan. Por favor, corrígelos o reinícialos.");
-                return;
+                isOverlap = true;
             }
-            if (s1.getTime() === s2.getTime()) {
-                alert("Los tiempos del pecho izquierdo y derecho se solapan. Por favor, corrígelos o reinícialos.");
-                return;
-            }
+        }
+        if (isOverlap) {
+            overlapErrors.push('right');
+            sessionData.right.startTime = null;
         }
     }
     if (sessionData.bottle && sessionData.bottle.startTime) {
-        if (checkOverlap(history, null, null, 'bottle', sessionData.bottle.startTime, 0, baseDate)) isOverlap = true;
+        if (checkOverlap(history, null, null, 'bottle', sessionData.bottle.startTime, 0, baseDate)) {
+            overlapErrors.push('bottle');
+            sessionData.bottle.startTime = null;
+        }
     }
     if (sessionData.diapers && sessionData.diapers.time) {
-        if (checkOverlap(history, null, null, 'diaper', sessionData.diapers.time, 0, baseDate)) isOverlap = true;
+        if (checkOverlap(history, null, null, 'diaper', sessionData.diapers.time, 0, baseDate)) {
+            overlapErrors.push('diaper');
+            sessionData.diapers = null;
+        }
     }
     if (sessionData.sleep && sessionData.sleep.startTime) {
         let sDur = 0;
@@ -1283,76 +1431,125 @@ btnRegistrar.addEventListener('click', () => {
             if (endMins < startMins) endMins += 24 * 60;
             sDur = (endMins - startMins) * 60;
         }
-        let durMins = Math.floor(sDur / 60);
-        sessionData.sleep.durationStr = sDur > 0 ? `${Math.floor(durMins/60).toString().padStart(2,'0')}:${(durMins%60).toString().padStart(2,'0')}` : '--:--';
-        if (checkOverlap(history, null, null, 'sleep', sessionData.sleep.startTime, sDur, baseDate)) isOverlap = true;
-    }
-    if (isOverlap) {
-        alert(getTranslation('error_overlap'));
-        return;
-    }
-
-
-    if (deduplicateHistoryDates(history)) {
-        localStorage.setItem(CONFIG.storage.historyKey, JSON.stringify(history));
-    }
-
-    if (history.length > 0) {
-        const lastRecord = history[history.length - 1];
-
-        // Find earliest start time of last record
-        let lastEarliestStr = '23:59';
-        if (lastRecord.left && lastRecord.left.startTime && lastRecord.left.startTime < lastEarliestStr) lastEarliestStr = lastRecord.left.startTime;
-        if (lastRecord.right && lastRecord.right.startTime && lastRecord.right.startTime < lastEarliestStr) lastEarliestStr = lastRecord.right.startTime;
-        if (lastRecord.bottle && lastRecord.bottle.startTime && lastRecord.bottle.startTime < lastEarliestStr) lastEarliestStr = lastRecord.bottle.startTime;
-        if (lastRecord.sleep && lastRecord.sleep.startTime && lastRecord.sleep.startTime < lastEarliestStr) lastEarliestStr = lastRecord.sleep.startTime;
-
-        // Find earliest start time of current session
-        let currEarliestStr = '23:59';
-        if (sessionData.left.startTime && sessionData.left.startTime < currEarliestStr) currEarliestStr = sessionData.left.startTime;
-        if (sessionData.right.startTime && sessionData.right.startTime < currEarliestStr) currEarliestStr = sessionData.right.startTime;
-        if (sessionData.bottle.startTime && sessionData.bottle.startTime < currEarliestStr) currEarliestStr = sessionData.bottle.startTime;
-        if (sessionData.sleep && sessionData.sleep.startTime && sessionData.sleep.startTime < currEarliestStr) currEarliestStr = sessionData.sleep.startTime;
-        
-
-
-        if (lastEarliestStr !== '23:59' && currEarliestStr !== '23:59') {
-            const lastDate = new Date(lastRecord.date);
-            const [lh, lm] = lastEarliestStr.split(':');
-            lastDate.setHours(parseInt(lh, 10), parseInt(lm, 10), 0, 0);
-
-            const currDate = new Date(sessionData.date);
-            const [ch, cm] = currEarliestStr.split(':');
-            currDate.setHours(parseInt(ch, 10), parseInt(cm, 10), 0, 0);
-
-            const diffMinutes = Math.abs(currDate - lastDate) / (1000 * 60);
-
-            if (diffMinutes <= MERGE_WINDOW_MINUTES && appSettings.trackDurationQuantity !== false) {
-                mergeContext = 'main';
-                pendingSessionData = sessionData;
-                mergeModal.classList.add('active');
-                return;
-            }
-        } else {
-            // Fallback if no start times are available
-            mergeContext = 'main';
-            const lastRecordDate = new Date(lastRecord.date);
-            const now = new Date();
-            const diffMinutes = (now - lastRecordDate) / (1000 * 60);
-
-            if (diffMinutes >= 0 && diffMinutes <= MERGE_WINDOW_MINUTES && appSettings.trackDurationQuantity !== false) {
-                mergeContext = 'main';
-                pendingSessionData = sessionData;
-                mergeModal.classList.add('active');
-                return; // Wait for user decision
-            }
+        if (checkOverlap(history, null, null, 'sleep', sessionData.sleep.startTime, sDur, baseDate)) {
+            overlapErrors.push('sleep');
+            sessionData.sleep = null;
         }
     }
 
-    saveAndResetSession(sessionData, false);
+    const hasActiveLeftAfter = sessionData.left && sessionData.left.startTime !== null;
+    const hasActiveRightAfter = sessionData.right && sessionData.right.startTime !== null;
+    const hasActiveBottleAfter = sessionData.bottle && sessionData.bottle.startTime !== null;
+    const hasActiveDiaperAfter = sessionData.diapers !== null;
+    const hasActiveSleepAfter = sessionData.sleep !== null;
+
+    if (!hasActiveLeftAfter && !hasActiveRightAfter && !hasActiveBottleAfter && !hasActiveDiaperAfter && !hasActiveSleepAfter) {
+        if (overlapErrors.length > 0) {
+            alert(getTranslation('error_overlap'));
+        }
+        return;
+    }
+
+    let pipelineState = {
+        mergeSleepEventIndex: -1,
+        createNewSleepEvent: false,
+        mergeBreastEvents: false,
+        overlapErrors: overlapErrors
+    };
+
+    const proceedToStep2 = () => {
+        let needsMergeCheck = false;
+        if (history.length > 0) {
+            let lastRecord = history[history.length - 1];
+            
+            let lastEarliestStr = '23:59';
+            if (lastRecord.left && lastRecord.left.startTime && lastRecord.left.startTime < lastEarliestStr) lastEarliestStr = lastRecord.left.startTime;
+            if (lastRecord.right && lastRecord.right.startTime && lastRecord.right.startTime < lastEarliestStr) lastEarliestStr = lastRecord.right.startTime;
+            if (lastRecord.bottle && lastRecord.bottle.startTime && lastRecord.bottle.startTime < lastEarliestStr) lastEarliestStr = lastRecord.bottle.startTime;
+            if (lastRecord.sleep && lastRecord.sleep.startTime && lastRecord.sleep.startTime < lastEarliestStr) lastEarliestStr = lastRecord.sleep.startTime;
+
+            let currEarliestStr = '23:59';
+            if (sessionData.left.startTime && sessionData.left.startTime < currEarliestStr) currEarliestStr = sessionData.left.startTime;
+            if (sessionData.right.startTime && sessionData.right.startTime < currEarliestStr) currEarliestStr = sessionData.right.startTime;
+            if (sessionData.bottle.startTime && sessionData.bottle.startTime < currEarliestStr) currEarliestStr = sessionData.bottle.startTime;
+            if (sessionData.sleep && sessionData.sleep.startTime && sessionData.sleep.startTime < currEarliestStr) currEarliestStr = sessionData.sleep.startTime;
+
+            if (lastEarliestStr !== '23:59' && currEarliestStr !== '23:59') {
+                const lastDate = new Date(lastRecord.date);
+                const [lh, lm] = lastEarliestStr.split(':').map(Number);
+                lastDate.setHours(lh, lm, 0, 0);
+
+                const currDate = new Date(sessionData.date);
+                const [ch, cm] = currEarliestStr.split(':').map(Number);
+                currDate.setHours(ch, cm, 0, 0);
+
+                const diffMinutes = Math.abs(currDate - lastDate) / (1000 * 60);
+
+                if (diffMinutes <= CONFIG.app.mergeWindowMinutes && appSettings.trackDurationQuantity !== false) {
+                    needsMergeCheck = true;
+                }
+            } else {
+                const lastRecordDate = new Date(lastRecord.date);
+                const now = new Date();
+                const diffMinutes = (now - lastRecordDate) / (1000 * 60);
+
+                if (diffMinutes >= 0 && diffMinutes <= CONFIG.app.mergeWindowMinutes && appSettings.trackDurationQuantity !== false) {
+                    needsMergeCheck = true;
+                }
+            }
+        }
+
+        if (needsMergeCheck) {
+            mergeContext = 'main';
+            pendingSessionData = sessionData;
+            pipelineStateCache = pipelineState;
+            mergeModal.classList.add('active');
+        } else {
+            proceedToStep3(pipelineState, sessionData);
+        }
+    };
+
+    if (sessionData.sleep && sessionData.sleep.startTime === null && sessionData.sleep.endTime !== null) {
+        let foundEventIndex = -1;
+        const maxSleepDurationHours = CONFIG.app.maxSleepDurationHours || 12;
+
+        for (let i = history.length - 1; i >= 0; i--) {
+            if (history[i].sleep) {
+                let eventDate = new Date(history[i].date);
+                if (history[i].sleep.startTime) {
+                    const [sh, sm] = history[i].sleep.startTime.split(':').map(Number);
+                    eventDate.setHours(sh, sm, 0, 0);
+                }
+                const diffHours = (baseDate - eventDate) / (1000 * 60 * 60);
+                
+                if (diffHours >= 0 && diffHours <= maxSleepDurationHours) {
+                    foundEventIndex = i;
+                }
+                break;
+            }
+        }
+
+        if (foundEventIndex !== -1) {
+            const existingSleep = history[foundEventIndex].sleep;
+            if (!existingSleep.endTime || existingSleep.endTime === '--:--') {
+                pipelineState.mergeSleepEventIndex = foundEventIndex;
+                proceedToStep2();
+            } else {
+                pipelineStateCache = pipelineState;
+                pendingSessionData = sessionData;
+                document.getElementById('sleep-update-modal').classList.add('active');
+            }
+        } else {
+            pipelineStateCache = pipelineState;
+            pendingSessionData = sessionData;
+            document.getElementById('sleep-missing-modal').classList.add('active');
+        }
+    } else {
+        proceedToStep2();
+    }
 });
 
-function saveAndResetSession(sessionData, merge) {
+function saveAndResetSession(sessionData, merge, overlapErrors = []) {
     const history = JSON.parse(localStorage.getItem(CONFIG.storage.historyKey)) || [];
 
     if (merge && history.length > 0) {
@@ -1401,18 +1598,11 @@ function saveAndResetSession(sessionData, merge) {
         history.push(newSession);
     }
 
-    // Clear pending notes after successful save
-    const hasActiveLeft = sessionData.left && sessionData.left.startTime !== null;
-    const hasActiveRight = sessionData.right && sessionData.right.startTime !== null;
-    const hasActiveBottle = sessionData.bottle && sessionData.bottle.startTime !== null;
-    const hasActiveDiaper = sessionData.diapers !== null;
-    const hasActiveSleep = sessionData.sleep && sessionData.sleep.startTime !== null;
-    
-    if (hasActiveLeft) pendingNotes.breast_left = '';
-    if (hasActiveRight) pendingNotes.breast_right = '';
-    if (hasActiveBottle) pendingNotes.bottle = '';
-    if (hasActiveDiaper) pendingNotes.diaper = '';
-    if (hasActiveSleep) pendingNotes.sleep = '';
+    pendingNotes.breast_left = '';
+    pendingNotes.breast_right = '';
+    pendingNotes.bottle = '';
+    pendingNotes.diaper = '';
+    pendingNotes.sleep = '';
     if (typeof savePendingNotes === 'function') savePendingNotes();
 
     localStorage.setItem(CONFIG.storage.historyKey, JSON.stringify(history));
@@ -1452,15 +1642,8 @@ function saveAndResetSession(sessionData, merge) {
     if (hourBottleEl) hourBottleEl.textContent = '--:--';
 
     timeDiaper.textContent = '--:--';
-
-    if (sessionData.diapers) {
-        timeDiaper.textContent = '--:--';
-    }
-
-    if (sessionData.sleep) {
-        timeSleepStart.textContent = '--:--';
-        timeSleepEnd.textContent = '--:--';
-    }
+    timeSleepStart.textContent = '--:--';
+    timeSleepEnd.textContent = '--:--';
 
     if (merge && history.length > 0) {
         let lastRecord = history[history.length - 1];
@@ -1488,7 +1671,10 @@ function saveAndResetSession(sessionData, merge) {
     setTimeout(() => {
         btnRegistrar.textContent = originalText;
         btnRegistrar.style.backgroundColor = '';
-    }, 2000);
+        if (overlapErrors && overlapErrors.length > 0) {
+            alert(getTranslation('error_overlap'));
+        }
+    }, 200); // reduced from 2000 to show alert almost immediately but after ui update
 }
 
 // Reset next feed logic (Stop)
