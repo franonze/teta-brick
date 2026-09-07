@@ -11,7 +11,7 @@ html.font-large { font-size: 18px; }
     --inner-bg-hover: rgba(255, 255, 255, 0.15);
     --text-primary: #ffffff;
     --text-secondary: #a0a0ab;
-    --accent-left: #ff7e67;
+    --accent-left: #ff6699;
     --accent-right: #67a3ff;
     --accent-primary: #10b981;
     --accent-primary-hover: #059669;
@@ -310,9 +310,9 @@ h2 {
 }
 
 .left-col .play-btn {
-    background: rgba(255, 126, 103, 0.2);
+    background: rgba(255, 102, 153, 0.2);
     color: var(--accent-left);
-    box-shadow: 0 4px 16px rgba(255, 126, 103, 0.2);
+    box-shadow: 0 4px 16px rgba(255, 102, 153, 0.2);
 }
 
 .right-col .play-btn {
