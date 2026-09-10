@@ -106,7 +106,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "Actualizar sueño",
         "sleep_update_desc": "El último evento de sueño ya tiene una hora de fin. ¿Deseas sobrescribirla?",
         "sleep_update_confirm": "Sobrescribir",
-        "sleep_update_cancel": "Cancelar"
+        "sleep_update_cancel": "Cancelar",
+        "enter_time": "Introduce la hora",
+        "bottle_amount": "Cantidad de biberón",
+        "delete_title": "¿Borrar registro?",
+        "delete_desc": "Esta acción no se puede deshacer.",
+        "delete_confirm": "Borrar"
     },
     "en": {
         "error_overlap": "Error: The event overlaps with an existing one.",
@@ -186,7 +191,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "Update sleep",
         "sleep_update_desc": "The last sleep event already has an end time. Do you want to overwrite it?",
         "sleep_update_confirm": "Overwrite",
-        "sleep_update_cancel": "Cancel"
+        "sleep_update_cancel": "Cancel",
+        "enter_time": "Enter time",
+        "bottle_amount": "Bottle amount",
+        "delete_title": "Delete record?",
+        "delete_desc": "This action cannot be undone.",
+        "delete_confirm": "Delete"
     },
     "zh": {
         "error_overlap": "错误：该事件与现有事件重叠。",
@@ -267,7 +277,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "更新睡眠",
         "sleep_update_desc": "最后一个睡眠事件已经有结束时间。 您想覆盖它吗？",
         "sleep_update_confirm": "覆盖",
-        "sleep_update_cancel": "取消"
+        "sleep_update_cancel": "取消",
+        "enter_time": "输入时间",
+        "bottle_amount": "瓶数",
+        "delete_title": "删除记录？",
+        "delete_desc": "此操作无法撤消。",
+        "delete_confirm": "删除"
     },
     "hi": {
         "error_overlap": "त्रुटि: ईवेंट मौजूदा ईवेंट के साथ ओवरलैप होता है।",
@@ -348,7 +363,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "नींद अद्यतन करें",
         "sleep_update_desc": "अंतिम नींद की घटना का अंत समय पहले ही आ चुका है। क्या आप इसे अधिलेखित करना चाहते हैं?",
         "sleep_update_confirm": "ओवरराइट",
-        "sleep_update_cancel": "रद्द करना"
+        "sleep_update_cancel": "रद्द करना",
+        "enter_time": "समय दर्ज करें",
+        "bottle_amount": "बोतल की मात्रा",
+        "delete_title": "रिकॉर्ड हटाएं?",
+        "delete_desc": "इस एक्शन को वापस नहीं किया जा सकता।",
+        "delete_confirm": "मिटाना"
     },
     "ar": {
         "error_overlap": "خطأ: يتداخل الحدث مع حدث موجود.",
@@ -429,7 +449,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "تحديث النوم",
         "sleep_update_desc": "حدث النوم الأخير له وقت انتهاء بالفعل. هل تريد الكتابة فوقه؟",
         "sleep_update_confirm": "الكتابة فوق",
-        "sleep_update_cancel": "يلغي"
+        "sleep_update_cancel": "يلغي",
+        "enter_time": "أدخل الوقت",
+        "bottle_amount": "كمية الزجاجة",
+        "delete_title": "هل تريد حذف السجل؟",
+        "delete_desc": "لا يمكن التراجع عن هذا الإجراء.",
+        "delete_confirm": "يمسح"
     },
     "fr": {
         "error_overlap": "Erreur : l'événement chevauche un événement existant.",
@@ -510,7 +535,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "Mettre à jour le sommeil",
         "sleep_update_desc": "Le dernier événement de veille a déjà une heure de fin. Voulez-vous l'écraser ?",
         "sleep_update_confirm": "Écraser",
-        "sleep_update_cancel": "Annuler"
+        "sleep_update_cancel": "Annuler",
+        "enter_time": "Entrez l'heure",
+        "bottle_amount": "Quantité de bouteille",
+        "delete_title": "Supprimer l'enregistrement ?",
+        "delete_desc": "Cette action ne peut pas être annulée.",
+        "delete_confirm": "Supprimer"
     },
     "ru": {
         "error_overlap": "Ошибка: событие пересекается с существующим.",
@@ -591,7 +621,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "Обновить сон",
         "sleep_update_desc": "Последнее событие сна уже имеет время окончания. Вы хотите перезаписать его?",
         "sleep_update_confirm": "Перезаписать",
-        "sleep_update_cancel": "Отмена"
+        "sleep_update_cancel": "Отмена",
+        "enter_time": "Введите время",
+        "bottle_amount": "Количество бутылок",
+        "delete_title": "Удалить запись?",
+        "delete_desc": "Это действие невозможно отменить.",
+        "delete_confirm": "Удалить"
     },
     "pt": {
         "error_overlap": "Erro: O evento se sobrepõe a um evento existente.",
@@ -672,7 +707,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "Atualizar sono",
         "sleep_update_desc": "O último evento de sono já tem hora de término. Você quer sobrescrevê-lo?",
         "sleep_update_confirm": "Substituir",
-        "sleep_update_cancel": "Cancelar"
+        "sleep_update_cancel": "Cancelar",
+        "enter_time": "Insira a hora",
+        "bottle_amount": "Quantidade de garrafa",
+        "delete_title": "Excluir registro?",
+        "delete_desc": "Esta ação não pode ser desfeita.",
+        "delete_confirm": "Excluir"
     },
     "de": {
         "error_overlap": "Fehler: Das Ereignis überschneidet sich mit einem vorhandenen.",
@@ -753,7 +793,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "Schlaf aktualisieren",
         "sleep_update_desc": "Das letzte Schlafereignis hat bereits eine Endzeit. Möchten Sie es überschreiben?",
         "sleep_update_confirm": "Überschreiben",
-        "sleep_update_cancel": "Stornieren"
+        "sleep_update_cancel": "Stornieren",
+        "enter_time": "Geben Sie die Zeit ein",
+        "bottle_amount": "Flaschenmenge",
+        "delete_title": "Datensatz löschen?",
+        "delete_desc": "Diese Aktion kann nicht rückgängig gemacht werden.",
+        "delete_confirm": "Löschen"
     },
     "ja": {
         "error_overlap": "エラー: イベントは既存のイベントと重複しています。",
@@ -834,7 +879,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "睡眠を更新する",
         "sleep_update_desc": "最後の睡眠イベントにはすでに終了時間が設定されています。 上書きしますか?",
         "sleep_update_confirm": "上書き",
-        "sleep_update_cancel": "キャンセル"
+        "sleep_update_cancel": "キャンセル",
+        "enter_time": "時間を入力してください",
+        "bottle_amount": "ボトル量",
+        "delete_title": "記録を削除しますか?",
+        "delete_desc": "この操作は元に戻すことができません。",
+        "delete_confirm": "消去"
     },
     "it": {
         "error_overlap": "Errore: l'evento si sovrappone a uno esistente.",
@@ -915,7 +965,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "Aggiorna il sonno",
         "sleep_update_desc": "L'ultimo evento di sonno ha già un'ora di fine. Vuoi sovrascriverlo?",
         "sleep_update_confirm": "Sovrascrivi",
-        "sleep_update_cancel": "Cancellare"
+        "sleep_update_cancel": "Cancellare",
+        "enter_time": "Inserisci l'ora",
+        "bottle_amount": "Quantità di bottiglia",
+        "delete_title": "Eliminare la registrazione?",
+        "delete_desc": "Questa azione non può essere annullata.",
+        "delete_confirm": "Eliminare"
     },
     "bn": {
         "error_overlap": "ত্রুটি: ইভেন্টটি বিদ্যমান একটির সাথে ওভারল্যাপ করে৷",
@@ -996,7 +1051,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "ঘুম আপডেট করুন",
         "sleep_update_desc": "শেষ ঘুম ইভেন্ট ইতিমধ্যে একটি শেষ সময় আছে. আপনি এটা ওভাররাইট করতে চান?",
         "sleep_update_confirm": "ওভাররাইট করুন",
-        "sleep_update_cancel": "বাতিল করুন"
+        "sleep_update_cancel": "বাতিল করুন",
+        "enter_time": "সময় লিখুন",
+        "bottle_amount": "বোতল পরিমাণ",
+        "delete_title": "রেকর্ড মুছবেন?",
+        "delete_desc": "এই ক্রিয়াটি পূর্বাবস্থায় ফেরানো যাবে না৷",
+        "delete_confirm": "মুছে দিন"
     },
     "ur": {
         "error_overlap": "خرابی: ایونٹ ایک موجودہ کے ساتھ اوورلیپ ہو جاتا ہے۔",
@@ -1077,7 +1137,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "نیند کو اپ ڈیٹ کریں۔",
         "sleep_update_desc": "آخری نیند کے ایونٹ کا پہلے ہی اختتامی وقت ہے۔ کیا آپ اسے اوور رائٹ کرنا چاہتے ہیں؟",
         "sleep_update_confirm": "اوور رائٹ کریں۔",
-        "sleep_update_cancel": "منسوخ کریں۔"
+        "sleep_update_cancel": "منسوخ کریں۔",
+        "enter_time": "وقت درج کریں۔",
+        "bottle_amount": "بوتل کی مقدار",
+        "delete_title": "ریکارڈ حذف کریں؟",
+        "delete_desc": "اس کارروائی کو کالعدم نہیں کیا جا سکتا۔",
+        "delete_confirm": "حذف کریں۔"
     },
     "id": {
         "error_overlap": "Kesalahan: Acara tersebut tumpang tindih dengan acara yang sudah ada.",
@@ -1158,7 +1223,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "Perbarui tidur",
         "sleep_update_desc": "Acara tidur terakhir sudah memiliki waktu berakhir. Apakah Anda ingin menimpanya?",
         "sleep_update_confirm": "Timpa",
-        "sleep_update_cancel": "Membatalkan"
+        "sleep_update_cancel": "Membatalkan",
+        "enter_time": "Masukkan waktu",
+        "bottle_amount": "Jumlah botol",
+        "delete_title": "Hapus catatan?",
+        "delete_desc": "Tindakan ini tidak dapat dibatalkan.",
+        "delete_confirm": "Menghapus"
     },
     "sw": {
         "error_overlap": "Hitilafu: Tukio linapishana na lililopo.",
@@ -1239,7 +1309,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "Sasisha usingizi",
         "sleep_update_desc": "Tukio la mwisho la usingizi tayari lina wakati wa mwisho. Je, ungependa kuibatilisha?",
         "sleep_update_confirm": "Batilisha",
-        "sleep_update_cancel": "Ghairi"
+        "sleep_update_cancel": "Ghairi",
+        "enter_time": "Ingiza wakati",
+        "bottle_amount": "Kiasi cha chupa",
+        "delete_title": "Ungependa kufuta rekodi?",
+        "delete_desc": "Kitendo hiki hakiwezi kutenduliwa.",
+        "delete_confirm": "Futa"
     },
     "mr": {
         "error_overlap": "त्रुटी: इव्हेंट विद्यमान इव्हेंटसह ओव्हरलॅप होतो.",
@@ -1320,7 +1395,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "झोप अपडेट करा",
         "sleep_update_desc": "शेवटच्या स्लीप इव्हेंटची आधीच समाप्ती वेळ आहे. तुम्हाला ते ओव्हरराईट करायचे आहे का?",
         "sleep_update_confirm": "ओव्हरराइट करा",
-        "sleep_update_cancel": "रद्द करा"
+        "sleep_update_cancel": "रद्द करा",
+        "enter_time": "वेळ प्रविष्ट करा",
+        "bottle_amount": "बाटली रक्कम",
+        "delete_title": "रेकॉर्ड हटवायचे?",
+        "delete_desc": "ही क्रिया पूर्ववत केली जाऊ शकत नाही.",
+        "delete_confirm": "हटवा"
     },
     "te": {
         "error_overlap": "లోపం: ఈవెంట్ ఇప్పటికే ఉన్న దానితో అతివ్యాప్తి చెందుతుంది.",
@@ -1401,7 +1481,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "నిద్రను నవీకరించండి",
         "sleep_update_desc": "చివరి నిద్ర ఈవెంట్‌కు ఇప్పటికే ముగింపు సమయం ఉంది. మీరు దానిని ఓవర్రైట్ చేయాలనుకుంటున్నారా?",
         "sleep_update_confirm": "ఓవర్రైట్",
-        "sleep_update_cancel": "రద్దు చేయి"
+        "sleep_update_cancel": "రద్దు చేయి",
+        "enter_time": "సమయాన్ని నమోదు చేయండి",
+        "bottle_amount": "బాటిల్ మొత్తం",
+        "delete_title": "రికార్డును తొలగించాలా?",
+        "delete_desc": "ఈ చర్య రద్దు చేయబడదు.",
+        "delete_confirm": "తొలగించు"
     },
     "tr": {
         "error_overlap": "Hata: Etkinlik mevcut bir etkinlikle çakışıyor.",
@@ -1482,7 +1567,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "Uykuyu güncelle",
         "sleep_update_desc": "Son uyku olayının zaten bir bitiş zamanı var. Üzerine yazmak istiyor musunuz?",
         "sleep_update_confirm": "Üzerine yaz",
-        "sleep_update_cancel": "İptal etmek"
+        "sleep_update_cancel": "İptal etmek",
+        "enter_time": "Saati girin",
+        "bottle_amount": "Şişe miktarı",
+        "delete_title": "Kayıt silinsin mi?",
+        "delete_desc": "Bu eylem geri alınamaz.",
+        "delete_confirm": "Silmek"
     },
     "ta": {
         "error_overlap": "பிழை: நிகழ்வு ஏற்கனவே உள்ளவற்றுடன் மேலெழுகிறது.",
@@ -1563,7 +1653,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "தூக்கத்தைப் புதுப்பிக்கவும்",
         "sleep_update_desc": "கடைசி உறக்க நிகழ்வுக்கு ஏற்கனவே முடிவு நேரம் உள்ளது. நீங்கள் அதை மேலெழுத விரும்புகிறீர்களா?",
         "sleep_update_confirm": "மேலெழுதவும்",
-        "sleep_update_cancel": "ரத்து செய்"
+        "sleep_update_cancel": "ரத்து செய்",
+        "enter_time": "நேரத்தை உள்ளிடவும்",
+        "bottle_amount": "பாட்டில் அளவு",
+        "delete_title": "பதிவை நீக்கவா?",
+        "delete_desc": "இந்தச் செயலைச் செயல்தவிர்க்க முடியாது.",
+        "delete_confirm": "நீக்கு"
     },
     "vi": {
         "error_overlap": "Lỗi: Sự kiện trùng lặp với sự kiện hiện có.",
@@ -1644,7 +1739,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "Cập nhật giấc ngủ",
         "sleep_update_desc": "Sự kiện ngủ cuối cùng đã có thời gian kết thúc. Bạn có muốn ghi đè lên nó không?",
         "sleep_update_confirm": "Ghi đè",
-        "sleep_update_cancel": "Hủy bỏ"
+        "sleep_update_cancel": "Hủy bỏ",
+        "enter_time": "Nhập thời gian",
+        "bottle_amount": "Số lượng chai",
+        "delete_title": "Xóa bản ghi?",
+        "delete_desc": "Không thể hoàn tác hành động này.",
+        "delete_confirm": "Xóa bỏ"
     },
     "ko": {
         "error_overlap": "오류: 이벤트가 기존 이벤트와 겹칩니다.",
@@ -1725,7 +1825,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "수면 업데이트",
         "sleep_update_desc": "마지막 수면 이벤트에 이미 종료 시간이 있습니다. 덮어쓰시겠습니까?",
         "sleep_update_confirm": "덮어쓰기",
-        "sleep_update_cancel": "취소"
+        "sleep_update_cancel": "취소",
+        "enter_time": "시간을 입력하세요",
+        "bottle_amount": "병량",
+        "delete_title": "기록을 삭제하시겠습니까?",
+        "delete_desc": "이 작업은 취소할 수 없습니다.",
+        "delete_confirm": "삭제"
     },
     "fa": {
         "error_overlap": "خطا: رویداد با رویداد موجود همپوشانی دارد.",
@@ -1806,7 +1911,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "خواب را به روز کنید",
         "sleep_update_desc": "آخرین رویداد خواب از قبل دارای زمان پایان است. آیا می خواهید آن را بازنویسی کنید؟",
         "sleep_update_confirm": "رونویسی کنید",
-        "sleep_update_cancel": "لغو کنید"
+        "sleep_update_cancel": "لغو کنید",
+        "enter_time": "زمان را وارد کنید",
+        "bottle_amount": "مقدار بطری",
+        "delete_title": "رکورد حذف شود؟",
+        "delete_desc": "این عمل قابل لغو نیست.",
+        "delete_confirm": "حذف کنید"
     },
     "ha": {
         "error_overlap": "Kuskure: Lamarin ya zo tare da wanda yake.",
@@ -1887,7 +1997,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "Sabunta barci",
         "sleep_update_desc": "Lamarin bacci na ƙarshe yana da ƙarshen lokacin. Kuna so ku sake rubutawa?",
         "sleep_update_confirm": "Rubutu",
-        "sleep_update_cancel": "Soke"
+        "sleep_update_cancel": "Soke",
+        "enter_time": "Shigar da lokaci",
+        "bottle_amount": "Adadin kwalban",
+        "delete_title": "Share rikodin?",
+        "delete_desc": "Ba za a iya soke wannan aikin ba.",
+        "delete_confirm": "Share"
     },
     "jv": {
         "error_overlap": "Error: Acara tumpang tindih karo sing wis ana.",
@@ -1968,7 +2083,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "Nganyari turu",
         "sleep_update_desc": "Acara turu pungkasan wis ana wektu pungkasan. Apa sampeyan pengin nimpa?",
         "sleep_update_confirm": "Nimpa",
-        "sleep_update_cancel": "Batal"
+        "sleep_update_cancel": "Batal",
+        "enter_time": "Ketik wektu",
+        "bottle_amount": "Jumlah botol",
+        "delete_title": "Mbusak rekaman?",
+        "delete_desc": "Tumindak iki ora bisa dibatalake.",
+        "delete_confirm": "Mbusak"
     },
     "pa": {
         "error_overlap": "ਤਰੁੱਟੀ: ਇਵੈਂਟ ਮੌਜੂਦਾ ਇੱਕ ਨਾਲ ਓਵਰਲੈਪ ਹੁੰਦਾ ਹੈ।",
@@ -2049,7 +2169,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "ਨੀਂਦ ਨੂੰ ਅੱਪਡੇਟ ਕਰੋ",
         "sleep_update_desc": "ਆਖਰੀ ਸਲੀਪ ਇਵੈਂਟ ਦਾ ਪਹਿਲਾਂ ਹੀ ਸਮਾਪਤੀ ਸਮਾਂ ਹੈ। ਕੀ ਤੁਸੀਂ ਇਸਨੂੰ ਓਵਰਰਾਈਟ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?",
         "sleep_update_confirm": "ਓਵਰਰਾਈਟ ਕਰੋ",
-        "sleep_update_cancel": "ਰੱਦ ਕਰੋ"
+        "sleep_update_cancel": "ਰੱਦ ਕਰੋ",
+        "enter_time": "ਸਮਾਂ ਦਰਜ ਕਰੋ",
+        "bottle_amount": "ਬੋਤਲ ਦੀ ਮਾਤਰਾ",
+        "delete_title": "ਕੀ ਰਿਕਾਰਡ ਮਿਟਾਉਣਾ ਹੈ?",
+        "delete_desc": "ਇਸ ਕਾਰਵਾਈ ਨੂੰ ਅਣਕੀਤਾ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ।",
+        "delete_confirm": "ਮਿਟਾਓ"
     },
     "gu": {
         "error_overlap": "ભૂલ: ઇવેન્ટ અસ્તિત્વમાં છે તે સાથે ઓવરલેપ થાય છે.",
@@ -2130,7 +2255,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "ઊંઘ અપડેટ કરો",
         "sleep_update_desc": "છેલ્લી સ્લીપ ઇવેન્ટનો પહેલાથી જ સમાપ્તિ સમય છે. શું તમે તેને ફરીથી લખવા માંગો છો?",
         "sleep_update_confirm": "ઓવરરાઇટ કરો",
-        "sleep_update_cancel": "રદ કરો"
+        "sleep_update_cancel": "રદ કરો",
+        "enter_time": "સમય દાખલ કરો",
+        "bottle_amount": "બોટલ જથ્થો",
+        "delete_title": "રેકોર્ડ ડિલીટ કરીએ?",
+        "delete_desc": "આ ક્રિયા પૂર્વવત્ કરી શકાતી નથી.",
+        "delete_confirm": "કાઢી નાખો"
     },
     "th": {
         "error_overlap": "ข้อผิดพลาด: เหตุการณ์ซ้อนทับกับเหตุการณ์ที่มีอยู่",
@@ -2211,7 +2341,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "อัพเดทการนอนหลับ",
         "sleep_update_desc": "กิจกรรมสลีปสุดท้ายมีเวลาสิ้นสุดแล้ว คุณต้องการเขียนทับมันหรือไม่?",
         "sleep_update_confirm": "เขียนทับ",
-        "sleep_update_cancel": "ยกเลิก"
+        "sleep_update_cancel": "ยกเลิก",
+        "enter_time": "ป้อนเวลา",
+        "bottle_amount": "จำนวนขวด",
+        "delete_title": "ลบบันทึกใช่ไหม",
+        "delete_desc": "การดำเนินการนี้ไม่สามารถยกเลิกได้",
+        "delete_confirm": "ลบ"
     },
     "am": {
         "error_overlap": "ስህተት፡ ክስተቱ ከነባሩ ጋር ይደራረባል።",
@@ -2292,7 +2427,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "እንቅልፍን አዘምን",
         "sleep_update_desc": "የመጨረሻው የእንቅልፍ ክስተት አስቀድሞ የማለቂያ ጊዜ አለው። እንደገና መፃፍ ይፈልጋሉ?",
         "sleep_update_confirm": "ጻፍ",
-        "sleep_update_cancel": "ሰርዝ"
+        "sleep_update_cancel": "ሰርዝ",
+        "enter_time": "ጊዜ አስገባ",
+        "bottle_amount": "የጠርሙስ መጠን",
+        "delete_title": "መዝገብ ይሰረዝ?",
+        "delete_desc": "ይህ እርምጃ ሊቀለበስ አይችልም።",
+        "delete_confirm": "ሰርዝ"
     },
     "kn": {
         "error_overlap": "ದೋಷ: ಈವೆಂಟ್ ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ಒಂದರೊಂದಿಗೆ ಅತಿಕ್ರಮಿಸುತ್ತದೆ.",
@@ -2373,7 +2513,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "ನಿದ್ರೆಯನ್ನು ನವೀಕರಿಸಿ",
         "sleep_update_desc": "ಕೊನೆಯ ನಿದ್ರೆಯ ಈವೆಂಟ್ ಈಗಾಗಲೇ ಅಂತಿಮ ಸಮಯವನ್ನು ಹೊಂದಿದೆ. ನೀವು ಅದನ್ನು ತಿದ್ದಿ ಬರೆಯಲು ಬಯಸುವಿರಾ?",
         "sleep_update_confirm": "ತಿದ್ದಿ ಬರೆಯಿರಿ",
-        "sleep_update_cancel": "ರದ್ದುಮಾಡು"
+        "sleep_update_cancel": "ರದ್ದುಮಾಡು",
+        "enter_time": "ಸಮಯವನ್ನು ನಮೂದಿಸಿ",
+        "bottle_amount": "ಬಾಟಲ್ ಮೊತ್ತ",
+        "delete_title": "ದಾಖಲೆ ಅಳಿಸುವುದೇ?",
+        "delete_desc": "ಈ ಕ್ರಿಯೆಯನ್ನು ರದ್ದುಗೊಳಿಸಲಾಗುವುದಿಲ್ಲ.",
+        "delete_confirm": "ಅಳಿಸಿ"
     },
     "or": {
         "error_overlap": "ତ୍ରୁଟି: ଇଭେଣ୍ଟଟି ଏକ ବିଦ୍ୟମାନ ସହିତ ଅଲଗା ହୋଇଯାଏ |",
@@ -2454,7 +2599,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "ଶୋଇବା ଅଦ୍ୟତନ କରନ୍ତୁ |",
         "sleep_update_desc": "ଶେଷ ଶୋଇବା ଘଟଣାର ଏକ ଶେଷ ସମୟ ଅଛି | ଆପଣ ଏହାକୁ ଓଭର୍ ରାଇଟ୍ କରିବାକୁ ଚାହୁଁଛନ୍ତି କି?",
         "sleep_update_confirm": "ଓଭର୍ ରାଇଟ୍ କରନ୍ତୁ |",
-        "sleep_update_cancel": "ବାତିଲ୍ କରନ୍ତୁ |"
+        "sleep_update_cancel": "ବାତିଲ୍ କରନ୍ତୁ |",
+        "enter_time": "ସମୟ ପ୍ରବେଶ କରନ୍ତୁ |",
+        "bottle_amount": "ବୋତଲ ପରିମାଣ",
+        "delete_title": "ରେକର୍ଡ ବିଲୋପ କରିବେ କି?",
+        "delete_desc": "ଏହି କାର୍ଯ୍ୟକୁ ପୂର୍ବବତ୍ କରାଯାଇପାରିବ ନାହିଁ |",
+        "delete_confirm": "ବିଲୋପ କରନ୍ତୁ |"
     },
     "bho": {
         "reset": "रीसेट हो गइल बा",
@@ -2535,7 +2685,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "नींद के अपडेट करीं",
         "sleep_update_desc": "आखिरी नींद के घटना के पहिलही से अंत के समय बा। का रउरा एकरा के ओवरराइट कइल चाहत बानी?",
         "sleep_update_confirm": "ओवरराइट कर दिहल जाव",
-        "sleep_update_cancel": "मना कइ दीं"
+        "sleep_update_cancel": "मना कइ दीं",
+        "enter_time": "समय दर्ज करीं",
+        "bottle_amount": "बोतल के मात्रा में बा",
+        "delete_title": "रिकार्ड हटावे के बा?",
+        "delete_desc": "एह कार्रवाई के वापस ना कइल जा सके.",
+        "delete_confirm": "हटाईं"
     },
     "su": {
         "error_overlap": "Kasalahan: Acara tumpang tindih sareng anu tos aya.",
@@ -2616,7 +2771,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "Apdet saré",
         "sleep_update_desc": "Acara sare panungtungan geus boga waktu tungtung. Naha anjeun badé nimpa?",
         "sleep_update_confirm": "Nimpa",
-        "sleep_update_cancel": "Ngabolaykeun"
+        "sleep_update_cancel": "Ngabolaykeun",
+        "enter_time": "Lebetkeun waktos",
+        "bottle_amount": "Jumlah botol",
+        "delete_title": "Hapus rékaman?",
+        "delete_desc": "Peta ieu teu bisa dibolaykeun.",
+        "delete_confirm": "Hapus"
     },
     "ro": {
         "error_overlap": "Eroare: evenimentul se suprapune cu unul existent.",
@@ -2697,7 +2857,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "Actualizați somnul",
         "sleep_update_desc": "Ultimul eveniment de somn are deja o oră de încheiere. Doriți să o suprascrieți?",
         "sleep_update_confirm": "Suprascrie",
-        "sleep_update_cancel": "Anula"
+        "sleep_update_cancel": "Anula",
+        "enter_time": "Introduceți ora",
+        "bottle_amount": "Cantitatea sticlei",
+        "delete_title": "Ștergeți înregistrarea?",
+        "delete_desc": "Această acțiune nu poate fi anulată.",
+        "delete_confirm": "Şterge"
     },
     "nl": {
         "error_overlap": "Fout: de gebeurtenis overlapt met een bestaande gebeurtenis.",
@@ -2778,7 +2943,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "Slaap bijwerken",
         "sleep_update_desc": "De laatste slaapgebeurtenis heeft al een eindtijd. Wilt u het overschrijven?",
         "sleep_update_confirm": "Overschrijven",
-        "sleep_update_cancel": "Annuleren"
+        "sleep_update_cancel": "Annuleren",
+        "enter_time": "Voer de tijd in",
+        "bottle_amount": "Fles bedrag",
+        "delete_title": "Opname verwijderen?",
+        "delete_desc": "Deze actie kan niet ongedaan worden gemaakt.",
+        "delete_confirm": "Verwijderen"
     },
     "km": {
         "error_overlap": "កំហុស៖ ព្រឹត្តិការណ៍នេះត្រួតលើគ្នាជាមួយព្រឹត្តិការណ៍ដែលមានស្រាប់។",
@@ -2859,7 +3029,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "ធ្វើបច្ចុប្បន្នភាពការគេង",
         "sleep_update_desc": "ព្រឹត្តិការណ៍នៃការគេងចុងក្រោយមានពេលបញ្ចប់ហើយ។ តើអ្នកចង់សរសេរជាន់លើវាទេ?",
         "sleep_update_confirm": "សរសេរជាន់លើ",
-        "sleep_update_cancel": "បោះបង់"
+        "sleep_update_cancel": "បោះបង់",
+        "enter_time": "បញ្ចូលពេលវេលា",
+        "bottle_amount": "បរិមាណដប",
+        "delete_title": "លុបកំណត់ត្រា?",
+        "delete_desc": "សកម្មភាពនេះមិនអាចត្រឡប់វិញបានទេ។",
+        "delete_confirm": "លុប"
     },
     "uz": {
         "error_overlap": "Xato: Hodisa mavjud voqea bilan bir-biriga mos tushdi.",
@@ -2940,7 +3115,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "Uyquni yangilang",
         "sleep_update_desc": "Oxirgi uyqu hodisasi allaqachon tugash vaqtiga ega. Uni qayta yozmoqchimisiz?",
         "sleep_update_confirm": "Ustiga yozish",
-        "sleep_update_cancel": "Bekor qilish"
+        "sleep_update_cancel": "Bekor qilish",
+        "enter_time": "Vaqtni kiriting",
+        "bottle_amount": "Shisha miqdori",
+        "delete_title": "Yozuv oʻchirilsinmi?",
+        "delete_desc": "Bu amalni ortga qaytarib bo‘lmaydi.",
+        "delete_confirm": "Oʻchirish"
     },
     "sd": {
         "error_overlap": "نقص: واقعو موجوده ھڪڙي سان اوورليپ ٿئي ٿو.",
@@ -3021,7 +3201,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "ننڊ کي اپڊيٽ ڪريو",
         "sleep_update_desc": "آخري ننڊ واري واقعي جو اڳ ۾ ئي ختم ٿيڻ جو وقت آهي. ڇا توھان ان کي ختم ڪرڻ چاھيو ٿا؟",
         "sleep_update_confirm": "مٿان لکجي",
-        "sleep_update_cancel": "منسوخ ڪريو"
+        "sleep_update_cancel": "منسوخ ڪريو",
+        "enter_time": "وقت داخل ڪريو",
+        "bottle_amount": "بوتل جي مقدار",
+        "delete_title": "رڪارڊ کي حذف ڪريو؟",
+        "delete_desc": "ھن عمل کي رد نٿو ڪري سگھجي.",
+        "delete_confirm": "حذف ڪريو"
     },
     "my": {
         "error_overlap": "အမှား- ဖြစ်ရပ်သည် ရှိပြီးသားတစ်ခုနှင့် ထပ်နေပါသည်။",
@@ -3102,7 +3287,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "အိပ်စက်ခြင်းကို အပ်ဒိတ်လုပ်ပါ။",
         "sleep_update_desc": "နောက်ဆုံး အိပ်စက်ခြင်းကိစ္စသည် ပြီးဆုံးချိန်ရှိနေပြီဖြစ်သည်။ ၎င်းကို ထပ်ရေးလိုပါသလား။",
         "sleep_update_confirm": "ထပ်ရေးပါ။",
-        "sleep_update_cancel": "မလုပ်တော့"
+        "sleep_update_cancel": "မလုပ်တော့",
+        "enter_time": "အချိန်ထည့်ပါ။",
+        "bottle_amount": "ပုလင်းပမာဏ",
+        "delete_title": "မှတ်တမ်းကို ဖျက်မလား။",
+        "delete_desc": "ဤလုပ်ဆောင်ချက်ကို ပြန်ပြင်၍မရပါ။",
+        "delete_confirm": "ဖျက်ပါ။"
     },
     "yo": {
         "error_overlap": "Aṣiṣe: Iṣẹlẹ naa ṣakojọpọ pẹlu eyi ti o wa tẹlẹ.",
@@ -3183,7 +3373,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "Update orun",
         "sleep_update_desc": "Iṣẹlẹ oorun ti o kẹhin ti ni akoko ipari. Ṣe o fẹ lati tunkọ rẹ?",
         "sleep_update_confirm": "Kọ silẹ",
-        "sleep_update_cancel": "Fagilee"
+        "sleep_update_cancel": "Fagilee",
+        "enter_time": "Tẹ akoko sii",
+        "bottle_amount": "Iye igo",
+        "delete_title": "Pa igbasilẹ rẹ bi?",
+        "delete_desc": "Iṣe yii ko le ṣe atunṣe.",
+        "delete_confirm": "Paarẹ"
     },
     "ig": {
         "error_overlap": "Njehie: Ihe omume a dakọtara na nke dị.",
@@ -3264,7 +3459,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "Melite ụra",
         "sleep_update_desc": "Ihe omume ụra ikpeazụ enweelarị oge ngwụcha. Ị chọrọ idegharị ya?",
         "sleep_update_confirm": "Degharịa",
-        "sleep_update_cancel": "Kagbuo"
+        "sleep_update_cancel": "Kagbuo",
+        "enter_time": "Tinye oge",
+        "bottle_amount": "Ọnụ ego karama",
+        "delete_title": "Hichapụ ndekọ?",
+        "delete_desc": "Enweghị ike imegharị ihe a.",
+        "delete_confirm": "Hichapụ"
     },
     "ms": {
         "error_overlap": "Ralat: Acara bertindih dengan yang sedia ada.",
@@ -3345,7 +3545,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "Kemas kini tidur",
         "sleep_update_desc": "Acara tidur terakhir sudah mempunyai masa tamat. Adakah anda mahu menulis gantinya?",
         "sleep_update_confirm": "Tulis ganti",
-        "sleep_update_cancel": "Batal"
+        "sleep_update_cancel": "Batal",
+        "enter_time": "Masukkan masa",
+        "bottle_amount": "Jumlah botol",
+        "delete_title": "Padamkan rekod?",
+        "delete_desc": "Tindakan ini tidak boleh dibuat asal.",
+        "delete_confirm": "Padam"
     },
     "ne": {
         "error_overlap": "त्रुटि: घटना अवस्थित एउटासँग ओभरल्याप हुन्छ।",
@@ -3426,7 +3631,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "निद्रा अपडेट गर्नुहोस्",
         "sleep_update_desc": "अन्तिम निद्रा घटनाको पहिले नै अन्त्य समय छ। के तपाइँ यसलाई अधिलेखन गर्न चाहनुहुन्छ?",
         "sleep_update_confirm": "अधिलेखन गर्नुहोस्",
-        "sleep_update_cancel": "रद्द गर्नुहोस्"
+        "sleep_update_cancel": "रद्द गर्नुहोस्",
+        "enter_time": "समय प्रविष्ट गर्नुहोस्",
+        "bottle_amount": "बोतलको मात्रा",
+        "delete_title": "रेकर्ड मेट्ने हो?",
+        "delete_desc": "यो कार्य अन्डू गर्न सकिँदैन।",
+        "delete_confirm": "मेट्नुहोस्"
     },
     "uk": {
         "error_overlap": "Помилка: подія збігається з існуючою.",
@@ -3507,7 +3717,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "Оновити сон",
         "sleep_update_desc": "Остання подія сну вже має час завершення. Ви хочете перезаписати його?",
         "sleep_update_confirm": "Перезаписати",
-        "sleep_update_cancel": "Скасувати"
+        "sleep_update_cancel": "Скасувати",
+        "enter_time": "Введіть час",
+        "bottle_amount": "Кількість пляшки",
+        "delete_title": "Видалити запис?",
+        "delete_desc": "Цю дію не можна скасувати.",
+        "delete_confirm": "Видалити"
     },
     "ceb": {
         "reset": "I-reset",
@@ -3588,7 +3803,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "Pag-update sa pagkatulog",
         "sleep_update_desc": "Ang katapusan nga kalihokan sa pagkatulog adunay katapusan nga oras. Gusto ba nimong i-overwrite kini?",
         "sleep_update_confirm": "I-overwrite",
-        "sleep_update_cancel": "Pagkanselar"
+        "sleep_update_cancel": "Pagkanselar",
+        "enter_time": "Pagsulod sa oras",
+        "bottle_amount": "Ang gidaghanon sa botelya",
+        "delete_title": "Pagtangtang sa rekord?",
+        "delete_desc": "Kini nga aksyon dili na mabawi.",
+        "delete_confirm": "Pagtangtang"
     },
     "ku": {
         "error_overlap": "Çewtî: Bûyer bi ya heyî re li hev dikeve.",
@@ -3669,7 +3889,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "Xew nûve bike",
         "sleep_update_desc": "Bûyera xewê ya paşîn jixwe demeka dawî heye. Ma hûn dixwazin wê binivîsin?",
         "sleep_update_confirm": "Zêde binivîsin",
-        "sleep_update_cancel": "Bişûndekirin"
+        "sleep_update_cancel": "Bişûndekirin",
+        "enter_time": "Demê têkevin",
+        "bottle_amount": "Mîqdara şûşê",
+        "delete_title": "Tomara jêbirin?",
+        "delete_desc": "Ev kiryar nayê betal kirin.",
+        "delete_confirm": "Jêbirin"
     },
     "sv": {
         "error_overlap": "Fel: Händelsen överlappar en befintlig.",
@@ -3750,7 +3975,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "Uppdatera sömn",
         "sleep_update_desc": "Den sista sömnhändelsen har redan en sluttid. Vill du skriva över det?",
         "sleep_update_confirm": "Skriva över",
-        "sleep_update_cancel": "Avboka"
+        "sleep_update_cancel": "Avboka",
+        "enter_time": "Ange tid",
+        "bottle_amount": "Flaskmängd",
+        "delete_title": "Ta bort post?",
+        "delete_desc": "Denna åtgärd kan inte ångras.",
+        "delete_confirm": "Radera"
     },
     "pl": {
         "error_overlap": "Błąd: wydarzenie pokrywa się z istniejącym.",
@@ -3831,7 +4061,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "Zaktualizuj sen",
         "sleep_update_desc": "Ostatnie zdarzenie uśpienia ma już godzinę zakończenia. Czy chcesz go zastąpić?",
         "sleep_update_confirm": "Przepisać",
-        "sleep_update_cancel": "Anulować"
+        "sleep_update_cancel": "Anulować",
+        "enter_time": "Wprowadź czas",
+        "bottle_amount": "Ilość butelki",
+        "delete_title": "Usunąć rekord?",
+        "delete_desc": "Tej akcji nie można cofnąć.",
+        "delete_confirm": "Usuwać"
     },
     "tl": {
         "error_overlap": "Error: Ang kaganapan ay nag-o-overlap sa isang umiiral na.",
@@ -3912,7 +4147,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "I-update ang pagtulog",
         "sleep_update_desc": "Ang huling kaganapan sa pagtulog ay mayroon nang oras ng pagtatapos. Gusto mo bang i-overwrite ito?",
         "sleep_update_confirm": "I-overwrite",
-        "sleep_update_cancel": "Kanselahin"
+        "sleep_update_cancel": "Kanselahin",
+        "enter_time": "Ipasok ang oras",
+        "bottle_amount": "Dami ng bote",
+        "delete_title": "Tanggalin ang tala?",
+        "delete_desc": "Ang pagkilos na ito ay hindi maaaring i-undo.",
+        "delete_confirm": "Tanggalin"
     },
     "ml": {
         "error_overlap": "പിശക്: ഇവൻ്റ് നിലവിലുള്ള ഒന്നുമായി ഓവർലാപ്പ് ചെയ്യുന്നു.",
@@ -3993,7 +4233,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "ഉറക്കം അപ്ഡേറ്റ് ചെയ്യുക",
         "sleep_update_desc": "അവസാന ഉറക്ക പരിപാടിക്ക് ഇതിനകം അവസാന സമയമുണ്ട്. നിങ്ങൾക്ക് അത് തിരുത്തിയെഴുതണോ?",
         "sleep_update_confirm": "തിരുത്തിയെഴുതുക",
-        "sleep_update_cancel": "റദ്ദാക്കുക"
+        "sleep_update_cancel": "റദ്ദാക്കുക",
+        "enter_time": "സമയം നൽകുക",
+        "bottle_amount": "കുപ്പി തുക",
+        "delete_title": "റെക്കോർഡ് ഇല്ലാതാക്കണോ?",
+        "delete_desc": "ഈ പ്രവർത്തനം പഴയപടിയാക്കാനാകില്ല.",
+        "delete_confirm": "ഇല്ലാതാക്കുക"
     },
     "fi": {
         "error_overlap": "Virhe: Tapahtuma on päällekkäinen olemassa olevan tapahtuman kanssa.",
@@ -4074,7 +4319,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "Päivitä uni",
         "sleep_update_desc": "Viimeisellä unitapahtumalla on jo päättymisaika. Haluatko korvata sen?",
         "sleep_update_confirm": "Korvaa",
-        "sleep_update_cancel": "Peruuttaa"
+        "sleep_update_cancel": "Peruuttaa",
+        "enter_time": "Anna aika",
+        "bottle_amount": "Pullon määrä",
+        "delete_title": "Poistetaanko tietue?",
+        "delete_desc": "Tätä toimintoa ei voi kumota.",
+        "delete_confirm": "Poistaa"
     },
     "af": {
         "error_overlap": "Fout: Die gebeurtenis oorvleuel met 'n bestaande een.",
@@ -4155,7 +4405,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "Dateer slaap op",
         "sleep_update_desc": "Die laaste slaapgeleentheid het reeds 'n eindtyd. Wil jy dit oorskryf?",
         "sleep_update_confirm": "Oorskryf",
-        "sleep_update_cancel": "Kanselleer"
+        "sleep_update_cancel": "Kanselleer",
+        "enter_time": "Voer tyd in",
+        "bottle_amount": "Bottel hoeveelheid",
+        "delete_title": "Vee rekord uit?",
+        "delete_desc": "Hierdie handeling kan nie ontdoen word nie.",
+        "delete_confirm": "Vee uit"
     },
     "sq": {
         "error_overlap": "Gabim: Ngjarja mbivendoset me një ekzistuese.",
@@ -4236,7 +4491,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "Përditëso gjumin",
         "sleep_update_desc": "Ngjarja e fundit e gjumit tashmë ka një kohë përfundimi. Dëshironi ta mbishkruani atë?",
         "sleep_update_confirm": "Mbishkruani",
-        "sleep_update_cancel": "Anulo"
+        "sleep_update_cancel": "Anulo",
+        "enter_time": "Futni kohën",
+        "bottle_amount": "Sasia e shisheve",
+        "delete_title": "Të fshihet rekordi?",
+        "delete_desc": "Ky veprim nuk mund të zhbëhet.",
+        "delete_confirm": "Fshije"
     },
     "hy": {
         "error_overlap": "Սխալ․ իրադարձությունը համընկնում է գոյություն ունեցողի հետ։",
@@ -4317,7 +4577,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "Թարմացրեք քունը",
         "sleep_update_desc": "Քնի վերջին իրադարձությունն արդեն ավարտման ժամ ունի: Ցանկանու՞մ եք այն վերագրել:",
         "sleep_update_confirm": "Վերագրել",
-        "sleep_update_cancel": "Չեղարկել"
+        "sleep_update_cancel": "Չեղարկել",
+        "enter_time": "Մուտքագրեք ժամանակը",
+        "bottle_amount": "Շիշի քանակը",
+        "delete_title": "Ջնջե՞լ գրառումը",
+        "delete_desc": "Այս գործողությունը հնարավոր չէ հետարկել:",
+        "delete_confirm": "Ջնջել"
     },
     "az": {
         "error_overlap": "Xəta: Tədbir mövcud hadisə ilə üst-üstə düşür.",
@@ -4398,7 +4663,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "Yuxunu yeniləyin",
         "sleep_update_desc": "Son yuxu hadisəsinin artıq bitmə vaxtı var. Bunun üzərinə yazmaq istəyirsiniz?",
         "sleep_update_confirm": "Üzərinə yaz",
-        "sleep_update_cancel": "Ləğv et"
+        "sleep_update_cancel": "Ləğv et",
+        "enter_time": "Vaxt daxil edin",
+        "bottle_amount": "Şüşə miqdarı",
+        "delete_title": "Qeyd silinsin?",
+        "delete_desc": "Bu əməliyyat geri qaytarıla bilməz.",
+        "delete_confirm": "Sil"
     },
     "be": {
         "error_overlap": "Памылка: падзея накладваецца на існуючую.",
@@ -4479,7 +4749,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "Абнавіць сон",
         "sleep_update_desc": "Апошняя падзея сну ўжо мае час заканчэння. Вы хочаце перазапісаць яго?",
         "sleep_update_confirm": "Перазапісаць",
-        "sleep_update_cancel": "Адмяніць"
+        "sleep_update_cancel": "Адмяніць",
+        "enter_time": "Увядзіце час",
+        "bottle_amount": "Колькасць бутэлькі",
+        "delete_title": "Выдаліць запіс?",
+        "delete_desc": "Гэта дзеянне нельга адмяніць.",
+        "delete_confirm": "Выдаліць"
     },
     "bg": {
         "error_overlap": "Грешка: Събитието се припокрива със съществуващо.",
@@ -4560,7 +4835,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "Актуализирайте съня",
         "sleep_update_desc": "Последното събитие за заспиване вече има крайно време. Искате ли да го презапишете?",
         "sleep_update_confirm": "Презаписване",
-        "sleep_update_cancel": "Отказ"
+        "sleep_update_cancel": "Отказ",
+        "enter_time": "Въведете час",
+        "bottle_amount": "Количество в бутилка",
+        "delete_title": "Изтриване на запис?",
+        "delete_desc": "Това действие не може да бъде отменено.",
+        "delete_confirm": "Изтриване"
     },
     "ca": {
         "error_overlap": "Error: l'esdeveniment se solapa amb un d'existent.",
@@ -4641,7 +4921,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "Actualitza el son",
         "sleep_update_desc": "L'últim esdeveniment de son ja té una hora de finalització. Voleu sobreescriure-lo?",
         "sleep_update_confirm": "Sobreescriure",
-        "sleep_update_cancel": "Cancel·la"
+        "sleep_update_cancel": "Cancel·la",
+        "enter_time": "Introduïu l'hora",
+        "bottle_amount": "Quantitat d'ampolla",
+        "delete_title": "Vols suprimir el registre?",
+        "delete_desc": "Aquesta acció no es pot desfer.",
+        "delete_confirm": "Suprimeix"
     },
     "cs": {
         "error_overlap": "Chyba: Událost se překrývá s již existující.",
@@ -4722,7 +5007,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "Aktualizujte režim spánku",
         "sleep_update_desc": "Poslední událost spánku již má čas ukončení. Chcete jej přepsat?",
         "sleep_update_confirm": "Přepsat",
-        "sleep_update_cancel": "Zrušit"
+        "sleep_update_cancel": "Zrušit",
+        "enter_time": "Zadejte čas",
+        "bottle_amount": "Množství láhve",
+        "delete_title": "Smazat záznam?",
+        "delete_desc": "Tuto akci nelze vrátit zpět.",
+        "delete_confirm": "Vymazat"
     },
     "si": {
         "error_overlap": "දෝෂය: සිදුවීම පවතින එකක් සමඟ අතිච්ඡාදනය වේ.",
@@ -4803,7 +5093,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "නින්ද යාවත්කාලීන කරන්න",
         "sleep_update_desc": "අවසන් නින්ද සිදුවීමට දැනටමත් අවසන් වේලාවක් ඇත. ඔබට එය උඩින් ලිවීමට අවශ්‍යද?",
         "sleep_update_confirm": "උඩින් ලියන්න",
-        "sleep_update_cancel": "අවලංගු කරන්න"
+        "sleep_update_cancel": "අවලංගු කරන්න",
+        "enter_time": "කාලය ඇතුළත් කරන්න",
+        "bottle_amount": "බෝතල් ප්රමාණය",
+        "delete_title": "වාර්තාව මකන්නද?",
+        "delete_desc": "මෙම ක්‍රියාව පසුගමනය කළ නොහැක.",
+        "delete_confirm": "මකන්න"
     },
     "hr": {
         "error_overlap": "Pogreška: događaj se preklapa s postojećim.",
@@ -4884,7 +5179,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "Ažurirajte spavanje",
         "sleep_update_desc": "Posljednji događaj mirovanja već ima vrijeme završetka. Želite li ga prebrisati?",
         "sleep_update_confirm": "Prebrisati",
-        "sleep_update_cancel": "Otkazati"
+        "sleep_update_cancel": "Otkazati",
+        "enter_time": "Unesite vrijeme",
+        "bottle_amount": "Količina u boci",
+        "delete_title": "Izbrisati zapis?",
+        "delete_desc": "Ova se radnja ne može poništiti.",
+        "delete_confirm": "Izbrisati"
     },
     "da": {
         "error_overlap": "Fejl: Hændelsen overlapper med en eksisterende.",
@@ -4965,7 +5265,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "Opdater søvn",
         "sleep_update_desc": "Den sidste søvnbegivenhed har allerede et sluttidspunkt. Vil du overskrive det?",
         "sleep_update_confirm": "Overskriv",
-        "sleep_update_cancel": "Ophæve"
+        "sleep_update_cancel": "Ophæve",
+        "enter_time": "Indtast tid",
+        "bottle_amount": "Flaske mængde",
+        "delete_title": "Vil du slette posten?",
+        "delete_desc": "Denne handling kan ikke fortrydes.",
+        "delete_confirm": "Slet"
     },
     "sk": {
         "error_overlap": "Chyba: Udalosť sa prekrýva s existujúcou udalosťou.",
@@ -5046,7 +5351,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "Aktualizujte spánok",
         "sleep_update_desc": "Posledná udalosť spánku už má čas ukončenia. Chcete ho prepísať?",
         "sleep_update_confirm": "Prepísať",
-        "sleep_update_cancel": "Zrušiť"
+        "sleep_update_cancel": "Zrušiť",
+        "enter_time": "Zadajte čas",
+        "bottle_amount": "Množstvo fľaše",
+        "delete_title": "Odstrániť záznam?",
+        "delete_desc": "Túto akciu nie je možné vrátiť späť.",
+        "delete_confirm": "Odstrániť"
     },
     "sl": {
         "error_overlap": "Napaka: dogodek se prekriva z obstoječim.",
@@ -5127,7 +5437,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "Posodobite stanje spanja",
         "sleep_update_desc": "Zadnji dogodek spanja že ima končni čas. Ali ga želite prepisati?",
         "sleep_update_confirm": "Prepisati",
-        "sleep_update_cancel": "Prekliči"
+        "sleep_update_cancel": "Prekliči",
+        "enter_time": "Vnesite čas",
+        "bottle_amount": "Količina steklenice",
+        "delete_title": "Izbrisati zapis?",
+        "delete_desc": "Tega dejanja ni mogoče razveljaviti.",
+        "delete_confirm": "Izbriši"
     },
     "et": {
         "error_overlap": "Viga: sündmus kattub olemasolevaga.",
@@ -5208,7 +5523,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "Uuenda unerežiimi",
         "sleep_update_desc": "Viimasel unesündmusel on juba lõpuaeg. Kas soovite selle üle kirjutada?",
         "sleep_update_confirm": "Üle kirjutada",
-        "sleep_update_cancel": "Tühista"
+        "sleep_update_cancel": "Tühista",
+        "enter_time": "Sisestage aeg",
+        "bottle_amount": "Pudeli kogus",
+        "delete_title": "Kas kustutada kirje?",
+        "delete_desc": "Seda toimingut ei saa tagasi võtta.",
+        "delete_confirm": "Kustuta"
     },
     "eu": {
         "error_overlap": "Errorea: gertaera lehendik dagoen batekin gainjartzen da.",
@@ -5289,7 +5609,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "Eguneratu loaldia",
         "sleep_update_desc": "Lo egiteko azken gertaerak amaiera-ordua du dagoeneko. Gainidatzi nahi al duzu?",
         "sleep_update_confirm": "Gainidatzi",
-        "sleep_update_cancel": "Utzi"
+        "sleep_update_cancel": "Utzi",
+        "enter_time": "Sartu ordua",
+        "bottle_amount": "Botilaren zenbatekoa",
+        "delete_title": "Erregistroa ezabatu?",
+        "delete_desc": "Ekintza hau ezin da desegin.",
+        "delete_confirm": "Ezabatu"
     },
     "gl": {
         "error_overlap": "Erro: o evento se solapa cun existente.",
@@ -5370,7 +5695,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "Actualiza o sono",
         "sleep_update_desc": "O último evento de sono xa ten unha hora de finalización. Queres sobreescribilo?",
         "sleep_update_confirm": "Sobrescribir",
-        "sleep_update_cancel": "Cancelar"
+        "sleep_update_cancel": "Cancelar",
+        "enter_time": "Introduce o tempo",
+        "bottle_amount": "Cantidade da botella",
+        "delete_title": "Queres eliminar o rexistro?",
+        "delete_desc": "Esta acción non se pode desfacer.",
+        "delete_confirm": "Eliminar"
     },
     "ka": {
         "error_overlap": "შეცდომა: მოვლენა გადაფარავს არსებულს.",
@@ -5451,7 +5781,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "ძილის განახლება",
         "sleep_update_desc": "ძილის ბოლო მოვლენას უკვე აქვს დასრულების დრო. გსურთ მისი გადაწერა?",
         "sleep_update_confirm": "გადაწერა",
-        "sleep_update_cancel": "გაუქმება"
+        "sleep_update_cancel": "გაუქმება",
+        "enter_time": "შეიყვანეთ დრო",
+        "bottle_amount": "ბოთლის რაოდენობა",
+        "delete_title": "წაშალოთ ჩანაწერი?",
+        "delete_desc": "ამ მოქმედების გაუქმება შეუძლებელია.",
+        "delete_confirm": "წაშლა"
     },
     "el": {
         "error_overlap": "Σφάλμα: Το συμβάν επικαλύπτεται με ένα υπάρχον.",
@@ -5532,7 +5867,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "Ενημέρωση ύπνου",
         "sleep_update_desc": "Το τελευταίο συμβάν ύπνου έχει ήδη ώρα λήξης. Θέλετε να το αντικαταστήσετε;",
         "sleep_update_confirm": "Αντικατάσταση",
-        "sleep_update_cancel": "Ματαίωση"
+        "sleep_update_cancel": "Ματαίωση",
+        "enter_time": "Εισαγάγετε την ώρα",
+        "bottle_amount": "Ποσότητα μπουκαλιού",
+        "delete_title": "Διαγραφή εγγραφής;",
+        "delete_desc": "Αυτή η ενέργεια δεν μπορεί να αναιρεθεί.",
+        "delete_confirm": "Διαγράφω"
     },
     "he": {
         "error_overlap": "שגיאה: האירוע חופף לאירוע קיים.",
@@ -5613,7 +5953,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "עדכן שינה",
         "sleep_update_desc": "לאירוע השינה האחרון יש כבר שעת סיום. האם אתה רוצה להחליף אותו?",
         "sleep_update_confirm": "החלף",
-        "sleep_update_cancel": "לְבַטֵל"
+        "sleep_update_cancel": "לְבַטֵל",
+        "enter_time": "הזן זמן",
+        "bottle_amount": "כמות הבקבוק",
+        "delete_title": "למחוק רשומה?",
+        "delete_desc": "לא ניתן לבטל פעולה זו.",
+        "delete_confirm": "לִמְחוֹק"
     },
     "hu": {
         "error_overlap": "Hiba: Az esemény átfedésben van egy meglévővel.",
@@ -5694,7 +6039,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "Frissítse az alvást",
         "sleep_update_desc": "Az utolsó alváseseménynek már megvan a befejezési ideje. Felül akarod írni?",
         "sleep_update_confirm": "Átír",
-        "sleep_update_cancel": "Mégse"
+        "sleep_update_cancel": "Mégse",
+        "enter_time": "Adja meg az időt",
+        "bottle_amount": "Palack mennyisége",
+        "delete_title": "Törli a rekordot?",
+        "delete_desc": "Ez a művelet nem vonható vissza.",
+        "delete_confirm": "Töröl"
     },
     "is": {
         "error_overlap": "Villa: Atburðurinn skarast við þann sem fyrir er.",
@@ -5775,7 +6125,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "Uppfærðu svefn",
         "sleep_update_desc": "Síðasti svefnatburður hefur þegar lokatíma. Viltu skrifa yfir það?",
         "sleep_update_confirm": "Skrifa yfir",
-        "sleep_update_cancel": "Hætta við"
+        "sleep_update_cancel": "Hætta við",
+        "enter_time": "Sláðu inn tíma",
+        "bottle_amount": "Magn flösku",
+        "delete_title": "Eyða færslu?",
+        "delete_desc": "Ekki er hægt að afturkalla þessa aðgerð.",
+        "delete_confirm": "Eyða"
     },
     "kk": {
         "error_overlap": "Қате: оқиға бұрыннан бар оқиғамен қабаттасады.",
@@ -5856,7 +6211,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "Ұйқыны жаңарту",
         "sleep_update_desc": "Соңғы ұйқы оқиғасының аяқталу уақыты әлдеқашан бар. Оны қайта жазғыңыз келе ме?",
         "sleep_update_confirm": "Үстіне жазу",
-        "sleep_update_cancel": "Болдырмау"
+        "sleep_update_cancel": "Болдырмау",
+        "enter_time": "Уақытты енгізіңіз",
+        "bottle_amount": "Бөтелке мөлшері",
+        "delete_title": "Жазбаны жою керек пе?",
+        "delete_desc": "Бұл әрекетті қайтару мүмкін емес.",
+        "delete_confirm": "Жою"
     },
     "ky": {
         "error_overlap": "Ката: Окуя учурдагы менен дал келет.",
@@ -5937,7 +6297,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "Уйкуну жаңыртуу",
         "sleep_update_desc": "Акыркы уйку окуясынын аяктоо убактысы мурунтан эле бар. Анын үстүнө жазгыңыз келеби?",
         "sleep_update_confirm": "Үстүнө жазуу",
-        "sleep_update_cancel": "Жокко чыгаруу"
+        "sleep_update_cancel": "Жокко чыгаруу",
+        "enter_time": "Убакытты киргизиңиз",
+        "bottle_amount": "Бөтөлкөнүн суммасы",
+        "delete_title": "Жаздыруу жок кылынсынбы?",
+        "delete_desc": "Бул аракетти артка кайтаруу мүмкүн эмес.",
+        "delete_confirm": "Жок кылуу"
     },
     "lo": {
         "error_overlap": "ຜິດພາດ: ເຫດການທັບຊ້ອນກັບອັນທີ່ມີຢູ່ແລ້ວ.",
@@ -6018,7 +6383,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "ອັບເດດການນອນ",
         "sleep_update_desc": "ເຫດການນອນສຸດທ້າຍມີເວລາສິ້ນສຸດແລ້ວ. ທ່ານຕ້ອງການຂຽນທັບມັນບໍ?",
         "sleep_update_confirm": "ຂຽນທັບ",
-        "sleep_update_cancel": "ຍົກເລີກ"
+        "sleep_update_cancel": "ຍົກເລີກ",
+        "enter_time": "ໃສ່ເວລາ",
+        "bottle_amount": "ປະລິມານຂວດ",
+        "delete_title": "ລຶບບັນທຶກບໍ?",
+        "delete_desc": "ຄຳສັ່ງນີ້ບໍ່ສາມາດຍົກເລີກໄດ້.",
+        "delete_confirm": "ລຶບ"
     },
     "lv": {
         "error_overlap": "Kļūda: notikums pārklājas ar esošu.",
@@ -6099,7 +6469,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "Atjauniniet miegu",
         "sleep_update_desc": "Pēdējam miega notikumam jau ir beigu laiks. Vai vēlaties to pārrakstīt?",
         "sleep_update_confirm": "Pārrakstīt",
-        "sleep_update_cancel": "Atcelt"
+        "sleep_update_cancel": "Atcelt",
+        "enter_time": "Ievadiet laiku",
+        "bottle_amount": "Pudeles daudzums",
+        "delete_title": "Vai dzēst ierakstu?",
+        "delete_desc": "Šo darbību nevar atsaukt.",
+        "delete_confirm": "Dzēst"
     },
     "lt": {
         "error_overlap": "Klaida: įvykis sutampa su esamu.",
@@ -6180,7 +6555,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "Atnaujinkite miegą",
         "sleep_update_desc": "Paskutinis miego įvykis jau turi pabaigos laiką. Ar norite jį perrašyti?",
         "sleep_update_confirm": "Perrašyti",
-        "sleep_update_cancel": "Atšaukti"
+        "sleep_update_cancel": "Atšaukti",
+        "enter_time": "Įveskite laiką",
+        "bottle_amount": "Butelio kiekis",
+        "delete_title": "Ištrinti įrašą?",
+        "delete_desc": "Šio veiksmo anuliuoti negalima.",
+        "delete_confirm": "Ištrinti"
     },
     "mk": {
         "error_overlap": "Грешка: настанот се преклопува со постоечки.",
@@ -6261,7 +6641,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "Ажурирајте го спиењето",
         "sleep_update_desc": "Последниот настан за спиење веќе има крајно време. Дали сакате да го презапишете?",
         "sleep_update_confirm": "Презапишете",
-        "sleep_update_cancel": "Откажи"
+        "sleep_update_cancel": "Откажи",
+        "enter_time": "Внесете време",
+        "bottle_amount": "Количина на шише",
+        "delete_title": "Да се ​​избрише записот?",
+        "delete_desc": "Ова дејство не може да се врати.",
+        "delete_confirm": "Избриши"
     },
     "mn": {
         "error_overlap": "Алдаа: Үйл явдал одоо байгаа үйл явдалтай давхцаж байна.",
@@ -6342,7 +6727,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "Унтлаа шинэчлэх",
         "sleep_update_desc": "Сүүлчийн унтах үйл явдал аль хэдийн дуусах цагтай байна. Та үүнийг дарж бичихийг хүсч байна уу?",
         "sleep_update_confirm": "Дарж бичих",
-        "sleep_update_cancel": "Цуцлах"
+        "sleep_update_cancel": "Цуцлах",
+        "enter_time": "Цаг оруулна уу",
+        "bottle_amount": "Лонхны хэмжээ",
+        "delete_title": "Бичлэг устгах уу?",
+        "delete_desc": "Энэ үйлдлийг буцаах боломжгүй.",
+        "delete_confirm": "Устгах"
     },
     "no": {
         "error_overlap": "Feil: Hendelsen overlapper med en eksisterende.",
@@ -6423,7 +6813,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "Oppdater søvn",
         "sleep_update_desc": "Den siste søvnhendelsen har allerede en sluttid. Vil du overskrive den?",
         "sleep_update_confirm": "Overskriv",
-        "sleep_update_cancel": "Kansellere"
+        "sleep_update_cancel": "Kansellere",
+        "enter_time": "Angi tid",
+        "bottle_amount": "Flaskemengde",
+        "delete_title": "Vil du slette posten?",
+        "delete_desc": "Denne handlingen kan ikke angres.",
+        "delete_confirm": "Slett"
     },
     "rm": {
         "error_overlap": "Error: The event overlaps with an existing one.",
@@ -6581,7 +6976,12 @@ const TRANSLATIONS = {
         "sleep_update_title": "Ажурирајте спавање",
         "sleep_update_desc": "Последњи догађај спавања већ има време завршетка. Да ли желите да га препишете?",
         "sleep_update_confirm": "Оверврите",
-        "sleep_update_cancel": "Откажи"
+        "sleep_update_cancel": "Откажи",
+        "enter_time": "Унесите време",
+        "bottle_amount": "Количина боце",
+        "delete_title": "Избрисати запис?",
+        "delete_desc": "Ова радња се не може опозвати.",
+        "delete_confirm": "Избриши"
     },
     "zu": {
         "error_overlap": "Iphutha: Umcimbi ugqagqene nesivele sikhona.",
@@ -6662,6 +7062,11 @@ const TRANSLATIONS = {
         "sleep_update_title": "Buyekeza ukulala",
         "sleep_update_desc": "Umcimbi wokugcina wokulala usuvele unesikhathi sokuphela. Ingabe ufuna ukulibhala phezu kwalo?",
         "sleep_update_confirm": "Bhala phezu",
-        "sleep_update_cancel": "Khansela"
+        "sleep_update_cancel": "Khansela",
+        "enter_time": "Faka isikhathi",
+        "bottle_amount": "Inani lebhodlela",
+        "delete_title": "Susa irekhodi?",
+        "delete_desc": "Lesi senzo asikwazi ukuhlehliswa.",
+        "delete_confirm": "Susa"
     }
 };

@@ -607,7 +607,7 @@
     <!-- Time Selection Popup -->
     <div id="time-modal" class="time-popup-overlay">
         <div class="time-popup-box glass-card">
-            <h3 style="text-align: center; margin-bottom: 10px;">Introduce la hora</h3>
+            <h3 style="text-align: center; margin-bottom: 10px;" data-i18n="enter_time">Introduce la hora</h3>
             <div class="time-inputs wheel-container">
                 <div class="wheel-picker" data-target="modal-hour" data-min="0" data-max="23"></div>
                 <span class="wheel-separator">:</span>
@@ -617,9 +617,9 @@
                 <input type="hidden" id="modal-minute" value="0">
             </div>
             <div class="popup-actions">
-                <button id="modal-cancel" class="btn-secondary" style="flex: 1;">Cancelar</button>
+                <button id="modal-cancel" class="btn-secondary" style="flex: 1;" data-i18n="cancel">Cancelar</button>
                 <button id="modal-save" class="main-action-btn"
-                    style="padding: 12px; width: auto; flex: 1; border-radius: 12px; font-size: 1rem;">Guardar</button>
+                    style="padding: 12px; width: auto; flex: 1; border-radius: 12px; font-size: 1rem;" data-i18n="save">Guardar</button>
             </div>
         </div>
     </div>
@@ -627,16 +627,16 @@
     <!-- mL Selection Popup -->
     <div id="ml-modal" class="time-popup-overlay">
         <div class="time-popup-box glass-card">
-            <h3 style="text-align: center; margin-bottom: 10px;">Cantidad de biberón</h3>
+            <h3 style="text-align: center; margin-bottom: 10px;" data-i18n="bottle_amount">Cantidad de biberón</h3>
             <div style="display: flex; justify-content: center; align-items: center; gap: 10px; margin-bottom: 20px;">
                 <input type="number" id="modal-ml-input" min="0" step="10" placeholder="0"
                     style="width: 100px; padding: 10px; border-radius: 12px; background: rgba(0,0,0,0.2); border: 1px solid var(--card-border); color: white; text-align: center; font-size: 2rem; font-family: inherit; outline: none;">
                 <span style="font-size: 1.2rem; color: var(--text-secondary); font-weight: 600;">mL</span>
             </div>
             <div class="popup-actions">
-                <button id="ml-cancel" class="btn-secondary" style="flex: 1;">Cancelar</button>
+                <button id="ml-cancel" class="btn-secondary" style="flex: 1;" data-i18n="cancel">Cancelar</button>
                 <button id="ml-save" class="main-action-btn"
-                    style="padding: 12px; width: auto; flex: 1; border-radius: 12px; font-size: 1rem;">Guardar</button>
+                    style="padding: 12px; width: auto; flex: 1; border-radius: 12px; font-size: 1rem;" data-i18n="save">Guardar</button>
             </div>
         </div>
     </div>
@@ -682,7 +682,7 @@
             <div class="popup-actions" style="flex-direction: row;">
                 <button id="sleep-update-cancel" class="btn-secondary" style="flex: 1;" data-i18n="cancel">Cancelar</button>
                 <button id="sleep-update-save" class="main-action-btn"
-                    style="padding: 12px; width: auto; flex: 1; border-radius: 12px; font-size: 1rem;" data-i18n="sleep_update_confirm">Sobrescribir</button>
+                    style="padding: 12px; width: auto; flex: 1; border-radius: 12px; font-size: 1rem;" data-i18n="save">Guardar</button>
             </div>
         </div>
     </div>
@@ -690,13 +690,13 @@
     <!-- Confirm Delete Popup -->
     <div id="delete-modal" class="time-popup-overlay">
         <div class="time-popup-box glass-card">
-            <h3 style="text-align: center; margin-bottom: 10px;">¿Borrar registro?</h3>
-            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 10px;">Esta acción no se puede
+            <h3 style="text-align: center; margin-bottom: 10px;" data-i18n="delete_title">¿Borrar registro?</h3>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 10px;" data-i18n="delete_desc">Esta acción no se puede
                 deshacer.</p>
             <div class="popup-actions">
-                <button id="delete-cancel" class="btn-secondary" style="flex: 1;">Cancelar</button>
+                <button id="delete-cancel" class="btn-secondary" style="flex: 1;" data-i18n="cancel">Cancelar</button>
                 <button id="delete-confirm" class="main-action-btn"
-                    style="padding: 12px; width: auto; flex: 1; border-radius: 12px; font-size: 1rem; background: #ef4444;">Borrar</button>
+                    style="padding: 12px; width: auto; flex: 1; border-radius: 12px; font-size: 1rem; background: #ef4444;" data-i18n="delete_confirm">Borrar</button>
             </div>
         </div>
     </div>
