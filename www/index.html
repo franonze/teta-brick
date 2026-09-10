@@ -247,7 +247,7 @@
 
                 <!-- Bottom Section (Diaper) -->
                 <section class="glass-card diaper-section" id="section-diaper" style="padding: 0.5rem 0.8rem;">
-                    <div class="diaper-row" style="justify-content: center; gap: 30px;">
+                    <div class="diaper-row" style="justify-content: center; gap: clamp(5px, 3vw, 20px); flex-wrap: wrap;">
                         <div style="position: relative; display: inline-flex; align-items: center;">
                             <button class="diaper-btn poop-btn" id="btn-diaper">
                                 <span class="emoji">💩</span>
@@ -281,7 +281,7 @@
 
                 <!-- Bottom Section (Sleep) -->
                 <section class="glass-card diaper-section" id="section-sleep" style="padding: 0.5rem 0.8rem;">
-                    <div class="diaper-row" style="justify-content: center; gap: 30px;">
+                    <div class="diaper-row" style="justify-content: center; gap: clamp(5px, 3vw, 15px); flex-wrap: wrap;">
                         <div style="position: relative; display: inline-flex; align-items: center;">
                             <button class="diaper-btn" id="btn-sleep" style="padding: 6px 10px;">
                                 <span class="emoji">💤</span>
@@ -294,7 +294,7 @@
                             </button>
                         </div>
                         
-                        <div style="display: flex; gap: 8px; align-items: center;">
+                        <div style="display: flex; gap: clamp(2px, 2vw, 6px); align-items: center;">
                             <!-- Start Time section -->
                             <div class="time-label time-clickable time-box" data-target="time-sleep-start" style="align-items: center; min-width: 50px;">
 <button class="inline-reset-time" onclick="resetSleepStart(event)" aria-label="Reset">
